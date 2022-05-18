@@ -19,7 +19,7 @@
                     
                 	<WizardStep id="ProductTypeStep" title="{i18n>titleCreation}" validated="true">
 
-                        	<smartForm:SmartForm editable="true" >
+                        	<!-- <smartForm:SmartForm editable="true" > -->
                                    	<!--  <smartForm:layout>
                                         <smartForm:ColumnLayout 
                                             emptyCellsLarge="4"
@@ -36,7 +36,7 @@
                                           </smartField:controlConfiguration> 
                                         </smartForm:GroupElement>
                                     </smartForm:Group>  -->
-                                </smartForm:SmartForm>
+                                <!-- </smartForm:SmartForm> -->
 
                     </WizardStep>
 
