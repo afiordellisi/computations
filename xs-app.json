@@ -1,0 +1,38 @@
+{
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "route",
+  "routes": [
+    {
+      "source": "^/temp/(.*)$",
+      "target": "/temp/$1",
+      "destination": "S4Hana",
+      "authenticationType": "none",
+      "csrfProtection": false
+    },
+    {
+        "source": "^/computation/(.*)$",
+        "target": "/computation/$1",
+        "destination": "HanaCloud",
+        "authenticationType": "none",
+        "csrfProtection": false
+      },
+    {
+      "source": "^/resources/(.*)$",
+      "target": "/resources/$1",
+      "authenticationType": "none",
+      "destination": "ui5"
+    },
+    {
+      "source": "^/test-resources/(.*)$",
+      "target": "/test-resources/$1",
+      "authenticationType": "none",
+      "destination": "ui5"
+    },
+    {
+      "source": "^(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    }
+  ]
+}

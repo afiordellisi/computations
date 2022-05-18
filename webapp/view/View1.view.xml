@@ -1,0 +1,106 @@
+<mvc:View controllerName="tax.provisioning.computations.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar">
+    <!-- <Page id="page" title="{i18n>title}">
+        <content />
+    </Page> -->
+     <semantic:SemanticPage id="semanticPage" headerPinnable="true" toggleHeaderOnTitleClick="true" preserveHeaderStateOnScroll="false" titleAreaShrinkRatio="1:1.6:1.6" showFooter="false">
+        <semantic:headerContent>
+          <smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="items" showGoOnFB="true" search="onGo" >
+          <smartFilterBar:controlConfiguration>
+            	<smartFilterBar:ControlConfiguration controlType="dropDownList" groupId="_BASIC" key="societa" preventInitialDataFetchInValueHelpDialog="false" filterType="single" id="societa"/>
+                <smartFilterBar:ControlConfiguration controlType="dropDownList" groupId="_BASIC" key="ledger" preventInitialDataFetchInValueHelpDialog="false" filterType="single" id="ledger"/>
+                <smartFilterBar:ControlConfiguration controlType="dropDownList" groupId="_BASIC" key="periodo"  preventInitialDataFetchInValueHelpDialog="false" filterType="single" id="periodo"/>
+            </smartFilterBar:controlConfiguration>
+            </smartFilterBar:SmartFilterBar>
+           
+        </semantic:headerContent>
+
+        <!-- Content -->
+        <semantic:content>
+            <Table id="idTable" inset="false" items="{path:'tableModel>/oModel'}" class="sapFSemanticPageAlignContent" width="auto">
+            <headerToolbar>
+              <OverflowToolbar>
+                <Title text="{i18n>computations}" level="H2"/>
+                <ToolbarSpacer/>
+                <!-- <Button text="{i18n>import}" icon="sap-icon://upload-to-cloud" press="onImportPressed"/> -->
+                 <Button id="newButton" text="{i18n>new}" icon="sap-icon://create" press="onNewPress"/>
+              </OverflowToolbar>
+            </headerToolbar>
+            <columns>
+              <Column>
+                <Text text="{i18n>name}"/>
+              </Column>
+              <Column minScreenWidth="Tablet" demandPopin="true">
+                <Text text="{i18n>societa}"/>
+              </Column>
+              <Column minScreenWidth="Tablet" demandPopin="true">
+                <Text text="{i18n>ledger}"/>
+              </Column>
+              <Column minScreenWidth="Tablet" demandPopin="true">
+                <Text text="{i18n>periodo}"/>
+              </Column>
+              <Column>
+                <Text text="{i18n>utilePerdita}"/>
+              </Column>
+              <Column>
+                <Text text="{i18n>taxRule}"/>
+              </Column>
+              <Column>
+                <Text text="{i18n>scenario}"/>
+              </Column>
+              <Column>
+                <Text text="{i18n>redditoImp}"/>
+              </Column>
+              <Column>
+                <Text text="{i18n>ires}"/>
+              </Column>
+              <Column>
+                <Text text="{i18n>valoreProd}"/>
+              </Column>
+              <Column>
+                <Text text="{i18n>irap}"/>
+              </Column>
+              <Column>
+                <Text text="{i18n>movement}"/>
+              </Column>
+              <Column>
+                <Text text="{i18n>date}"/>
+              </Column>
+              <Column>
+                <Text text="{i18n>user}"/>
+              </Column>
+            </columns>
+            <items>
+              <ColumnListItem vAlign="Middle">
+                <cells>
+                    <Text text="{tableModel>descrizione}"/>
+                    <Text text="{tableModel>societa}"/>
+                    <Text text="{tableModel>scenario}"/>
+                    <Text text="{tableModel>periodo}"/>
+                    <Text text="{tableModel>utilePerditaCY}"/>
+                    <Text text="{tableModel>descrizioneConfigurazione}"/>
+                    <Text text="{tableModel>scenario}"/>
+                    <Text text="{tableModel>redditoImponibile}"/>
+                    <Text text="{tableModel>ires}"/>
+                    <Text text="{tableModel>valoreProduzione}"/>
+                    <Text text="{tableModel>irap}"/>
+                    <Text text="{tableModel>movement}"/>
+                    <Text text="{tableModel>createdAt}"/> 
+                    <Text text="{tableModel>createdBy}"/>                    
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </semantic:content>
+        <semantic:footerCustomActions>
+          <Button text="{i18n>save}" press="onSave" />
+          <Button text="{i18n>cancel}" press="onCancelRefresh"/>
+        </semantic:footerCustomActions>
+      </semantic:SemanticPage>
+</mvc:View>

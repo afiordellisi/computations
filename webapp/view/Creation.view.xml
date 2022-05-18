@@ -1,0 +1,66 @@
+<mvc:View controllerName="tax.provisioning.computations.controller.App"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:smartForm="sap.ui.comp.smartform"
+    xmlns:smartField="sap.ui.comp.smartfield"
+    xmlns:u="sap.ui.unified">
+
+    <Page id="creationPage" title="{i18n>title}">
+        <content>
+            <Wizard id="CreateProductWizard" 
+                    class="sapUiResponsivePadding--header sapUiResponsivePadding--content"	
+                    complete="wizardCompletedHandler">
+                    
+                	<WizardStep id="ProductTypeStep" title="{i18n>titleCreation}" validated="true">
+
+                        	<smartForm:SmartForm editable="true" >
+                                   	<!--  <smartForm:layout>
+                                        <smartForm:ColumnLayout 
+                                            emptyCellsLarge="4"
+                                            labelCellsLarge="4"
+                                            columnsM="1"
+                                            columnsL="1"
+                                            columnsXL="1"/>
+                                    </smartForm:layout>
+                                    <smartForm:Group>
+                                        <smartForm:GroupElement >
+                                            <smartField:controlConfiguration>
+                                            <smartField:ControlConfiguration controlType="dropDownList" groupId="_BASIC2" key="societa" preventInitialDataFetchInValueHelpDialog="false" filterType="single" id="societa2"/>
+                                            <smartField:SmartField entitySet="items" value="{societa}" id="idPrice"/> 
+                                          </smartField:controlConfiguration> 
+                                        </smartForm:GroupElement>
+                                    </smartForm:Group>  -->
+                                </smartForm:SmartForm>
+
+                    </WizardStep>
+
+                    <WizardStep id="ProductInfoStep" 
+                                validated="false" 
+                                title="{i18n>trialBalance}"
+                                activate="additionalInfoValidation">
+                    	    <form:SimpleForm editable="true">
+									<Label text="Price"/>
+									<Input value="{/Societa}"/>
+									<Label text="Discount group"/>
+									<ComboBox selectedKey="{/discountGroup}">
+										<core:Item key="Kids" text="Kids"/>
+										<core:Item key="Teens" text="Teens"/>
+										<core:Item key="Adults" text="Adults"/>
+										<core:Item key="Elderly" text="Elderly"/>
+									</ComboBox>
+									<Label text=" VAT is included"/>
+									<CheckBox selected="{/productVAT}"/>
+							</form:SimpleForm>
+
+                    </WizardStep>
+            </Wizard>
+        </content>
+    </Page>
+    
+</mvc:View>
