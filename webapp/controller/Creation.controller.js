@@ -9,7 +9,6 @@ sap.ui.define([
      */
     function (Controller, Filter, FilterOperator, JSONModel) {
         "use strict";
-        var aParameterSet = [];
         var aFilter = [];
         
 

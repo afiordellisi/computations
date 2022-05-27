@@ -80,10 +80,10 @@ sap.ui.define([
                 // debugger;
                 // oEvent.getSource().getBindingContext().getObject();
                 var oRouter = this.getOwnerComponent().getRouter();
-                    oRouter.navTo("RouteTax");
+                    oRouter.navTo("RouteTax", {
+                        ID : oEvent.getSource().getBindingContext("tableModel").getObject().ID
+                    }, true);
                 
-                this.getView().byId("idTable").getSelectedItem();
-                debugger;
             }
            
         });

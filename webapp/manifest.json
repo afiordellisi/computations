@@ -167,7 +167,7 @@
                 },
                 {
                     "name": "RouteTax",
-                    "pattern": "Tax",
+                    "pattern": "Tax/{ID}",
                     "target": [
                         "TargetTax"
                     ]

@@ -12,63 +12,20 @@ sap.ui.define([
 
         return Controller.extend("tax.provisioning.computations.controller.CurrentTax", {
             onInit: function () {
-                this.oView = this.getView();
-                //this._bDescendingSort = false;
-                sap.ui.getCore().sapAppID = this.getOwnerComponent().getMetadata().getManifest()["sap.app"].id;
-
-                var that = this;
-
-                var oModel = this.getOwnerComponent().getModel("catalogModel");
-
-                oModel.read("/Imposte", {
-                    success: function (oData, response) {
-                        var data = {
-                            oModel: oData.results
-                        };
-                        var DataModel = new sap.ui.model.json.JSONModel();
-                        DataModel.setData(data);
-                        that.getView().setModel(DataModel, "imposteModel");
-                    },
-
-                    error: function (response) {
-                        sap.m.MessageToast.show("Error");
-                    }
-                });
-
-                this.oProductsTable = this.oView.byId("productsTable");             
-
-                //this.getView().byId("productsTable").setModel("catalogModel");
-
-                //lettura modello AnagraficaRiprese
-                jQuery.ajax({
-                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/AnagraficaRiprese?$expand=configurazioni&$filter=tipologia eq 'P'"),
-                    contentType: "application/json",
-                    type: 'GET',
-                    dataType: "json",
-                    async: false,
-                    success: function (oCompleteEntry) {
-                        var data = {
-                            oModel1: oCompleteEntry.d.results
-                        };
-                        var DataModel = new sap.ui.model.json.JSONModel();
-                        DataModel.setData(data);
-                        that.getView().setModel(DataModel, "oModelAnagrafica");
-                    },
-                    error: function (error) {
-                        sap.m.MessageToast.show("Error");
-                    }
-                });      
+                this.oModel = this.getOwnerComponent().getModel();
+                this.getOwnerComponent().getRouter().getRoute("RouteTax").attachPatternMatched(this._onObjectMatched, this);
                 
-                this._mFilters = {
-                    "Permanenti": [new Filter("tipologia", FilterOperator.EQ, "P")],
-                    "Temporanee": [new Filter("tipologia", FilterOperator.EQ, "T")]
-                };
+                sap.ui.getCore().sapAppID = this.getOwnerComponent().getMetadata().getManifest()["sap.app"].id;
+                //this.getView().getModel("oModelAnagrafica");
 
                 this._setHeader();
             },
 
-            onQuickFilter: function (oEvent) {
+            _onObjectMatched: function (oEvent) {
+                var oEvent = oEvent.getParameter("arguments");
+                var ID = oEvent.ID;
                 var that = this;
+                //lettura modello AnagraficaRiprese
                 jQuery.ajax({
                     url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/AnagraficaRiprese"),
                     contentType: "application/json",
@@ -76,8 +33,22 @@ sap.ui.define([
                     dataType: "json",
                     async: false,
                     success: function (oCompleteEntry) {
+                        var arr = oCompleteEntry.d.results;
+                        var PA = arr.filter(ripresa => ripresa.tipologia === 'P' && ripresa.tipoVariazione === 'A');
+                        var PD = arr.filter(ripresa => ripresa.tipologia === 'P' && ripresa.tipoVariazione === 'D');
+                        var TA = arr.filter(ripresa => ripresa.tipologia === 'T' && ripresa.tipoVariazione === 'A');
+                        var TD = arr.filter(ripresa => ripresa.tipologia === 'T' && ripresa.tipoVariazione === 'D');
+                        var PER = arr.filter(ripresa => ripresa.tipoVariazione === 'PER');
+                        var ACE = arr.filter(ripresa => ripresa.tipoVariazione === 'ACE');
+                        var PAImponibile;
                         var data = {
-                            oModel1: oCompleteEntry.d.results
+                            oModelPA : PA,
+                            oModelPD : PD,
+                            oModelTA : TA,
+                            oModelTD : TD,
+                            oModelPER : PER,
+                            oModelACE : ACE, 
+                            oModelPAImponibile: PAImponibile
                         };
                         var DataModel = new sap.ui.model.json.JSONModel();
                         DataModel.setData(data);
@@ -87,9 +58,7 @@ sap.ui.define([
                         sap.m.MessageToast.show("Error");
                     }
                 });
-                var oBinding = this.oProductsTable.getBinding("items"),
-                    sKey = oEvent.getParameter("selectedKey");
-                oBinding.filter(this._mFilters[sKey]);
+
             },
 
             _setHeader: function(){
@@ -103,6 +72,14 @@ sap.ui.define([
                     "impostaPerc": 24,
                     "testo": "Utile perdita ante imposte"
                   }]}), "headerModel");
+            },
+
+            sumHeaders: function(fValue){
+                debugger;
+                if (fValue) {
+                    return "> " + Math.floor(fValue/1000000) + "M";
+                }
+                return "0";
             }
         });
     });

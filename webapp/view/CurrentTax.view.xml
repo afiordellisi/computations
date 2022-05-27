@@ -14,6 +14,11 @@
 	<uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
     	<uxap:headerTitle>
 			<uxap:ObjectPageDynamicHeaderTitle>
+            	<uxap:expandedHeading>
+					
+						<m:Title text="Descrizione computation" wrapping="true"/>
+					
+				</uxap:expandedHeading>
              </uxap:ObjectPageDynamicHeaderTitle>
         </uxap:headerTitle>
             <uxap:headerContent>
@@ -142,78 +147,454 @@
 
             <uxap:ObjectPageSection titleUppercase="false" title="Section 2" class="sapUiTinyMarginTop" showTitle="false">
             <uxap:subSections>
-					<uxap:ObjectPageSubSection id="personalSectionSS12" title="Variazioni in aumento permanenti" titleUppercase="false" >
+					<uxap:ObjectPageSubSection id="personalSectionSS2" title="Variazioni in aumento permanenti" titleUppercase="false" >
 						<uxap:blocks>
-        	<Table
-				id="table12"
-				ariaLabelledBy="title"
-				selectionMode="None"
-				rows="{path:'oModelAnagrafica>/oModel1'}"
-				enableColumnFreeze="true"
-                visibleRowCount="60"
-				showColumnVisibilityMenu="false">
-				<columns>
-					<Column
-						width="10%">
-						<m:Label text="" textAlign="Center" width="100%"/>
-						<template>
-							<m:Text text="{oModelAnagrafica>ID}"/>
-						</template>
-					</Column>
-                    <Column
-						width="30%">
-						<m:Label text="" textAlign="Center" width="100%"/>
-						<template>
-							<m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
-						</template>
-					</Column>
-					<Column	width="10%"	>
-							<m:Label text="Imponibile" textAlign="Center" width="100%"/>
-						<template>
-							<m:Text text="{oModelAnagrafica>imponibile}" />
-						</template>
-					</Column>
-					<Column	width="10%"	>
-						<m:Label text="Imposta 24%" textAlign="Center" width="100%"/>
-						<template>
-							<m:Text text="{oModelAnagrafica>imposta}"/>
-						</template>
-					</Column>
-                    <Column
-						width="10%">
-							<m:Label text="UNICO" textAlign="Center" width="100%"/>
-						<template>
-							<m:Text text="{oModelAnagrafica>unico}"/>
-						</template>
-					</Column>
+                                <Table
+                                    id="table2"
+                                    ariaLabelledBy="title"
+                                    selectionMode="None"
+                                    rows="{path:'oModelAnagrafica>/oModelPA'}"
+                                    enableColumnFreeze="true"
+                                    visibleRowCount="{path:'oModelAnagrafica>/oModelPA/length'}"
+                                    showColumnVisibilityMenu="false">
+                                    <columns>
+                                        <Column
+                                            width="10%">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>ID}"/>
+                                            </template>
+                                        </Column>
+                                        <Column
+                                            width="30%">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+                                            </template>
+                                        </Column>
+                                        <Column	width="10%"	>
+                                                <m:Label text="{path: 'oModelAnagrafica>PAImponibile'}" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>imponibile}" />
+                                            </template>
+                                        </Column>
+                                        <Column	width="10%"	>
+                                            <m:Label text="{=${oModelAnagrafica>PAImponibile}*${headerModel>impostaPerc}/100}" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>imposta}"/>
+                                            </template>
+                                        </Column>
+                                        <Column
+                                            width="10%">
+                                                <m:Label text="UNICO" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>unico}"/>
+                                            </template>
+                                        </Column>
 
-                    <Column	width="10%">
-							<m:Label text="correnti" textAlign="Center" width="100%"/>
-						<template>
-							<m:Text text="{oModelAnagrafica>correnti}"/>
-						</template>
-					</Column>
+                                        <Column	width="10%">
+                                                <m:Label text="correnti" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>correnti}"/>
+                                            </template>
+                                        </Column>
 
-                    <Column	width="10%">
-							<m:Label text="differite" textAlign="Center" width="100%"/>
-						<template>
-							<m:Text text="{oModelAnagrafica>differite}"/>
-						</template>
-					</Column>
+                                        <Column	width="10%">
+                                                <m:Label text="differite" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>differite}"/>
+                                            </template>
+                                        </Column>
 
-                    <Column		width="10%">
-							<m:Label text="totale" textAlign="Center" width="100%"/>
-						<template>
-							<m:Text text="{oModelAnagrafica>totale}"/>
-						</template>
-					</Column>
-				</columns>
-			</Table>
+                                        <Column		width="10%">
+                                                <m:Label text="totale" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>totale}"/>
+                                            </template>
+                                        </Column>
+                                    </columns>
+                                </Table>
       
                         </uxap:blocks>
 					</uxap:ObjectPageSubSection>
                     	</uxap:subSections>
             </uxap:ObjectPageSection>
+
+            <uxap:ObjectPageSection titleUppercase="false" title="Section 3" class="sapUiTinyMarginTop" showTitle="false">
+            <uxap:subSections>
+					<uxap:ObjectPageSubSection id="personalSectionSS3" title="Variazioni in diminuzione permanenti" titleUppercase="false" >
+						<uxap:blocks>
+                                <Table
+                                    id="table3"
+                                    ariaLabelledBy="title"
+                                    selectionMode="None"
+                                    rows="{path:'oModelAnagrafica>/oModelPD'}"
+                                    enableColumnFreeze="true"
+                                    visibleRowCount="{path:'oModelAnagrafica>/oModelPD/length'}"
+                                    showColumnVisibilityMenu="false">
+                                    <columns>
+                                        <Column
+                                            width="10%">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>ID}"/>
+                                            </template>
+                                        </Column>
+                                        <Column
+                                            width="30%">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+                                            </template>
+                                        </Column>
+                                        <Column	width="10%"	>
+                                                <m:Label text="Imponibile" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>imponibile}" />
+                                            </template>
+                                        </Column>
+                                        <Column	width="10%"	>
+                                            <m:Label text="Imposta 24%" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>imposta}"/>
+                                            </template>
+                                        </Column>
+                                        <Column
+                                            width="10%">
+                                                <m:Label text="UNICO" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>unico}"/>
+                                            </template>
+                                        </Column>
+
+                                        <Column	width="10%">
+                                                <m:Label text="correnti" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>correnti}"/>
+                                            </template>
+                                        </Column>
+
+                                        <Column	width="10%">
+                                                <m:Label text="differite" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>differite}"/>
+                                            </template>
+                                        </Column>
+
+                                        <Column		width="10%">
+                                                <m:Label text="totale" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>totale}"/>
+                                            </template>
+                                        </Column>
+                                    </columns>
+                                </Table>
+      
+                        </uxap:blocks>
+					</uxap:ObjectPageSubSection>
+                    	</uxap:subSections>
+            </uxap:ObjectPageSection>
+
+            <uxap:ObjectPageSection titleUppercase="false" title="Section 4" class="sapUiTinyMarginTop" showTitle="false">
+            <uxap:subSections>
+					<uxap:ObjectPageSubSection id="personalSectionSS4" title="Variazioni in aumento temporanee" titleUppercase="false" >
+						<uxap:blocks>
+                                <Table
+                                    id="table4"
+                                    ariaLabelledBy="title"
+                                    selectionMode="None"
+                                    rows="{path:'oModelAnagrafica>/oModelTA'}"
+                                    enableColumnFreeze="true"
+                                    visibleRowCount="{path:'oModelAnagrafica>/oModelTA/length'}"
+                                    showColumnVisibilityMenu="false">
+                                    <columns>
+                                        <Column
+                                            width="10%">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>ID}"/>
+                                            </template>
+                                        </Column>
+                                        <Column
+                                            width="30%">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+                                            </template>
+                                        </Column>
+                                        <Column	width="10%"	>
+                                                <m:Label text="Imponibile" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>imponibile}" />
+                                            </template>
+                                        </Column>
+                                        <Column	width="10%"	>
+                                            <m:Label text="Imposta 24%" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>imposta}"/>
+                                            </template>
+                                        </Column>
+                                        <Column
+                                            width="10%">
+                                                <m:Label text="UNICO" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>unico}"/>
+                                            </template>
+                                        </Column>
+
+                                        <Column	width="10%">
+                                                <m:Label text="correnti" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>correnti}"/>
+                                            </template>
+                                        </Column>
+
+                                        <Column	width="10%">
+                                                <m:Label text="differite" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>differite}"/>
+                                            </template>
+                                        </Column>
+
+                                        <Column		width="10%">
+                                                <m:Label text="totale" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>totale}"/>
+                                            </template>
+                                        </Column>
+                                    </columns>
+                                </Table>
+      
+                        </uxap:blocks>
+					</uxap:ObjectPageSubSection>
+                    	</uxap:subSections>
+            </uxap:ObjectPageSection>
+
+            <uxap:ObjectPageSection titleUppercase="false" title="Section 5" class="sapUiTinyMarginTop" showTitle="false">
+            <uxap:subSections>
+					<uxap:ObjectPageSubSection id="personalSectionSS5" title="Variazioni in diminuzione temporanee" titleUppercase="false" >
+						<uxap:blocks>
+                                <Table
+                                    id="table5"
+                                    ariaLabelledBy="title"
+                                    selectionMode="None"
+                                    rows="{path:'oModelAnagrafica>/oModelTD'}"
+                                    enableColumnFreeze="true"
+                                    visibleRowCount="{path:'oModelAnagrafica>/oModelTD/length'}"
+                                    showColumnVisibilityMenu="false">
+                                    <columns>
+                                        <Column
+                                            width="10%">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>ID}"/>
+                                            </template>
+                                        </Column>
+                                        <Column
+                                            width="30%">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+                                            </template>
+                                        </Column>
+                                        <Column	width="10%"	>
+                                                <m:Label text="Imponibile" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>imponibile}" />
+                                            </template>
+                                        </Column>
+                                        <Column	width="10%"	>
+                                            <m:Label text="Imposta 24%" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>imposta}"/>
+                                            </template>
+                                        </Column>
+                                        <Column
+                                            width="10%">
+                                                <m:Label text="UNICO" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>unico}"/>
+                                            </template>
+                                        </Column>
+
+                                        <Column	width="10%">
+                                                <m:Label text="correnti" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>correnti}"/>
+                                            </template>
+                                        </Column>
+
+                                        <Column	width="10%">
+                                                <m:Label text="differite" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>differite}"/>
+                                            </template>
+                                        </Column>
+
+                                        <Column		width="10%">
+                                                <m:Label text="totale" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>totale}"/>
+                                            </template>
+                                        </Column>
+                                    </columns>
+                                </Table>
+      
+                        </uxap:blocks>
+					</uxap:ObjectPageSubSection>
+                    	</uxap:subSections>
+            </uxap:ObjectPageSection>
+
+             <uxap:ObjectPageSection titleUppercase="false" title="Section 6" class="sapUiTinyMarginTop" showTitle="false">
+            <uxap:subSections>
+					<uxap:ObjectPageSubSection id="personalSectionSS6" title="Reddito imponibile al lordo di perdite fiscali ed ACE o perdita fiscale" titleUppercase="false" >
+						<uxap:blocks>
+                                <Table
+                                    id="table6"
+                                    ariaLabelledBy="title"
+                                    selectionMode="None"
+                                    rows="{path:'oModelAnagrafica>/oModelPER'}"
+                                    enableColumnFreeze="true"
+                                    visibleRowCount="{path:'oModelAnagrafica>/oModelPER/length'}"
+                                    showColumnVisibilityMenu="false">
+                                    <columns>
+                                        <Column
+                                            width="10%">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>ID}"/>
+                                            </template>
+                                        </Column>
+                                        <Column
+                                            width="30%">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+                                            </template>
+                                        </Column>
+                                        <Column	width="10%"	>
+                                                <m:Label text="Imponibile" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>imponibile}" />
+                                            </template>
+                                        </Column>
+                                        <Column	width="10%"	>
+                                            <m:Label text="Imposta 24%" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>imposta}"/>
+                                            </template>
+                                        </Column>
+                                        <Column
+                                            width="10%">
+                                                <m:Label text="UNICO" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>unico}"/>
+                                            </template>
+                                        </Column>
+
+                                        <Column	width="10%">
+                                                <m:Label text="correnti" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>correnti}"/>
+                                            </template>
+                                        </Column>
+
+                                        <Column	width="10%">
+                                                <m:Label text="differite" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>differite}"/>
+                                            </template>
+                                        </Column>
+
+                                        <Column		width="10%">
+                                                <m:Label text="totale" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>totale}"/>
+                                            </template>
+                                        </Column>
+                                    </columns>
+                                </Table>
+      
+                        </uxap:blocks>
+					</uxap:ObjectPageSubSection>
+                    	</uxap:subSections>
+            </uxap:ObjectPageSection>
+
+             <uxap:ObjectPageSection titleUppercase="false" title="Section 7" class="sapUiTinyMarginTop" showTitle="false">
+            <uxap:subSections>
+					<uxap:ObjectPageSubSection id="personalSectionSS7" title="Reddito imponibile al lordo dell'ACE" titleUppercase="false" >
+						<uxap:blocks>
+                                <Table
+                                    id="table7"
+                                    ariaLabelledBy="title"
+                                    selectionMode="None"
+                                    rows="{path:'oModelAnagrafica>/oModelACE'}"
+                                    enableColumnFreeze="true"
+                                    visibleRowCount="{path:'oModelAnagrafica>/oModelACE/length'}"
+                                    showColumnVisibilityMenu="false">
+                                    <columns>
+                                        <Column
+                                            width="10%">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>ID}"/>
+                                            </template>
+                                        </Column>
+                                        <Column
+                                            width="30%">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+                                            </template>
+                                        </Column>
+                                        <Column	width="10%"	>
+                                                <m:Label text="Imponibile" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>imponibile}" />
+                                            </template>
+                                        </Column>
+                                        <Column	width="10%"	>
+                                            <m:Label text="Imposta 24%" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>imposta}"/>
+                                            </template>
+                                        </Column>
+                                        <Column
+                                            width="10%">
+                                                <m:Label text="UNICO" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>unico}"/>
+                                            </template>
+                                        </Column>
+
+                                        <Column	width="10%">
+                                                <m:Label text="correnti" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>correnti}"/>
+                                            </template>
+                                        </Column>
+
+                                        <Column	width="10%">
+                                                <m:Label text="differite" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>differite}"/>
+                                            </template>
+                                        </Column>
+
+                                        <Column		width="10%">
+                                                <m:Label text="totale" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelAnagrafica>totale}"/>
+                                            </template>
+                                        </Column>
+                                    </columns>
+                                </Table>
+      
+                        </uxap:blocks>
+					</uxap:ObjectPageSubSection>
+                    	</uxap:subSections>
+            </uxap:ObjectPageSection>
+
         </uxap:sections>
        
 			
