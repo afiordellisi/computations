@@ -1,0 +1,222 @@
+<mvc:View controllerName="tax.provisioning.computations.controller.CurrentTax"
+        xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+        xmlns:m="sap.m"
+        xmlns:uxap="sap.uxap"
+        xmlns="sap.ui.table"
+        xmlns:semantic="sap.f.semantic"
+        xmlns:layout="sap.ui.layout"
+        xmlns:core="sap.ui.core"
+        xmlns:form="sap.ui.layout.form"
+        xmlns:smartForm="sap.ui.comp.smartform"
+        xmlns:smartField="sap.ui.comp.smartfield"
+        xmlns:u="sap.ui.unified">
+
+	<uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
+    	<uxap:headerTitle>
+			<uxap:ObjectPageDynamicHeaderTitle>
+             </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+            <uxap:headerContent>
+                <Table
+				id="table1"
+				ariaLabelledBy="title"
+				selectionMode="None"
+				rows="{headerModel>/oModel}"
+				visibleRowCount="1"
+				enableColumnFreeze="true"
+				showColumnVisibilityMenu="true">
+				<columns>
+					<Column
+						width="10%"
+						sortProperty="supplier"
+						filterProperty="supplier" headerSpan="2,2">
+						<m:Label text="" textAlign="Center" width="100%"/>
+						<template>
+							<m:Text text=""/>
+						</template>
+					</Column>
+                    <Column
+						width="30%"
+						sortProperty="supplier"
+						filterProperty="supplier">
+						<m:Label text="" textAlign="Center" width="100%"/>
+						<template>
+							<m:Text text="{headerModel>testo}"/>
+						</template>
+					</Column>
+					<Column
+						width="10%"
+						sortProperty="street"
+						filterProperty="street"
+						headerSpan="3">
+						<multiLabels>
+							<m:Label text="Imposte correnti" textAlign="Center" width="100%"/>
+							<m:Label text="Imponibile" textAlign="Center" width="100%"/>
+						</multiLabels>
+						<template>
+							<m:Text text="{headerModel>imponibile}"/>
+						</template>
+					</Column>
+					<Column
+						width="10%"
+						sortProperty="imposta"
+						headerSpan="2">
+						<multiLabels>
+							<m:Label text="Imposte correnti" textAlign="Center" width="100%"/>
+							<m:Label text="Imposta {headerModel>/oModel/0/impostaPerc}%" textAlign="Center" width="100%"/>
+						</multiLabels>
+						<template>
+							<m:Text text="{=${headerModel>imponibile}*${headerModel>impostaPerc}/100}"/>
+						</template>
+					</Column>
+                    <Column
+						width="10%"
+						sortProperty="unico"
+						headerSpan="2">
+						<multiLabels>
+							<m:Label text="Imposte correnti" textAlign="Center" width="100%"/>
+							<m:Label text="UNICO" textAlign="Center" width="100%"/>
+							
+						</multiLabels>
+						<template>
+							<m:Text text=""/>
+						</template>
+					</Column>
+
+                    <Column
+						width="10%"
+						sortProperty="unico"
+						headerSpan="3">
+						<multiLabels>
+							<m:Label text="Imposte di bilancio" textAlign="Center" width="100%"/>
+							<m:Label text="correnti" textAlign="Center" width="100%"/>
+							
+						</multiLabels>
+						<template>
+							<m:Text text="{=${headerModel>imponibile}*${headerModel>impostaPerc}/100}"/>
+						</template>
+					</Column>
+
+                    <Column
+						width="10%"
+						sortProperty="unico"
+						headerSpan="2">
+						<multiLabels>
+							<m:Label text="Imposte di bilancio" textAlign="Center" width="100%"/>
+							<m:Label text="differite" textAlign="Center" width="100%"/>
+							
+						</multiLabels>
+						<template>
+							<m:Text text="{headerModel>differite}"/>
+						</template>
+					</Column>
+
+                    <Column
+						width="10%"
+						sortProperty="unico"
+						headerSpan="2">
+						<multiLabels>
+							<m:Label text="Imposte di bilancio" textAlign="Center" width="100%"/>
+							<m:Label text="totale" textAlign="Center" width="100%"/>
+							
+						</multiLabels>
+						<template>
+							<m:Text text="{=${headerModel>imponibile}*${headerModel>impostaPerc}/100 - ${headerModel>differite}}"/>
+						</template>
+					</Column>
+				</columns>
+			</Table>
+            </uxap:headerContent>
+           
+        <uxap:sections>
+        	<uxap:ObjectPageSection titleUppercase="false" title="Section 1" class="sapUiTinyMarginBottom">
+            <uxap:subSections>
+					<uxap:ObjectPageSubSection id="personalSectionSS1" title="" titleUppercase="false">
+						<uxap:blocks>
+        	
+      
+                        </uxap:blocks>
+					</uxap:ObjectPageSubSection>
+                    	</uxap:subSections>
+            </uxap:ObjectPageSection>
+
+            <uxap:ObjectPageSection titleUppercase="false" title="Section 2" class="sapUiTinyMarginTop" showTitle="false">
+            <uxap:subSections>
+					<uxap:ObjectPageSubSection id="personalSectionSS12" title="Variazioni in aumento permanenti" titleUppercase="false" >
+						<uxap:blocks>
+        	<Table
+				id="table12"
+				ariaLabelledBy="title"
+				selectionMode="None"
+				rows="{path:'oModelAnagrafica>/oModel1'}"
+				enableColumnFreeze="true"
+                visibleRowCount="60"
+				showColumnVisibilityMenu="false">
+				<columns>
+					<Column
+						width="10%">
+						<m:Label text="" textAlign="Center" width="100%"/>
+						<template>
+							<m:Text text="{oModelAnagrafica>ID}"/>
+						</template>
+					</Column>
+                    <Column
+						width="30%">
+						<m:Label text="" textAlign="Center" width="100%"/>
+						<template>
+							<m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+						</template>
+					</Column>
+					<Column	width="10%"	>
+							<m:Label text="Imponibile" textAlign="Center" width="100%"/>
+						<template>
+							<m:Text text="{oModelAnagrafica>imponibile}" />
+						</template>
+					</Column>
+					<Column	width="10%"	>
+						<m:Label text="Imposta 24%" textAlign="Center" width="100%"/>
+						<template>
+							<m:Text text="{oModelAnagrafica>imposta}"/>
+						</template>
+					</Column>
+                    <Column
+						width="10%">
+							<m:Label text="UNICO" textAlign="Center" width="100%"/>
+						<template>
+							<m:Text text="{oModelAnagrafica>unico}"/>
+						</template>
+					</Column>
+
+                    <Column	width="10%">
+							<m:Label text="correnti" textAlign="Center" width="100%"/>
+						<template>
+							<m:Text text="{oModelAnagrafica>correnti}"/>
+						</template>
+					</Column>
+
+                    <Column	width="10%">
+							<m:Label text="differite" textAlign="Center" width="100%"/>
+						<template>
+							<m:Text text="{oModelAnagrafica>differite}"/>
+						</template>
+					</Column>
+
+                    <Column		width="10%">
+							<m:Label text="totale" textAlign="Center" width="100%"/>
+						<template>
+							<m:Text text="{oModelAnagrafica>totale}"/>
+						</template>
+					</Column>
+				</columns>
+			</Table>
+      
+                        </uxap:blocks>
+					</uxap:ObjectPageSubSection>
+                    	</uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+       
+			
+    </uxap:ObjectPageLayout>
+<!-- </Page> -->
+</mvc:View>

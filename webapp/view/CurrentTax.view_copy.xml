@@ -1,0 +1,201 @@
+<mvc:View controllerName="tax.provisioning.computations.controller.CurrentTax"
+        xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+        xmlns="sap.m"
+        xmlns:semantic="sap.f.semantic"
+        xmlns:layout="sap.ui.layout"
+        xmlns:core="sap.ui.core"
+        xmlns:form="sap.ui.layout.form"
+        xmlns:smartForm="sap.ui.comp.smartform"
+        xmlns:smartField="sap.ui.comp.smartfield"
+        xmlns:u="sap.ui.unified">
+<!-- <Page id="currentTaxPage" title="{i18n>title}" showFooter="true"> -->
+	<semantic:SemanticPage id="currentTaxPage" headerPinnable="true" toggleHeaderOnTitleClick="true" preserveHeaderStateOnScroll="false" titleAreaShrinkRatio="1:1.6:1.6" showFooter="false">
+        <semantic:titleHeading>
+          <Title text="{i18n>appTitle2}" />
+        </semantic:titleHeading>
+        <semantic:content>
+            <IconTabBar
+				id="iconTabBar"
+				select=".onQuickFilter"
+				expandable="false">
+				<items>
+					<IconTabFilter
+						key="Permanenti"
+						text="{i18n>RipresePerm}"/>
+					<IconTabSeparator/>
+					<IconTabFilter
+						key="Temporanee"
+						text="{i18n>RipreseTemp}"/>
+				</items>
+				<content>
+                <layout:BlockLayout id="BlockLayoutTwo">
+		            <layout:BlockLayoutRow>
+                    <layout:BlockLayoutCell id="cell-1"
+                                        title="">
+
+                        <Table
+                            headerText=""
+                            items="{path:'imposteModel>/oModel'}" >
+                            <columns>
+                                <Column mergeDuplicates="true">
+                                    <header>
+                                        <Text text="{i18n>imposta}" />
+                                    </header>
+                                </Column>
+                                <Column mergeDuplicates="true">
+                                    <header>
+                                        <Text text="tipo imposta" />
+                                    </header>
+                                </Column>
+                                <Column mergeDuplicates="true">
+                                    <header>
+                                        <Text text="{i18n>utilePerdita}" />
+                                    </header>
+                                </Column>
+                                <Column mergeDuplicates="true">
+                                    <header>
+                                        <Text text="Variazioni in aumento" />
+                                    </header>
+                                </Column>
+                            </columns>
+                            <ColumnListItem vAlign="Middle">
+                                <Text text="{imposteModel>imposta}" />
+                                <ObjectIdentifier text="{imposteModel>tipo}" />
+                            </ColumnListItem>
+                        </Table>
+               
+                    </layout:BlockLayoutCell>
+                 	</layout:BlockLayoutRow>
+                <layout:BlockLayoutRow>
+                <layout:BlockLayoutCell id="cell-12"
+                                        title=" ">
+                <Table
+					id="productsTable"
+					inset="false"
+					items="{path:'oModelAnagrafica>/oModel1'}"
+					class="sapFDynamicPageAlignContent"
+					width="auto">
+                    <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Riprese fiscali" level="H2"/>
+                        <ToolbarSpacer/>
+                        <!-- <Text text="{i18n>utilePerdita}"/> -->
+                        <!-- <Button text="{i18n>ApriConfigurazione}" icon="sap-icon://upload-to-cloud" press="onApriConfPressed"/>
+                        <Button text="{i18n>CreaConfigurazione}" icon="sap-icon://create" press="onCreaConfPressed"/>
+                        <Button text="{i18n>ButtonBilancio}" icon="sap-icon://action" press="onSelezionaBilancio" id="apriTrialBalance"/>
+                        <Button text="{i18n>ApriTaxRules}" icon="sap-icon://navigation-right-arrow" press="openTaxRules" enabled="false" id="taxRules"/> -->
+                    </OverflowToolbar>
+                    </headerToolbar>
+					<columns>
+						<Column>
+							<Text text="{i18n>Codice}"/>
+						</Column>
+                        <Column>
+							<Text text="{i18n>Ripresa}"/>
+						</Column>
+                        <Column minScreenWidth="Tablet">
+							<Text text="{i18n>imponibile}"/>
+						</Column>
+                        <Column minScreenWidth="Tablet">
+							<Text text="{i18n>imposta}"/>
+						</Column>
+                        <Column minScreenWidth="Tablet">
+							<Text text="{i18n>unico}"/>
+						</Column>
+                        <Column minScreenWidth="Tablet">
+							<Text text="{i18n>correnti}"/>
+						</Column>
+                        <Column minScreenWidth="Tablet">
+							<Text text="{i18n>differite}"/>
+						</Column>
+                        <Column minScreenWidth="Tablet">
+							<Text text="{i18n>totale}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Inactive" >
+							<cells>
+								<Text text="{oModelAnagrafica>ID}"/>
+                                <Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+                                <Text text=""/>
+                                <Text text=""/>
+                                <Text text=""/>
+                                <Text text=""/>
+                                <Text text=""/>
+                                <Text text=""/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+                </layout:BlockLayoutCell>
+                </layout:BlockLayoutRow>
+                <layout:BlockLayoutRow>
+                <layout:BlockLayoutCell id="cell-22"
+                                        title=" ">
+                <Table
+					id="productsTable2"
+					inset="false"
+					items="{path:'oModelAnagrafica>/oModel1'}"
+					class="sapFDynamicPageAlignContent"
+					width="auto">
+                    <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Riprese fiscali" level="H2"/>
+                        <ToolbarSpacer/>
+                        <!-- <Text text="{i18n>utilePerdita}"/> -->
+                        <!-- <Button text="{i18n>ApriConfigurazione}" icon="sap-icon://upload-to-cloud" press="onApriConfPressed"/>
+                        <Button text="{i18n>CreaConfigurazione}" icon="sap-icon://create" press="onCreaConfPressed"/>
+                        <Button text="{i18n>ButtonBilancio}" icon="sap-icon://action" press="onSelezionaBilancio" id="apriTrialBalance"/>
+                        <Button text="{i18n>ApriTaxRules}" icon="sap-icon://navigation-right-arrow" press="openTaxRules" enabled="false" id="taxRules"/> -->
+                    </OverflowToolbar>
+                    </headerToolbar>
+					<columns>
+						<Column>
+							<Text text="{i18n>Codice}"/>
+						</Column>
+                        <Column>
+							<Text text="{i18n>Ripresa}"/>
+						</Column>
+                        <Column minScreenWidth="Tablet">
+							<Text text="{i18n>imponibile}"/>
+						</Column>
+                        <Column minScreenWidth="Tablet">
+							<Text text="{i18n>imposta}"/>
+						</Column>
+                        <Column minScreenWidth="Tablet">
+							<Text text="{i18n>unico}"/>
+						</Column>
+                        <Column minScreenWidth="Tablet">
+							<Text text="{i18n>correnti}"/>
+						</Column>
+                        <Column minScreenWidth="Tablet">
+							<Text text="{i18n>differite}"/>
+						</Column>
+                        <Column minScreenWidth="Tablet">
+							<Text text="{i18n>totale}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Inactive" >
+							<cells>
+								<Text text="{oModelAnagrafica>ID}"/>
+                                <Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+                                <Text text=""/>
+                                <Text text=""/>
+                                <Text text=""/>
+                                <Text text=""/>
+                                <Text text=""/>
+                                <Text text=""/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+                </layout:BlockLayoutCell>
+                </layout:BlockLayoutRow>
+                </layout:BlockLayout>					
+				</content>
+			</IconTabBar>  
+        </semantic:content>
+	</semantic:SemanticPage>	
+<!-- </Page> -->
+</mvc:View>

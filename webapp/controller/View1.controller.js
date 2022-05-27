@@ -1,8 +1,8 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     'sap/ui/model/Filter',
-  'sap/ui/model/FilterOperator',
-  'sap/ui/model/json/JSONModel'
+    'sap/ui/model/FilterOperator',
+    'sap/ui/model/json/JSONModel'
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
@@ -13,33 +13,21 @@ sap.ui.define([
         return Controller.extend("tax.provisioning.computations.controller.View1", {
             onInit: function () {
                 sap.ui.getCore().sapAppID = this.getOwnerComponent().getMetadata().getManifest()["sap.app"].id;
-
-                // this._initFilterModelValue();
-
             },
 
             onNewPress: function(oEvent){
                     var oRouter = this.getOwnerComponent().getRouter();
                     oRouter.navTo("RouteCreation");
-                    this.getView().getModel();
             },
 
             onGo: function(oEvent){
                 var that = this;
+
                 var aFilter = [];
-                // var oModelValue = this.getView().getModel("filterModel");
-                // var aModeldataFilter = oModelValue.getData();
 
                 var societa = this.getView().byId("smartFilterBar").getFilterData().societa;
                 var ledger = this.getView().byId("smartFilterBar").getFilterData().ledger;
                 var periodo = this.getView().byId("smartFilterBar").getFilterData().periodo;
-
-                // aModeldataFilter.societa = societa;
-                // aModeldataFilter.ledger = ledger;
-                //qui chiamo la lista delle computazioni(lettura del modello)
-                // if(aModeldataFilter.societa){
-                //     aFilter.push( new Filter("societa", "EQ", aModeldataFilter.societa ) )
-                // }
 
                 if(societa){
                     aFilter.push( new Filter("societa", "EQ", societa ) )
@@ -88,13 +76,15 @@ sap.ui.define([
                 // });
             },
 
-            _initFilterModelValue: function () {
-                this.getView().setModel(new JSONModel({
-                  "societa": "",
-                  "ledger": "",
-                  "periodo": ""
-                }), "filterModel");
-              }
+            navigateToCurrentTax: function(oEvent){
+                // debugger;
+                // oEvent.getSource().getBindingContext().getObject();
+                var oRouter = this.getOwnerComponent().getRouter();
+                    oRouter.navTo("RouteTax");
+                
+                this.getView().byId("idTable").getSelectedItem();
+                debugger;
+            }
            
         });
     });

@@ -60,6 +60,7 @@
         }
     },
     "sap.ui": {
+        "fullWidth": true,
         "technology": "UI5",
         "icons": {
             "icon": "",
@@ -163,6 +164,13 @@
                     "target": [
                         "TargetCreation"
                     ]
+                },
+                {
+                    "name": "RouteTax",
+                    "pattern": "Tax",
+                    "target": [
+                        "TargetTax"
+                    ]
                 }
             ],
             "targets": {
@@ -179,6 +187,13 @@
                     "clearControlAggregation": false,
                     "viewId": "Creation",
                     "viewName": "Creation"
+                },
+                "TargetTax": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Tax",
+                    "viewName": "CurrentTax"
                 }
             }
         },

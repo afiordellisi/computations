@@ -1,66 +1,181 @@
-<mvc:View controllerName="tax.provisioning.computations.controller.App"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m"
-    xmlns:semantic="sap.f.semantic"
-    xmlns:layout="sap.ui.layout"
-    xmlns:core="sap.ui.core"
-    xmlns:fb="sap.ui.comp.filterbar"
-    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
-    xmlns:form="sap.ui.layout.form"
-    xmlns:smartForm="sap.ui.comp.smartform"
-    xmlns:smartField="sap.ui.comp.smartfield"
-    xmlns:u="sap.ui.unified">
-
-    <Page id="creationPage" title="{i18n>title}">
+<mvc:View controllerName="tax.provisioning.computations.controller.Creation"
+        xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+        xmlns="sap.m"
+        xmlns:semantic="sap.f.semantic"
+        xmlns:layout="sap.ui.layout"
+        xmlns:core="sap.ui.core"
+        xmlns:form="sap.ui.layout.form"
+        xmlns:smartForm="sap.ui.comp.smartform"
+        xmlns:smartField="sap.ui.comp.smartfield"
+        xmlns:u="sap.ui.unified">
+    <NavContainer id="wizardNavContainer">
+    <Page id="creationPage" title="{i18n>title}" showFooter="true">
         <content>
-            <Wizard id="CreateProductWizard" 
-                    class="sapUiResponsivePadding--header sapUiResponsivePadding--content"	
-                    complete="wizardCompletedHandler">
+            <Wizard id="CreateWizard" 
+                    class="sapUiResponsivePadding--header sapUiResponsivePadding--content" navigationChange="handleNavigationChange"
+                    complete="wizardCompletedHandler" renderMode="Page" showNextButton="false" >
                     
-                	<WizardStep id="ProductTypeStep" title="{i18n>titleCreation}" validated="true">
+                	<!-- <WizardStep id="go" title="{i18n>titleCreation}" validated="true" >
+                        	<Text class="sapUiSmallMarginBottom"
+                                text="Creazione di una nuova computation"/>
+                    </WizardStep> -->
 
-                        	<smartForm:SmartForm editable="true" >
-                                   	<!--  <smartForm:layout>
-                                        <smartForm:ColumnLayout 
+                    <WizardStep id="sceltaParametri" title="{i18n>titleCreation}" validated="true" activate="_resetFields">
+                        	<smartForm:SmartForm editable="true" id="smartForm">
+                                   	 <smartForm:layout>
+                                       <smartForm:ColumnLayout 
                                             emptyCellsLarge="4"
                                             labelCellsLarge="4"
                                             columnsM="1"
                                             columnsL="1"
-                                            columnsXL="1"/>
+                                            columnsXL="1"/> 
                                     </smartForm:layout>
-                                    <smartForm:Group>
-                                        <smartForm:GroupElement >
-                                            <smartField:controlConfiguration>
-                                            <smartField:ControlConfiguration controlType="dropDownList" groupId="_BASIC2" key="societa" preventInitialDataFetchInValueHelpDialog="false" filterType="single" id="societa2"/>
-                                            <smartField:SmartField entitySet="items" value="{societa}" id="idPrice"/> 
-                                          </smartField:controlConfiguration> 
-                                        </smartForm:GroupElement>
-                                    </smartForm:Group>  -->
-                                </smartForm:SmartForm>
+                                <smartForm:Group> 
 
+                                    <smartForm:GroupElement> 
+                                        <smartField:SmartField entitySet="items" value="{societa}" id="societa">
+                                            <smartField:configuration>
+                                                <smartField:Configuration controlType="dropDownList" displayBehaviour="description" mandatory="mandatory" change="onChangeStep" />
+                                            </smartField:configuration>
+                                        </smartField:SmartField>
+                                    </smartForm:GroupElement >
+
+                                    <smartForm:GroupElement> 
+                                        <smartField:SmartField entitySet="items" value="{ledger}" id="ledger">
+                                            <smartField:configuration>
+                                                <smartField:Configuration controlType="dropDownList" displayBehaviour="description"/>
+                                            </smartField:configuration>
+                                        </smartField:SmartField>
+                                    </smartForm:GroupElement >
+
+                                     <smartForm:GroupElement> 
+                                        <smartField:SmartField entitySet="items" value="{periodo}" id="periodo">
+                                            <smartField:configuration>
+                                                <smartField:Configuration controlType="dropDownList" displayBehaviour="description"/>
+                                            </smartField:configuration>
+                                        </smartField:SmartField>
+                                    </smartForm:GroupElement >
+
+                                     <smartForm:GroupElement> 
+                                        <Input id="inputDescrizione" label="Descrizione" placeholder="Inserire descrizione" />
+                                    </smartForm:GroupElement> 
+                                    
+                                    </smartForm:Group>
+                                </smartForm:SmartForm> 
                     </WizardStep>
 
-                    <WizardStep id="ProductInfoStep" 
-                                validated="false" 
+                    <WizardStep id="trialBalance" 
+                               	validated="true"
                                 title="{i18n>trialBalance}"
-                                activate="additionalInfoValidation">
-                    	    <form:SimpleForm editable="true">
-									<Label text="Price"/>
-									<Input value="{/Societa}"/>
-									<Label text="Discount group"/>
-									<ComboBox selectedKey="{/discountGroup}">
-										<core:Item key="Kids" text="Kids"/>
-										<core:Item key="Teens" text="Teens"/>
-										<core:Item key="Adults" text="Adults"/>
-										<core:Item key="Elderly" text="Elderly"/>
-									</ComboBox>
-									<Label text=" VAT is included"/>
-									<CheckBox selected="{/productVAT}"/>
-							</form:SimpleForm>
+                                activate="filterValidation">
+                                
+                            	<Table id="versioniTable"
+                                        inset="false"
+                                        mode="SingleSelect"
+                                        items="{path:'tableModel>/oModel'}"
+                                        >
+                                        <columns>
+                                        	<Column width="12em">
+                                                <Text text="{i18n>name}" />
+                                            </Column>
+                                            <Column width="12em">
+                                                <Text text="{i18n>societa}" />
+                                            </Column>
+                                             <Column width="12em">
+                                                <Text text="{i18n>ledger}" />
+                                            </Column>
+                                             <Column width="12em">
+                                                <Text text="{i18n>periodo}" />
+                                            </Column>
+                                             <Column width="12em">
+                                                <Text text="{i18n>utilePerdita}" />
+                                            </Column>
+                                             <Column width="12em">
+                                                <Text text="{i18n>dataCaricamento}" />
+                                            </Column>
+                                             <Column width="12em">
+                                                <Text text="{i18n>user}" />
+                                            </Column>
+                                    </columns>
+                                    <items>
+                                        	<ColumnListItem vAlign="Middle">
+                                                <cells>
+                                                    	<Text text="{tableModel>descrizioneVersione}" />    
+                                                        <Text text="{tableModel>societa}" />    
+                                                        <Text text="{tableModel>ledger}" /> 
+                                                        <Text text="{tableModel>periodo}" /> 
+                                                        <Text text="{tableModel>utilePerditaCY}" /> 
+                                                        <Text text="{tableModel>createdAt}" /> 
+                                                        <Text text="{tableModel>createdBy}" />    
+                                                </cells>
+                                            </ColumnListItem>
+                                    </items>
+                                </Table>
+                    </WizardStep>
 
+                    <WizardStep id="taxRule" 
+                               	validated="true"
+                                title="{i18n>taxRule}"
+                                activate="filterValidation2"
+                                >
+                                <!-- complete="handleFinishSelection" -->
+                        
+                                <Table id="taxRulesTable"
+                                        inset="false"
+                                        mode="SingleSelect"
+                                        items="{path:'taxRuleModel>/oModel'}"
+                                        >
+                                        <columns>
+                                        	<Column width="12em">
+                                                <Text text="{i18n>name}" />
+                                            </Column>
+                                            <Column width="12em">
+                                                <Text text="{i18n>societa}" />
+                                            </Column>
+                                             <Column width="12em">
+                                                <Text text="{i18n>ledger}" />
+                                            </Column>
+                                             <Column width="12em">
+                                                <Text text="{i18n>periodo}" />
+                                            </Column>
+                                             <Column width="12em">
+                                                <Text text="{i18n>scenario}" />
+                                            </Column>
+                                            <Column width="12em">
+                                                <Text text="{i18n>dataCaricamento}" />
+                                            </Column>
+                                             <Column width="12em">
+                                                <Text text="{i18n>user}" />
+                                            </Column>
+                                    </columns>
+                                    <items>
+                                        	<ColumnListItem vAlign="Middle" >
+                                                <cells>
+                                                    	<Text text="{taxRuleModel>descrizioneConfigurazione}" />    
+                                                        <Text text="{taxRuleModel>societa}" />    
+                                                        <Text text="{taxRuleModel>ledger}" /> 
+                                                        <Text text="{taxRuleModel>periodo}" /> 
+                                                        <Text text="{taxRuleModel>scenario}" /> 
+                                                        <Text text="{taxRuleModel>createdAt}" /> 
+                                                        <Text text="{taxRuleModel>createdBy}" />    
+                                                </cells>
+                                            </ColumnListItem>
+                                    </items>
+                                </Table>
                     </WizardStep>
             </Wizard>
+            
         </content>
+        <footer>
+				<OverflowToolbar>
+					<ToolbarSpacer/>
+					<!-- <Button text="Previous" visible="{/backButtonVisible}" press="onDialogBackButton" /> -->
+					<Button text="{i18n>next}" type="Emphasized" press="onDialogNextButton" id="nextStepButton" />
+					<!-- <Button text="Review" type="Emphasized" visible="{/reviewButtonVisible}" press="onDialogNextButton" /> -->
+					<Button text="{i18n>save}" type="Emphasized" visible="false" press="handleWizardSubmit" id="finishButton" />
+					<Button	text="{i18n>cancel}" id="cancelButton" type="Transparent" press="handleWizardCancel"/>
+				</OverflowToolbar>
+		</footer>
     </Page>
-    
+    </NavContainer>
 </mvc:View>
