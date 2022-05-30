@@ -171,6 +171,13 @@
                     "target": [
                         "TargetTax"
                     ]
+                },
+                {
+                    "name": "RouteRiprese",
+                    "pattern": "Tax/{ID}/Ripresa/{ripresaID}",
+                    "target": [
+                        "TargetRiprese"
+                    ]
                 }
             ],
             "targets": {
@@ -194,6 +201,13 @@
                     "clearControlAggregation": false,
                     "viewId": "Tax",
                     "viewName": "CurrentTax"
+                },
+                "TargetRiprese": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Riprese",
+                    "viewName": "Riprese"
                 }
             }
         },

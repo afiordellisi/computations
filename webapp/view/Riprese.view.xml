@@ -1,0 +1,313 @@
+<mvc:View
+    controllerName="tax.provisioning.computations.controller.Riprese"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+	xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+	<ObjectPageLayout
+        showFooter="true"
+		id="ObjectPageLayout"
+		showTitleInHeaderContent="true"
+		alwaysShowContentHeader="false"
+		preserveHeaderStateOnScroll="false"
+		headerContentPinnable="true"
+		isChildPage="true"
+		upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+                <navigationActions>
+					<m:OverflowToolbarButton
+						type="Transparent"
+						icon="sap-icon://full-screen"
+						press=".handleFullScreen"
+						tooltip="Enter Full Screen Mode"
+						visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
+					<m:OverflowToolbarButton
+						type="Transparent"
+						icon="sap-icon://exit-full-screen"
+						press=".handleExitFullScreen"
+						tooltip="Exit Full Screen Mode"
+						visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+					<m:OverflowToolbarButton
+						type="Transparent"
+						icon="sap-icon://decline"
+						press=".handleClose"
+						tooltip="Close column"
+						visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+				</navigationActions>
+				<actions>
+			<!--	<m:ToggleButton
+						text="Edit"
+						type="Emphasized"
+                        press=".onEditToggleButtonPress"/>
+					<m:Button
+						text="Delete"
+						type="Transparent"/>
+					<m:Button
+						text="Copy"
+						type="Transparent"/>
+					<m:Button
+						icon="sap-icon://action"
+						type="Transparent"/> -->
+				</actions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+        <headerContent>
+			<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+				<m:HBox class="sapUiMediumMarginTop">
+                    <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
+                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                            <m:Label text="{i18n>CodiceRipresa}: " class="sapUiMediumMarginEnd"/>
+                        </m:HBox>
+                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                            <m:Label text="{i18n>DescrizioneRipresa}: " class="sapUiMediumMarginEnd"/>
+                        </m:HBox>
+                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                            <m:Label text="{i18n>RiferimentiNormativi}: " class="sapUiMediumMarginEnd"/>
+                        </m:HBox>
+                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                            <m:Label text="{i18n>RiferimentoDichiarazione}: " class="sapUiMediumMarginEnd"/>
+                        </m:HBox>
+                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                            <m:Label text="{i18n>Imposta}: " class="sapUiMediumMarginEnd"/>
+                        </m:HBox>
+                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                            <m:Label text="{i18n>Algoritmo}: " class="sapUiMediumMarginEnd"/>
+                        </m:HBox>
+                    </m:VBox>
+                    <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
+                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                            <m:Text text="{oModelAnagraficaSingolaTestata>/oModel2/ID}" class="sapUiMediumMarginEnd"/>
+                        </m:HBox>
+                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                            <m:Text text="{oModelAnagraficaSingolaTestata>/oModel2/descrizioneRipresa}" class="sapUiMediumMarginEnd"/>
+                        </m:HBox>
+                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                            <m:Text text="{oModelAnagraficaSingolaTestata>/oModel2/riferimentoNormativo}" class="sapUiMediumMarginEnd"/>
+                        </m:HBox>
+                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                            <m:Text text="{oModelAnagraficaSingolaTestata>/oModel2/riferimentoDichiarazione}" class="sapUiMediumMarginEnd"/>
+                        </m:HBox>
+                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                            <m:Text text="{oModelConfigurazioni>/imposta}" class="sapUiMediumMarginEnd"/>
+                        </m:HBox>
+                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                             <m:Text text="{oModelAnagraficaSingolaTestata>/oModel2/configurazioni/algoritmo}" class="sapUiMediumMarginEnd"/>
+                            <!-- <m:ComboBox type="Text" id="scenario" valueState="None">
+                                <m:items>
+                                    <core:Item key="001" text="{i18n>Percentuale}"/>
+                                    <core:Item key="002" text="{i18n>DifferenzaPatrimonialeAumento}"/>
+                                    <core:Item key="002" text="{i18n>DifferenzaPatrimonialeDiminuzione}"/>
+                                </m:items>
+                            </m:ComboBox> -->
+                        </m:HBox>
+                    </m:VBox>
+                </m:HBox>
+			</m:FlexBox>
+		</headerContent>
+
+        <sections>
+			<ObjectPageSection title="{i18n>AlgoritmoPercentuale}" visible="true">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+                            <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+                                <m:HBox class="sapUiMediumMarginTop">
+                                    <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Label text="{i18n>PercentualeStandard}: " class="sapUiMediumMarginEnd"/>
+                                        </m:HBox>
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Label text="{i18n>TotaleCostiSelezionati}: " class="sapUiMediumMarginEnd"/>
+                                        </m:HBox>
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Label text="{i18n>TotaleRipresa}: " class="sapUiMediumMarginEnd"/>
+                                        </m:HBox>
+                                    </m:VBox>
+                                    <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Text text="{oModelAnagraficaSingola>/oModel/ID}" class="sapUiMediumMarginEnd"/>
+                                        </m:HBox>
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Text text="{oModelAnagraficaSingola>/oModel/descrizioneRipresa}" class="sapUiMediumMarginEnd"/>
+                                        </m:HBox>
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Input
+                                                id="totaleRipresa"
+                                                type="Number"
+                                                placeholder=""
+                                                enabled="true"
+                                                editable="true"
+                                                value=""
+                                            />
+                                        </m:HBox>
+                                    </m:VBox>
+                                </m:HBox>
+                            </m:FlexBox>	
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+                <subSections>
+					<ObjectPageSubSection>
+                        <blocks>
+                            <m:Table
+								id="percentualeTable"
+								mode="SingleSelectMaster"
+								itemPress="handleItemPress"
+								items="{path : 'products>/ProductCollectionStats/Filters/1/values'}">
+								<m:columns>
+									<m:Column />
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem>
+										<m:cells>
+											<m:ObjectIdentifier text="{products>text}" />
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+                        </blocks>
+					</ObjectPageSubSection>
+                </subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection title="{i18n>PatrimonialeAumento}" visible="true">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+                            <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+                                <m:HBox class="sapUiMediumMarginTop">
+                                    <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Label text="{i18n>PercentualeStandard}: " class="sapUiMediumMarginEnd"/>
+                                        </m:HBox>
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Label text="{i18n>TotaleMovimentazionePatrimoniale}: " class="sapUiMediumMarginEnd"/>
+                                        </m:HBox>
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Label text="{i18n>TotaleRipresa}: " class="sapUiMediumMarginEnd"/>
+                                        </m:HBox>
+                                    </m:VBox>
+                                    <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Text text="{oModelAnagraficaSingola>/oModel/ID}" class="sapUiMediumMarginEnd"/>
+                                        </m:HBox>
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Text text="{oModelAnagraficaSingola>/oModel/descrizioneRipresa}" class="sapUiMediumMarginEnd"/>
+                                        </m:HBox>
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Input
+                                                id="totaleRipresa2"
+                                                type="Number"
+                                                placeholder=""
+                                                enabled="true"
+                                                editable="true"
+                                                value=""
+                                            />
+                                        </m:HBox>
+                                    </m:VBox>
+                                </m:HBox>
+                            </m:FlexBox>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+                <subSections>
+					<ObjectPageSubSection>
+                        <blocks>
+                            <m:Table
+								id="patrimonialeAumentoTable"
+								mode="SingleSelectMaster"
+								itemPress="handleItemPress"
+								items="{path : 'products>/ProductCollectionStats/Filters/1/values'}">
+								<m:columns>
+									<m:Column />
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem>
+										<m:cells>
+											<m:ObjectIdentifier text="{products>text}" />
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+                        </blocks>
+					</ObjectPageSubSection>
+                </subSections>
+			</ObjectPageSection>
+
+            <ObjectPageSection title="{i18n>PatrimonialeDiminuzione}" visible="true">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+                            <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+                                <m:HBox class="sapUiMediumMarginTop">
+                                    <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Label text="{i18n>PercentualeStandard}: " class="sapUiMediumMarginEnd"/>
+                                        </m:HBox>
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Label text="{i18n>TotaleMovimentazionePatrimoniale}: " class="sapUiMediumMarginEnd"/>
+                                        </m:HBox>
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Label text="{i18n>TotaleRipresa}: " class="sapUiMediumMarginEnd"/>
+                                        </m:HBox>
+                                    </m:VBox>
+                                    <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Text text="{oModelAnagraficaSingola>/oModel/ID}" class="sapUiMediumMarginEnd"/>
+                                        </m:HBox>
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Text text="{oModelAnagraficaSingola>/oModel/descrizioneRipresa}" class="sapUiMediumMarginEnd"/>
+                                        </m:HBox>
+                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                                            <m:Input
+                                                id="totaleRipresa3"
+                                                type="Number"
+                                                placeholder=""
+                                                enabled="true"
+                                                editable="true"
+                                                value=""
+                                            />
+                                        </m:HBox>
+                                    </m:VBox>
+                                </m:HBox>
+                            </m:FlexBox>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+                <subSections>
+					<ObjectPageSubSection>
+                        <blocks>
+                            <m:Table
+								id="patrimonialeDiminuzioneTable"
+								mode="SingleSelectMaster"
+								itemPress="handleItemPress"
+								items="{path : 'products>/ProductCollectionStats/Filters/1/values'}">
+								<m:columns>
+									<m:Column />
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem>
+										<m:cells>
+											<m:ObjectIdentifier text="{products>text}" />
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+                        </blocks>
+					</ObjectPageSubSection>
+                </subSections>
+			</ObjectPageSection>
+		</sections>
+        <footer>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer/>
+				<m:Button type="Accept" text="{i18n>Save}"/>
+				<m:Button type="Reject" text="{i18n>Cancel}"/>
+			</m:OverflowToolbar>
+		</footer>
+	</ObjectPageLayout>
+</mvc:View>
