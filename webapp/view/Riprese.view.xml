@@ -4,25 +4,17 @@
 	xmlns:m="sap.m"
 	xmlns:f="sap.f"
 	xmlns:form="sap.ui.layout.form"
+    xmlns:semantic="sap.f.semantic"
     xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc">
-	<ObjectPageLayout
-        showFooter="true"
+	<semantic:SemanticPage
 		id="ObjectPageLayout"
-		showTitleInHeaderContent="true"
-		alwaysShowContentHeader="false"
-		preserveHeaderStateOnScroll="false"
-		headerContentPinnable="true"
-		isChildPage="true"
-		upperCaseAnchorBar="false">
-		<headerTitle>
-			<ObjectPageDynamicHeaderTitle>
-				<actions>
-				</actions>
-			</ObjectPageDynamicHeaderTitle>
-		</headerTitle>
-
-        <headerContent>
+		headerPinnable="true" 
+        toggleHeaderOnTitleClick="true" 
+        preserveHeaderStateOnScroll="false" 
+        titleAreaShrinkRatio="1:1.6:1.6" 
+        showFooter="false">
+        <semantic:headerContent>
 			<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
 				<m:HBox class="sapUiMediumMarginTop">
                     <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
@@ -67,14 +59,7 @@
                     </m:VBox>
                 </m:HBox>
 			</m:FlexBox>
-		</headerContent>
-
-        <sections>
-			<ObjectPageSection visible="true">
-				<subSections>
-					<ObjectPageSubSection>
-						<blocks>
-                            <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+            <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
                                 <m:HBox class="sapUiMediumMarginTop">
                                     <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
                                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
@@ -89,7 +74,7 @@
                                     </m:VBox>
                                     <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
                                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Text text="{oModelAnagraficaSingola>/oModel/ID}" class="sapUiMediumMarginEnd"/>
+                                            <m:Text text="{oModelAnagraficaSingolaTestata>/oModel2/configurazioni/0/percentuale}" class="sapUiMediumMarginEnd"/>
                                         </m:HBox>
                                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
                                             <m:Text text="{oModelAnagraficaSingola>/oModel/descrizioneRipresa}" class="sapUiMediumMarginEnd"/>
@@ -100,17 +85,14 @@
                                     </m:VBox>
                                 </m:HBox>
                             </m:FlexBox>	
-						 </blocks>
-					</ObjectPageSubSection>
-				</subSections>
-                <subSections>
-					<ObjectPageSubSection>
-                        <blocks>
+		 </semantic:headerContent>
+
+         <semantic:content>
                             <m:Table
 								id="percentualeTable"
-								mode="SingleSelectMaster"
+                                inset="false"
+                                class="sapFSemanticPageAlignContent" 
                                 autoPopinMode="false"
-								itemPress="handleItemPress"
 								items="{path : 'oModelAnagraficaSingola>/oModel1/versione/items'}">
 								<m:columns>
 									<m:Column>
@@ -145,7 +127,7 @@
                                     </m:Column>
 								</m:columns>
 								<m:items>
-									<m:ColumnListItem>
+									<m:ColumnListItem type="Navigation" press="handleItemPress">
 										<m:cells>
 											<m:Text text="{oModelAnagraficaSingola>codiceGL}" />
                                             <m:Text text="{oModelAnagraficaSingola>descrizioneGL}" />
@@ -153,16 +135,14 @@
                                             <m:Text text="{oModelAnagraficaSingola>importoLY}" />
                                             <m:Text text="{oModelAnagraficaSingola>importoCY}" />
                                             <m:Text text="{oModelAnagraficaSingola>algoritmi/results/0/percentuale}" />
+                                            <m:Text text="{oModelAnagraficaSingola>ripresaAutomatica}" />
+                                            <m:Text text="{oModelAnagraficaSingola>ripresaManuale}" />
                                             <m:Text text="{oModelAnagraficaSingola>drill}" />
                                             <m:Text text="{oModelAnagraficaSingola>totale}" />
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>
 							</m:Table>
-                        </blocks>
-					</ObjectPageSubSection>
-                </subSections>
-			</ObjectPageSection>
-		</sections>
-	</ObjectPageLayout>
+		</semantic:content>
+	</semantic:SemanticPage>
 </mvc:View>

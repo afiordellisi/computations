@@ -6,20 +6,21 @@ sap.ui.define([
     "sap/ui/table/RowAction",
 	"sap/ui/table/RowActionItem",
 	"sap/ui/table/RowSettings",
-	"sap/ui/core/routing/History"
+	"sap/ui/core/routing/History",
+    './BaseController',
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, Filter, FilterOperator, JSONModel, RowAction, RowActionItem, RowSettings, History) {
+    function (Controller, Filter, FilterOperator, JSONModel, RowAction, RowActionItem, RowSettings, History, BaseController) {
         "use strict";
 
-        return Controller.extend("tax.provisioning.computations.controller.Riprese", {
+        return BaseController.extend("tax.provisioning.computations.controller.Riprese", {
             onInit: function () {
                 this._bDescendingSort = false;
                 this.oProductsTable = this.oView.byId("productsTable");
                 this.oModel = this.getOwnerComponent().getModel();
-                this.getOwnerComponent().getRouter().getRoute("RouteRiprese").attachPatternMatched(this._onObjectMatched, this);
+                this.getOwnerComponent().getRouter().getRoute("Riprese").attachPatternMatched(this._onObjectMatched, this);
                 
                 sap.ui.getCore().sapAppID = this.getOwnerComponent().getMetadata().getManifest()["sap.app"].id;
                 //this.getView().getModel("oModelAnagrafica");
@@ -63,6 +64,17 @@ sap.ui.define([
                 
 
                                 
+            },
+
+            handleItemPress: function(oEvent){
+                debugger;
+                oEvent.getSource().getBindingContext("oModelAnagraficaSingola").getObject();
+
+                var oRouter = this.getOwnerComponent().getRouter();
+                oRouter.navTo("Allegati", {
+                    ripresaID : this.getView().getModel("oModelAnagraficaSingolaTestata").getData().oModel2.ID,
+                    codiceGL : oEvent.getSource().getBindingContext("oModelAnagraficaSingola").getObject().codiceGL
+                }, true);
             },
 
             _setRipresa: function(configurazioneID, ripresaID, ID){

@@ -1,0 +1,14 @@
+<mvc:View
+    controllerName="tax.provisioning.computations.controller.Allegati"
+	xmlns="sap.m"
+    xmlns:semantic="sap.f.semantic"
+	xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+
+    <semantic:SemanticPage id="semanticPageAllegati" headerPinnable="true" toggleHeaderOnTitleClick="true" preserveHeaderStateOnScroll="false" titleAreaShrinkRatio="1:1.6:1.6" showFooter="false">
+
+   </semantic:SemanticPage>
+
+</mvc:View>
