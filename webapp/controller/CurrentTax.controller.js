@@ -26,9 +26,9 @@ sap.ui.define([
             },
 
             handleActionPress : function(oEvent) {
-                debugger;
+               
                 var oRouter = this.getOwnerComponent().getRouter();
-                debugger;
+                
                     oRouter.navTo("RouteRiprese", {
                         ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().ID,
                         ID : this.getView().getModel("computationModel").getData().oModel[0].ID
@@ -55,7 +55,7 @@ sap.ui.define([
                     dataType: "json",
                     async: false,
                     success: function (oCompleteEntry) {
-                        var arr = oCompleteEntry.d.results;
+                        var arr = oCompleteEntry.value;
                         var PA = arr.filter(ripresa => ripresa.tipologia === 'P' && ripresa.tipoVariazione === 'A');
                         var PD = arr.filter(ripresa => ripresa.tipologia === 'P' && ripresa.tipoVariazione === 'D');
                         var TA = arr.filter(ripresa => ripresa.tipologia === 'T' && ripresa.tipoVariazione === 'A');

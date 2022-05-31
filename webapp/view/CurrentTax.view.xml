@@ -32,6 +32,7 @@
 				showColumnVisibilityMenu="true">
 				<columns>
 					<Column
+                        resizable="false"
 						width="10%"
 						sortProperty="supplier"
 						filterProperty="supplier" headerSpan="2,2">
@@ -41,6 +42,7 @@
 						</template>
 					</Column>
                     <Column
+                        resizable="false"
 						width="30%"
 						sortProperty="supplier"
 						filterProperty="supplier">
@@ -50,6 +52,7 @@
 						</template>
 					</Column>
 					<Column
+                        resizable="false"
 						width="10%"
 						sortProperty="street"
 						filterProperty="street"
@@ -63,6 +66,7 @@
 						</template>
 					</Column>
 					<Column
+                        resizable="false"
 						width="10%"
 						sortProperty="imposta"
 						headerSpan="2">
@@ -75,6 +79,7 @@
 						</template>
 					</Column>
                     <Column
+                        resizable="false"
 						width="10%"
 						sortProperty="unico"
 						headerSpan="2">
@@ -89,6 +94,7 @@
 					</Column>
 
                     <Column
+                        resizable="false"
 						width="10%"
 						sortProperty="unico"
 						headerSpan="3">
@@ -103,6 +109,7 @@
 					</Column>
 
                     <Column
+                        resizable="false"
 						width="10%"
 						sortProperty="unico"
 						headerSpan="2">
@@ -117,6 +124,7 @@
 					</Column>
 
                     <Column
+                        resizable="false"
 						width="10%"
 						sortProperty="unico"
 						headerSpan="2">
@@ -160,7 +168,7 @@
                                     rowActionCount="1"
                                     >
                                     <columns>
-                                        <Column
+                                        <Column resizable="false"
                                             width="10%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                                 <template>
@@ -170,26 +178,26 @@
                                                 <m:Text text="{oModelAnagrafica>ID}" />
                                             </template> -->
                                         </Column>
-                                        <Column
+                                        <Column resizable="false"
                                             width="30%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	>
+                                        <Column	width="10%"	resizable="false">
                                                 <m:Label text="{path: 'oModelAnagrafica>PAImponibile'}" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imponibile}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	>
+                                        <Column	width="10%" resizable="false"	>
                                             <m:Label text="{=${oModelAnagrafica>PAImponibile}*${headerModel>impostaPerc}/100}" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imposta}"/>
                                             </template>
                                         </Column>
-                                        <Column
+                                        <Column resizable="false"
                                             width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
@@ -197,21 +205,21 @@
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%">
+                                        <Column	width="10%" resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>correnti}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%">
+                                        <Column	width="10%" resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>differite}"/>
                                             </template>
                                         </Column>
 
-                                        <Column		width="10%">
+                                        <Column	resizable="false" width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>totale}"/>
@@ -238,33 +246,33 @@
                                     visibleRowCount="{path:'oModelAnagrafica>/oModelPD/length'}"
                                     showColumnVisibilityMenu="false">
                                     <columns>
-                                        <Column
+                                        <Column resizable="false"
                                             width="10%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Link text="{oModelAnagrafica>ID}" press="handleActionPress"/>
                                             </template>
                                         </Column>
-                                        <Column
+                                        <Column resizable="false"
                                             width="30%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	>
+                                        <Column	width="10%" resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imponibile}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	>
+                                        <Column	width="10%"	resizable="false">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imposta}"/>
                                             </template>
                                         </Column>
-                                        <Column
+                                        <Column resizable="false"
                                             width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
@@ -272,21 +280,21 @@
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%">
+                                        <Column	width="10%" resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>correnti}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%">
+                                        <Column	width="10%" resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>differite}"/>
                                             </template>
                                         </Column>
 
-                                        <Column		width="10%">
+                                        <Column	resizable="false" width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>totale}"/>
@@ -313,33 +321,33 @@
                                     visibleRowCount="{path:'oModelAnagrafica>/oModelTA/length'}"
                                     showColumnVisibilityMenu="false">
                                     <columns>
-                                        <Column
+                                        <Column resizable="false"
                                             width="10%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Link text="{oModelAnagrafica>ID}" press="handleActionPress"/>
                                             </template>
                                         </Column>
-                                        <Column
+                                        <Column resizable="false"
                                             width="30%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	>
+                                        <Column	width="10%"	resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imponibile}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	>
+                                        <Column	width="10%"	resizable="false">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imposta}"/>
                                             </template>
                                         </Column>
-                                        <Column
+                                        <Column resizable="false"
                                             width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
@@ -347,21 +355,21 @@
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%">
+                                        <Column	width="10%" resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>correnti}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%">
+                                        <Column	width="10%" resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>differite}"/>
                                             </template>
                                         </Column>
 
-                                        <Column		width="10%">
+                                        <Column	resizable="false" width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>totale}"/>
@@ -388,33 +396,33 @@
                                     visibleRowCount="{path:'oModelAnagrafica>/oModelTD/length'}"
                                     showColumnVisibilityMenu="false">
                                     <columns>
-                                        <Column
+                                        <Column resizable="false"
                                             width="10%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Link text="{oModelAnagrafica>ID}" press="handleActionPress"/>
                                             </template>
                                         </Column>
-                                        <Column
+                                        <Column resizable="false"
                                             width="30%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	>
+                                        <Column	width="10%"	resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imponibile}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	>
+                                        <Column	width="10%"	resizable="false">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imposta}"/>
                                             </template>
                                         </Column>
-                                        <Column
+                                        <Column resizable="false"
                                             width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
@@ -422,21 +430,21 @@
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%">
+                                        <Column	width="10%" resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>correnti}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%">
+                                        <Column	width="10%" resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>differite}"/>
                                             </template>
                                         </Column>
 
-                                        <Column		width="10%">
+                                        <Column	resizable="false" width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>totale}"/>
@@ -463,33 +471,33 @@
                                     visibleRowCount="{path:'oModelAnagrafica>/oModelPER/length'}"
                                     showColumnVisibilityMenu="false">
                                     <columns>
-                                        <Column
+                                        <Column resizable="false"
                                             width="10%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Link text="{oModelAnagrafica>ID}" press="handleActionPress"/>
                                             </template>
                                         </Column>
-                                        <Column
+                                        <Column resizable="false"
                                             width="30%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	>
+                                        <Column	width="10%"	resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imponibile}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	>
+                                        <Column	width="10%" resizable="false"	>
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imposta}"/>
                                             </template>
                                         </Column>
-                                        <Column
+                                        <Column resizable="false"
                                             width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
@@ -497,21 +505,21 @@
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%">
+                                        <Column	width="10%" resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>correnti}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%">
+                                        <Column	width="10%" resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>differite}"/>
                                             </template>
                                         </Column>
 
-                                        <Column		width="10%">
+                                        <Column	resizable="false" width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>totale}"/>
@@ -538,33 +546,33 @@
                                     visibleRowCount="{path:'oModelAnagrafica>/oModelACE/length'}"
                                     showColumnVisibilityMenu="false">
                                     <columns>
-                                        <Column
+                                        <Column resizable="false"
                                             width="10%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Link text="{oModelAnagrafica>ID}" press="handleActionPress"/>
                                             </template>
                                         </Column>
-                                        <Column
+                                        <Column resizable="false"
                                             width="30%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	>
+                                        <Column	width="10%"	resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imponibile}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	>
+                                        <Column	width="10%"	resizable="false">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imposta}"/>
                                             </template>
                                         </Column>
-                                        <Column
+                                        <Column resizable="false"
                                             width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
@@ -572,21 +580,21 @@
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%">
+                                        <Column	width="10%" resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>correnti}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%">
+                                        <Column	width="10%" resizable="false">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>differite}"/>
                                             </template>
                                         </Column>
 
-                                        <Column		width="10%">
+                                        <Column	resizable="false" width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>totale}"/>

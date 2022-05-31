@@ -17,11 +17,11 @@ server:
           url: https://ui5.sap.com
         backend:
           - path: /computation
-            url: https://5cf8e2dftrial-db-hana-tax-provisioning-be-srv.cfapps.us10.hana.ondemand.com/v2/
+            url: https://5cf8e2dftrial-db-hana-tax-provisioning-be-srv.cfapps.us10.hana.ondemand.com
           - path: /temp
             url: https://5cf8e2dftrial-db-hana-tax-provisioning-be-srv.cfapps.us10.hana.ondemand.com/v2/
           - path: /catalog
-            url: https://5cf8e2dftrial-db-hana-tax-provisioning-be-srv.cfapps.us10.hana.ondemand.com/v2/
+            url: https://5cf8e2dftrial-db-hana-tax-provisioning-be-srv.cfapps.us10.hana.ondemand.com
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

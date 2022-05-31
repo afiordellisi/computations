@@ -47,12 +47,12 @@ sap.ui.define([
                     async: false,
                     success: function (oCompleteEntry) {
                         var data = {
-                            oModelconfigurazione: oCompleteEntry.d.configurazioneID
+                            oModelconfigurazione: oCompleteEntry.configurazioneID
                         };
                         var DataModel = new sap.ui.model.json.JSONModel();
                         DataModel.setData(data);
                         that.getView().setModel(DataModel, "oModelConfigurazione");
-                        that._setRipresa(oCompleteEntry.d.configurazioneID, ripresaID, ID);
+                        that._setRipresa(oCompleteEntry.configurazioneID, ripresaID, ID);
                     },
                     error: function (error) {
                         sap.m.MessageToast.show("Error");
@@ -76,7 +76,7 @@ sap.ui.define([
                     async: false,
                     success: function (oCompleteEntry) {
                         var data = {
-                            oModel1: oCompleteEntry.d
+                            oModel1: oCompleteEntry
                         };
                         var DataModel = new sap.ui.model.json.JSONModel();
                         DataModel.setData(data);
@@ -88,14 +88,14 @@ sap.ui.define([
                 }); 
 
                 jQuery.ajax({
-                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/AnagraficaRiprese/"+ripresaID+"?$expand=configurazioni($filter=configurazione_ID eq "+configurazioneID+";$expand=configurazione($expand=versione($expand=items($expand=algoritmi($filter=codiceRipresa_ID eq '"+ripresaID+"' and configurazione_ID eq "+configurazioneID+";$expand=ripreseManuali($filter=computations_ID eq "+ID+"))))))"),
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/AnagraficaRiprese/"+ripresaID+"?$expand=configurazioni($filter=configurazione_ID eq "+configurazioneID+")"),
                     contentType: "application/json",
                     type: 'GET',
                     dataType: "json",
                     async: false,
                     success: function (oCompleteEntry) {
                         var data = {
-                            oModel2: oCompleteEntry.d
+                            oModel2: oCompleteEntry
                         };
                         var DataModel = new sap.ui.model.json.JSONModel();
                         DataModel.setData(data);

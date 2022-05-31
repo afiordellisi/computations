@@ -17,40 +17,7 @@
 		upperCaseAnchorBar="false">
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
-                <navigationActions>
-					<m:OverflowToolbarButton
-						type="Transparent"
-						icon="sap-icon://full-screen"
-						press=".handleFullScreen"
-						tooltip="Enter Full Screen Mode"
-						visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
-					<m:OverflowToolbarButton
-						type="Transparent"
-						icon="sap-icon://exit-full-screen"
-						press=".handleExitFullScreen"
-						tooltip="Exit Full Screen Mode"
-						visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
-					<m:OverflowToolbarButton
-						type="Transparent"
-						icon="sap-icon://decline"
-						press=".handleClose"
-						tooltip="Close column"
-						visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
-				</navigationActions>
 				<actions>
-			<!--	<m:ToggleButton
-						text="Edit"
-						type="Emphasized"
-                        press=".onEditToggleButtonPress"/>
-					<m:Button
-						text="Delete"
-						type="Transparent"/>
-					<m:Button
-						text="Copy"
-						type="Transparent"/>
-					<m:Button
-						icon="sap-icon://action"
-						type="Transparent"/> -->
 				</actions>
 			</ObjectPageDynamicHeaderTitle>
 		</headerTitle>
@@ -92,17 +59,10 @@
                             <m:Text text="{oModelAnagraficaSingolaTestata>/oModel2/riferimentoDichiarazione}" class="sapUiMediumMarginEnd"/>
                         </m:HBox>
                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Text text="{oModelConfigurazioni>/imposta}" class="sapUiMediumMarginEnd"/>
+                            <m:Text text="{oModelAnagraficaSingola>/oModel1/imposta}" class="sapUiMediumMarginEnd"/>
                         </m:HBox>
                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                             <m:Text text="{oModelAnagraficaSingolaTestata>/oModel2/configurazioni/algoritmo}" class="sapUiMediumMarginEnd"/>
-                            <!-- <m:ComboBox type="Text" id="scenario" valueState="None">
-                                <m:items>
-                                    <core:Item key="001" text="{i18n>Percentuale}"/>
-                                    <core:Item key="002" text="{i18n>DifferenzaPatrimonialeAumento}"/>
-                                    <core:Item key="002" text="{i18n>DifferenzaPatrimonialeDiminuzione}"/>
-                                </m:items>
-                            </m:ComboBox> -->
+                             <m:Text text="{oModelAnagraficaSingolaTestata>/oModel2/configurazioni/results/0/algoritmo}" class="sapUiMediumMarginEnd"/>
                         </m:HBox>
                     </m:VBox>
                 </m:HBox>
@@ -110,7 +70,7 @@
 		</headerContent>
 
         <sections>
-			<ObjectPageSection title="{i18n>AlgoritmoPercentuale}" visible="true">
+			<ObjectPageSection visible="true">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
@@ -135,19 +95,12 @@
                                             <m:Text text="{oModelAnagraficaSingola>/oModel/descrizioneRipresa}" class="sapUiMediumMarginEnd"/>
                                         </m:HBox>
                                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Input
-                                                id="totaleRipresa"
-                                                type="Number"
-                                                placeholder=""
-                                                enabled="true"
-                                                editable="true"
-                                                value=""
-                                            />
+                                            <m:Text text="{oModelAnagraficaSingola>/oModel/descrizioneRipresa}" class="sapUiMediumMarginEnd"/>
                                         </m:HBox>
                                     </m:VBox>
                                 </m:HBox>
                             </m:FlexBox>	
-						</blocks>
+						 </blocks>
 					</ObjectPageSubSection>
 				</subSections>
                 <subSections>
@@ -156,143 +109,52 @@
                             <m:Table
 								id="percentualeTable"
 								mode="SingleSelectMaster"
+                                autoPopinMode="false"
 								itemPress="handleItemPress"
-								items="{path : 'products>/ProductCollectionStats/Filters/1/values'}">
+								items="{path : 'oModelAnagraficaSingola>/oModel1/versione/items'}">
 								<m:columns>
-									<m:Column />
+									<m:Column>
+                                        <m:Text text="Codice GL"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Descrizione GL"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Classificazione"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Importo LY"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Importo CY"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Percentuale"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Ripresa automatica"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Ripresa manuale"/>
+                                    </m:Column>
+                                     <m:Column>
+                                        <m:Text text="Drill"/>
+                                    </m:Column>
+                                     <m:Column>
+                                        <m:Text text="Totale ripresa"/>
+                                    </m:Column>
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem>
 										<m:cells>
-											<m:ObjectIdentifier text="{products>text}" />
-										</m:cells>
-									</m:ColumnListItem>
-								</m:items>
-							</m:Table>
-                        </blocks>
-					</ObjectPageSubSection>
-                </subSections>
-			</ObjectPageSection>
-
-			<ObjectPageSection title="{i18n>PatrimonialeAumento}" visible="true">
-				<subSections>
-					<ObjectPageSubSection>
-						<blocks>
-                            <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
-                                <m:HBox class="sapUiMediumMarginTop">
-                                    <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Label text="{i18n>PercentualeStandard}: " class="sapUiMediumMarginEnd"/>
-                                        </m:HBox>
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Label text="{i18n>TotaleMovimentazionePatrimoniale}: " class="sapUiMediumMarginEnd"/>
-                                        </m:HBox>
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Label text="{i18n>TotaleRipresa}: " class="sapUiMediumMarginEnd"/>
-                                        </m:HBox>
-                                    </m:VBox>
-                                    <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Text text="{oModelAnagraficaSingola>/oModel/ID}" class="sapUiMediumMarginEnd"/>
-                                        </m:HBox>
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Text text="{oModelAnagraficaSingola>/oModel/descrizioneRipresa}" class="sapUiMediumMarginEnd"/>
-                                        </m:HBox>
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Input
-                                                id="totaleRipresa2"
-                                                type="Number"
-                                                placeholder=""
-                                                enabled="true"
-                                                editable="true"
-                                                value=""
-                                            />
-                                        </m:HBox>
-                                    </m:VBox>
-                                </m:HBox>
-                            </m:FlexBox>
-						</blocks>
-					</ObjectPageSubSection>
-				</subSections>
-                <subSections>
-					<ObjectPageSubSection>
-                        <blocks>
-                            <m:Table
-								id="patrimonialeAumentoTable"
-								mode="SingleSelectMaster"
-								itemPress="handleItemPress"
-								items="{path : 'products>/ProductCollectionStats/Filters/1/values'}">
-								<m:columns>
-									<m:Column />
-								</m:columns>
-								<m:items>
-									<m:ColumnListItem>
-										<m:cells>
-											<m:ObjectIdentifier text="{products>text}" />
-										</m:cells>
-									</m:ColumnListItem>
-								</m:items>
-							</m:Table>
-                        </blocks>
-					</ObjectPageSubSection>
-                </subSections>
-			</ObjectPageSection>
-
-            <ObjectPageSection title="{i18n>PatrimonialeDiminuzione}" visible="true">
-				<subSections>
-					<ObjectPageSubSection>
-						<blocks>
-                            <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
-                                <m:HBox class="sapUiMediumMarginTop">
-                                    <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Label text="{i18n>PercentualeStandard}: " class="sapUiMediumMarginEnd"/>
-                                        </m:HBox>
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Label text="{i18n>TotaleMovimentazionePatrimoniale}: " class="sapUiMediumMarginEnd"/>
-                                        </m:HBox>
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Label text="{i18n>TotaleRipresa}: " class="sapUiMediumMarginEnd"/>
-                                        </m:HBox>
-                                    </m:VBox>
-                                    <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Text text="{oModelAnagraficaSingola>/oModel/ID}" class="sapUiMediumMarginEnd"/>
-                                        </m:HBox>
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Text text="{oModelAnagraficaSingola>/oModel/descrizioneRipresa}" class="sapUiMediumMarginEnd"/>
-                                        </m:HBox>
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Input
-                                                id="totaleRipresa3"
-                                                type="Number"
-                                                placeholder=""
-                                                enabled="true"
-                                                editable="true"
-                                                value=""
-                                            />
-                                        </m:HBox>
-                                    </m:VBox>
-                                </m:HBox>
-                            </m:FlexBox>
-						</blocks>
-					</ObjectPageSubSection>
-				</subSections>
-                <subSections>
-					<ObjectPageSubSection>
-                        <blocks>
-                            <m:Table
-								id="patrimonialeDiminuzioneTable"
-								mode="SingleSelectMaster"
-								itemPress="handleItemPress"
-								items="{path : 'products>/ProductCollectionStats/Filters/1/values'}">
-								<m:columns>
-									<m:Column />
-								</m:columns>
-								<m:items>
-									<m:ColumnListItem>
-										<m:cells>
-											<m:ObjectIdentifier text="{products>text}" />
+											<m:Text text="{oModelAnagraficaSingola>codiceGL}" />
+                                            <m:Text text="{oModelAnagraficaSingola>descrizioneGL}" />
+                                            <m:Text text="{oModelAnagraficaSingola>classificazione}" />
+                                            <m:Text text="{oModelAnagraficaSingola>importoLY}" />
+                                            <m:Text text="{oModelAnagraficaSingola>importoCY}" />
+                                            <m:Text text="{oModelAnagraficaSingola>algoritmi/results/0/percentuale}" />
+                                            <m:Text text="{oModelAnagraficaSingola>drill}" />
+                                            <m:Text text="{oModelAnagraficaSingola>totale}" />
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>
@@ -302,12 +164,5 @@
                 </subSections>
 			</ObjectPageSection>
 		</sections>
-        <footer>
-			<m:OverflowToolbar>
-				<m:ToolbarSpacer/>
-				<m:Button type="Accept" text="{i18n>Save}"/>
-				<m:Button type="Reject" text="{i18n>Cancel}"/>
-			</m:OverflowToolbar>
-		</footer>
 	</ObjectPageLayout>
 </mvc:View>

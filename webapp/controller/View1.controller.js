@@ -38,42 +38,42 @@ sap.ui.define([
                 if(periodo){
                     aFilter.push( new Filter("periodo", "EQ", periodo ) )
                 }
-                var oModel = this.getOwnerComponent().getModel("computationsModel");
-                oModel.read("/ComputationsView", {
-                    filters: aFilter,
-                    success: function(oData, response) {
-                        var data = {
-                                    oModel: oData.results
-                                };
-                                var DataModel = new sap.ui.model.json.JSONModel();
-                                DataModel.setData(data);
-                                that.getView().setModel(DataModel, "tableModel");
-                                },
-                                
-                    error: function(response) {
-                                    sap.m.MessageToast.show("Error");
-                            }
-                        });
-
-                // jQuery.ajax({
-                //     url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/computation/ComputationsView"),
-                //     contentType: "application/json",
+                // var oModel = this.getOwnerComponent().getModel("computationsModel");
+                // oModel.read("/ComputationsView", {
                 //     filters: aFilter,
-                //     type: 'GET',
-                //     dataType: "json",
-                //     async: false,
-                //     success: function (oCompleteEntry) {
-                //     var data = {
-                //         oModel: oCompleteEntry.value
-                //     };
-                //     var DataModel = new sap.ui.model.json.JSONModel();
-                //     DataModel.setData(data);
-                //     that.getView().setModel(DataModel, "tableModel");
-                //     },
-                //     error: function (error) {
-                //     sap.m.MessageToast.show("Error");
-                //     }
-                // });
+                //     success: function(oData, response) {
+                //         var data = {
+                //                     oModel: oData.results
+                //                 };
+                //                 var DataModel = new sap.ui.model.json.JSONModel();
+                //                 DataModel.setData(data);
+                //                 that.getView().setModel(DataModel, "tableModel");
+                //                 },
+                                
+                //     error: function(response) {
+                //                     sap.m.MessageToast.show("Error");
+                //             }
+                //         });
+
+                jQuery.ajax({
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/computation/ComputationsView"),
+                    contentType: "application/json",
+                    filters: aFilter,
+                    type: 'GET',
+                    dataType: "json",
+                    async: false,
+                    success: function (oCompleteEntry) {
+                    var data = {
+                        oModel: oCompleteEntry.value
+                    };
+                    var DataModel = new sap.ui.model.json.JSONModel();
+                    DataModel.setData(data);
+                    that.getView().setModel(DataModel, "tableModel");
+                    },
+                    error: function (error) {
+                    sap.m.MessageToast.show("Error");
+                    }
+                });
             },
 
             navigateToCurrentTax: function(oEvent){
