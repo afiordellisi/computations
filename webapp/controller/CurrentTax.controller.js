@@ -6,18 +6,19 @@ sap.ui.define([
     "sap/ui/table/RowAction",
 	"sap/ui/table/RowActionItem",
 	"sap/ui/table/RowSettings",
-	"sap/ui/core/routing/History"
+	"sap/ui/core/routing/History",
+    './BaseController',
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, Filter, FilterOperator, JSONModel, RowAction, RowActionItem, RowSettings, History) {
+    function (Controller, Filter, FilterOperator, JSONModel, RowAction, RowActionItem, RowSettings, History, BaseController) {
         "use strict";
 
-        return Controller.extend("tax.provisioning.computations.controller.CurrentTax", {
+        return BaseController.extend("tax.provisioning.computations.controller.CurrentTax", {
             onInit: function () {
                 this.oModel = this.getOwnerComponent().getModel();
-                this.getOwnerComponent().getRouter().getRoute("RouteTax").attachPatternMatched(this._onObjectMatched, this);
+                this.getOwnerComponent().getRouter().getRoute("CurrentTax").attachPatternMatched(this._onObjectMatched, this);
                 
                 sap.ui.getCore().sapAppID = this.getOwnerComponent().getMetadata().getManifest()["sap.app"].id;
                 //this.getView().getModel("oModelAnagrafica");
@@ -29,7 +30,7 @@ sap.ui.define([
                
                 var oRouter = this.getOwnerComponent().getRouter();
                 
-                    oRouter.navTo("RouteRiprese", {
+                    oRouter.navTo("Riprese", {
                         ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().ID,
                         ID : this.getView().getModel("computationModel").getData().oModel[0].ID
                         //configurazioneID :  this.getView().getModel("computationModel").getData().oModel[0].configurazioneID
@@ -40,10 +41,12 @@ sap.ui.define([
                 var oEvent = oEvent.getParameter("arguments");
                 
                 var ID = oEvent.ID; //ID computazione
+                var descrizioneComputazione = oEvent.descrizione;
                 
 
                 this.getView().setModel(new JSONModel({oModel: [{
-                    "ID": ID
+                    "ID": ID, 
+                    "descrizioneComputazione" : descrizioneComputazione
                   }]}), "computationModel");
                 
                 var that = this;

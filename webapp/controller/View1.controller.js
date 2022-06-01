@@ -2,22 +2,23 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     'sap/ui/model/Filter',
     'sap/ui/model/FilterOperator',
-    'sap/ui/model/json/JSONModel'
+    'sap/ui/model/json/JSONModel',
+    './BaseController',
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, Filter, FilterOperator, JSONModel) {
+    function (Controller, Filter, FilterOperator, JSONModel, BaseController) {
         "use strict";
 
-        return Controller.extend("tax.provisioning.computations.controller.View1", {
+        return BaseController.extend("tax.provisioning.computations.controller.View1", {
             onInit: function () {
                 sap.ui.getCore().sapAppID = this.getOwnerComponent().getMetadata().getManifest()["sap.app"].id;
             },
 
             onNewPress: function(oEvent){
                     var oRouter = this.getOwnerComponent().getRouter();
-                    oRouter.navTo("RouteCreation");
+                    oRouter.navTo("Creation");
             },
 
             onGo: function(oEvent){
@@ -80,8 +81,9 @@ sap.ui.define([
                 // debugger;
                 // oEvent.getSource().getBindingContext().getObject();
                 var oRouter = this.getOwnerComponent().getRouter();
-                    oRouter.navTo("RouteTax", {
-                        ID : oEvent.getSource().getBindingContext("tableModel").getObject().ID
+                    oRouter.navTo("CurrentTax", {
+                        ID : oEvent.getSource().getBindingContext("tableModel").getObject().ID,
+                        descrizione : oEvent.getSource().getBindingContext("tableModel").getObject().descrizione
                     }, true);
                 
             }

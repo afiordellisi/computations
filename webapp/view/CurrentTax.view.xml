@@ -11,17 +11,17 @@
         xmlns:smartField="sap.ui.comp.smartfield"
         xmlns:u="sap.ui.unified">
 
-	<uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
-    	<uxap:headerTitle>
-			<uxap:ObjectPageDynamicHeaderTitle>
-            	<uxap:expandedHeading>
+	<uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" preserveHeaderStateOnScroll="true" >
+    	<uxap:headerTitle >
+			<uxap:ObjectPageDynamicHeaderTitle >
+            	<uxap:heading >
 					
-						<m:Title text="Descrizione computation" wrapping="true"/>
+						<m:Title text="{computationModel>/oModel/0/descrizioneComputazione}" wrapping="false" />
 					
-				</uxap:expandedHeading>
+				</uxap:heading>
              </uxap:ObjectPageDynamicHeaderTitle>
         </uxap:headerTitle>
-            <uxap:headerContent>
+            <uxap:headerContent >
                 <Table
 				id="table1"
 				ariaLabelledBy="title"
