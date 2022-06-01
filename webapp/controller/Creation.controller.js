@@ -2,17 +2,18 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     'sap/ui/model/Filter',
     'sap/ui/model/FilterOperator',
-    'sap/ui/model/json/JSONModel'
+    'sap/ui/model/json/JSONModel',
+    "./BaseController"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, Filter, FilterOperator, JSONModel) {
+    function (Controller, Filter, FilterOperator, JSONModel, BaseController) {
         "use strict";
         var aFilter = [];
         
 
-        return Controller.extend("tax.provisioning.computations.Creation.controller.View1", {
+        return BaseController.extend("tax.provisioning.computations.Creation.controller.View1", {
             onInit: function () {
 
                 sap.ui.getCore().sapAppID = this.getOwnerComponent().getMetadata().getManifest()["sap.app"].id;
@@ -140,7 +141,7 @@ sap.ui.define([
                         debugger;
                         
                         var oRouter = that.getOwnerComponent().getRouter();
-                        oRouter.navTo("RouteView1");
+                        oRouter.navTo("View1");
     
                     },
                     error: function (error) {
@@ -208,7 +209,7 @@ sap.ui.define([
             handleWizardCancel: function(){
                 this._resetFields();
                 var oRouter = this.getOwnerComponent().getRouter();
-                oRouter.navTo("RouteView1");
+                oRouter.navTo("View1");
             },
 
             _filterTableCreation: function (aFilter) {
