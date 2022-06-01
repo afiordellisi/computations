@@ -13,9 +13,9 @@ sap.ui.define([
         var aFilter = [];
         
 
-        return BaseController.extend("tax.provisioning.computations.Creation.controller.View1", {
+        return BaseController.extend("tax.provisioning.computations.Creation.controller.Creation", {
             onInit: function () {
-
+                debugger;
                 sap.ui.getCore().sapAppID = this.getOwnerComponent().getMetadata().getManifest()["sap.app"].id;
 
                 this._oNavContainer = this.byId("wizardNavContainer");
@@ -215,45 +215,84 @@ sap.ui.define([
             _filterTableCreation: function (aFilter) {
                     var that = this;
 
-                    var oModel = this.getOwnerComponent().getModel("computationsModel");
-
-                    oModel.read("/Versioni", {
+                    //var oModel = this.getOwnerComponent().getModel("computationsModel");
+                    debugger;
+                    jQuery.ajax({
+                        url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/computation/Versioni"),
+                        contentType: "application/json",
                         filters: aFilter,
-                        success: function (oData, response) {
+                        type: 'GET',
+                        dataType: "json",
+                        async: false,
+                        success: function (oCompleteEntry) {
                             var data = {
-                                oModel: oData.results
+                                oModel: oCompleteEntry.value
                             };
                             var DataModel = new sap.ui.model.json.JSONModel();
                             DataModel.setData(data);
                             that.getView().setModel(DataModel, "tableModel");
                         },
-
-                        error: function (response) {
+                        error: function (error) {
                             sap.m.MessageToast.show("Error");
                         }
                     });
+                    // oModel.read("/Versioni", {
+                    //     filters: aFilter,
+                    //     success: function (oData, response) {
+                    //         var data = {
+                    //             oModel: oData.results
+                    //         };
+                    //         var DataModel = new sap.ui.model.json.JSONModel();
+                    //         DataModel.setData(data);
+                    //         that.getView().setModel(DataModel, "tableModel");
+                    //     },
+
+                    //     error: function (response) {
+                    //         sap.m.MessageToast.show("Error");
+                    //     }
+                    // });
             },
 
             _filterTableConf: function (aFilter) {
                 var that = this;
 
-                var oModel = this.getOwnerComponent().getModel("computationsModel");
+                //var oModel = this.getOwnerComponent().getModel("computationsModel");
+                debugger;
 
-                oModel.read("/Configurazioni", {
-                    filters: aFilter,
-                    success: function (oData, response) {
+                jQuery.ajax({
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/computation/Configurazioni"),
+                    contentType: "application/json",
+                    type: 'GET',
+                    dataType: "json",
+                    async: false,
+                    success: function (oCompleteEntry) {
                         var data = {
-                            oModel: oData.results
+                            oModel: oCompleteEntry.value
                         };
                         var DataModel = new sap.ui.model.json.JSONModel();
                         DataModel.setData(data);
                         that.getView().setModel(DataModel, "taxRuleModel");
                     },
-
-                    error: function (response) {
+                    error: function (error) {
                         sap.m.MessageToast.show("Error");
                     }
                 });
+
+                // oModel.read("/Configurazioni", {
+                //     filters: aFilter,
+                //     success: function (oData, response) {
+                //         var data = {
+                //             oModel: oData.results
+                //         };
+                //         var DataModel = new sap.ui.model.json.JSONModel();
+                //         DataModel.setData(data);
+                //         that.getView().setModel(DataModel, "taxRuleModel");
+                //     },
+
+                //     error: function (response) {
+                //         sap.m.MessageToast.show("Error");
+                //     }
+                // });
         },
 
         _parameterSetting: function(){
