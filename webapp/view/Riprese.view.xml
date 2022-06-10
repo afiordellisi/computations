@@ -93,7 +93,7 @@
                                 inset="false"
                                 class="sapFSemanticPageAlignContent" 
                                 autoPopinMode="false"
-								items="{path : 'oModelAnagraficaSingola>/oModel1/versione/items'}">
+								items="{path : 'oModelAnagraficaSingola>/oModel1'}">
 								<m:columns>
 									<m:Column>
                                         <m:Text text="Codice GL"/>
@@ -134,7 +134,7 @@
                                             <m:Text text="{oModelAnagraficaSingola>classificazione}" />
                                             <m:Text text="{oModelAnagraficaSingola>importoLY}" />
                                             <m:Text text="{oModelAnagraficaSingola>importoCY}" />
-                                            <m:Text text="{oModelAnagraficaSingola>algoritmi/results/0/percentuale}" />
+                                            <m:Text text="{oModelAnagraficaSingola>confRipresaAuto/0/percentuale}" />
                                             <m:Text text="{oModelAnagraficaSingola>ripresaAutomatica}" />
                                             <m:Text text="{oModelAnagraficaSingola>ripresaManuale}" />
                                             <m:Text text="{oModelAnagraficaSingola>drill}" />

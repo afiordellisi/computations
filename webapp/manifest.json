@@ -167,21 +167,21 @@
                 },
                 {
                     "name": "CurrentTax",
-                    "pattern": "Tax/{ID},{descrizione}",
+                    "pattern": "Tax/{ID},{descrizione},{configurazioneID}",
                     "target": [
                         "CurrentTax"
                     ]
                 },
                 {
                     "name": "Riprese",
-                    "pattern": "Tax/{ID}/Ripresa/{ripresaID}",
+                    "pattern": "Tax/{ID}/Ripresa/{ripresaID},{configurazioneID}",
                     "target": [
                         "Riprese"
                     ]
                 },
                 {
                     "name": "Allegati",
-                    "pattern": "Tax/{ID}/Ripresa/{ripresaID}",
+                    "pattern": "Ripresa/{ID},{ripresaID},{codiceGL},{descrizioneGL},{versioneID},{configurazioneID}",
                     "target": [
                         "Allegati"
                     ]
@@ -202,7 +202,7 @@
                     "clearControlAggregation": false,
                     "viewId": "Creation",
                     "viewName": "Creation",
-                    "viewLevel": 2
+                    "viewLevel": 3
                 },
                 "CurrentTax": {
                     "viewType": "XML",
@@ -210,7 +210,7 @@
                     "clearControlAggregation": false,
                     "viewId": "CurrentTax",
                     "viewName": "CurrentTax",
-                    "viewLevel": 3
+                    "viewLevel": 2
                 },
                 "Riprese": {
                     "viewType": "XML",

@@ -78,12 +78,13 @@ sap.ui.define([
             },
 
             navigateToCurrentTax: function(oEvent){
-                // debugger;
+                
                 // oEvent.getSource().getBindingContext().getObject();
                 var oRouter = this.getOwnerComponent().getRouter();
                     oRouter.navTo("CurrentTax", {
                         ID : oEvent.getSource().getBindingContext("tableModel").getObject().ID,
-                        descrizione : oEvent.getSource().getBindingContext("tableModel").getObject().descrizione
+                        descrizione : oEvent.getSource().getBindingContext("tableModel").getObject().descrizione,
+                        configurazioneID : oEvent.getSource().getBindingContext("tableModel").getObject().configurazioneID
                     }, true);
                 
             }

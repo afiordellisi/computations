@@ -15,7 +15,7 @@ sap.ui.define([
 
         return BaseController.extend("tax.provisioning.computations.Creation.controller.Creation", {
             onInit: function () {
-                debugger;
+                
                 sap.ui.getCore().sapAppID = this.getOwnerComponent().getMetadata().getManifest()["sap.app"].id;
 
                 this._oNavContainer = this.byId("wizardNavContainer");
@@ -24,7 +24,7 @@ sap.ui.define([
             },
 
             filterValidation: function () {
-                debugger;
+                
 
                 var societa = this.getView().byId("societa").getValue();
                 var ledger = this.getView().byId("ledger").getValue();
@@ -63,7 +63,7 @@ sap.ui.define([
             },
 
             filterValidation2: function (oEvent) {
-                debugger;
+                
                 var oTable = this.getView().byId("versioniTable");
                 var sSelectedPath = oTable.getSelectedItem();
                 if(sSelectedPath != null){
@@ -109,9 +109,9 @@ sap.ui.define([
             //funzione per salvare la computazione da richiamare nell'ultimo step
             handleWizardSubmit: function (oEvent) {
                 //this.handleFinishSelection();
-                debugger;
+                
                 if(this.handleFinishSelection()){
-                    debugger;
+                    
                     var that = this;
                     var descrizioneComputation = this.getView().getModel("parameterModel").oData.descrizione;
                     var idConfigurazione = this.getView().getModel("parameterModel").oData.idConfigurazione;
@@ -138,7 +138,7 @@ sap.ui.define([
 
                         that._resetFields();
                         
-                        debugger;
+                        
                         
                         var oRouter = that.getOwnerComponent().getRouter();
                         oRouter.navTo("View1");
@@ -175,19 +175,19 @@ sap.ui.define([
                 var stepName = this._oWizard._getCurrentStepInstance().sId;
                 if(stepName === 'application-taxprovisioningcomputations-display-component---Creation--sceltaParametri'){
                     this._iSelectedStepIndex = 0;
-                    debugger;
+                    
                 }
                 if(stepName === 'application-taxprovisioningcomputations-display-component---Creation--trialBalance'){
                     this._iSelectedStepIndex = 1;
                     //this.filterValidation2();
-                    debugger;
+                    
                 }
                 if(stepName === 'application-taxprovisioningcomputations-display-component---Creation--taxRule'){
                     this._iSelectedStepIndex = 2;
                     this.getView().byId("nextStepButton").setVisible(false);
                     this.getView().byId("finishButton").setVisible(true);
                     this.handleWizardSubmit();
-                    debugger;
+                    
                 }
 
                 this._oSelectedStep = this._oWizard.getSteps()[this._iSelectedStepIndex];
@@ -216,7 +216,7 @@ sap.ui.define([
                     var that = this;
 
                     //var oModel = this.getOwnerComponent().getModel("computationsModel");
-                    debugger;
+                    
                     jQuery.ajax({
                         url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/computation/Versioni"),
                         contentType: "application/json",
@@ -257,7 +257,7 @@ sap.ui.define([
                 var that = this;
 
                 //var oModel = this.getOwnerComponent().getModel("computationsModel");
-                debugger;
+                
 
                 jQuery.ajax({
                     url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/computation/Configurazioni"),

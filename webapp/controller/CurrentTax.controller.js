@@ -17,11 +17,12 @@ sap.ui.define([
 
         return BaseController.extend("tax.provisioning.computations.controller.CurrentTax", {
             onInit: function () {
-                this.oModel = this.getOwnerComponent().getModel();
-                this.getOwnerComponent().getRouter().getRoute("CurrentTax").attachPatternMatched(this._onObjectMatched, this);
-                
+
                 sap.ui.getCore().sapAppID = this.getOwnerComponent().getMetadata().getManifest()["sap.app"].id;
-                //this.getView().getModel("oModelAnagrafica");
+
+                this.oModel = this.getOwnerComponent().getModel();
+                
+                this.getOwnerComponent().getRouter().getRoute("CurrentTax").attachPatternMatched(this._onObjectMatched, this);
 
                 this._setHeader();
             },
@@ -32,8 +33,8 @@ sap.ui.define([
                 
                     oRouter.navTo("Riprese", {
                         ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().ID,
-                        ID : this.getView().getModel("computationModel").getData().oModel[0].ID
-                        //configurazioneID :  this.getView().getModel("computationModel").getData().oModel[0].configurazioneID
+                        ID : this.getView().getModel("computationModel").getData().oModel[0].ID, //ID computazione
+                        configurazioneID :  this.getView().getModel("computationModel").getData().oModel[0].configurazioneID
                     }, true);
             },
 
@@ -42,11 +43,13 @@ sap.ui.define([
                 
                 var ID = oEvent.ID; //ID computazione
                 var descrizioneComputazione = oEvent.descrizione;
+                var configurazioneID = oEvent.configurazioneID;
                 
 
                 this.getView().setModel(new JSONModel({oModel: [{
                     "ID": ID, 
-                    "descrizioneComputazione" : descrizioneComputazione
+                    "descrizioneComputazione" : descrizioneComputazione,
+                    "configurazioneID" : configurazioneID
                   }]}), "computationModel");
                 
                 var that = this;
