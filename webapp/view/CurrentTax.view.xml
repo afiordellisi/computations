@@ -14,11 +14,28 @@
 	<uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" preserveHeaderStateOnScroll="true" >
     	<uxap:headerTitle >
 			<uxap:ObjectPageDynamicHeaderTitle >
+            <uxap:navigationActions>
+					<m:OverflowToolbarButton
+						type="Transparent"
+						icon="sap-icon://nav-back"
+						id="exitPage"
+					    press=".onNavBack"/>
+				</uxap:navigationActions>
+                
             	<uxap:heading >
-					
 						<m:Title text="{computationModel>/oModel/0/descrizioneComputazione}" wrapping="false" />
-					
 				</uxap:heading>
+                
+                <uxap:actions>
+                    <m:ToolbarSpacer/>
+                         <m:ToolbarSeparator/>
+                         <m:SegmentedButton id="impostaButton" selectionChange="onScegliImposta">
+                            <m:items>
+                                <m:SegmentedButtonItem key="IRES" text="IRES" />
+                                <m:SegmentedButtonItem key="IRAP" text="IRAP" />
+                            </m:items>
+                        </m:SegmentedButton>
+                </uxap:actions>
              </uxap:ObjectPageDynamicHeaderTitle>
         </uxap:headerTitle>
             <uxap:headerContent >
