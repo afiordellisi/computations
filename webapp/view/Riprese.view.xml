@@ -12,9 +12,13 @@
 		headerPinnable="true" 
         toggleHeaderOnTitleClick="true" 
         preserveHeaderStateOnScroll="false" 
-        titleAreaShrinkRatio="1:1.6:1.6" 
+        titleAreaShrinkRatio="1:1.6:1.6"
         showFooter="false">
+         <semantic:titleContent>
+            <m:Button id="editAction" press="onNavBack" type="Transparent"	icon="sap-icon://nav-back"/>
+		</semantic:titleContent>
         <semantic:headerContent>
+            
 			<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
 				<m:HBox class="sapUiMediumMarginTop">
                     <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
@@ -31,30 +35,30 @@
                             <m:Label text="{i18n>RiferimentoDichiarazione}: " class="sapUiMediumMarginEnd"/>
                         </m:HBox>
                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Label text="{i18n>Imposta}: " class="sapUiMediumMarginEnd"/>
+                            <m:Label text="{i18n>imposta}: " class="sapUiMediumMarginEnd"/>
                         </m:HBox>
                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Label text="{i18n>Algoritmo}: " class="sapUiMediumMarginEnd"/>
+                            <m:Label text="{i18n>algoritmo}: " class="sapUiMediumMarginEnd"/>
                         </m:HBox>
                     </m:VBox>
                     <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Text text="{oModelAnagraficaSingolaTestata>/oModel2/ID}" class="sapUiMediumMarginEnd"/>
+                            <m:Text text="{oModelAnagraficaSingola>/oModelRipresa/ID}" class="sapUiMediumMarginEnd"/>
                         </m:HBox>
                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Text text="{oModelAnagraficaSingolaTestata>/oModel2/descrizioneRipresa}" class="sapUiMediumMarginEnd"/>
+                            <m:Text text="{oModelAnagraficaSingola>/oModelRipresa/descrizioneRipresa}" class="sapUiMediumMarginEnd"/>
                         </m:HBox>
                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Text text="{oModelAnagraficaSingolaTestata>/oModel2/riferimentoNormativo}" class="sapUiMediumMarginEnd"/>
+                            <m:Text text="{oModelAnagraficaSingola>/oModelRipresa/riferimentoNormativo}" class="sapUiMediumMarginEnd"/>
                         </m:HBox>
                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Text text="{oModelAnagraficaSingolaTestata>/oModel2/riferimentoDichiarazione}" class="sapUiMediumMarginEnd"/>
+                            <m:Text text="{oModelAnagraficaSingola>/oModelRipresa/riferimentoDichiarazione}" class="sapUiMediumMarginEnd"/>
                         </m:HBox>
                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Text text="{oModelAnagraficaSingola>/oModel1/imposta}" class="sapUiMediumMarginEnd"/>
+                            <m:Text text="{oModelAnagraficaSingola>/oModelTestata/imposta}" class="sapUiMediumMarginEnd"/>
                         </m:HBox>
                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                             <m:Text text="{oModelAnagraficaSingolaTestata>/oModel2/configurazioni/results/0/algoritmo}" class="sapUiMediumMarginEnd"/>
+                             <m:Text text="{oModelAnagraficaSingola>/oModelTestata/algoritmo}" class="sapUiMediumMarginEnd"/>
                         </m:HBox>
                     </m:VBox>
                 </m:HBox>
@@ -74,13 +78,13 @@
                                     </m:VBox>
                                     <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
                                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Text text="{oModelAnagraficaSingolaTestata>/oModel2/configurazioni/0/percentuale}" class="sapUiMediumMarginEnd"/>
+                                            <m:Text text="{oModelAnagraficaSingola>/oModelTestata/percentuale}%" class="sapUiMediumMarginEnd"/>
                                         </m:HBox>
                                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Text text="{oModelAnagraficaSingola>/oModel/descrizioneRipresa}" class="sapUiMediumMarginEnd"/>
+                                            <m:Text text="{oModelTotali>/oModelTot/0/TotaleCY}" class="sapUiMediumMarginEnd"/>
                                         </m:HBox>
                                         <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Text text="{oModelAnagraficaSingola>/oModel/descrizioneRipresa}" class="sapUiMediumMarginEnd"/>
+                                            <m:Text text="{oModelTotali>/oModelTot/0/TotaleRipresa}" class="sapUiMediumMarginEnd"/>
                                         </m:HBox>
                                     </m:VBox>
                                 </m:HBox>
@@ -96,49 +100,49 @@
 								items="{path : 'oModelAnagraficaSingola>/oModel1'}">
 								<m:columns>
 									<m:Column>
-                                        <m:Text text="Codice GL"/>
+                                        <m:Text text="{i18n>codiceGL}"/>
                                     </m:Column>
                                     <m:Column>
-                                        <m:Text text="Descrizione GL"/>
+                                        <m:Text text="{i18n>descrizioneGL}"/>
                                     </m:Column>
                                     <m:Column>
-                                        <m:Text text="Classificazione"/>
+                                        <m:Text text="{i18n>classificazione}"/>
                                     </m:Column>
                                     <m:Column>
-                                        <m:Text text="Importo LY"/>
+                                        <m:Text text="{i18n>importoLY}"/>
                                     </m:Column>
                                     <m:Column>
-                                        <m:Text text="Importo CY"/>
+                                        <m:Text text="{i18n>importoCY}"/>
                                     </m:Column>
                                     <m:Column>
-                                        <m:Text text="Percentuale"/>
+                                        <m:Text text="{i18n>percentuale}"/>
                                     </m:Column>
                                     <m:Column>
-                                        <m:Text text="Ripresa automatica"/>
+                                        <m:Text text="{i18n>ripresaAuto}"/>
                                     </m:Column>
                                     <m:Column>
-                                        <m:Text text="Ripresa manuale"/>
+                                        <m:Text text="{i18n>ripresaManuale}"/>
                                     </m:Column>
                                      <m:Column>
-                                        <m:Text text="Drill"/>
+                                        <m:Text text="{i18n>drill}"/>
                                     </m:Column>
                                      <m:Column>
-                                        <m:Text text="Totale ripresa"/>
+                                        <m:Text text="{i18n>TotaleRipresa}"/>
                                     </m:Column>
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation" press="handleItemPress">
 										<m:cells>
-											<m:Text text="{oModelAnagraficaSingola>codiceGL}" />
+											<m:Text text="{oModelAnagraficaSingola>bilancio_codiceGL}" />
                                             <m:Text text="{oModelAnagraficaSingola>descrizioneGL}" />
                                             <m:Text text="{oModelAnagraficaSingola>classificazione}" />
                                             <m:Text text="{oModelAnagraficaSingola>importoLY}" />
                                             <m:Text text="{oModelAnagraficaSingola>importoCY}" />
-                                            <m:Text text="{oModelAnagraficaSingola>confRipresaAuto/0/percentuale}" />
-                                            <m:Text text="{oModelAnagraficaSingola>ripresaAutomatica}" />
+                                            <m:Text text="{oModelAnagraficaSingola>percentuale}" />
+                                            <m:Text text="{=${oModelAnagraficaSingola>importoCY}*${oModelAnagraficaSingola>percentuale}/100}" />
                                             <m:Text text="{oModelAnagraficaSingola>ripresaManuale}" />
                                             <m:Text text="{oModelAnagraficaSingola>drill}" />
-                                            <m:Text text="{oModelAnagraficaSingola>totale}" />
+                                            <m:Text text="{=${oModelAnagraficaSingola>importoCY}*${oModelAnagraficaSingola>percentuale}/100 + ${oModelAnagraficaSingola>ripresaManuale} + ${oModelAnagraficaSingola>drill} }" />
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>

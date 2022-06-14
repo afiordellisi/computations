@@ -94,10 +94,14 @@
                     <Text text="{tableModel>valoreProduzione}"/>
                     <Text text="{tableModel>irap}"/>
                     <Text text="{tableModel>movement}"/>
-                    <Text text="{path: 'tableModel>createdAt', type: 'sap.ui.model.type.Date',
-				formatOptions: {
-					style: 'short'
-				}}"/> 
+                    <Text text="{path: 'tableModel>createdAt', type: 'sap.ui.model.odata.type.DateTimeOffset',
+                                                                constraints: {
+                                                                    precision: 3,
+                                                                    v4: true
+                                                                },
+                                                                formatOptions: {
+                                                                    pattern: 'dd-MM-yyyy' 
+                                                                }}"/> 
                     <Text text="{tableModel>createdBy}"/>                    
                 </cells>
               </ColumnListItem>

@@ -14,45 +14,45 @@
 	<uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" preserveHeaderStateOnScroll="true" >
     	<uxap:headerTitle >
 			<uxap:ObjectPageDynamicHeaderTitle >
+            <uxap:heading >
+				<m:Title text="{oModelDescrizione>/oModelDescrizione}" wrapping="false" />
+			</uxap:heading>
+
             <uxap:navigationActions>
 					<m:OverflowToolbarButton
 						type="Transparent"
 						icon="sap-icon://nav-back"
 						id="exitPage"
 					    press=".onNavBack"/>
-				</uxap:navigationActions>
-                
-            	<uxap:heading >
-						<m:Title text="{computationModel>/oModel/0/descrizioneComputazione}" wrapping="false" />
-				</uxap:heading>
-                
-                <uxap:actions>
-                    <m:ToolbarSpacer/>
-                         <m:ToolbarSeparator/>
-                         <m:SegmentedButton id="impostaButton" selectionChange="onScegliImposta">
+			</uxap:navigationActions>
+              
+            <uxap:actions>
+                <m:ToolbarSpacer/>
+                    <m:ToolbarSeparator/>
+                        <m:SegmentedButton id="impostaButton" selectionChange="onScegliImposta">
                             <m:items>
                                 <m:SegmentedButtonItem key="IRES" text="IRES" />
                                 <m:SegmentedButtonItem key="IRAP" text="IRAP" />
                             </m:items>
                         </m:SegmentedButton>
-                </uxap:actions>
-             </uxap:ObjectPageDynamicHeaderTitle>
-        </uxap:headerTitle>
-            <uxap:headerContent >
+            </uxap:actions>
+            </uxap:ObjectPageDynamicHeaderTitle>
+            </uxap:headerTitle>
+
+            <uxap:headerContent>
                 <Table
 				id="table1"
 				ariaLabelledBy="title"
 				selectionMode="None"
 				rows="{headerModel>/oModel}"
 				visibleRowCount="1"
-				enableColumnFreeze="true"
-				showColumnVisibilityMenu="true">
+				enableColumnFreeze="false"
+				showColumnVisibilityMenu="false">
 				<columns>
 					<Column
                         resizable="false"
 						width="10%"
-						sortProperty="supplier"
-						filterProperty="supplier" headerSpan="2,2">
+                        headerSpan="2,2">
 						<m:Label text="" textAlign="Center" width="100%"/>
 						<template>
 							<m:Text text=""/>
@@ -60,9 +60,7 @@
 					</Column>
                     <Column
                         resizable="false"
-						width="30%"
-						sortProperty="supplier"
-						filterProperty="supplier">
+						width="30%">
 						<m:Label text="" textAlign="Center" width="100%"/>
 						<template>
 							<m:Text text="{headerModel>testo}"/>
@@ -71,12 +69,10 @@
 					<Column
                         resizable="false"
 						width="10%"
-						sortProperty="street"
-						filterProperty="street"
 						headerSpan="3">
 						<multiLabels>
-							<m:Label text="Imposte correnti" textAlign="Center" width="100%"/>
-							<m:Label text="Imponibile" textAlign="Center" width="100%"/>
+							<m:Label text="{i18n>imposteCorrenti}" textAlign="Center" width="100%"/>
+							<m:Label text="{i18n>imponibile}" textAlign="Center" width="100%"/>
 						</multiLabels>
 						<template>
 							<m:Text text="{headerModel>imponibile}"/>
@@ -85,24 +81,22 @@
 					<Column
                         resizable="false"
 						width="10%"
-						sortProperty="imposta"
 						headerSpan="2">
 						<multiLabels>
-							<m:Label text="Imposte correnti" textAlign="Center" width="100%"/>
-							<m:Label text="Imposta {headerModel>/oModel/0/impostaPerc}%" textAlign="Center" width="100%"/>
+							<m:Label text="{i18n>imposteCorrenti}" textAlign="Center" width="100%"/>
+							<m:Label text="{i18n>imposta} {oModelPercentuale>/oModelPercentuale}%" textAlign="Center" width="100%"/>
 						</multiLabels>
 						<template>
-							<m:Text text="{=${headerModel>imponibile}*${headerModel>impostaPerc}/100}"/>
+							<m:Text text="{=${headerModel>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
 						</template>
 					</Column>
                     <Column
                         resizable="false"
 						width="10%"
-						sortProperty="unico"
 						headerSpan="2">
 						<multiLabels>
-							<m:Label text="Imposte correnti" textAlign="Center" width="100%"/>
-							<m:Label text="UNICO" textAlign="Center" width="100%"/>
+							<m:Label text="{i18n>imposteCorrenti}" textAlign="Center" width="100%"/>
+							<m:Label text="{i18n>unico}" textAlign="Center" width="100%"/>
 							
 						</multiLabels>
 						<template>
@@ -113,11 +107,10 @@
                     <Column
                         resizable="false"
 						width="10%"
-						sortProperty="unico"
 						headerSpan="3">
 						<multiLabels>
-							<m:Label text="Imposte di bilancio" textAlign="Center" width="100%"/>
-							<m:Label text="correnti" textAlign="Center" width="100%"/>
+							<m:Label text="{i18n>imposteBilancio}" textAlign="Center" width="100%"/>
+							<m:Label text="{i18n>correnti}" textAlign="Center" width="100%"/>
 							
 						</multiLabels>
 						<template>
@@ -128,11 +121,10 @@
                     <Column
                         resizable="false"
 						width="10%"
-						sortProperty="unico"
 						headerSpan="2">
 						<multiLabels>
-							<m:Label text="Imposte di bilancio" textAlign="Center" width="100%"/>
-							<m:Label text="differite" textAlign="Center" width="100%"/>
+							<m:Label text="{i18n>imposteBilancio}" textAlign="Center" width="100%"/>
+							<m:Label text="{i18n>differite}" textAlign="Center" width="100%"/>
 							
 						</multiLabels>
 						<template>
@@ -143,15 +135,14 @@
                     <Column
                         resizable="false"
 						width="10%"
-						sortProperty="unico"
 						headerSpan="2">
 						<multiLabels>
-							<m:Label text="Imposte di bilancio" textAlign="Center" width="100%"/>
-							<m:Label text="totale" textAlign="Center" width="100%"/>
+							<m:Label text="{i18n>imposteBilancio}" textAlign="Center" width="100%"/>
+							<m:Label text="{i18n>totale}" textAlign="Center" width="100%"/>
 							
 						</multiLabels>
 						<template>
-							<m:Text text="{=${headerModel>imponibile}*${headerModel>impostaPerc}/100 - ${headerModel>differite}}"/>
+							<m:Text text="{=${headerModel>imponibile}*${headerModel>impostaPerc}/100 + ${headerModel>differite}}"/>
 						</template>
 					</Column>
 				</columns>
@@ -179,17 +170,18 @@
                                     ariaLabelledBy="title"
                                     selectionMode="None"
                                     rows="{path:'oModelAnagrafica>/oModelPA'}"
-                                    enableColumnFreeze="true"
+                                    enableColumnFreeze="false"
                                     visibleRowCount="{path:'oModelAnagrafica>/oModelPA/length'}"
                                     showColumnVisibilityMenu="false"
                                     rowActionCount="1"
+                                    enableColumnReordering="false"
                                     >
                                     <columns>
                                         <Column resizable="false"
                                             width="10%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
                                                 <template>
-                                                    <m:Link text="{oModelAnagrafica>ID}" press="handleActionPress"/>
+                                                    <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
                                                 </template>
                                             <!-- <template>
                                                 <m:Text text="{oModelAnagrafica>ID}" />
@@ -203,15 +195,15 @@
                                             </template>
                                         </Column>
                                         <Column	width="10%"	resizable="false">
-                                                <m:Label text="{path: 'oModelAnagrafica>PAImponibile'}" textAlign="Center" width="100%"/>
+                                                <m:Label text="{oModelAnagrafica>/oModelPAImponibile}" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imponibile}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%" resizable="false"	>
-                                            <m:Label text="{=${oModelAnagrafica>PAImponibile}*${headerModel>impostaPerc}/100}" textAlign="Center" width="100%"/>
+                                        <Column	width="10%" resizable="false" id="colonnaImposta">
+                                            <m:Label text="{=${oModelAnagrafica>/oModelPAImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="Center" width="100%"/>
                                             <template>
-                                                <m:Text text="{oModelAnagrafica>imposta}"/>
+                                                <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
                                             </template>
                                         </Column>
                                         <Column resizable="false"
@@ -259,16 +251,20 @@
                                     ariaLabelledBy="title"
                                     selectionMode="None"
                                     rows="{path:'oModelAnagrafica>/oModelPD'}"
-                                    enableColumnFreeze="true"
+                                    enableColumnFreeze="false"
                                     visibleRowCount="{path:'oModelAnagrafica>/oModelPD/length'}"
-                                    showColumnVisibilityMenu="false">
+                                    showColumnVisibilityMenu="false"
+                                    enableColumnReordering="false">
                                     <columns>
                                         <Column resizable="false"
                                             width="10%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
-                                            <template>
-                                                <m:Link text="{oModelAnagrafica>ID}" press="handleActionPress"/>
-                                            </template>
+                                                <template>
+                                                    <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
+                                                </template>
+                                            <!-- <template>
+                                                <m:Text text="{oModelAnagrafica>ID}" />
+                                            </template> -->
                                         </Column>
                                         <Column resizable="false"
                                             width="30%">
@@ -277,16 +273,16 @@
                                                 <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
                                             </template>
                                         </Column>
-                                        <Column	width="10%" resizable="false">
-                                                <m:Label text="" textAlign="Center" width="100%"/>
+                                        <Column	width="10%"	resizable="false">
+                                                <m:Label text="{oModelAnagrafica>/oModelPDImponibile}" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imponibile}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	resizable="false">
-                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                        <Column	width="10%" resizable="false" id="colonnaImposta2">
+                                            <m:Label text="{=${oModelAnagrafica>/oModelPDImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="Center" width="100%"/>
                                             <template>
-                                                <m:Text text="{oModelAnagrafica>imposta}"/>
+                                                <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
                                             </template>
                                         </Column>
                                         <Column resizable="false"
@@ -334,16 +330,20 @@
                                     ariaLabelledBy="title"
                                     selectionMode="None"
                                     rows="{path:'oModelAnagrafica>/oModelTA'}"
-                                    enableColumnFreeze="true"
+                                    enableColumnFreeze="false"
                                     visibleRowCount="{path:'oModelAnagrafica>/oModelTA/length'}"
-                                    showColumnVisibilityMenu="false">
-                                    <columns>
+                                    showColumnVisibilityMenu="false"
+                                    enableColumnReordering="false">
+                                     <columns>
                                         <Column resizable="false"
                                             width="10%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
-                                            <template>
-                                                <m:Link text="{oModelAnagrafica>ID}" press="handleActionPress"/>
-                                            </template>
+                                                <template>
+                                                    <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
+                                                </template>
+                                            <!-- <template>
+                                                <m:Text text="{oModelAnagrafica>ID}" />
+                                            </template> -->
                                         </Column>
                                         <Column resizable="false"
                                             width="30%">
@@ -353,15 +353,15 @@
                                             </template>
                                         </Column>
                                         <Column	width="10%"	resizable="false">
-                                                <m:Label text="" textAlign="Center" width="100%"/>
+                                                <m:Label text="{oModelAnagrafica>/oModelTAImponibile}" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imponibile}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	resizable="false">
-                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                        <Column	width="10%" resizable="false" id="colonnaImposta3">
+                                            <m:Label text="{=${oModelAnagrafica>/oModelTAImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="Center" width="100%"/>
                                             <template>
-                                                <m:Text text="{oModelAnagrafica>imposta}"/>
+                                                <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
                                             </template>
                                         </Column>
                                         <Column resizable="false"
@@ -411,14 +411,18 @@
                                     rows="{path:'oModelAnagrafica>/oModelTD'}"
                                     enableColumnFreeze="true"
                                     visibleRowCount="{path:'oModelAnagrafica>/oModelTD/length'}"
-                                    showColumnVisibilityMenu="false">
-                                    <columns>
+                                    showColumnVisibilityMenu="false"
+                                    enableColumnReordering="false">
+                                     <columns>
                                         <Column resizable="false"
                                             width="10%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
-                                            <template>
-                                                <m:Link text="{oModelAnagrafica>ID}" press="handleActionPress"/>
-                                            </template>
+                                                <template>
+                                                    <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
+                                                </template>
+                                            <!-- <template>
+                                                <m:Text text="{oModelAnagrafica>ID}" />
+                                            </template> -->
                                         </Column>
                                         <Column resizable="false"
                                             width="30%">
@@ -428,15 +432,15 @@
                                             </template>
                                         </Column>
                                         <Column	width="10%"	resizable="false">
-                                                <m:Label text="" textAlign="Center" width="100%"/>
+                                                <m:Label text="{oModelAnagrafica>/oModelTDImponibile}" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imponibile}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	resizable="false">
-                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                        <Column	width="10%" resizable="false" id="colonnaImposta4">
+                                            <m:Label text="{=${oModelAnagrafica>/oModelTDImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="Center" width="100%"/>
                                             <template>
-                                                <m:Text text="{oModelAnagrafica>imposta}"/>
+                                                <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
                                             </template>
                                         </Column>
                                         <Column resizable="false"
@@ -484,16 +488,20 @@
                                     ariaLabelledBy="title"
                                     selectionMode="None"
                                     rows="{path:'oModelAnagrafica>/oModelPER'}"
-                                    enableColumnFreeze="true"
+                                    enableColumnFreeze="false"
                                     visibleRowCount="{path:'oModelAnagrafica>/oModelPER/length'}"
-                                    showColumnVisibilityMenu="false">
-                                    <columns>
+                                    showColumnVisibilityMenu="false"
+                                    enableColumnReordering="false">
+                                     <columns>
                                         <Column resizable="false"
                                             width="10%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
-                                            <template>
-                                                <m:Link text="{oModelAnagrafica>ID}" press="handleActionPress"/>
-                                            </template>
+                                                <template>
+                                                    <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
+                                                </template>
+                                            <!-- <template>
+                                                <m:Text text="{oModelAnagrafica>ID}" />
+                                            </template> -->
                                         </Column>
                                         <Column resizable="false"
                                             width="30%">
@@ -503,15 +511,15 @@
                                             </template>
                                         </Column>
                                         <Column	width="10%"	resizable="false">
-                                                <m:Label text="" textAlign="Center" width="100%"/>
+                                                <m:Label text="{oModelAnagrafica>/oModelPERImponibile}" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imponibile}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%" resizable="false"	>
-                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                        <Column	width="10%" resizable="false" id="colonnaImposta5">
+                                            <m:Label text="{=${oModelAnagrafica>/oModelPERImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="Center" width="100%"/>
                                             <template>
-                                                <m:Text text="{oModelAnagrafica>imposta}"/>
+                                                <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
                                             </template>
                                         </Column>
                                         <Column resizable="false"
@@ -559,16 +567,20 @@
                                     ariaLabelledBy="title"
                                     selectionMode="None"
                                     rows="{path:'oModelAnagrafica>/oModelACE'}"
-                                    enableColumnFreeze="true"
+                                    enableColumnFreeze="false"
                                     visibleRowCount="{path:'oModelAnagrafica>/oModelACE/length'}"
-                                    showColumnVisibilityMenu="false">
-                                    <columns>
+                                    showColumnVisibilityMenu="false"
+                                    enableColumnReordering="false">
+                                     <columns>
                                         <Column resizable="false"
                                             width="10%">
                                             <m:Label text="" textAlign="Center" width="100%"/>
-                                            <template>
-                                                <m:Link text="{oModelAnagrafica>ID}" press="handleActionPress"/>
-                                            </template>
+                                                <template>
+                                                    <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
+                                                </template>
+                                            <!-- <template>
+                                                <m:Text text="{oModelAnagrafica>ID}" />
+                                            </template> -->
                                         </Column>
                                         <Column resizable="false"
                                             width="30%">
@@ -578,15 +590,15 @@
                                             </template>
                                         </Column>
                                         <Column	width="10%"	resizable="false">
-                                                <m:Label text="" textAlign="Center" width="100%"/>
+                                                <m:Label text="{oModelAnagrafica>/oModelACEImponibile}" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>imponibile}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	resizable="false">
-                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                        <Column	width="10%" resizable="false" id="colonnaImposta6">
+                                            <m:Label text="{=${oModelAnagrafica>/oModelACEImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="Center" width="100%"/>
                                             <template>
-                                                <m:Text text="{oModelAnagrafica>imposta}"/>
+                                                <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
                                             </template>
                                         </Column>
                                         <Column resizable="false"

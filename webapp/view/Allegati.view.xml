@@ -10,7 +10,22 @@
 	xmlns:mvc="sap.ui.core.mvc"
     xmlns:upload="sap.m.upload">
 
-    <semantic:SemanticPage id="semanticPageAllegati" headerPinnable="true" toggleHeaderOnTitleClick="true" preserveHeaderStateOnScroll="false" titleAreaShrinkRatio="1:1.6:1.6" showFooter="false">
+    <semantic:SemanticPage id="semanticPageAllegati" 
+                            headerPinnable="true" 
+                            toggleHeaderOnTitleClick="true" 
+                            preserveHeaderStateOnScroll="false" 
+                            titleAreaShrinkRatio="1:1.6:1.6" 
+                            showFooter="false" >
+
+     <semantic:titleContent>
+            <Button id="editAction" press=".onNavBack" type="Transparent"	icon="sap-icon://nav-back"/>
+	</semantic:titleContent>
+    <!-- <semantic:titleBreadcrumbs>
+			<Breadcrumbs>
+				<Link text="Lista codici GL" press=".onNavBack"/>
+			</Breadcrumbs>
+	</semantic:titleBreadcrumbs> -->
+
     <semantic:headerContent>
 			<FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
 				<HBox class="sapUiMediumMarginTop">
@@ -18,17 +33,17 @@
                         <HBox class="sapUiTinyMarginBottom" renderType="Bare">
                             <Label text="{i18n>codiceGL}: " class="sapUiMediumMarginEnd"/>
                         </HBox>
-                        <HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                        <!-- <HBox class="sapUiTinyMarginBottom" renderType="Bare">
                             <Label text="{i18n>descrizioneGL}: " class="sapUiMediumMarginEnd"/>
-                        </HBox>
+                        </HBox> -->
                     </VBox>
                     <VBox class="sapUiSmallMarginBottom" renderType="Bare">
                         <HBox class="sapUiTinyMarginBottom" renderType="Bare">
                             <Text text="{oModelTableAllegati>/oModelTestata/0}" class="sapUiMediumMarginEnd"/>
                         </HBox>
-                        <HBox class="sapUiTinyMarginBottom" renderType="Bare">
+                        <!-- <HBox class="sapUiTinyMarginBottom" renderType="Bare">
                             <Text text="{oModelTableAllegati>/oModelTestata/1}" class="sapUiMediumMarginEnd"/>
-                        </HBox>
+                        </HBox> -->
                     </VBox>
                 </HBox>
 			</FlexBox>
@@ -69,7 +84,14 @@
                     <Text text="{oModelTableAllegati>descrizione}"/>
                     <Text text="{oModelTableAllegati>importo}"/>
                     <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati"/>
-                    <Text text="{path: 'oModelTableAllegati>createdAt'
+                    <Text text="{path: 'oModelTableAllegati>createdAt', type: 'sap.ui.model.odata.type.DateTimeOffset',
+                                                                constraints: {
+                                                                    precision: 3,
+                                                                    v4: true
+                                                                },
+                                                                formatOptions: {
+                                                                    pattern: 'dd-MM-yyyy' 
+                                                                }
                                }"/> 
                     <Text text="{oModelTableAllegati>createdBy}"/>                 
                 </cells>

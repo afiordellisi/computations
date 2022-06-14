@@ -6,7 +6,7 @@
     xmlns:u="sap.ui.unified">
 	<Dialog
 		title="{i18n>newAllegato}"
-		save="onScegliVersione"
+		save="onSaveAllegato"
         press="onCloseConfigurazione"
         id="DialogSalva">
       	
