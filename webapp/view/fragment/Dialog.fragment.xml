@@ -38,7 +38,12 @@
 						</f:FormElement>
                         <f:FormElement label="{i18n>importo}">
 							<f:fields>
-								<Input text="" id="importoAllegato" valueState="None"/>
+								<Input text="" id="importoAllegato" valueState="None" type="Number"/>
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>note}">
+							<f:fields>
+								<TextArea value="" rows="6" cols="22" id="note" valueState="None"/>
 							</f:fields>
 						</f:FormElement>
                         <f:FormElement label="{i18n>insertAllegato}">
@@ -49,6 +54,7 @@
                                         name="myFileUpload"
                                         sendXHR="true"
                                         useMultipart="false"
+                                        change="change"
                                         uploadUrl="upload/"
                                         tooltip="Upload your file to the local server"
                                         uploadComplete="handleUploadComplete">
