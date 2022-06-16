@@ -10,7 +10,7 @@ sap.ui.define([
      */
     function (Controller, Filter, FilterOperator, JSONModel, BaseController) {
         "use strict";
-        var aFilter = [];
+        //var aFilter = [];
         
 
         return BaseController.extend("tax.provisioning.computations.Creation.controller.Creation", {
@@ -24,8 +24,7 @@ sap.ui.define([
             },
 
             filterValidation: function () {
-                
-
+                var aFilter = [];
                 var societa = this.getView().byId("societa").getValue();
                 var ledger = this.getView().byId("ledger").getValue();
                 var periodo = this.getView().byId("periodo").getValue();
@@ -38,6 +37,7 @@ sap.ui.define([
                     this.getView().byId("societa").setValueState("None")
                     this.getView().byId("ledger").setValueState("None")
                     this.getView().byId("periodo").setValueState("None")
+                    this.getView().byId("inputDescrizione").setValueState("None")
                     this._filterTableCreation(aFilter);
                    
                     this.getView().getModel("parameterModel").oData.societa = societa;
@@ -63,14 +63,21 @@ sap.ui.define([
             },
 
             filterValidation2: function (oEvent) {
-                
+                debugger;
                 var oTable = this.getView().byId("versioniTable");
                 var sSelectedPath = oTable.getSelectedItem();
                 if(sSelectedPath != null){
                     var sSelectedPath = oTable.getSelectedItem().getBindingContext("tableModel").getPath().split("/oModel/")[1];
                     var oItem = oTable.getSelectedItem().getModel("tableModel").oData.oModel[sSelectedPath];
 
-                    this.getView().getModel("parameterModel").oData.idVersione = oItem.ID;
+                    var versioneID = oItem.ID;
+                   
+                    this.getView().getModel("parameterModel").oData.idVersione = versioneID;
+                    var aFilter = [];
+                    aFilter.push(this.getView().getModel("parameterModel").oData.societa);
+                    aFilter.push(this.getView().getModel("parameterModel").oData.ledger);
+                    aFilter.push(this.getView().getModel("parameterModel").oData.periodo);
+
                     this._filterTableConf(aFilter);
                     this.getView().byId("finishButton").setVisible(true);
                     this.getView().byId("nextStepButton").setVisible(false);
@@ -81,7 +88,6 @@ sap.ui.define([
                     var oFirstStep = oWizard.getSteps()[1];
                     oWizard.discardProgress(oFirstStep);
                 }
-                
             },
 
             handleFinishSelection: function(){
@@ -93,25 +99,20 @@ sap.ui.define([
                     this.getView().getModel("parameterModel").oData.idConfigurazione = oItem2.ID; 
 
                     return true;
-                }else {
-                    sap.m.MessageToast.show("Selezionare una tax rule");
-                    var oWizard = this.byId("CreateWizard");
-                    var oFirstStep = oWizard.getSteps()[2];
-                    oWizard.discardProgress(oFirstStep);
+                }
+                else {
+                    // sap.m.MessageToast.show("Selezionare una tax rule");
+                    // var oWizard = this.byId("CreateWizard");
+                    // var oFirstStep = oWizard.getSteps()[2];
+                    // oWizard.discardProgress(oFirstStep);
 
                     return false;
                 }
             },
 
-            
-
-
             //funzione per salvare la computazione da richiamare nell'ultimo step
             handleWizardSubmit: function (oEvent) {
-                //this.handleFinishSelection();
-                
                 if(this.handleFinishSelection()){
-                    
                     var that = this;
                     var descrizioneComputation = this.getView().getModel("parameterModel").oData.descrizione;
                     var idConfigurazione = this.getView().getModel("parameterModel").oData.idConfigurazione;
@@ -120,7 +121,7 @@ sap.ui.define([
                     var nuovaComputation = JSON.stringify({"descrizione": descrizioneComputation, "Configurazione_ID": idConfigurazione, "Versione_ID": idVersione });
     
                     jQuery.ajax({
-                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/computation/Computations"),
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Computations"),
                     contentType: "application/json",
                     type: 'POST',
                     dataType: "json",
@@ -149,8 +150,67 @@ sap.ui.define([
                     }
                     });                    
                 }
-                
+                else{
+                    var that = this;
+                    var descrizioneComputation = this.getView().getModel("parameterModel").oData.descrizione;
+                    //var idConfigurazione = this.getView().getModel("parameterModel").oData.idConfigurazione;
+                    var idVersione = this.getView().getModel("parameterModel").oData.idVersione;
+    
+                    var nuovaComputation = JSON.stringify({"descrizione": descrizioneComputation, "Versione_ID": idVersione });
+    
+                    jQuery.ajax({
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Computations"),
+                    contentType: "application/json",
+                    type: 'POST',
+                    dataType: "json",
+                    data: nuovaComputation,
+                    async: false,
+                    success: function (oCompleteEntry) {
+                        sap.m.MessageToast.show("Success");
+                        var computazioneID = JSON.stringify({"id": oCompleteEntry.ID});
 
+                        jQuery.ajax({
+                            url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/creaComputazioneNoConf"),
+                            contentType: "application/json",
+                            type: 'POST',
+                            dataType: "json",
+                            data: computazioneID,
+                            async: false,
+                            success: function (oCompleteEntry) {
+                                // sap.m.MessageToast.show("Success");
+            
+                                // var oWizard = that.byId("CreateWizard");
+                                // var oFirstStep = oWizard.getSteps()[0];
+                                // oWizard.discardProgress(oFirstStep);
+                                // oWizard.goToStep(oFirstStep);
+                                // oFirstStep.setValidated(true);
+                                // that.getView().byId("smartForm").setBlocked(false);
+        
+                                // that._resetFields();
+
+                                // var oRouter = that.getOwnerComponent().getRouter();
+                                // oRouter.navTo("View1");
+                            },
+                            error: function (error) {
+                                sap.m.MessageToast.show("Error");
+                            }
+                            });    
+                        var oWizard = that.byId("CreateWizard");
+                        var oFirstStep = oWizard.getSteps()[0];
+                        oWizard.discardProgress(oFirstStep);
+                        oWizard.goToStep(oFirstStep);
+                        oFirstStep.setValidated(true);
+                        that.getView().byId("smartForm").setBlocked(false);
+
+                        that._resetFields();
+                        var oRouter = that.getOwnerComponent().getRouter();
+                        oRouter.navTo("View1");
+                    },
+                    error: function (error) {
+                        sap.m.MessageToast.show("Error");
+                    }
+                    });                    
+                }
             },
 
             onCloseVersione: function (oEvent) {
@@ -214,13 +274,15 @@ sap.ui.define([
 
             _filterTableCreation: function (aFilter) {
                     var that = this;
+                    var societa = aFilter[0].oValue1;
+                    var ledger = aFilter[1].oValue1;
+                    var periodo = aFilter[2].oValue1;
 
                     //var oModel = this.getOwnerComponent().getModel("computationsModel");
                     
                     jQuery.ajax({
-                        url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/computation/Versioni"),
+                        url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Versioni?$filter=societa eq '"+societa+"'&ledger eq '"+ledger+"'&periodo eq '"+periodo+"'"),
                         contentType: "application/json",
-                        filters: aFilter,
                         type: 'GET',
                         dataType: "json",
                         async: false,
@@ -255,12 +317,13 @@ sap.ui.define([
 
             _filterTableConf: function (aFilter) {
                 var that = this;
-
-                //var oModel = this.getOwnerComponent().getModel("computationsModel");
-                
+                var societa = aFilter[0];
+                var ledger = aFilter[1];
+                var periodo = aFilter[2];
 
                 jQuery.ajax({
-                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/computation/Configurazioni"),
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Configurazioni?$filter=societa eq '"+societa+"'&ledger eq '"+ledger+"'&periodo eq '"+periodo+"'"), //filtro solo per la tripletta
+                    // url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Configurazioni?$filter=versione_ID eq "+versioneID+"&societa eq '"+societa+"'&ledger eq '"+ledger+"'&periodo eq '"+periodo+"'"), //qui filtro anche per versione
                     contentType: "application/json",
                     type: 'GET',
                     dataType: "json",
