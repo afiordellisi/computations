@@ -39,53 +39,64 @@ sap.ui.define([
                 if(periodo){
                     aFilter.push( new Filter("periodo", "EQ", periodo ) )
                 }
-                // var oModel = this.getOwnerComponent().getModel("computationsModel");
-                // oModel.read("/ComputationsView", {
-                //     filters: aFilter,
-                //     success: function(oData, response) {
-                //         var data = {
-                //                     oModel: oData.results
-                //                 };
-                //                 var DataModel = new sap.ui.model.json.JSONModel();
-                //                 DataModel.setData(data);
-                //                 that.getView().setModel(DataModel, "tableModel");
-                //                 },
-                                
-                //     error: function(response) {
-                //                     sap.m.MessageToast.show("Error");
-                //             }
-                //         });
-
-                jQuery.ajax({
-                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/computation/ComputationsView"),
-                    contentType: "application/json",
+                var oModel = this.getOwnerComponent().getModel("computationsModelV2");
+                oModel.read("/ComputationsView", {
                     filters: aFilter,
-                    type: 'GET',
-                    dataType: "json",
-                    async: false,
-                    success: function (oCompleteEntry) {
-                    var data = {
-                        oModel: oCompleteEntry.value
-                    };
-                    var DataModel = new sap.ui.model.json.JSONModel();
-                    DataModel.setData(data);
-                    that.getView().setModel(DataModel, "tableModel");
-                    },
-                    error: function (error) {
-                    sap.m.MessageToast.show("Error");
-                    }
-                });
+                    success: function(oData, response) {
+                        var data = {
+                                    oModel: oData.results
+                                };
+                                var DataModel = new sap.ui.model.json.JSONModel();
+                                DataModel.setData(data);
+                                that.getView().setModel(DataModel, "tableModel");
+                                },
+                                
+                    error: function(response) {
+                                    sap.m.MessageToast.show("Error");
+                            }
+                        });
+
+                // jQuery.ajax({
+                //     url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/computation/ComputationsView"),
+                //     contentType: "application/json",
+                //     filters: aFilter,
+                //     type: 'GET',
+                //     dataType: "json",
+                //     async: false,
+                //     success: function (oCompleteEntry) {
+                //     var data = {
+                //         oModel: oCompleteEntry.value
+                //     };
+                //     var DataModel = new sap.ui.model.json.JSONModel();
+                //     DataModel.setData(data);
+                //     that.getView().setModel(DataModel, "tableModel");
+
+                //     // var sDate = oCompleteEntry.createdAt;
+                //     // var oDate = new Date(sDate.)
+
+                //     // that.getView().byId("dateField").setValue(oDate);
+                //     },
+                //     error: function (error) {
+                //     sap.m.MessageToast.show("Error");
+                //     }
+                // });
             },
 
             navigateToCurrentTax: function(oEvent){
-                
                 // oEvent.getSource().getBindingContext().getObject();
+                if(oEvent.getSource().getBindingContext("tableModel").getObject().configurazioneID){
+                    var conf = true; 
+                }else{
+                    var conf = false
+                }
                 var oRouter = this.getOwnerComponent().getRouter();
                     oRouter.navTo("CurrentTax", {
-                        ID : oEvent.getSource().getBindingContext("tableModel").getObject().ID,
-                        descrizione : oEvent.getSource().getBindingContext("tableModel").getObject().descrizione,
-                        configurazioneID : oEvent.getSource().getBindingContext("tableModel").getObject().configurazioneID
-                    }, true);
+                        ID : oEvent.getSource().getBindingContext("tableModel").getObject().ID, //ID computazione
+                        conf : conf
+                        //descrizione : oEvent.getSource().getBindingContext("tableModel").getObject().descrizione,
+                        //versioneID : oEvent.getSource().getBindingContext("tableModel").getObject().versioneID
+                        //configurazioneID : oEvent.getSource().getBindingContext("tableModel").getObject().configurazioneID
+                    }, false);
                 
             }
            
