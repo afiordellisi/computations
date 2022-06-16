@@ -57,7 +57,7 @@
                                         change="change"
                                         uploadUrl="upload/"
                                         tooltip="Upload your file to the local server"
-                                        uploadComplete="handleUploadComplete">
+                                        >
                                     </u:FileUploader>
                                     <!-- <Button
                                         text="Upload File"
