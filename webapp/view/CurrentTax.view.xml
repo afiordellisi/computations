@@ -18,13 +18,13 @@
 				<m:Title text="{oModelDescrizione>/oModelDescrizione}" wrapping="false" />
 			</uxap:heading>
 
-            <uxap:navigationActions>
+            <!-- <uxap:navigationActions>
 					<m:OverflowToolbarButton
 						type="Transparent"
 						icon="sap-icon://nav-back"
 						id="exitPage"
 					    press=".onNavBack"/>
-			</uxap:navigationActions>
+			</uxap:navigationActions> -->
               
             <uxap:actions>
                 <m:ToolbarSpacer/>
