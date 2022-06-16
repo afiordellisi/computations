@@ -56,8 +56,10 @@
                                         </smartField:SmartField>
                                     </smartForm:GroupElement >
 
-                                     <smartForm:GroupElement> 
-                                        <Input id="inputDescrizione" label="Descrizione" placeholder="Inserire descrizione" />
+                                    <smartForm:GroupElement label="{i18n>descrizione}">
+                                    <!-- <core:label text="descrizione"/>  -->
+                                        <!-- <Label text="Descrizione"/> -->
+                                        <Input id="inputDescrizione" placeholder="Inserire descrizione" required="true" />
                                     </smartForm:GroupElement> 
                                     
                                     </smartForm:Group>
@@ -115,10 +117,10 @@
 
                     <WizardStep id="taxRule" 
                                	validated="true"
-                                title="{i18n>taxRule}"
+                                title="{i18n>taxRuleSelection}"
                                 activate="filterValidation2"
+                                complete="handleFinishSelection"
                                 >
-                                <!-- complete="handleFinishSelection" -->
                         
                                 <Table id="taxRulesTable"
                                         inset="false"
