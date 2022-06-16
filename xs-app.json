@@ -10,16 +10,16 @@
       "csrfProtection": false
     },
     {
-        "source": "^/computation/(.*)$",
+        "source": "^/v2/catalog/(.*)$",
         "target": "/computation/$1",
-        "destination": "HanaCloud",
+        "destination": "AssetTax-hana-v2",
         "authenticationType": "none",
         "csrfProtection": false
       },
     {
         "source": "^/catalog/(.*)$",
-        "target": "/catalog/$1",
-        "destination": "HanaCloud",
+        "target": "/computation/$1",
+        "destination": "AssetTax-hana",
         "authenticationType": "none",
         "csrfProtection": false
     },

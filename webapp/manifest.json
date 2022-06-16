@@ -1,5 +1,5 @@
 {
-    "_version": "1.40.0",
+    "_version": "1.12.0",
     "sap.app": {
         "id": "tax.provisioning.computations",
         "type": "application",
@@ -16,12 +16,21 @@
         },
         "dataSources": {
             "mainService": {
-                "uri": "/computation/",
+                "uri": "/catalog/",
                 "type": "OData",
                 "settings": {
                     "annotations": [],
                     "localUri": "localService/metadata.xml",
                     "odataVersion": "4.0"
+                }
+            },
+            "mainServiceV2": {
+                "uri": "/v2/catalog/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
                 }
             },
             "temp": {
@@ -112,6 +121,16 @@
                     "earlyRequests": true
                 }
             },
+            "computationsModelV2": {
+                "dataSource": "mainServiceV2",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
             "": {
                 "dataSource": "temp",
                 "preload": true,
@@ -167,21 +186,21 @@
                 },
                 {
                     "name": "CurrentTax",
-                    "pattern": "Tax/{ID},{descrizione},{configurazioneID}",
+                    "pattern": "Computation/{ID},{conf}",
                     "target": [
                         "CurrentTax"
                     ]
                 },
                 {
                     "name": "Riprese",
-                    "pattern": "Tax/{ID}/Ripresa/{ripresaID},{configurazioneID}",
+                    "pattern": "Computation/{ID}/Ripresa/{ripresaID},{imposta}",
                     "target": [
                         "Riprese"
                     ]
                 },
                 {
                     "name": "Allegati",
-                    "pattern": "Ripresa/{ID},{ripresaID},{codiceGL},{descrizioneGL},{versioneID},{configurazioneID}",
+                    "pattern": "Computation/{ID}/Ripresa/{ripresaID},{imposta}/CodiceGL/{codiceGL}",
                     "target": [
                         "Allegati"
                     ]
