@@ -123,9 +123,9 @@
                                     <m:Column>
                                         <m:Text text="{i18n>ripresaManuale}"/>
                                     </m:Column>
-                                     <m:Column>
+                                     <!-- <m:Column>
                                         <m:Text text="{i18n>drill}"/>
-                                    </m:Column>
+                                    </m:Column> -->
                                      <m:Column>
                                         <m:Text text="{i18n>TotaleRipresa}"/>
                                     </m:Column>
@@ -136,12 +136,19 @@
 											<m:Text text="{oModelAnagraficaSingola>bilancio_codiceGL}" />
                                             <m:Text text="{oModelAnagraficaSingola>descrizioneGL}" />
                                             <m:Text text="{oModelAnagraficaSingola>classificazione}" />
-                                            <m:Text text="{oModelAnagraficaSingola>importoLY}" />
-                                            <m:Text text="{oModelAnagraficaSingola>importoCY}" />
+                                            <m:Text text="{path: 'oModelAnagraficaSingola>importoLY', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" />
+                                            <!-- <m:Text text="{oModelAnagraficaSingola>importoCY}" /> -->
+                                             <!-- <template> -->
+                                            <m:Link text="{oModelAnagraficaSingola>importoCY}" press="handleActionPress"/>
+                                            <!-- </template> -->
                                             <m:Text text="{oModelAnagraficaSingola>percentuale}" />
                                             <m:Text text="{=${oModelAnagraficaSingola>importoCY}*${oModelAnagraficaSingola>percentuale}/100}" />
                                             <m:Text text="{oModelAnagraficaSingola>ripresaManuale}" />
-                                            <m:Text text="{oModelAnagraficaSingola>drill}" />
+                                            <!-- <m:Text text="{oModelAnagraficaSingola>drill}" /> -->
                                             <m:Text text="{=${oModelAnagraficaSingola>importoCY}*${oModelAnagraficaSingola>percentuale}/100 + ${oModelAnagraficaSingola>ripresaManuale} + ${oModelAnagraficaSingola>drill} }" />
 										</m:cells>
 									</m:ColumnListItem>
