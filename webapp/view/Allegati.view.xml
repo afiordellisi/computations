@@ -17,9 +17,9 @@
                             titleAreaShrinkRatio="1:1.6:1.6" 
                             showFooter="false" >
 
-     <semantic:titleContent>
+     <!-- <semantic:titleContent>
             <Button id="editAction" press=".onNavBack" type="Transparent"	icon="sap-icon://nav-back"/>
-	</semantic:titleContent>
+	</semantic:titleContent> -->
     <!-- <semantic:titleBreadcrumbs>
 			<Breadcrumbs>
 				<Link text="Lista codici GL" press=".onNavBack"/>
@@ -53,7 +53,7 @@
          <Table id="idTableAllegati" inset="false" items="{path:'oModelTableAllegati>/oModel', sorter: {
 				path: 'createdAt',
 				descending: true
-			}}" class="sapFSemanticPageAlignContent" width="auto">
+			}}" class="sapFSemanticPageAlignContent" fixedLayout="false">
             <headerToolbar>
               <OverflowToolbar>
                 <Title text="{i18n>allegati}" level="H2"/>
@@ -77,12 +77,20 @@
               <Column>
                 <Text text="{i18n>user}"/>
               </Column>
+               <Column minScreenWidth="Tablet" demandPopin="true">
+                <Text text="{i18n>note}" />
+              </Column>
             </columns>
             <items>
               <ColumnListItem vAlign="Middle" >
                 <cells>
                     <Text text="{oModelTableAllegati>descrizione}"/>
-                    <Text text="{oModelTableAllegati>importo}"/>
+                    <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                     <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati"/>
                     <Text text="{path: 'oModelTableAllegati>createdAt', type: 'sap.ui.model.odata.type.DateTimeOffset',
                                                                 constraints: {
@@ -93,7 +101,8 @@
                                                                     pattern: 'dd-MM-yyyy' 
                                                                 }
                                }"/> 
-                    <Text text="{oModelTableAllegati>createdBy}"/>                 
+                    <Text text="{oModelTableAllegati>createdBy}"/>   
+                    <Button icon="sap-icon://notes" press="onNotePress"/>              
                 </cells>
               </ColumnListItem>
             </items>
