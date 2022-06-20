@@ -28,6 +28,7 @@
               
             <uxap:actions>
                 <m:ToolbarSpacer/>
+                <m:Text text="{i18n>currency}" />
                     <m:ToolbarSeparator/>
                         <m:SegmentedButton id="impostaButton" selectionChange="onScegliImposta">
                             <m:items>
@@ -197,7 +198,11 @@
                                         <Column	width="10%"	resizable="false">
                                                 <m:Label text="{oModelAnagrafica>/oModelPAImponibile}" textAlign="Center" width="100%"/>
                                             <template>
-                                                <m:Text text="{oModelAnagrafica>imponibile}" />
+                                                <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" />
                                             </template>
                                         </Column>
                                         <Column	width="10%" resizable="false" id="colonnaImposta">
@@ -276,7 +281,11 @@
                                         <Column	width="10%"	resizable="false">
                                                 <m:Label text="{oModelAnagrafica>/oModelPDImponibile}" textAlign="Center" width="100%"/>
                                             <template>
-                                                <m:Text text="{oModelAnagrafica>imponibile}" />
+                                                <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" />
                                             </template>
                                         </Column>
                                         <Column	width="10%" resizable="false" id="colonnaImposta2">
@@ -355,7 +364,11 @@
                                         <Column	width="10%"	resizable="false">
                                                 <m:Label text="{oModelAnagrafica>/oModelTAImponibile}" textAlign="Center" width="100%"/>
                                             <template>
-                                                <m:Text text="{oModelAnagrafica>imponibile}" />
+                                                <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" />
                                             </template>
                                         </Column>
                                         <Column	width="10%" resizable="false" id="colonnaImposta3">
@@ -434,7 +447,11 @@
                                         <Column	width="10%"	resizable="false">
                                                 <m:Label text="{oModelAnagrafica>/oModelTDImponibile}" textAlign="Center" width="100%"/>
                                             <template>
-                                                <m:Text text="{oModelAnagrafica>imponibile}" />
+                                                <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" />
                                             </template>
                                         </Column>
                                         <Column	width="10%" resizable="false" id="colonnaImposta4">
@@ -513,7 +530,11 @@
                                         <Column	width="10%"	resizable="false">
                                                 <m:Label text="{oModelAnagrafica>/oModelPERImponibile}" textAlign="Center" width="100%"/>
                                             <template>
-                                                <m:Text text="{oModelAnagrafica>imponibile}" />
+                                                <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" />
                                             </template>
                                         </Column>
                                         <Column	width="10%" resizable="false" id="colonnaImposta5">
@@ -592,7 +613,11 @@
                                         <Column	width="10%"	resizable="false">
                                                 <m:Label text="{oModelAnagrafica>/oModelACEImponibile}" textAlign="Center" width="100%"/>
                                             <template>
-                                                <m:Text text="{oModelAnagrafica>imponibile}" />
+                                                <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" />
                                             </template>
                                         </Column>
                                         <Column	width="10%" resizable="false" id="colonnaImposta6">

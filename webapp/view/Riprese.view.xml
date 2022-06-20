@@ -3,6 +3,7 @@
 	xmlns="sap.uxap"
 	xmlns:m="sap.m"
 	xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
 	xmlns:form="sap.ui.layout.form"
     xmlns:semantic="sap.f.semantic"
     xmlns:core="sap.ui.core"
@@ -14,81 +15,58 @@
         preserveHeaderStateOnScroll="false" 
         titleAreaShrinkRatio="1:1.6:1.6"
         showFooter="false">
-         <semantic:titleContent>
+         <!-- <semantic:titleContent>
             <m:Button id="editAction" press="onNavBack" type="Transparent"	icon="sap-icon://nav-back"/>
-		</semantic:titleContent>
+		</semantic:titleContent> -->
         <semantic:headerContent>
-            
-			<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
-				<m:HBox class="sapUiMediumMarginTop">
-                    <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
-                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Label text="{i18n>CodiceRipresa}: " class="sapUiMediumMarginEnd"/>
-                        </m:HBox>
-                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Label text="{i18n>DescrizioneRipresa}: " class="sapUiMediumMarginEnd"/>
-                        </m:HBox>
-                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Label text="{i18n>RiferimentiNormativi}: " class="sapUiMediumMarginEnd"/>
-                        </m:HBox>
-                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Label text="{i18n>RiferimentoDichiarazione}: " class="sapUiMediumMarginEnd"/>
-                        </m:HBox>
-                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Label text="{i18n>imposta}: " class="sapUiMediumMarginEnd"/>
-                        </m:HBox>
-                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Label text="{i18n>algoritmo}: " class="sapUiMediumMarginEnd"/>
-                        </m:HBox>
-                    </m:VBox>
-                    <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
-                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Text text="{oModelAnagraficaSingola>/oModelRipresa/ID}" class="sapUiMediumMarginEnd"/>
-                        </m:HBox>
-                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Text text="{oModelAnagraficaSingola>/oModelRipresa/descrizioneRipresa}" class="sapUiMediumMarginEnd"/>
-                        </m:HBox>
-                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Text text="{oModelAnagraficaSingola>/oModelRipresa/riferimentoNormativo}" class="sapUiMediumMarginEnd"/>
-                        </m:HBox>
-                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Text text="{oModelAnagraficaSingola>/oModelRipresa/riferimentoDichiarazione}" class="sapUiMediumMarginEnd"/>
-                        </m:HBox>
-                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <m:Text text="{oModelAnagraficaSingola>/oModelTestata/imposta}" class="sapUiMediumMarginEnd"/>
-                        </m:HBox>
-                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                             <m:Text text="{oModelAnagraficaSingola>/oModelTestata/algoritmo}" class="sapUiMediumMarginEnd"/>
-                        </m:HBox>
-                    </m:VBox>
-                </m:HBox>
-			</m:FlexBox>
-            <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
-                                <m:HBox class="sapUiMediumMarginTop">
-                                    <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Label text="{i18n>PercentualeStandard}: " class="sapUiMediumMarginEnd"/>
-                                        </m:HBox>
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Label text="{i18n>TotaleCostiSelezionati}: " class="sapUiMediumMarginEnd"/>
-                                        </m:HBox>
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Label text="{i18n>TotaleRipresa}: " class="sapUiMediumMarginEnd"/>
-                                        </m:HBox>
-                                    </m:VBox>
-                                    <m:VBox class="sapUiSmallMarginBottom" renderType="Bare">
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Text text="{oModelAnagraficaSingola>/oModelTestata/percentuale}%" class="sapUiMediumMarginEnd"/>
-                                        </m:HBox>
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Text text="{oModelTotali>/oModelTot/0/TotaleCY}" class="sapUiMediumMarginEnd"/>
-                                        </m:HBox>
-                                        <m:HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                                            <m:Text text="{oModelTotali>/oModelTot/0/TotaleRipresa}" class="sapUiMediumMarginEnd"/>
-                                        </m:HBox>
-                                    </m:VBox>
-                                </m:HBox>
-                            </m:FlexBox>	
+        <layout:VerticalLayout class="sapUiMediumMarginEnd">
+            <layout:HorizontalLayout class="sapUiSmallMarginTop" allowWrapping="true">
+            <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                   <m:ObjectIdentifier  text="{i18n>CodiceRipresa}: " class="sapUiTinyMarginBottom" />
+                    <m:ObjectIdentifier text="{i18n>DescrizioneRipresa}: "  class="sapUiTinyMarginBottom"/>
+                    <m:ObjectIdentifier text="{i18n>RiferimentiNormativi}: " class="sapUiTinyMarginBottom"/>
+                     <m:ObjectIdentifier text="{i18n>RiferimentoDichiarazione}: " class="sapUiTinyMarginBottom" />
+                    <m:ObjectIdentifier  text="{i18n>imposta}: "  class="sapUiTinyMarginBottom"/>
+                    <m:ObjectIdentifier text="{i18n>algoritmo}: " class="sapUiTinyMarginBottom"/>
+                   
+            </layout:VerticalLayout>
+          <layout:VerticalLayout>
+         
+              <m:ObjectNumber number="{oModelAnagraficaSingola>/oModelRipresa/codiceRipresa}" class="sapUiTinyMarginBottom"/>
+              <m:ObjectNumber  number="{oModelAnagraficaSingola>/oModelRipresa/descrizioneRipresa}" class="sapUiTinyMarginBottom"/>
+              <m:ObjectNumber  number="{oModelAnagraficaSingola>/oModelRipresa/riferimentoNormativo}" class="sapUiTinyMarginBottom" />
+                <m:ObjectNumber number="{oModelAnagraficaSingola>/oModelRipresa/riferimentoDichiarazione}"  class="sapUiTinyMarginBottom"/>
+              <m:ObjectNumber  number="{oModelAnagraficaSingola>/oModelTestata/imposta}" class="sapUiTinyMarginBottom"/>
+              <m:ObjectNumber  number="{oModelAnagraficaSingola>/oModelTestata/algoritmo}" class="sapUiTinyMarginBottom" />
+              
+            </layout:VerticalLayout>
+            </layout:HorizontalLayout>
+            <layout:HorizontalLayout class="sapUiSmallMarginTop" allowWrapping="true">
+            <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                <m:ObjectIdentifier  text="{i18n>PercentualeStandard}: " class="sapUiTinyMarginBottom" />
+                <m:ObjectIdentifier text="{i18n>TotaleCostiSelezionati}:" class="sapUiTinyMarginBottom"/>
+                <m:ObjectIdentifier text="{i18n>TotaleRipresa}: " class="sapUiTinyMarginBottom"/>
+                <m:ObjectIdentifier text="{i18n>TotaleRipresaAutomatica}:" class="sapUiTinyMarginBottom"/>
+                <m:ObjectIdentifier text="{i18n>TotaleRipresaManuale}: " class="sapUiTinyMarginBottom"/>
+                   
+            </layout:VerticalLayout>
+          <layout:VerticalLayout>
+         
+              <m:ObjectNumber number="{oModelAnagraficaSingola>/oModelTestata/percentuale}" class="sapUiTinyMarginBottom"/>
+              <m:ObjectNumber  number="{path: 'oModelTotali>/oModelTot/TotaleCY', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" class="sapUiTinyMarginBottom"/>
+              <m:ObjectNumber  number="{path: 'oModelTotali>/oModelTot/totaleRipresa',type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" class="sapUiTinyMarginBottom" />
+              
+            </layout:VerticalLayout>
+          </layout:HorizontalLayout>
+          </layout:VerticalLayout>
 		 </semantic:headerContent>
 
          <semantic:content>
@@ -118,7 +96,7 @@
                                         <m:Text text="{i18n>percentuale}"/>
                                     </m:Column>
                                     <m:Column>
-                                        <m:Text text="{i18n>ripresaAuto}"/>
+                                        <m:Text text="{i18n>ripresaAuto}" />
                                     </m:Column>
                                     <m:Column>
                                         <m:Text text="{i18n>ripresaManuale}"/>
@@ -143,13 +121,21 @@
                                                 }}" />
                                             <!-- <m:Text text="{oModelAnagraficaSingola>importoCY}" /> -->
                                              <!-- <template> -->
-                                            <m:Link text="{oModelAnagraficaSingola>importoCY}" press="handleActionPress"/>
+                                            <m:Link text="{path: 'oModelAnagraficaSingola>importoCY', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" press="handleActionPress"/>
                                             <!-- </template> -->
                                             <m:Text text="{oModelAnagraficaSingola>percentuale}" />
                                             <m:Text text="{=${oModelAnagraficaSingola>importoCY}*${oModelAnagraficaSingola>percentuale}/100}" />
-                                            <m:Text text="{oModelAnagraficaSingola>ripresaManuale}" />
+                                            <m:Text text="{path: 'oModelAnagraficaSingola>ripresaManuale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" />
                                             <!-- <m:Text text="{oModelAnagraficaSingola>drill}" /> -->
-                                            <m:Text text="{=${oModelAnagraficaSingola>importoCY}*${oModelAnagraficaSingola>percentuale}/100 + ${oModelAnagraficaSingola>ripresaManuale} + ${oModelAnagraficaSingola>drill} }" />
+                                            <m:Text text="{=${oModelAnagraficaSingola>percentuale} ? ${oModelAnagraficaSingola>importoCY}*${oModelAnagraficaSingola>percentuale}/100 + ${oModelAnagraficaSingola>ripresaManuale} + ${oModelAnagraficaSingola>drill} : ${oModelAnagraficaSingola>ripresaManuale}}" />
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>

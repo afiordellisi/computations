@@ -98,11 +98,12 @@
                                                                     v4: true
                                                                 },
                                                                 formatOptions: {
-                                                                    pattern: 'dd-MM-yyyy' 
+                                                                    style: 'short' 
                                                                 }
                                }"/> 
                     <Text text="{oModelTableAllegati>createdBy}"/>   
-                    <Button icon="sap-icon://notes" press="onNotePress"/>              
+                    <Button icon="sap-icon://notes"/> 
+                                 <!--   press="onNotePress" -->
                 </cells>
               </ColumnListItem>
             </items>

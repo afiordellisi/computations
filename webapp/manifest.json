@@ -186,7 +186,7 @@
                 },
                 {
                     "name": "CurrentTax",
-                    "pattern": "Computation/{ID},{conf}",
+                    "pattern": "Computation/{ID}",
                     "target": [
                         "CurrentTax"
                     ]

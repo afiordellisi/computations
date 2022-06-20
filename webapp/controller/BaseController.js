@@ -1,24 +1,22 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
-    "sap/ui/core/routing/History"
-], function (Controller, History) {
+    "sap/ui/core/mvc/Controller"
+], function (Controller) {
     "use strict";
 
-    return Controller.extend("tax.provisioning.computations.controller.BaseController", {
+    return Controller.extend("valentino.instoreapp.controller.BaseController", {
         /**
-         * Convenience method for accessing the router in every controller of the application.
+         * Convenience method for accessing the router.
          * @public
          * @returns {sap.ui.core.routing.Router} the router for this component
          */
         getRouter : function () {
-            return this.getOwnerComponent().getRouter();
-            //return sap.ui.core.UIComponent.getRouterFor(this);
+            return sap.ui.core.UIComponent.getRouterFor(this);
         },
 
         /**
-         * Convenience method for getting the view model by name in every controller of the application.
+         * Convenience method for getting the view model by name.
          * @public
-         * @param {string} sName the model name
+         * @param {string} [sName] the model name
          * @returns {sap.ui.model.Model} the model instance
          */
         getModel : function (sName) {
@@ -26,7 +24,7 @@ sap.ui.define([
         },
 
         /**
-         * Convenience method for setting the view model in every controller of the application.
+         * Convenience method for setting the view model.
          * @public
          * @param {sap.ui.model.Model} oModel the model instance
          * @param {string} sName the model name
@@ -37,7 +35,7 @@ sap.ui.define([
         },
 
         /**
-         * Convenience method for getting the resource bundle.
+         * Getter for the resource bundle.
          * @public
          * @returns {sap.ui.model.resource.ResourceModel} the resourceModel of the component
          */
@@ -46,43 +44,45 @@ sap.ui.define([
         },
 
         /**
-         * Event handler for navigating back.
-         * It there is a history entry we go one step back in the browser history
-         * If not, it will replace the current entry of the browser history with the list route.
+         * Event handler when the share by E-Mail button has been clicked
          * @public
          */
-        onNavBack : function() {
-            var sPreviousHash = History.getInstance().getPreviousHash();
-            
-            if (sPreviousHash !== undefined) {
-                // eslint-disable-next-line sap-no-history-manipulation
-                history.go(-1);
-            } else {
-                this.getRouter().navTo("View1", {}, true);
-            }
-        }
+        onShareEmailPress : function () {
+            var oViewModel = (this.getModel("objectView") || this.getModel("worklistView"));
+            sap.m.URLHelper.triggerEmail(
+                null,
+                oViewModel.getProperty("/shareSendEmailSubject"),
+                oViewModel.getProperty("/shareSendEmailMessage")
+            );
+        },
 
-        // addHistoryEntry: (function() {
-        //     var aHistoryEntries = [];
+        /**
+        * Adds a history entry in the FLP page history
+        * @public
+        * @param {object} oEntry An entry object to add to the hierachy array as expected from the ShellUIService.setHierarchy method
+        * @param {boolean} bReset If true resets the history before the new entry is added
+        */
+        addHistoryEntry: (function() {
+            var aHistoryEntries = [];
 
-        //     return function(oEntry, bReset) {
-        //         if (bReset) {
-        //             aHistoryEntries = [];
-        //         }
+            return function(oEntry, bReset) {
+                if (bReset) {
+                    aHistoryEntries = [];
+                }
 
-        //         var bInHistory = aHistoryEntries.some(function(entry) {
-        //             return entry.intent === oEntry.intent;
-        //         });
+                var bInHistory = aHistoryEntries.some(function(entry) {
+                    return entry.intent === oEntry.intent;
+                });
 
-        //         if (!bInHistory) {
-        //             aHistoryEntries.push(oEntry);
-        //             this.getOwnerComponent().getService("ShellUIService").then(function(oService) {
-        //                 oService.setHierarchy(aHistoryEntries);
-        //             });
-        //         }
-        //     };
-        // })()
-
+                if (!bInHistory) {
+                    aHistoryEntries.push(oEntry);
+                    this.getOwnerComponent().getService("ShellUIService").then(function(oService) {
+                        oService.setHierarchy(aHistoryEntries);
+                    });
+                }
+            };
+        })()
     });
 
-});
+}
+);

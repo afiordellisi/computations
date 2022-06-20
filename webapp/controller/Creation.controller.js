@@ -101,10 +101,10 @@ sap.ui.define([
                     return true;
                 }
                 else {
-                    // sap.m.MessageToast.show("Selezionare una tax rule");
-                    // var oWizard = this.byId("CreateWizard");
-                    // var oFirstStep = oWizard.getSteps()[2];
-                    // oWizard.discardProgress(oFirstStep);
+                    sap.m.MessageToast.show("Selezionare una tax rule");
+                    var oWizard = this.byId("CreateWizard");
+                    var oFirstStep = oWizard.getSteps()[2];
+                    oWizard.discardProgress(oFirstStep);
 
                     return false;
                 }
@@ -150,7 +150,7 @@ sap.ui.define([
                     }
                     });                    
                 }
-                else{
+                /*else{
                     var that = this;
                     var descrizioneComputation = this.getView().getModel("parameterModel").oData.descrizione;
                     //var idConfigurazione = this.getView().getModel("parameterModel").oData.idConfigurazione;
@@ -210,7 +210,7 @@ sap.ui.define([
                         sap.m.MessageToast.show("Error");
                     }
                     });                    
-                }
+                }*/
             },
 
             onCloseVersione: function (oEvent) {

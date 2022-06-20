@@ -130,7 +130,7 @@
                                                                     v4: true
                                                                 },
                                                                 formatOptions: {
-                                                                    pattern: 'dd-MM-yyyy' 
+                                                                    style: 'short' 
                                                                 }}"/> 
                     <Text text="{tableModel>createdBy}"/>                    
                 </cells>

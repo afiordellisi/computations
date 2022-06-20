@@ -36,6 +36,7 @@ sap.ui.define([
                         ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
                         ID :  this.getView().getModel("computationModel").getData().ID,
                         imposta : this.getView().byId("impostaButton").getSelectedKey()
+                        //conf : this.getView().getModel("computationModel").getData().conf
                     }, false);
                 
             },
@@ -47,10 +48,10 @@ sap.ui.define([
             onScegliImposta: function(oEvent){
                     var that = this;
                     var ID = this.getView().getModel("computationModel").getData().ID;
-                    var conf = this.getView().getModel("computationModel").getData().conf;
+                    //var conf = this.getView().getModel("computationModel").getData().conf;
                     var imposta = that.getView().byId("impostaButton").getSelectedKey();
                     
-                    if(conf != "false"){
+                    //if(conf != "false"){
                         jQuery.ajax({
                             url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/TotRipresaView?$count=true&$filter=computationId eq "+ID+" and imposta eq '"+imposta+"'"),
                             contentType: "application/json",
@@ -111,32 +112,57 @@ sap.ui.define([
                                 sap.m.MessageToast.show("Error");
                             }
                         });
-                    }else{
+                    /*}else{
                         //var computazioneID = JSON.stringify({"id": ID});
                         jQuery.ajax({
-                            url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/ComputazioneNoConfListaRiprese?$expand=codiceRipresa&$filter=imposta eq '"+imposta+"' and computation_ID eq "+ID+""),
+                            url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/TotaliRipresaNoConf?$expand=codiceRipresa&$filter=imposta eq '"+imposta+"' and ID eq "+ID+""),
                             contentType: "application/json",
                             type: 'GET',
                             dataType: "json",
                             async: false,
                             success: function (oCompleteEntry) {
-                                var arr = oCompleteEntry.value;
-                                
-                                var aItems = arr.map((arr) => {
-                                    return {
-                                    codiceRipresa: arr.codiceRipresa.ID,
-                                    descrizioneRipresa: arr.codiceRipresa.descrizioneRipresa,
-                                    imponibile: null,
-                                    tipoVariazione: arr.codiceRipresa.tipoVariazione,
-                                    tipologia: arr.codiceRipresa.tipologia
-                                    };
-                                });
-                                var PA = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'P' && codiceRipresa.tipoVariazione === 'A');
-                                var PD = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'P' && codiceRipresa.tipoVariazione === 'D');
-                                var TA = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'T' && codiceRipresa.tipoVariazione === 'A');
-                                var TD = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'T' && codiceRipresa.tipoVariazione === 'D');
-                                var PER = aItems.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'PER');
-                                var ACE = aItems.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'ACE');
+                            var arr = oCompleteEntry.value;
+                            
+                            var aItems = arr.map((arr) => {
+                                return {
+                                codiceRipresa: arr.codiceRipresa.ID,
+                                descrizioneRipresa: arr.codiceRipresa.descrizioneRipresa,
+                                imponibile: 0,
+                                tipoVariazione: arr.codiceRipresa.tipoVariazione,
+                                tipologia: arr.codiceRipresa.tipologia, 
+                                imponibile: arr.totaleRipresa
+                                };
+                            });
+                            var PA = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'P' && codiceRipresa.tipoVariazione === 'A');
+                            var PD = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'P' && codiceRipresa.tipoVariazione === 'D');
+                            var TA = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'T' && codiceRipresa.tipoVariazione === 'A');
+                            var TD = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'T' && codiceRipresa.tipoVariazione === 'D');
+                            var PER = aItems.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'PER');
+                            var ACE = aItems.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'ACE');
+                            var PAImponibile = 0;
+                            for (var i = 0; i < PA.length; i++) {
+                                PAImponibile += PA[i].imponibile;
+                            }
+                            var PDImponibile = 0;
+                            for (var i = 0; i < PD.length; i++) {
+                                PDImponibile += PD[i].imponibile;
+                            }
+                            var TAImponibile = 0;
+                            for (var i = 0; i < TA.length; i++) {
+                                TAImponibile += TA[i].imponibile;
+                            }
+                            var TDImponibile = 0;
+                            for (var i = 0; i < TD.length; i++) {
+                                TDImponibile += TD[i].imponibile;
+                            }
+                            var PERImponibile = 0;
+                            for (var i = 0; i < PER.length; i++) {
+                                PERImponibile += PER[i].imponibile;
+                            }
+                            var ACEImponibile = 0;
+                            for (var i = 0; i < ACE.length; i++) {
+                                ACEImponibile += ACE[i].imponibile;
+                            }
                                 var data = {
                                     oModelPA : PA,
                                     oModelPA : PA,
@@ -144,7 +170,13 @@ sap.ui.define([
                                     oModelTA : TA,
                                     oModelTD : TD,
                                     oModelPER : PER,
-                                    oModelACE : ACE
+                                    oModelACE : ACE, 
+                                    oModelPAImponibile: PAImponibile,
+                                    oModelPDImponibile: PDImponibile,
+                                    oModelTAImponibile: TAImponibile,
+                                    oModelTDImponibile: TDImponibile,
+                                    oModelPERImponibile: PERImponibile,
+                                    oModelACEImponibile: ACEImponibile
                                 }
                                 var DataModel = new sap.ui.model.json.JSONModel();
                                 DataModel.setData(data);
@@ -154,7 +186,7 @@ sap.ui.define([
                                 sap.m.MessageToast.show("Error");
                             }
                         });
-                    }
+                    }*/
 
                 this._setTitle();
                         //     var arr = oCompleteEntry.value;
@@ -203,16 +235,16 @@ sap.ui.define([
                 var oEvent = oEvent.getParameter("arguments");
                 
                 var ID = oEvent.ID; //ID computazione
-                var conf = oEvent.conf;
+                //var conf = oEvent.conf;
 
                 this.getView().setModel(new JSONModel({
-                    "ID": ID,
-                    "conf": conf //ID computazione
+                    "ID": ID
+                   // "conf": conf //ID computazione
                   }), "computationModel");
 
                 var imposta = this.getView().byId("impostaButton").getSelectedKey();
                 var that = this;
-                if(conf != "false"){
+                //if(conf != "false"){
                     jQuery.ajax({
                         url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/TotRipresaView?$count=true&$filter=computationId eq "+ID+" and imposta eq '"+imposta+"'"),
                         contentType: "application/json",
@@ -273,10 +305,9 @@ sap.ui.define([
                             sap.m.MessageToast.show("Error");
                         }
                     });
-                }else{
-                    //var computazioneID = JSON.stringify({"id": ID});
+               /* }else{
                     jQuery.ajax({
-                        url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/ComputazioneNoConfListaRiprese?$expand=codiceRipresa&$filter=imposta eq '"+imposta+"' and computation_ID eq "+ID+""),
+                        url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/TotaliRipresaNoConf?$expand=codiceRipresa&$filter=imposta eq '"+imposta+"' and ID eq "+ID+""),
                         contentType: "application/json",
                         type: 'GET',
                         dataType: "json",
@@ -288,9 +319,10 @@ sap.ui.define([
                                 return {
                                 codiceRipresa: arr.codiceRipresa.ID,
                                 descrizioneRipresa: arr.codiceRipresa.descrizioneRipresa,
-                                imponibile: null,
+                                imponibile: 0,
                                 tipoVariazione: arr.codiceRipresa.tipoVariazione,
-                                tipologia: arr.codiceRipresa.tipologia
+                                tipologia: arr.codiceRipresa.tipologia, 
+                                imponibile: arr.totaleRipresa
                                 };
                             });
                             var PA = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'P' && codiceRipresa.tipoVariazione === 'A');
@@ -299,6 +331,30 @@ sap.ui.define([
                             var TD = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'T' && codiceRipresa.tipoVariazione === 'D');
                             var PER = aItems.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'PER');
                             var ACE = aItems.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'ACE');
+                            var PAImponibile = 0;
+                            for (var i = 0; i < PA.length; i++) {
+                                PAImponibile += PA[i].imponibile;
+                            }
+                            var PDImponibile = 0;
+                            for (var i = 0; i < PD.length; i++) {
+                                PDImponibile += PD[i].imponibile;
+                            }
+                            var TAImponibile = 0;
+                            for (var i = 0; i < TA.length; i++) {
+                                TAImponibile += TA[i].imponibile;
+                            }
+                            var TDImponibile = 0;
+                            for (var i = 0; i < TD.length; i++) {
+                                TDImponibile += TD[i].imponibile;
+                            }
+                            var PERImponibile = 0;
+                            for (var i = 0; i < PER.length; i++) {
+                                PERImponibile += PER[i].imponibile;
+                            }
+                            var ACEImponibile = 0;
+                            for (var i = 0; i < ACE.length; i++) {
+                                ACEImponibile += ACE[i].imponibile;
+                            }
                             var data = {
                                 oModelPA : PA,
                                 oModelPA : PA,
@@ -306,7 +362,13 @@ sap.ui.define([
                                 oModelTA : TA,
                                 oModelTD : TD,
                                 oModelPER : PER,
-                                oModelACE : ACE
+                                oModelACE : ACE, 
+                                oModelPAImponibile: PAImponibile,
+                                oModelPDImponibile: PDImponibile,
+                                oModelTAImponibile: TAImponibile,
+                                oModelTDImponibile: TDImponibile,
+                                oModelPERImponibile: PERImponibile,
+                                oModelACEImponibile: ACEImponibile
                             }
                             var DataModel = new sap.ui.model.json.JSONModel();
                             DataModel.setData(data);
@@ -316,7 +378,48 @@ sap.ui.define([
                             sap.m.MessageToast.show("Error");
                         }
                     });
-                }
+                    // jQuery.ajax({
+                    //     url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/ComputazioneNoConfListaRiprese?$expand=codiceRipresa&$filter=imposta eq '"+imposta+"' and computation_ID eq "+ID+""),
+                    //     contentType: "application/json",
+                    //     type: 'GET',
+                    //     dataType: "json",
+                    //     async: false,
+                    //     success: function (oCompleteEntry) {
+                    //         var arr = oCompleteEntry.value;
+                            
+                    //         var aItems = arr.map((arr) => {
+                    //             return {
+                    //             codiceRipresa: arr.codiceRipresa.ID,
+                    //             descrizioneRipresa: arr.codiceRipresa.descrizioneRipresa,
+                    //             imponibile: 0,
+                    //             tipoVariazione: arr.codiceRipresa.tipoVariazione,
+                    //             tipologia: arr.codiceRipresa.tipologia
+                    //             };
+                    //         });
+                    //         var PA = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'P' && codiceRipresa.tipoVariazione === 'A');
+                    //         var PD = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'P' && codiceRipresa.tipoVariazione === 'D');
+                    //         var TA = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'T' && codiceRipresa.tipoVariazione === 'A');
+                    //         var TD = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'T' && codiceRipresa.tipoVariazione === 'D');
+                    //         var PER = aItems.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'PER');
+                    //         var ACE = aItems.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'ACE');
+                    //         var data = {
+                    //             oModelPA : PA,
+                    //             oModelPA : PA,
+                    //             oModelPD : PD,
+                    //             oModelTA : TA,
+                    //             oModelTD : TD,
+                    //             oModelPER : PER,
+                    //             oModelACE : ACE
+                    //         }
+                    //         var DataModel = new sap.ui.model.json.JSONModel();
+                    //         DataModel.setData(data);
+                    //         that.getView().setModel(DataModel, "oModelAnagrafica");
+                    //     },
+                    //     error: function (error) {
+                    //         sap.m.MessageToast.show("Error");
+                    //     }
+                    // });
+                }*/
 
                 this._setTitle();
             },
@@ -363,7 +466,9 @@ sap.ui.define([
                 var that = this;
                 //var ID = this.getView().getModel("computationModel").getData().ID;
                 var configurazioneID = this.getView().getModel("oModelDescrizione").getData().oModelConfigurazioneID;
-                
+                //var conf = this.getView().getModel("computationModel").getData().conf;
+
+               // if(conf != "false"){
                 jQuery.ajax({
                     url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Configurazioni?$filter=ID eq "+configurazioneID+"&$expand=confRegions"),
                     contentType: "application/json",
@@ -382,6 +487,13 @@ sap.ui.define([
                         sap.m.MessageToast.show("Error");
                     }
                 });
+            /*}else{
+
+                this.getView().setModel(new JSONModel({
+                    "oModelPercentuale": 0
+                  }), "oModelPercentuale");
+
+            }*/
             }
         });
     });
