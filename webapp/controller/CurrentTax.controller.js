@@ -499,18 +499,38 @@ sap.ui.define([
                 var that = this;
                 //var ID = this.getView().getModel("computationModel").getData().ID;
                 var configurazioneID = this.getView().getModel("oModelDescrizione").getData().oModelConfigurazioneID;
+                var imposta = this.getView().byId("impostaButton").getSelectedKey()
                 //var conf = this.getView().getModel("computationModel").getData().conf;
 
-               // if(conf != "false"){
+            //     if(imposta === 'IRES'){
+            //     jQuery.ajax({
+            //         url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Configurazioni?$filter=ID eq "+configurazioneID+"&$expand=confRegions"),
+            //         contentType: "application/json",
+            //         type: 'GET',
+            //         dataType: "json",
+            //         async: false,
+            //         success: function (oCompleteEntry) {
+            //             var data = {
+            //                 oModelPercentuale: oCompleteEntry.value[0].confRegions[0].current
+            //             }
+            //             var DataModel = new sap.ui.model.json.JSONModel();
+            //             DataModel.setData(data);
+            //             that.getView().setModel(DataModel, "oModelPercentuale");
+            //         },
+            //         error: function (error) {
+            //             sap.m.MessageToast.show("Error");
+            //         }
+            //     });
+            // }if(imposta === 'IRAP'){
                 jQuery.ajax({
-                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Configurazioni?$filter=ID eq "+configurazioneID+"&$expand=confRegions"),
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/RegionsAVGView?$filter=configurazioneID eq "+configurazioneID+" and imposta eq '"+imposta+"'"),
                     contentType: "application/json",
                     type: 'GET',
                     dataType: "json",
                     async: false,
                     success: function (oCompleteEntry) {
                         var data = {
-                            oModelPercentuale: oCompleteEntry.value[0].confRegions[0].current
+                            oModelPercentuale: oCompleteEntry.value[0].currentAvg
                         }
                         var DataModel = new sap.ui.model.json.JSONModel();
                         DataModel.setData(data);
@@ -519,7 +539,8 @@ sap.ui.define([
                     error: function (error) {
                         sap.m.MessageToast.show("Error");
                     }
-                });
+                });                
+            //}
             /*}else{
 
                 this.getView().setModel(new JSONModel({
