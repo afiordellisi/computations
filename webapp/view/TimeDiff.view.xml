@@ -69,9 +69,39 @@
                         </t:template>
 					</t:Column>
                     <t:Column width="11rem">
-                        <Label text="{i18n>CurrYearUtili}" />
+                        <Label text="{i18n>OtherAdj}" />
                         <t:template>
-                            <Input type="Number" editable="false" value="{oModelTiming>CurrentYearUtilization}"/>
+                            <Input type="Number" editable="true" value="{oModelTiming>otherAdjustments}"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>ClosingB}" />
+                        <t:template>
+                            <Input type="Number" editable="false" value="{oModelTiming>closingBalance}"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>Current1}" />
+                        <t:template>
+                            <Input type="Number" editable="false" value="{oModelTiming>current1}"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>Current2}" />
+                        <t:template>
+                            <Input type="Number" editable="true" value="{oModelTiming>current2}"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>Current3}" />
+                        <t:template>
+                            <Input type="Number" editable="true" value="{oModelTiming>current3}"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>LongTerm}" />
+                        <t:template>
+                            <Input type="Number" editable="true" value="{oModelTiming>longTerm}"/>
                         </t:template>
 					</t:Column>
                 </t:columns>
