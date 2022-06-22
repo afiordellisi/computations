@@ -34,10 +34,10 @@
                     width="320px"
                     expanded="false">
                     <tnt:NavigationListItem  key="rootItem" icon="sap-icon://open-command-field">
-                        <tnt:NavigationListItem text="{i18n>timeDiff}" key="item1" select="listaFunzionalita"/>
-                        <tnt:NavigationListItem text="{i18n>dtadtl}" key="item2" select="listaFunzionalita"/>
-                        <tnt:NavigationListItem text="{i18n>taxRec}" key="item3" select="listaFunzionalita"/>
-                        <tnt:NavigationListItem text="{i18n>taxLiq}" key="item4" select="listaFunzionalita"/>
+                        <tnt:NavigationListItem text="{i18n>timeDiff}" key="C04" select="listaFunzionalita"/>
+                        <tnt:NavigationListItem text="{i18n>dtadtl}" key="C05" select="listaFunzionalita"/>
+                        <tnt:NavigationListItem text="{i18n>taxRec}" key="C06" select="listaFunzionalita"/>
+                        <tnt:NavigationListItem text="{i18n>taxLiq}" key="C07" select="listaFunzionalita"/>
                     </tnt:NavigationListItem>
                 </tnt:NavigationList>
                  <m:ToolbarSeparator/>
