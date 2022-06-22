@@ -9,7 +9,8 @@
         xmlns:form="sap.ui.layout.form"
         xmlns:smartForm="sap.ui.comp.smartform"
         xmlns:smartField="sap.ui.comp.smartfield"
-        xmlns:u="sap.ui.unified">
+        xmlns:u="sap.ui.unified"
+        xmlns:tnt="sap.tnt">
 
 	<uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" preserveHeaderStateOnScroll="true" >
     	<uxap:headerTitle >
@@ -28,6 +29,18 @@
               
             <uxap:actions>
                 <m:ToolbarSpacer/>
+                 <tnt:NavigationList
+                    id="navigationList"
+                    width="320px"
+                    expanded="false">
+                    <tnt:NavigationListItem  key="rootItem" icon="sap-icon://open-command-field">
+                        <tnt:NavigationListItem text="{i18n>timeDiff}" key="item1" select="listaFunzionalita"/>
+                        <tnt:NavigationListItem text="{i18n>dtadtl}" key="item2" select="listaFunzionalita"/>
+                        <tnt:NavigationListItem text="{i18n>taxRec}" key="item3" select="listaFunzionalita"/>
+                        <tnt:NavigationListItem text="{i18n>taxLiq}" key="item4" select="listaFunzionalita"/>
+                    </tnt:NavigationListItem>
+                </tnt:NavigationList>
+                 <m:ToolbarSeparator/>
                 <m:Text text="{i18n>currency}" />
                     <m:ToolbarSeparator/>
                         <m:SegmentedButton id="impostaButton" selectionChange="onScegliImposta">
@@ -36,6 +49,9 @@
                                 <m:SegmentedButtonItem key="IRAP" text="IRAP" />
                             </m:items>
                         </m:SegmentedButton>
+                    <!-- <m:ToolbarSeparator/> -->
+                <!-- <m:Button text="{i18n>funzionalità}" press="listaFunzionalita"/> -->
+               
             </uxap:actions>
             </uxap:ObjectPageDynamicHeaderTitle>
             </uxap:headerTitle>

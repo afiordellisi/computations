@@ -107,7 +107,14 @@
                                                         <Text text="{tableModel>ledger}" /> 
                                                         <Text text="{tableModel>periodo}" /> 
                                                         <Text text="{tableModel>utilePerditaCY}" /> 
-                                                        <Text text="{tableModel>createdAt}" /> 
+                                                        <Text text="{path: 'tableModel>createdAt', type: 'sap.ui.model.odata.type.DateTimeOffset',
+                                                                constraints: {
+                                                                    precision: 3,
+                                                                    v4: true
+                                                                },
+                                                                formatOptions: {
+                                                                    style: 'short' 
+                                                                }}" /> 
                                                         <Text text="{tableModel>createdBy}" />    
                                                 </cells>
                                             </ColumnListItem>
@@ -119,7 +126,6 @@
                                	validated="true"
                                 title="{i18n>taxRuleSelection}"
                                 activate="filterValidation2"
-                                complete="handleFinishSelection"
                                 >
                         
                                 <Table id="taxRulesTable"
@@ -158,8 +164,73 @@
                                                         <Text text="{taxRuleModel>ledger}" /> 
                                                         <Text text="{taxRuleModel>periodo}" /> 
                                                         <Text text="{taxRuleModel>scenario}" /> 
-                                                        <Text text="{taxRuleModel>createdAt}" /> 
+                                                        <Text text="{path: 'taxRuleModel>createdAt', type: 'sap.ui.model.odata.type.DateTimeOffset',
+                                                                constraints: {
+                                                                    precision: 3,
+                                                                    v4: true
+                                                                },
+                                                                formatOptions: {
+                                                                    style: 'short' 
+                                                                }}" /> 
                                                         <Text text="{taxRuleModel>createdBy}" />    
+                                                </cells>
+                                            </ColumnListItem>
+                                    </items>
+                                </Table>
+                    </WizardStep>
+
+                    <WizardStep id="confConfronto" 
+                               	validated="true"
+                                title="{i18n>confConfronto}"
+                                activate="filterValidation3"
+                                complete="handleFinishSelection"
+                                >
+                        
+                                <Table id="confConfrontoTable"
+                                        inset="false"
+                                        mode="SingleSelect"
+                                        items="{path:'confCompModel>/oModel'}"
+                                        >
+                                        <columns>
+                                        	<Column width="12em">
+                                                <Text text="{i18n>name}" />
+                                            </Column>
+                                            <Column width="12em">
+                                                <Text text="{i18n>societa}" />
+                                            </Column>
+                                             <Column width="12em">
+                                                <Text text="{i18n>ledger}" />
+                                            </Column>
+                                             <Column width="12em">
+                                                <Text text="{i18n>periodo}" />
+                                            </Column>
+                                             <!-- <Column width="12em">
+                                                <Text text="{i18n>scenario}" />
+                                            </Column> -->
+                                            <Column width="12em">
+                                                <Text text="{i18n>dataCaricamento}" />
+                                            </Column>
+                                             <Column width="12em">
+                                                <Text text="{i18n>user}" />
+                                            </Column>
+                                    </columns>
+                                    <items>
+                                        	<ColumnListItem vAlign="Middle" >
+                                                <cells>
+                                                    	<Text text="{confCompModel>descrizione}" />    
+                                                        <Text text="{confCompModel>Versione/societa}" />    
+                                                        <Text text="{confCompModel>Versione/ledger}" /> 
+                                                        <Text text="{confCompModel>Versione/periodo}" /> 
+                                                        <!-- <Text text="{taxRuleModel>scenario}" />  -->
+                                                        <Text text="{path: 'confCompModel>createdAt', type: 'sap.ui.model.odata.type.DateTimeOffset',
+                                                                constraints: {
+                                                                    precision: 3,
+                                                                    v4: true
+                                                                },
+                                                                formatOptions: {
+                                                                    style: 'short' 
+                                                                }}" /> 
+                                                        <Text text="{confCompModel>createdBy}" />    
                                                 </cells>
                                             </ColumnListItem>
                                     </items>

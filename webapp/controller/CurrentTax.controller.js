@@ -231,6 +231,39 @@ sap.ui.define([
                         // that.getView().setModel(DataModel, "oModelAnagrafica");
             },
 
+            listaFunzionalita: function(oEvent){
+                var key = oEvent.getSource().getProperty("key");
+                var oRouter = this.getOwnerComponent().getRouter();
+                
+                if(key === 'item1'){
+                    oRouter.navTo("TimeDiff", {
+                        //ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
+                        ID :  this.getView().getModel("computationModel").getData().ID,
+                        imposta : this.getView().byId("impostaButton").getSelectedKey()
+                    }, false);
+                }if(key === 'item2'){
+                    oRouter.navTo("Riprese", {
+                        ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
+                        ID :  this.getView().getModel("computationModel").getData().ID,
+                        imposta : this.getView().byId("impostaButton").getSelectedKey()
+                    }, false);
+                }if(key === 'item3'){
+                    oRouter.navTo("Riprese", {
+                        ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
+                        ID :  this.getView().getModel("computationModel").getData().ID,
+                        imposta : this.getView().byId("impostaButton").getSelectedKey()
+                    }, false);
+                }if(key === 'item4'){
+                    oRouter.navTo("Riprese", {
+                        ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
+                        ID :  this.getView().getModel("computationModel").getData().ID,
+                        imposta : this.getView().byId("impostaButton").getSelectedKey()
+                        //conf : this.getView().getModel("computationModel").getData().conf
+                    }, false);
+                }
+                this.getView().byId("navigationList")
+            },
+
             _onObjectMatched: function (oEvent) {
                 var oEvent = oEvent.getParameter("arguments");
                 

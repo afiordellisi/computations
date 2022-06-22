@@ -204,6 +204,13 @@
                     "target": [
                         "Allegati"
                     ]
+                },
+                {
+                    "name": "TimeDiff",
+                    "pattern": "Computation/{ID}/Imposta/{imposta}/TimeDiff",
+                    "target": [
+                        "TimeDiff"
+                    ]
                 }
             ],
             "targets": {
@@ -245,6 +252,14 @@
                     "clearControlAggregation": false,
                     "viewId": "Allegati",
                     "viewName": "Allegati",
+                    "viewLevel": 5
+                },
+                "TimeDiff": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "TimeDiff",
+                    "viewName": "TimeDiff",
                     "viewLevel": 5
                 }
             }

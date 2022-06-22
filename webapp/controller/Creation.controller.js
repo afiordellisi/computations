@@ -63,7 +63,6 @@ sap.ui.define([
             },
 
             filterValidation2: function (oEvent) {
-                debugger;
                 var oTable = this.getView().byId("versioniTable");
                 var sSelectedPath = oTable.getSelectedItem();
                 if(sSelectedPath != null){
@@ -79,8 +78,8 @@ sap.ui.define([
                     aFilter.push(this.getView().getModel("parameterModel").oData.periodo);
 
                     this._filterTableConf(aFilter);
-                    this.getView().byId("finishButton").setVisible(true);
-                    this.getView().byId("nextStepButton").setVisible(false);
+                    // this.getView().byId("finishButton").setVisible(true);
+                    // this.getView().byId("nextStepButton").setVisible(false);
                     this.getView().byId("trialBalance").setBlocked(true);
                 }else {
                     sap.m.MessageToast.show("Selezionare un trial balance");
@@ -90,7 +89,8 @@ sap.ui.define([
                 }
             },
 
-            handleFinishSelection: function(){
+
+            filterValidation3: function (oEvent) {
                 var oTable = this.getView().byId("taxRulesTable");
                 var sSelectedPath = oTable.getSelectedItem();
                 if(sSelectedPath != null){
@@ -98,15 +98,43 @@ sap.ui.define([
                     var oItem2 = oTable.getSelectedItem().getModel("taxRuleModel").oData.oModel[sSelectedPath];
                     this.getView().getModel("parameterModel").oData.idConfigurazione = oItem2.ID; 
 
-                    return true;
-                }
-                else {
+                    //var versioneID = oItem.ID;
+                   
+                    //this.getView().getModel("parameterModel").oData.idVersione = versioneID;
+                    var aFilter = [];
+                    aFilter.push(this.getView().getModel("parameterModel").oData.societa);
+                    aFilter.push(this.getView().getModel("parameterModel").oData.ledger);
+                    aFilter.push(this.getView().getModel("parameterModel").oData.periodo);
+
+                    this._filterTableCompConfronto(aFilter);
+                    this.getView().byId("finishButton").setVisible(true);
+                    this.getView().byId("nextStepButton").setVisible(false);
+                    this.getView().byId("taxRule").setBlocked(true);
+                }else {
                     sap.m.MessageToast.show("Selezionare una tax rule");
                     var oWizard = this.byId("CreateWizard");
                     var oFirstStep = oWizard.getSteps()[2];
                     oWizard.discardProgress(oFirstStep);
+                }
+            },
 
-                    return false;
+            handleFinishSelection: function(){
+                var oTable = this.getView().byId("confConfrontoTable");
+                var sSelectedPath = oTable.getSelectedItem();
+                if(sSelectedPath != null){
+                    var sSelectedPath = oTable.getSelectedItem().getBindingContext("confCompModel").getPath().split("/oModel/")[1];
+                    var oItem2 = oTable.getSelectedItem().getModel("confCompModel").oData.oModel[sSelectedPath];
+                    this.getView().getModel("parameterModel").oData.idCompConfronto = oItem2.ID; 
+
+                    return true;
+                }
+                else {
+                    // sap.m.MessageToast.show("Selezionare una tax rule");
+                    // var oWizard = this.byId("CreateWizard");
+                    // var oFirstStep = oWizard.getSteps()[2];
+                    // oWizard.discardProgress(oFirstStep);
+
+                    return true;
                 }
             },
 
@@ -117,8 +145,9 @@ sap.ui.define([
                     var descrizioneComputation = this.getView().getModel("parameterModel").oData.descrizione;
                     var idConfigurazione = this.getView().getModel("parameterModel").oData.idConfigurazione;
                     var idVersione = this.getView().getModel("parameterModel").oData.idVersione;
+                    var idCompConfronto = this.getView().getModel("parameterModel").oData.idCompConfronto;
     
-                    var nuovaComputation = JSON.stringify({"descrizione": descrizioneComputation, "Configurazione_ID": idConfigurazione, "Versione_ID": idVersione });
+                    var nuovaComputation = JSON.stringify({"descrizione": descrizioneComputation, "Configurazione_ID": idConfigurazione, "Versione_ID": idVersione, "compConfronto": idCompConfronto });
     
                     jQuery.ajax({
                     url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Computations"),
@@ -244,6 +273,13 @@ sap.ui.define([
                 }
                 if(stepName === 'application-taxprovisioningcomputations-display-component---Creation--taxRule'){
                     this._iSelectedStepIndex = 2;
+                    // this.getView().byId("nextStepButton").setVisible(false);
+                    // this.getView().byId("finishButton").setVisible(true);
+                    // this.handleWizardSubmit();
+                    
+                }
+                if(stepName === 'application-taxprovisioningcomputations-display-component---Creation--confConfronto'){
+                    this._iSelectedStepIndex = 3;
                     this.getView().byId("nextStepButton").setVisible(false);
                     this.getView().byId("finishButton").setVisible(true);
                     this.handleWizardSubmit();
@@ -281,7 +317,7 @@ sap.ui.define([
                     //var oModel = this.getOwnerComponent().getModel("computationsModel");
                     
                     jQuery.ajax({
-                        url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Versioni?$filter=societa eq '"+societa+"'&ledger eq '"+ledger+"'&periodo eq '"+periodo+"'"),
+                        url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Versioni?$filter=societa eq '"+societa+"' and ledger eq '"+ledger+"' and periodo eq '"+periodo+"'"),
                         contentType: "application/json",
                         type: 'GET',
                         dataType: "json",
@@ -322,7 +358,7 @@ sap.ui.define([
                 var periodo = aFilter[2];
 
                 jQuery.ajax({
-                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Configurazioni?$filter=societa eq '"+societa+"'&ledger eq '"+ledger+"'&periodo eq '"+periodo+"'"), //filtro solo per la tripletta
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Configurazioni?$filter=societa eq '"+societa+"' and ledger eq '"+ledger+"' and periodo eq '"+periodo+"'"), //filtro solo per la tripletta
                     // url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Configurazioni?$filter=versione_ID eq "+versioneID+"&societa eq '"+societa+"'&ledger eq '"+ledger+"'&periodo eq '"+periodo+"'"), //qui filtro anche per versione
                     contentType: "application/json",
                     type: 'GET',
@@ -335,6 +371,51 @@ sap.ui.define([
                         var DataModel = new sap.ui.model.json.JSONModel();
                         DataModel.setData(data);
                         that.getView().setModel(DataModel, "taxRuleModel");
+                    },
+                    error: function (error) {
+                        sap.m.MessageToast.show("Error");
+                    }
+                });
+
+                // oModel.read("/Configurazioni", {
+                //     filters: aFilter,
+                //     success: function (oData, response) {
+                //         var data = {
+                //             oModel: oData.results
+                //         };
+                //         var DataModel = new sap.ui.model.json.JSONModel();
+                //         DataModel.setData(data);
+                //         that.getView().setModel(DataModel, "taxRuleModel");
+                //     },
+
+                //     error: function (response) {
+                //         sap.m.MessageToast.show("Error");
+                //     }
+                // });
+        },
+
+        _filterTableCompConfronto: function (aFilter) {
+                var that = this;
+                var societa = aFilter[0];
+                var ledger = aFilter[1];
+                var periodo = aFilter[2];
+                periodo = periodo.substring(0,4).concat(periodo.substring(4,6)-1)
+
+                jQuery.ajax({
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Computations?$expand=Versione&$filter=Versione/periodo eq '"+periodo+"' and Versione/societa eq '"+societa+"' and Versione/ledger eq '"+ledger+"' "), //filtro solo per la tripletta
+                    // url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Configurazioni?$filter=versione_ID eq "+versioneID+"&societa eq '"+societa+"'&ledger eq '"+ledger+"'&periodo eq '"+periodo+"'"), //qui filtro anche per versione
+                    contentType: "application/json",
+                    type: 'GET',
+                    dataType: "json",
+                    async: false,
+                    success: function (oCompleteEntry) {
+                        debugger;
+                        var data = {
+                            oModel: oCompleteEntry.value
+                        };
+                        var DataModel = new sap.ui.model.json.JSONModel();
+                        DataModel.setData(data);
+                        that.getView().setModel(DataModel, "confCompModel");
                     },
                     error: function (error) {
                         sap.m.MessageToast.show("Error");
@@ -377,6 +458,7 @@ sap.ui.define([
 
             this.getView().byId("smartForm").setBlocked(false);
             this.getView().byId("trialBalance").setBlocked(false);
+            this.getView().byId("taxRule").setBlocked(false);
 
             this.getView().byId("nextStepButton").setVisible(true);
             this.getView().byId("finishButton").setVisible(false);
