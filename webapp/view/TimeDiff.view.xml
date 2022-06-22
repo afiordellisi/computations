@@ -1,146 +1,81 @@
-<mvc:View controllerName="tax.provisioning.computations.controller.CurrentTax"
+<mvc:View controllerName="tax.provisioning.computations.controller.TimeDiff"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
     xmlns:semantic="sap.f.semantic"
     xmlns:layout="sap.ui.layout"
     xmlns:core="sap.ui.core"
-    xmlns:fb="sap.ui.comp.filterbar"
-    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar">
-    <!-- <Page id="page" title="{i18n>title}">
-        <content />
-    </Page> -->
-     <semantic:SemanticPage id="semanticPageTime" headerPinnable="true" toggleHeaderOnTitleClick="true" preserveHeaderStateOnScroll="false" titleAreaShrinkRatio="1:1.6:1.6" showFooter="false">
-        <!-- <semantic:headerContent>
-          <smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="items" showGoOnFB="true" search="onGo" >
-          <smartFilterBar:controlConfiguration>
-            	<smartFilterBar:ControlConfiguration controlType="dropDownList" groupId="_BASIC" key="societa" preventInitialDataFetchInValueHelpDialog="false" filterType="single" id="societa"/>
-                <smartFilterBar:ControlConfiguration controlType="dropDownList" groupId="_BASIC" key="ledger" preventInitialDataFetchInValueHelpDialog="false" filterType="single" id="ledger"/>
-                <smartFilterBar:ControlConfiguration controlType="dropDownList" groupId="_BASIC" key="periodo"  preventInitialDataFetchInValueHelpDialog="false" filterType="single" id="periodo"/>
-            </smartFilterBar:controlConfiguration>
-            </smartFilterBar:SmartFilterBar>
-           
-        </semantic:headerContent> -->
+    xmlns:t="sap.ui.table">
+    <semantic:SemanticPage id="timeDiffPage" headerPinnable="true" headerExpanded="true" toggleHeaderOnTitleClick="true" preserveHeaderStateOnScroll="false" titleAreaShrinkRatio="1:1.6:1.6" showFooter="false">
+        <semantic:headerContent>
+            <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                <layout:HorizontalLayout class="sapUiSmallMarginTop" allowWrapping="true">
+                    <layout:VerticalLayout class="sapUiMediumMarginEnd">  
+                        <ObjectIdentifier text="{i18n>imposta}: " class="sapUiTinyMarginBottom" id="impostaTime"/> 
+                        <ObjectIdentifier text="{i18n>Computazione}: " class="sapUiTinyMarginBottom" id="computazioneTime"/>
+                    </layout:VerticalLayout>  
+                    <layout:VerticalLayout> 
+                        <ObjectNumber number="{oModelTestata>/imposta}" class="sapUiTinyMarginBottom"/>
+                        <ObjectNumber number="{oModelTestata>/computationID}" class="sapUiTinyMarginBottom"/>
+                    </layout:VerticalLayout>            
+                </layout:HorizontalLayout>
+            </layout:VerticalLayout>
+        </semantic:headerContent>
 
-        <!-- Content -->
         <semantic:content>
-            <Table id="idTable" inset="false" items="{path:'tableModel>/oModel', sorter: {
-				path: 'createdAt',
-				descending: true
-			}}" class="sapFSemanticPageAlignContent" width="auto">
-            <headerToolbar>
-              <OverflowToolbar>
-                <Title text="{i18n>computations}" level="H2"/>
-                <ToolbarSpacer/>
-                <!-- <Button text="{i18n>import}" icon="sap-icon://upload-to-cloud" press="onImportPressed"/> -->
-                 <Button id="newButton" text="{i18n>new}" icon="sap-icon://create" press="onNewPress"/>
-              </OverflowToolbar>
-            </headerToolbar>
-            <columns>
-              <Column>
-                <Text text="{i18n>codiceGL}"/>
-              </Column>
-              <Column minScreenWidth="Tablet" demandPopin="true">
-                <Text text="{i18n>descrizioneGL}"/>
-              </Column>
-              <Column minScreenWidth="Tablet" demandPopin="true">
-                <Text text="{i18n>ledger}"/>
-              </Column>
-              <Column minScreenWidth="Tablet" demandPopin="true">
-                <Text text="{i18n>periodo}"/>
-              </Column>
-              <Column>
-                <Text text="{i18n>utilePerdita}"/>
-              </Column>
-              <Column>
-                <Text text="{i18n>taxRule}"/>
-              </Column>
-              <Column>
-                <Text text="{i18n>scenario}"/>
-              </Column>
-              <Column>
-                <Text text="{i18n>redditoImp}"/>
-              </Column>
-              <Column>
-                <Text text="{i18n>ires}"/>
-              </Column>
-              <Column>
-                <Text text="{i18n>valoreProd}"/>
-              </Column>
-              <Column>
-                <Text text="{i18n>irap}"/>
-              </Column>
-              <Column>
-                <Text text="{i18n>movement}"/>
-              </Column>
-              <Column>
-                <Text text="{i18n>date}"/>
-              </Column>
-              <Column>
-                <Text text="{i18n>user}"/>
-              </Column>
-            </columns>
-            <items>
-              <ColumnListItem vAlign="Middle" type="Navigation" press="navigateToCurrentTax">
-                <cells>
-                    <Text text="{tableModel>descrizione}"/>
-                    <Text text="{tableModel>societa}"/>
-                    <Text text="{tableModel>ledger}"/>
-                    <Text text="{tableModel>periodo}"/>
-                    <Text text="{path: 'tableModel>utilePerditaCY', type: 'sap.ui.model.type.Float',
-                                                formatOptions: {
-                                                    minFractionDigits: 2,
-                                                    maxFractionDigits: 2,
-                                                    groupingEnabled: true
-                                                }}"/>
-                    <Text text="{tableModel>descrizioneConfigurazione}"/>
-                    <Text text="{tableModel>scenario}"/>
-                    <Text text="{path: 'tableModel>redditoImponibile', type: 'sap.ui.model.type.Float',
-                                                formatOptions: {
-                                                    minFractionDigits: 2,
-                                                    maxFractionDigits: 2,
-                                                    groupingEnabled: true
-                                                }}"/>
-                    <Text text="{path: 'tableModel>ires', type: 'sap.ui.model.type.Float',
-                                                formatOptions: {
-                                                    minFractionDigits: 2,
-                                                    maxFractionDigits: 2,
-                                                    groupingEnabled: true
-                                                }}"/>
-                    <Text text="{path: 'tableModel>valoreProduzione', type: 'sap.ui.model.type.Float',
-                                                formatOptions: {
-                                                    minFractionDigits: 2,
-                                                    maxFractionDigits: 2,
-                                                    groupingEnabled: true
-                                                }}"/>
-                    <Text text="{path: 'tableModel>irap', type: 'sap.ui.model.type.Float',
-                                                formatOptions: {
-                                                    minFractionDigits: 2,
-                                                    maxFractionDigits: 2,
-                                                    groupingEnabled: true
-                                                }}"/>
-                    <Text text="{path: 'tableModel>movement', type: 'sap.ui.model.type.Float',
-                                                formatOptions: {
-                                                    minFractionDigits: 2,
-                                                    maxFractionDigits: 2,
-                                                    groupingEnabled: true
-                                                }}"/>
-                    <Text text="{path: 'tableModel>createdAt', type: 'sap.ui.model.odata.type.DateTimeOffset',
-                                                                constraints: {
-                                                                    precision: 3,
-                                                                    v4: true
-                                                                },
-                                                                formatOptions: {
-                                                                    style: 'short' 
-                                                                }}"/> 
-                    <Text text="{tableModel>createdBy}"/>                    
-                </cells>
-              </ColumnListItem>
-            </items>
-          </Table>
+            <t:Table
+                rows="{path:'oModelTiming>/oModel'}"
+				selectionMode="None" >
+                <t:columns>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>CodiceDiff}" />
+                        <t:template>
+                            <Text text="{oModelTiming>codiceRipresa}" wrapping="false" />
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>DiffTemp}" />
+                        <t:template>
+                            <Text text="{oModelTiming>descrizioneRipresa}" wrapping="false" />
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>OpeningB}" />
+                        <t:template>
+                            <Input type="Number" editable="false" value="{oModelTiming>OpeningBalance}"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>PriorYear}" />
+                        <t:template>
+                            <Input type="Number" editable="false" value="{oModelTiming>PriorYearAdjustments}"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>Extraordinary}" />
+                        <t:template>
+                            <Input type="Number" editable="true" value="{oModelTiming>extraordinaryTransactions}"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>CurrYear}" />
+                        <t:template>
+                            <Input type="Number" editable="false" value="{oModelTiming>CurrentYearAccrual}"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>CurrYearUtili}" />
+                        <t:template>
+                            <Input type="Number" editable="false" value="{oModelTiming>CurrentYearUtilization}"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>CurrYearUtili}" />
+                        <t:template>
+                            <Input type="Number" editable="false" value="{oModelTiming>CurrentYearUtilization}"/>
+                        </t:template>
+					</t:Column>
+                </t:columns>
+            </t:Table>
         </semantic:content>
-        <semantic:footerCustomActions>
-          <Button text="{i18n>save}" press="onSave" />
-          <Button text="{i18n>cancel}" press="onCancelRefresh"/>
-        </semantic:footerCustomActions>
-      </semantic:SemanticPage>
+    </semantic:SemanticPage>
 </mvc:View>

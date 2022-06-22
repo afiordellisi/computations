@@ -235,25 +235,25 @@ sap.ui.define([
                 var key = oEvent.getSource().getProperty("key");
                 var oRouter = this.getOwnerComponent().getRouter();
                 
-                if(key === 'C01'){
+                if(key === 'C04'){
                     oRouter.navTo("TimeDiff", {
                         //ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
                         ID :  this.getView().getModel("computationModel").getData().ID,
                         imposta : this.getView().byId("impostaButton").getSelectedKey()
                     }, false);
-                }if(key === 'C02'){
+                }if(key === 'C05'){
                     oRouter.navTo("Riprese", {
                         ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
                         ID :  this.getView().getModel("computationModel").getData().ID,
                         imposta : this.getView().byId("impostaButton").getSelectedKey()
                     }, false);
-                }if(key === 'C03'){
+                }if(key === 'C06'){
                     oRouter.navTo("Riprese", {
                         ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
                         ID :  this.getView().getModel("computationModel").getData().ID,
                         imposta : this.getView().byId("impostaButton").getSelectedKey()
                     }, false);
-                }if(key === 'C04'){
+                }if(key === 'C07'){
                     oRouter.navTo("Riprese", {
                         ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
                         ID :  this.getView().getModel("computationModel").getData().ID,
