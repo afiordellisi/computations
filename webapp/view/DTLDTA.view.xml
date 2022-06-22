@@ -1,0 +1,81 @@
+<mvc:View controllerName="tax.provisioning.computations.controller.DTLDTA"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table">
+    <semantic:SemanticPage id="timeDiffPage" headerPinnable="true" headerExpanded="true" toggleHeaderOnTitleClick="true" preserveHeaderStateOnScroll="false" titleAreaShrinkRatio="1:1.6:1.6" showFooter="false">
+        <semantic:headerContent>
+            <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                <layout:HorizontalLayout class="sapUiSmallMarginTop" allowWrapping="true">
+                    <layout:VerticalLayout class="sapUiMediumMarginEnd">  
+                        <ObjectIdentifier text="{i18n>imposta}: " class="sapUiTinyMarginBottom" id="impostaDT"/> 
+                        <ObjectIdentifier text="{i18n>Computazione}: " class="sapUiTinyMarginBottom" id="computazioneDT"/>
+                    </layout:VerticalLayout>  
+                    <layout:VerticalLayout> 
+                        <ObjectNumber number="{oModelTestata>/imposta}" class="sapUiTinyMarginBottom"/>
+                        <ObjectNumber number="{oModelTestata>/computationID}" class="sapUiTinyMarginBottom"/>
+                    </layout:VerticalLayout>            
+                </layout:HorizontalLayout>
+            </layout:VerticalLayout>
+        </semantic:headerContent>
+
+        <semantic:content>
+            <t:Table
+                rows="{path:'oModelTiming>/oModel'}"
+				selectionMode="None" >
+                <t:columns>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>CodiceDiff}" />
+                        <t:template>
+                            <Text text="{oModelTiming>codiceRipresa}" wrapping="false" />
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>DiffTemp}" />
+                        <t:template>
+                            <Text text="{oModelTiming>descrizioneRipresa}" wrapping="false" />
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>OpeningB}" />
+                        <t:template>
+                            <Input type="Number" editable="false" value="{oModelTiming>OpeningBalance}"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>PriorYear}" />
+                        <t:template>
+                            <Input type="Number" editable="false" value="{oModelTiming>PriorYearAdjustments}"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>Extraordinary}" />
+                        <t:template>
+                            <Input type="Number" editable="true" value="{oModelTiming>extraordinaryTransactions}"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>CurrYear}" />
+                        <t:template>
+                            <Input type="Number" editable="false" value="{oModelTiming>CurrentYearAccrual}"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>CurrYearUtili}" />
+                        <t:template>
+                            <Input type="Number" editable="false" value="{oModelTiming>CurrentYearUtilization}"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>CurrYearUtili}" />
+                        <t:template>
+                            <Input type="Number" editable="false" value="{oModelTiming>CurrentYearUtilization}"/>
+                        </t:template>
+					</t:Column>
+                </t:columns>
+            </t:Table>
+        </semantic:content>
+    </semantic:SemanticPage>
+</mvc:View>
