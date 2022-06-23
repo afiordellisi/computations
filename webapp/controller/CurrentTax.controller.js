@@ -242,8 +242,8 @@ sap.ui.define([
                         imposta : this.getView().byId("impostaButton").getSelectedKey()
                     }, false);
                 }if(key === 'C05'){
-                    oRouter.navTo("Riprese", {
-                        ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
+                    oRouter.navTo("DTLDTA", {
+                        //ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
                         ID :  this.getView().getModel("computationModel").getData().ID,
                         imposta : this.getView().byId("impostaButton").getSelectedKey()
                     }, false);

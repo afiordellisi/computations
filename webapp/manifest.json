@@ -211,6 +211,13 @@
                     "target": [
                         "TimeDiff"
                     ]
+                },
+                {
+                    "name": "DTLDTA",
+                    "pattern": "Computation/{ID}/Imposta/{imposta}/DTLDTA",
+                    "target": [
+                        "DTLDTA"
+                    ]
                 }
             ],
             "targets": {
@@ -260,6 +267,14 @@
                     "clearControlAggregation": false,
                     "viewId": "TimeDiff",
                     "viewName": "TimeDiff",
+                    "viewLevel": 5
+                },
+                "DTLDTA": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "DTLDTA",
+                    "viewName": "DTLDTA",
                     "viewLevel": 5
                 }
             }
