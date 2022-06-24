@@ -150,12 +150,14 @@ sap.ui.define([
                     success: function (oCompleteEntry) {
                         
                         var DataModel = new sap.ui.model.json.JSONModel();
-                        var OB = 0;
+                        var totali = {totaleOB : 0, totaleCYA : 0};
+                        
                         for(var i =0; i<oCompleteEntry.value.length; i++){
-                           OB += oCompleteEntry.value[i].OpeningBalance;
+                           totali.totaleOB += oCompleteEntry.value[i].OpeningBalance;
+                           totali.totaleCYA += oCompleteEntry.value[i].CurrentYearAccrual;
                         }
                        
-                        var data = OB;
+                        var data = totali;
                         DataModel.setData(data);
                         that.getView().setModel(DataModel, "oModelOB");                         
                         //that.getView().getModel().setData(data);
