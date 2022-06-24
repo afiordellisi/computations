@@ -111,6 +111,27 @@ sap.ui.define([
                         var DataModel = new sap.ui.model.json.JSONModel();
                         DataModel.setData(data);
                         that.getView().setModel(DataModel, "oModelTiming");
+
+                        var DataModel2 = new sap.ui.model.json.JSONModel();
+                        var totali = {totaleOB : 0, totalePRA : 0, totaleExt : 0, totaleCYA : 0, totaleCYU : 0, totaleOtA : 0, totaleCB : 0, totaleC1 : 0, totaleC2 : 0, totaleC3 : 0, totaleLT : 0};
+
+                        for(var i =0; i<oCompleteEntry.value.length; i++){
+                            totali.totaleOB += oCompleteEntry.value[i].OpeningBalance;
+                            totali.totalePRA += oCompleteEntry.value[i].PriorYearAdjustments;
+                            totali.totaleExt += oCompleteEntry.value[i].extraordinaryTransactions;
+                            totali.totaleCYA += oCompleteEntry.value[i].CurrentYearAccrual;
+                            totali.totaleCYU += oCompleteEntry.value[i].CurrentYearUtilization;
+                            totali.totaleOtA += oCompleteEntry.value[i].otherAdjustments;
+                            totali.totaleCB += oCompleteEntry.value[i].closingBalance;
+                            totali.totaleC1 += oCompleteEntry.value[i].current1;
+                            totali.totaleC2 += oCompleteEntry.value[i].current2;
+                            totali.totaleC3 += oCompleteEntry.value[i].current3;
+                            totali.totaleLT += oCompleteEntry.value[i].longTerm;
+                        }
+
+                        var data2 = totali;
+                        DataModel2.setData(data2);
+                        that.getView().setModel(DataModel2, "oModelTotali");
                     },
                     error: function (error) {
                         sap.m.MessageToast.show("Error");

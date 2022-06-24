@@ -46,36 +46,69 @@
                             </Column>
                             <Column>
                                 <Text text="{i18n>OpeningB}" />
+                                <footer>
+                                    <Text text="{oModelTotali>/totaleOB}"/>
+                                </footer>
                             </Column>
                             <Column>
                                 <Text text="{i18n>PriorYear}" />
+                                <footer>
+                                    <Text text="{oModelTotali>/totalePRA}"/>
+                                </footer>
                             </Column>
                             <Column>
                                 <Text text="{i18n>Extraordinary}" />
+                                <footer>
+                                    <Text text="{oModelTotali>/totaleExt}"/>
+                                </footer>
                             </Column>
                             <Column>
                                 <Text text="{i18n>CurrYear}" />
+                                <footer>
+                                    <Text text="{oModelTotali>/totaleCYA}"/>
+                                </footer>
                             </Column>
                             <Column>
                                 <Text text="{i18n>CurrYearUtili}" />
+                                <footer>
+                                    <Text text="{oModelTotali>/totaleCYU}"/>
+                                </footer>
                             </Column>
                             <Column>
                                 <Text text="{i18n>OtherAdj}" />
+                                <footer>
+                                    <Text text="{oModelTotali>/totaleOtA}"/>
+                                </footer>
                             </Column>
                             <Column>
                                 <Text text="{i18n>ClosingB}" />
+                                <footer>
+                                    <Text text="{oModelTotali>/totaleCB}"/>
+                                </footer>
                             </Column>
                             <Column>
                                 <Text text="{i18n>Current1}" />
+                                <footer>
+                                    <Text text="{oModelTotali>/totaleC1}"/>
+                                </footer>
                             </Column>
                             <Column>
                                 <Text text="{i18n>Current2}" />
+                                <footer>
+                                    <Text text="{oModelTotali>/totaleC2}"/>
+                                </footer>
                             </Column>
                             <Column>
                                 <Text text="{i18n>Current3}" />
+                                <footer>
+                                    <Text text="{oModelTotali>/totaleC3}"/>
+                                </footer>
                             </Column>
                             <Column>
                                 <Text text="{i18n>LongTerm}" />
+                                <footer>
+                                    <Text text="{oModelTotali>/totaleLT}"/>
+                                </footer>
                             </Column>
                         </columns>
                         <items>
