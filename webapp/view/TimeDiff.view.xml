@@ -4,7 +4,10 @@
     xmlns:semantic="sap.f.semantic"
     xmlns:layout="sap.ui.layout"
     xmlns:core="sap.ui.core"
-    xmlns:t="sap.ui.table">
+    xmlns:t="sap.ui.table"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable" 
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     <semantic:SemanticPage id="timeDiffPage" headerPinnable="true" headerExpanded="true" toggleHeaderOnTitleClick="true" preserveHeaderStateOnScroll="false" titleAreaShrinkRatio="1:1.6:1.6" showFooter="false">
         <semantic:headerContent>
             <layout:VerticalLayout class="sapUiMediumMarginEnd">
@@ -22,91 +25,100 @@
         </semantic:headerContent>
 
         <semantic:content>
-            <!-- <t:Table
-                rows="{path:'oModelTiming>/oModel'}"
-				selectionMode="None" >
-                <t:columns>
-                    <t:Column width="11rem">
-                        <Label text="{i18n>CodiceDiff}" />
-                        <t:template>
-                            <Text text="{oModelTiming>codiceRipresa}" wrapping="false" />
-                        </t:template>
-					</t:Column>
-                    <t:Column width="11rem">
-                        <Label text="{i18n>DiffTemp}" />
-                        <t:template>
-                            <Text text="{oModelTiming>descrizioneRipresa}" wrapping="false" />
-                        </t:template>
-					</t:Column>
-                    <t:Column width="11rem">
-                        <Label text="{i18n>OpeningB}" />
-                        <t:template>
-                            <Input type="Number" editable="false" value="{oModelTiming>OpeningBalance}"/>
-                        </t:template>
-					</t:Column>
-                    <t:Column width="11rem">
-                        <Label text="{i18n>PriorYear}" />
-                        <t:template>
-                            <Input type="Number" editable="false" value="{oModelTiming>PriorYearAdjustments}"/>
-                        </t:template>
-					</t:Column>
-                    <t:Column width="11rem">
-                        <Label text="{i18n>Extraordinary}" />
-                        <t:template>
-                            <Input type="Number" editable="true" value="{oModelTiming>extraordinaryTransactions}"/>
-                        </t:template>
-					</t:Column>
-                    <t:Column width="11rem">
-                        <Label text="{i18n>CurrYear}" />
-                        <t:template>
-                            <Input type="Number" editable="false" value="{oModelTiming>CurrentYearAccrual}"/>
-                        </t:template>
-					</t:Column>
-                    <t:Column width="11rem">
-                        <Label text="{i18n>CurrYearUtili}" />
-                        <t:template>
-                            <Input type="Number" editable="false" value="{oModelTiming>CurrentYearUtilization}"/>
-                        </t:template>
-					</t:Column>
-                    <t:Column width="11rem">
-                        <Label text="{i18n>OtherAdj}" />
-                        <t:template>
-                            <Input type="Number" editable="true" value="{oModelTiming>otherAdjustments}"/>
-                        </t:template>
-					</t:Column>
-                    <t:Column width="11rem">
-                        <Label text="{i18n>ClosingB}" />
-                        <t:template>
-                            <Input type="Number" editable="false" value="{oModelTiming>closingBalance}"/>
-                        </t:template>
-					</t:Column>
-                    <t:Column width="11rem">
-                        <Label text="{i18n>Current1}" />
-                        <t:template>
-                            <Input type="Number" editable="false" value="{oModelTiming>current1}"/>
-                        </t:template>
-					</t:Column>
-                    <t:Column width="11rem">
-                        <Label text="{i18n>Current2}" />
-                        <t:template>
-                            <Input type="Number" editable="true" value="{oModelTiming>current2}"/>
-                        </t:template>
-					</t:Column>
-                    <t:Column width="11rem">
-                        <Label text="{i18n>Current3}" />
-                        <t:template>
-                            <Input type="Number" editable="true" value="{oModelTiming>current3}"/>
-                        </t:template>
-					</t:Column>
-                    <t:Column width="11rem">
-                        <Label text="{i18n>LongTerm}" />
-                        <t:template>
-                            <Input type="Number" editable="true" value="{oModelTiming>longTerm}"/>
-                        </t:template>
-					</t:Column>
-                </t:columns>
-            </t:Table> -->
-            
+            <ScrollContainer height="auto" vertical="true" focusable="true">
+                <content>
+                    <Table id="idProductsTable"
+                        inset="false"
+                        items="{path:'oModelTiming>/oModel'}"
+                        class="sapFDynamicPageAlignContent"
+                        width="auto"
+                        growing="true"
+                        growingThreshold="50"
+                        growingScrollToLoad="false"
+                        fixedLayout="false">
+
+                        <columns>
+                            <Column>
+                                <Text text="{i18n>CodiceDiff}" />
+                            </Column>
+                            <Column>
+                                <Text text="{i18n>DiffTemp}" />
+                            </Column>
+                            <Column>
+                                <Text text="{i18n>OpeningB}" />
+                            </Column>
+                            <Column>
+                                <Text text="{i18n>PriorYear}" />
+                            </Column>
+                            <Column>
+                                <Text text="{i18n>Extraordinary}" />
+                            </Column>
+                            <Column>
+                                <Text text="{i18n>CurrYear}" />
+                            </Column>
+                            <Column>
+                                <Text text="{i18n>CurrYearUtili}" />
+                            </Column>
+                            <Column>
+                                <Text text="{i18n>OtherAdj}" />
+                            </Column>
+                            <Column>
+                                <Text text="{i18n>ClosingB}" />
+                            </Column>
+                            <Column>
+                                <Text text="{i18n>Current1}" />
+                            </Column>
+                            <Column>
+                                <Text text="{i18n>Current2}" />
+                            </Column>
+                            <Column>
+                                <Text text="{i18n>Current3}" />
+                            </Column>
+                            <Column>
+                                <Text text="{i18n>LongTerm}" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{oModelTiming>codiceRipresa}"/>
+                                    <Text text="{oModelTiming>descrizioneRipresa}"/>
+                                    <Text text="{oModelTiming>OpeningBalance}"/>
+                                    <Text text="{oModelTiming>PriorYearAdjustments}"/>
+                                    <Input type="Number" editable="true" value="{oModelTiming>extraordinaryTransactions}"/>
+                                    <Text text="{oModelTiming>CurrentYearAccrual}"/>
+                                    <Text text="{oModelTiming>CurrentYearUtilization}"/>
+                                    <Input type="Number" editable="true" value="{oModelTiming>otherAdjustments}"/>
+                                    <Text text="{oModelTiming>closingBalance}"/>
+                                    <Text text="{oModelTiming>current1}"/>
+                                    <Input type="Number" editable="true" value="{oModelTiming>current2}"/>
+                                    <Input type="Number" editable="true" value="{oModelTiming>current3}"/>
+                                    <Input type="Number" editable="true" value="{oModelTiming>longTerm}"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </content>
+            </ScrollContainer>
+
+
+            <!-- <smartTable:SmartTable id="LineItemsSmartTable" 
+                entitySet="TimingDifferencesViewSet"
+                tableType="AnalyticalTable"
+                xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+                beforeRebindTable="setTable" 
+                useExportToExcel="true" 
+                beforeExport="onBeforeExport" 
+                useVariantManagement="false" 
+                useTablePersonalisation="false" 
+                showRowCount="false" 
+                enableAutoBinding="true" 
+                class="sapUiResponsiveContentPadding" 
+                enableAutoColumnWidth="true" 
+                initiallyVisibleFields="codiceRipresa,descrizioneRipresa"
+                requestAtLeastFields="codiceRipresa,descrizioneRipresa">
+
+			</smartTable:SmartTable> -->
         </semantic:content>
     </semantic:SemanticPage>
 </mvc:View>
