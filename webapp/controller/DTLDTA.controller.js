@@ -65,27 +65,35 @@ sap.ui.define([
                 //     }
                 // });
 
-                jQuery.ajax({
-                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/DTView(imposta='"+imposta+"',computationId="+computationID+")/Set"),
-                    // url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Configurazioni"),
-                    // contentType: "application/json",
-                    type: 'GET',
-                    dataType: "json",
-                    async: false,
-                    success: function (oCompleteEntry) {
-                        var data = oCompleteEntry.value;
-                        var DataModel = new sap.ui.model.json.JSONModel();
-                        DataModel.setData(data);
-                        that.getView().setModel(DataModel, "");                         
-                        //that.getView().getModel().setData(data);
-                       // that.getView().getModel().oData = data
-                    },
-                    error: function (error) {
-                        sap.m.MessageToast.show("Error");
-                    }
-                });
+                // jQuery.ajax({
+                //     url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/DTView(imposta='"+imposta+"',computationId="+computationID+")/Set"),
+                //     // url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Configurazioni"),
+                //     // contentType: "application/json",
+                //     type: 'GET',
+                //     dataType: "json",
+                //     async: false,
+                //     success: function (oCompleteEntry) {
+                //         var data = {oModel: oCompleteEntry.value};
+                //         var DataModel = new sap.ui.model.json.JSONModel();
+                //         // var totali = oCompleteEntry.value[0];
+                //         // totali.codiceRipresa = "TOTALE";                        
+                //         // data.push(totali);
+                //         DataModel.setData(data);
+                //         that.getView().setModel(DataModel, "oModelDT");                         
+                //         //that.getView().getModel().setData(data);
+                //        // that.getView().getModel().oData = data
+                //     },
+                //     error: function (error) {
+                //         sap.m.MessageToast.show("Error");
+                //     }
+                // });
 
             },
+
+            editFunction: function(oEvent){
+                
+            },
+
 
             _onObjectMatched: function (oEvent) {
                 var oEvent = oEvent.getParameter("arguments");
@@ -101,7 +109,30 @@ sap.ui.define([
               
                 //this.getView().byId("LineItemsSmartTable").setModel(oModel);
 
-                // var that = this;
+                var that = this;
+
+                jQuery.ajax({
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/DTView(imposta='"+imposta+"',computationId="+computationID+")/Set"),
+                    // url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Configurazioni"),
+                    // contentType: "application/json",
+                    type: 'GET',
+                    dataType: "json",
+                    async: false,
+                    success: function (oCompleteEntry) {
+                        var data = {oModel: oCompleteEntry.value};
+                        var DataModel = new sap.ui.model.json.JSONModel();
+                        // var totali = oCompleteEntry.value[0];
+                        // totali.codiceRipresa = "TOTALE";
+                        // data.push(totali);
+                        DataModel.setData(data);
+                        that.getView().setModel(DataModel, "oModelDT");                         
+                        //that.getView().getModel().setData(data);
+                       // that.getView().getModel().oData = data
+                    },
+                    error: function (error) {
+                        sap.m.MessageToast.show("Error");
+                    }
+                });
 
                 // jQuery.ajax({
                 //     url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/DTView(imposta='IRES',computationId="+computationID+")/Set"),

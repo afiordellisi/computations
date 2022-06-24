@@ -32,14 +32,17 @@
         </semantic:headerContent>
 
         <semantic:content>
-            	<smartTable:SmartTable id="LineItemsSmartTable" 
+            	<!-- <smartTable:SmartTable id="LineItemsSmartTable" 
                 entitySet="DTViewSet"
                 tableType="Table"
                 beforeRebindTable="setTable" 
                 useExportToExcel="true" 
+                editTogglable="true"
+                editable="false"
+                editToggled="editFunction"                
                 beforeExport="onBeforeExport" 
                 useVariantManagement="false" 
-                useTablePersonalisation="false" 
+                useTablePersonalisation="true" 
                 showRowCount="false" 
                 enableAutoBinding="true" 
                 class="sapUiResponsiveContentPadding" 
@@ -48,7 +51,116 @@
 				<smartTable:layoutData>
 					<FlexItemData growFactor="1" baseSize="0%"/>
 				</smartTable:layoutData>
-			</smartTable:SmartTable>
+			</smartTable:SmartTable> -->
+
+            <ScrollContainer height="auto" vertical="true" focusable="true">
+            <content>
+            <Table id="idProductsTable"
+
+                        inset="false"
+
+                        items="{path:'oModelDT>/oModel'}"
+
+                        class="sapFSemanticPageAlignContent"
+
+                        width="auto"
+                        fixedLayout="false"
+                        growing="true"
+
+                        growingThreshold="10"
+
+                        growingScrollToLoad="false">
+                <columns>
+                    <Column>
+                        <Label text="{i18n>codiceRipresa}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>descrizioneRipresa}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OpeningB}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>PriorYear}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>Extraordinary}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>CurrYear}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>CurrYearUtili}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OtherAdj}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>changetax}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>closingGB}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>devOpen}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>devMov}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>devClosing}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>closNB}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>movementPL}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>movementBS}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>Current1}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>Current2}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>Current3}"/>
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>LongTerm}"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem press="onDetailPress"  class="cbVisibility">
+                        <cells>
+                            <Text text="{oModelDT>codiceRipresa}"/>
+                            <Text text="{oModelDT>descrizioneRipresa}"/>
+                            <Text text="{oModelDT>OpeningBalance}" editable="false"/>
+                            <Text text="{oModelDT>PriorYearAdjustments}" editable="false"/>
+                            <Text text="{oModelDT>extraordinaryTransactions}" editable="false"/>
+                            <Text text="{oModelDT>CurrentYearAccrual}" editable="false"/>
+                            <Text text="{oModelDT>CurrentYearUtilization}" editable="false"/>
+                            <Text text="{oModelDT>otherAdjustments}" editable="false"/>
+                            <Text text="{oModelDT>changeTaxRate}" editable="false"/>
+                            <Text text="{oModelDT>closingGrossBalance}" editable="false"/>
+                            <Text text="{oModelDT>devaluationOpening}" editable="false"/>
+                            <Text text="{oModelDT>devaluationMovement}" editable="false"/>
+                            <Text text="{oModelDT>devaluationClosing}" editable="false"/>
+                            <Text text="{oModelDT>closingNetBalance}" editable="false"/>
+                            <Text text="{oModelDT>movementPL}" editable="false"/>
+                            <Input text="{oModelDT>movementBS}" editable="true"/>
+                            <Text text="{oModelDT>current1}" editable="false"/>
+                            <Text text="{oModelDT>current2}" editable="false"/>
+                            <Text text="{oModelDT>current3}" editable="false"/>
+                            <Text text="{oModelDT>current4}" editable="false"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </ScrollContainer>
         </semantic:content>
     </semantic:SemanticPage>
 </mvc:View>

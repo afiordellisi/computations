@@ -56,8 +56,7 @@ sap.ui.define([
                 this.getView().setModel(new JSONModel({
                     "ID": computazioneID,
                     "ripresaID": ripresaID,
-                    "imposta" : imposta,
-                    "conf" : conf
+                    "imposta" : imposta
                   }), "IDcomputationModel");
 
                 // var that = this;
@@ -97,7 +96,7 @@ sap.ui.define([
                     ID : this.getView().getModel("IDcomputationModel").getData().ID, //computazione ID
                     ripresaID : this.getView().getModel("IDcomputationModel").getData().ripresaID,
                     codiceGL : oEvent.getSource().getBindingContext("oModelAnagraficaSingola").getObject().bilancio_codiceGL,
-                    imposta: this.getView().getModel("IDcomputationModel").getData().imposta,
+                    imposta: this.getView().getModel("IDcomputationModel").getData().imposta
                 }, false);
             },
 
@@ -291,13 +290,13 @@ sap.ui.define([
                         sap.m.MessageToast.show("Error");
                     }
                 });
-            },
-
-            onNavBack: function(oEvent){
-                this.getRouter().navTo("CurrentTax", {
-                    ID : this.getView().getModel("IDcomputationModel").getData().ID
-                    //ID : computazioneID
-                });
             }
+
+        //     onNavBack: function(oEvent){
+        //         this.getRouter().navTo("CurrentTax", {
+        //             ID : this.getView().getModel("IDcomputationModel").getData().ID
+        //             //ID : computazioneID
+        //         });
+        //     }
         });
     });
