@@ -106,7 +106,6 @@ sap.ui.define([
                 this.getView().setModel(DataModelTestata, "oModelTestata");
 
                 //oView = this.getView().byId("LineItemsSmartTable");
-              
                 //this.getView().byId("LineItemsSmartTable").setModel(oModel);
 
                 var that = this;
@@ -119,13 +118,46 @@ sap.ui.define([
                     dataType: "json",
                     async: false,
                     success: function (oCompleteEntry) {
-                        var data = {oModel: oCompleteEntry.value};
+                        
                         var DataModel = new sap.ui.model.json.JSONModel();
-                        // var totali = oCompleteEntry.value[0];
-                        // totali.codiceRipresa = "TOTALE";
-                        // data.push(totali);
+                        // var OB = 0;
+                        // for(var i =0; i<oCompleteEntry.value.length; i++){
+                        //    OB += oCompleteEntry.value[i].OpeningBalance;
+                        // }
+                        // for(var i =0; i<oCompleteEntry.value.length; i++){
+                        //     OB += oCompleteEntry.value[i].OpeningBalance;
+                        //  }
+                        var data = {
+                            oModel: oCompleteEntry.value
+                        };
                         DataModel.setData(data);
                         that.getView().setModel(DataModel, "oModelDT");                         
+                        //that.getView().getModel().setData(data);
+                       // that.getView().getModel().oData = data
+                    },
+                    error: function (error) {
+                        sap.m.MessageToast.show("Error");
+                    }
+                });
+
+                jQuery.ajax({
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/DTView(imposta='"+imposta+"',computationId="+computationID+")/Set"),
+                    // url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Configurazioni"),
+                    // contentType: "application/json",
+                    type: 'GET',
+                    dataType: "json",
+                    async: false,
+                    success: function (oCompleteEntry) {
+                        
+                        var DataModel = new sap.ui.model.json.JSONModel();
+                        var OB = 0;
+                        for(var i =0; i<oCompleteEntry.value.length; i++){
+                           OB += oCompleteEntry.value[i].OpeningBalance;
+                        }
+                       
+                        var data = OB;
+                        DataModel.setData(data);
+                        that.getView().setModel(DataModel, "oModelOB");                         
                         //that.getView().getModel().setData(data);
                        // that.getView().getModel().oData = data
                     },
