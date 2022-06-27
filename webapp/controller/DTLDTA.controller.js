@@ -120,53 +120,45 @@ sap.ui.define([
                     success: function (oCompleteEntry) {
                         
                         var DataModel = new sap.ui.model.json.JSONModel();
-                        // var OB = 0;
-                        // for(var i =0; i<oCompleteEntry.value.length; i++){
-                        //    OB += oCompleteEntry.value[i].OpeningBalance;
-                        // }
-                        // for(var i =0; i<oCompleteEntry.value.length; i++){
-                        //     OB += oCompleteEntry.value[i].OpeningBalance;
-                        //  }
                         var data = {
                             oModel: oCompleteEntry.value
                         };
                         DataModel.setData(data);
                         that.getView().setModel(DataModel, "oModelDT");                         
-                        //that.getView().getModel().setData(data);
-                       // that.getView().getModel().oData = data
+                        
+                        var DataModel2 = new sap.ui.model.json.JSONModel();
+                        var totali = {totaleOB : 0, totalePRA : 0, totaleExt : 0, totaleCYA : 0, totaleCYU : 0, totaleOtA : 0, totaleChangeTax : 0, totaleDevOp : 0, totaleDevMov : 0, totaleDevC : 0, totaleCNB : 0, totaleMPL : 0, totaleMBS : 0, totaleCGB : 0, totaleC1 : 0, totaleC2 : 0, totaleC3 : 0, totaleLT : 0};
+
+                        for(var i =0; i<oCompleteEntry.value.length; i++){
+                            totali.totaleOB += oCompleteEntry.value[i].OpeningBalance;
+                            totali.totalePRA += oCompleteEntry.value[i].PriorYearAdjustments;
+                            totali.totaleExt += oCompleteEntry.value[i].extraordinaryTransactions;
+                            totali.totaleCYA += oCompleteEntry.value[i].CurrentYearAccrual;
+                            totali.totaleCYU += oCompleteEntry.value[i].CurrentYearUtilization;
+                            totali.totaleOtA += oCompleteEntry.value[i].otherAdjustments;
+                            totali.totaleChangeTax += oCompleteEntry.value[i].changeTaxRate;
+                            totali.totaleDevOp += oCompleteEntry.value[i].devaluationOpening;
+                            totali.totaleDevMov += oCompleteEntry.value[i].devaluationMovement;
+                            totali.totaleDevC += oCompleteEntry.value[i].devaluationClosing;
+                            totali.totaleCNB += oCompleteEntry.value[i].closingNetBalance;
+                            totali.totaleMPL += oCompleteEntry.value[i].movementPL;
+                            //totali.totaleMBS += oCompleteEntry.value[i].movementBS;
+                            totali.totaleCGB += oCompleteEntry.value[i].closingGrossBalance;
+                            totali.totaleC1 += oCompleteEntry.value[i].current1;
+                            totali.totaleC2 += oCompleteEntry.value[i].current2;
+                            totali.totaleC3 += oCompleteEntry.value[i].current3;
+                            totali.totaleLT += oCompleteEntry.value[i].longTerm;
+                        }
+
+                        var data2 = totali;
+                        DataModel2.setData(data2);
+                        that.getView().setModel(DataModel2, "oModelTotali");
                     },
                     error: function (error) {
                         sap.m.MessageToast.show("Error");
                     }
                 });
 
-                jQuery.ajax({
-                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/DTView(imposta='"+imposta+"',computationId="+computationID+")/Set"),
-                    // url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Configurazioni"),
-                    // contentType: "application/json",
-                    type: 'GET',
-                    dataType: "json",
-                    async: false,
-                    success: function (oCompleteEntry) {
-                        
-                        var DataModel = new sap.ui.model.json.JSONModel();
-                        var totali = {totaleOB : 0, totaleCYA : 0};
-                        
-                        for(var i =0; i<oCompleteEntry.value.length; i++){
-                           totali.totaleOB += oCompleteEntry.value[i].OpeningBalance;
-                           totali.totaleCYA += oCompleteEntry.value[i].CurrentYearAccrual;
-                        }
-                       
-                        var data = totali;
-                        DataModel.setData(data);
-                        that.getView().setModel(DataModel, "oModelOB");                         
-                        //that.getView().getModel().setData(data);
-                       // that.getView().getModel().oData = data
-                    },
-                    error: function (error) {
-                        sap.m.MessageToast.show("Error");
-                    }
-                });
 
                 // jQuery.ajax({
                 //     url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/DTView(imposta='IRES',computationId="+computationID+")/Set"),
