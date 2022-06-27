@@ -53,7 +53,7 @@
 				</smartTable:layoutData>
 			</smartTable:SmartTable> -->
             <!-- <VBox > -->
-            <ScrollContainer height="auto" vertical="false" focusable="true" >
+            <!-- <ScrollContainer height="auto" vertical="false" focusable="true" >
             <content>
             <Table id="idProductsTable"
                     inset="false"
@@ -209,8 +209,142 @@
                 </items>
             </Table>
         </content>
-     </ScrollContainer>
+     </ScrollContainer> -->
    <!-- </VBox > -->
+
+            <t:Table
+                rows="{path:'oModelDT>/oModel'}"
+				selectionMode="None" 
+                fixedColumnCount="2">
+                <t:columns>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>CodiceRipresa}" />
+                        <t:template>
+                            <Text text="{oModelDT>codiceRipresa}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>DescrizioneRipresa}" />
+                        <t:template>
+                            <Text text="{oModelDT>descrizioneRipresa}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>OpeningB}" />
+                        <t:template>
+                            <Text text="{oModelDT>OpeningBalance}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>OpeningB}" />
+                        <t:template>
+                            <Text text="{oModelDT>OpeningBalance}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>PriorYear}" />
+                        <t:template>
+                            <Text text="{oModelDT>PriorYearAdjustments}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>Extraordinary}" />
+                        <t:template>
+                            <Text text="{oModelDT>extraordinaryTransactions}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>CurrYear}" />
+                        <t:template>
+                            <Text text="{oModelDT>CurrentYearAccrual}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>CurrYearUtili}" />
+                        <t:template>
+                            <Text text="{oModelDT>CurrentYearUtilization}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>OtherAdj}" />
+                        <t:template>
+                            <Text text="{oModelDT>otherAdjustments}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>changetax}" />
+                        <t:template>
+                            <Text text="{oModelDT>changeTaxRate}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>closingGB}" />
+                        <t:template>
+                            <Text text="{oModelDT>closingGrossBalance}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>devOpen}" />
+                        <t:template>
+                            <Text text="{oModelDT>devaluationOpening}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>devMov}" />
+                        <t:template>
+                            <Text text="{oModelDT>devaluationMovement}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>devClosing}" />
+                        <t:template>
+                            <Text text="{oModelDT>devaluationClosing}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>closNB}" />
+                        <t:template>
+                            <Text text="{oModelDT>closingNetBalance}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>movementPL}" />
+                        <t:template>
+                            <Text text="{oModelDT>movementPL}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>movementBS}" />
+                        <t:template>
+                            <Input type="Number" editable="true" value="{oModelDT>movementBS}"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>Current1}" />
+                        <t:template>
+                            <Text text="{oModelDT>current1}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>Current2}" />
+                        <t:template>
+                            <Text text="{oModelDT>current2}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>Current3}" />
+                        <t:template>
+                            <Text text="{oModelDT>current3}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+                        <Label text="{i18n>LongTerm}" />
+                        <t:template>
+                            <Text text="{oModelDT>current4}" wrapping="false"/>
+                        </t:template>
+					</t:Column>
+                </t:columns>
+            </t:Table>
         </semantic:content>
     
     </semantic:SemanticPage>

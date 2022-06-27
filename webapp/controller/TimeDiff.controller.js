@@ -27,6 +27,9 @@ sap.ui.define([
 
             //    oView = this.getView();
             //    oView.setModel(oModel);
+
+                
+                
             },
 
             // setTable: function(oEvent){
@@ -106,32 +109,91 @@ sap.ui.define([
                     async: false,
                     success: function (oCompleteEntry) {
                         var data = {
-                            oModel: oCompleteEntry.value
+                            oModel: oCompleteEntry.value,
                         };
+
+
+                        var modello = [{
+                            "computationId": null,
+                            "imposta": null,
+                            "codiceRipresa": "Totali",
+                            "descrizioneRipresa": "",
+                            "OpeningBalance": 0,
+                            "PriorYearAdjustments": 0,
+                            "CurrentYearAccrual": 0,
+                            "CurrentYearUtilization": 0,
+                            "extraordinaryTransactions": 0,
+                            "otherAdjustments": 0,
+                            "closingBalance": 0,
+                            "current1": 0,
+                            "current2": 0,
+                            "current3": 0,
+                            "longTerm": 0
+                        }];
+
+
+                        
+
+                        // var DataModel2 = new sap.ui.model.json.JSONModel();
+                        // var totali = {totaleOB : 0, totalePRA : 0, totaleExt : 0, totaleCYA : 0, totaleCYU : 0, totaleOtA : 0, totaleCB : 0, totaleC1 : 0, totaleC2 : 0, totaleC3 : 0, totaleLT : 0};
+
+                        for(var i =0; i<oCompleteEntry.value.length; i++){
+                            if(oCompleteEntry.value[i].OpeningBalance){
+                                //oCompleteEntry.value[i].OpeningBalance = 0;
+                                modello[0].OpeningBalance += oCompleteEntry.value[i].OpeningBalance;
+                            }
+
+                            if(oCompleteEntry.value[i].PriorYearAdjustments){
+                                modello[0].PriorYearAdjustments += oCompleteEntry.value[i].PriorYearAdjustments;
+                            }
+                            
+                            if(oCompleteEntry.value[i].extraordinaryTransactions){
+                                modello[0].extraordinaryTransactions += oCompleteEntry.value[i].extraordinaryTransactions;
+                            }
+                            
+                            if(oCompleteEntry.value[i].CurrentYearAccrual){
+                                modello[0].CurrentYearAccrual += oCompleteEntry.value[i].CurrentYearAccrual;
+                            }
+
+                            if(oCompleteEntry.value[i].CurrentYearUtilization){
+                                modello[0].CurrentYearUtilization += oCompleteEntry.value[i].CurrentYearUtilization;
+                            }
+                            
+                            if(oCompleteEntry.value[i].otherAdjustments){
+                                modello[0].otherAdjustments += oCompleteEntry.value[i].otherAdjustments;
+                            }
+                            
+                            if(oCompleteEntry.value[i].closingBalance){
+                                modello[0].closingBalance += oCompleteEntry.value[i].closingBalance;
+                            }
+                            
+                            if(oCompleteEntry.value[i].current1){
+                                modello[0].current1 += oCompleteEntry.value[i].current1;
+                            }
+                            
+                            if(oCompleteEntry.value[i].current2){
+                                modello[0].current2 += oCompleteEntry.value[i].current2;
+                            }
+                            
+                            if(oCompleteEntry.value[i].current3){
+                                modello[0].current3 += oCompleteEntry.value[i].current3;
+                            }
+                            
+                            if(oCompleteEntry.value[i].longTerm){
+                                modello[0].longTerm += oCompleteEntry.value[i].longTerm;
+                            }
+                            
+                        }
+
+                        data.oModel.push(modello[0]);
+
                         var DataModel = new sap.ui.model.json.JSONModel();
                         DataModel.setData(data);
                         that.getView().setModel(DataModel, "oModelTiming");
 
-                        var DataModel2 = new sap.ui.model.json.JSONModel();
-                        var totali = {totaleOB : 0, totalePRA : 0, totaleExt : 0, totaleCYA : 0, totaleCYU : 0, totaleOtA : 0, totaleCB : 0, totaleC1 : 0, totaleC2 : 0, totaleC3 : 0, totaleLT : 0};
-
-                        for(var i =0; i<oCompleteEntry.value.length; i++){
-                            totali.totaleOB += oCompleteEntry.value[i].OpeningBalance;
-                            totali.totalePRA += oCompleteEntry.value[i].PriorYearAdjustments;
-                            totali.totaleExt += oCompleteEntry.value[i].extraordinaryTransactions;
-                            totali.totaleCYA += oCompleteEntry.value[i].CurrentYearAccrual;
-                            totali.totaleCYU += oCompleteEntry.value[i].CurrentYearUtilization;
-                            totali.totaleOtA += oCompleteEntry.value[i].otherAdjustments;
-                            totali.totaleCB += oCompleteEntry.value[i].closingBalance;
-                            totali.totaleC1 += oCompleteEntry.value[i].current1;
-                            totali.totaleC2 += oCompleteEntry.value[i].current2;
-                            totali.totaleC3 += oCompleteEntry.value[i].current3;
-                            totali.totaleLT += oCompleteEntry.value[i].longTerm;
-                        }
-
-                        var data2 = totali;
-                        DataModel2.setData(data2);
-                        that.getView().setModel(DataModel2, "oModelTotali");
+                        // var data2 = totali;
+                        // DataModel2.setData(data2);
+                        // that.getView().setModel(DataModel2, "oModelTotali");
                     },
                     error: function (error) {
                         sap.m.MessageToast.show("Error");
