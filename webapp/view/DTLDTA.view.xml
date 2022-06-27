@@ -16,11 +16,11 @@
                 <layout:HorizontalLayout class="sapUiSmallMarginTop" allowWrapping="true">
                     <layout:VerticalLayout class="sapUiMediumMarginEnd">  
                         <ObjectIdentifier text="{i18n>imposta}: " class="sapUiTinyMarginBottom" id="impostaDT"/> 
-                        <ObjectIdentifier text="{i18n>Computazione}: " class="sapUiTinyMarginBottom" id="computazioneDT"/>
+                        <!-- <ObjectIdentifier text="{i18n>Computazione}: " class="sapUiTinyMarginBottom" id="computazioneDT"/> -->
                     </layout:VerticalLayout>  
                     <layout:VerticalLayout> 
                         <ObjectNumber number="{oModelTestata>/imposta}" class="sapUiTinyMarginBottom"/>
-                        <ObjectNumber number="{oModelTestata>/computationID}" class="sapUiTinyMarginBottom"/>
+                        <!-- <ObjectNumber number="{oModelTestata>/computationID}" class="sapUiTinyMarginBottom"/> -->
                     </layout:VerticalLayout>            
                 </layout:HorizontalLayout>
             </layout:VerticalLayout>
@@ -36,7 +36,7 @@
                 entitySet="DTViewSet"
                 tableType="Table"
                 beforeRebindTable="setTable" 
-                useExportToExcel="true" 
+                useExportToExcel="true"
                 editTogglable="true"
                 editable="false"
                 editToggled="editFunction"                
@@ -52,8 +52,8 @@
 					<FlexItemData growFactor="1" baseSize="0%"/>
 				</smartTable:layoutData>
 			</smartTable:SmartTable> -->
-
-            <ScrollContainer height="auto" vertical="true" focusable="true">
+            <!-- <VBox > -->
+            <ScrollContainer height="auto" vertical="false" focusable="true" >
             <content>
             <Table id="idProductsTable"
                     inset="false"
@@ -62,109 +62,122 @@
                     width="auto"
                     fixedLayout="false"
                     growing="true"
-                    growingThreshold="100"
-                    growingScrollToLoad="false">
+                    growingThreshold="50"
+                    growingScrollToLoad="true"
+                    sticky="ColumnHeaders">
                 <columns>
                     <Column>
-                        <Label text="{i18n>codiceRipresa}"/>
+                        <Label text="{i18n>CodiceRipresa}"/>
                     </Column>
                     <Column>
-                        <Label text="{i18n>descrizioneRipresa}"/>
+                        <Label text="{i18n>DescrizioneRipresa}"/>
                     </Column>
                     <Column>
                         <Label text="{i18n>OpeningB}"/>
                         <footer>
-                            <Text text="{oModelOB>/totaleOB}"/>
+                            <Text text="{oModelTotali>/totaleOB}"/>
+                        </footer>
+                    </Column>
+                     <Column>
+                        <Text text="{i18n>PriorYear}" />
+                        <footer>
+                            <Text text="{oModelTotali>/totalePRA}"/>
                         </footer>
                     </Column>
                     <Column>
-                        <Label text="{i18n>PriorYear}"/>
-                    </Column>
-                    <Column>
-                        <Label text="{i18n>Extraordinary}"/>
-                    </Column>
-                    <Column>
-                        <Label text="{i18n>CurrYear}"/>
+                        <Text text="{i18n>Extraordinary}" />
                         <footer>
-                            <Text text="{oModelOB>/totaleCYA}"/>
+                            <Text text="{oModelTotali>/totaleExt}"/>
                         </footer>
                     </Column>
                     <Column>
-                        <Label text="{i18n>CurrYearUtili}"/>
+                        <Text text="{i18n>CurrYear}" />
                         <footer>
-                            <Text text="totaleCYU" />
+                            <Text text="{oModelTotali>/totaleCYA}"/>
                         </footer>
                     </Column>
                     <Column>
-                        <Label text="{i18n>OtherAdj}"/>
+                        <Text text="{i18n>CurrYearUtili}" />
+                        <footer>
+                            <Text text="{oModelTotali>/totaleCYU}"/>
+                        </footer>
                     </Column>
                     <Column>
-                        <Label text="{i18n>changetax}"/>
+                        <Text text="{i18n>OtherAdj}" />
                         <footer>
-                            <Text text="totaleOB" />
+                            <Text text="{oModelTotali>/totaleOtA}"/>
+                        </footer>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>CurrYearUtili}" />
+                        <footer>
+                            <Text text="{oModelTotali>/totaleChangeTax}"/>
                         </footer>
                     </Column>
                     <Column>
                         <Label text="{i18n>closingGB}"/>
                         <footer>
-                            <Text text="totaleOB" />
+                            <Text text="{oModelTotali>/totaleCGB}" />
                         </footer>
                     </Column>
                     <Column>
                         <Label text="{i18n>devOpen}"/>
                         <footer>
-                            <Text text="totaleOB" />
+                            <Text text="{oModelTotali>/totaleDevOp}" />
                         </footer>
                     </Column>
                     <Column>
                         <Label text="{i18n>devMov}"/>
                         <footer>
-                            <Text text="totaleOB" />
+                            <Text text="{oModelTotali>/totaleDevMov}" />
                         </footer>
                     </Column>
                     <Column>
                         <Label text="{i18n>devClosing}"/>
                         <footer>
-                            <Text text="totaleOB" />
+                            <Text text="{oModelTotali>/totaleDevC}" />
                         </footer>
                     </Column>
                     <Column>
                         <Label text="{i18n>closNB}"/>
                         <footer>
-                            <Text text="totaleOB" />
+                            <Text text="{oModelTotali>/totaleCNB}" />
                         </footer>
                     </Column>
                     <Column>
                         <Label text="{i18n>movementPL}"/>
                         <footer>
-                            <Text text="totaleOB" />
+                            <Text text="{oModelTotali>/totaleMPL}" />
                         </footer>
                     </Column>
                     <Column>
                         <Label text="{i18n>movementBS}"/>
-                    </Column>
-                    <Column>
-                        <Label text="{i18n>Current1}"/>
                         <footer>
-                            <Text text="totaleOB" />
+                            <Text text="{oModelTotali>/totaleMBS}" />
                         </footer>
                     </Column>
                     <Column>
-                        <Label text="{i18n>Current2}"/>
+                        <Text text="{i18n>Current1}" />
                         <footer>
-                            <Text text="totaleOB" />
+                            <Text text="{oModelTotali>/totaleC1}"/>
                         </footer>
                     </Column>
                     <Column>
-                        <Label text="{i18n>Current3}"/>
+                        <Text text="{i18n>Current2}" />
                         <footer>
-                            <Text text="totaleOB" />
+                            <Text text="{oModelTotali>/totaleC2}"/>
                         </footer>
                     </Column>
                     <Column>
-                        <Label text="{i18n>LongTerm}"/>
+                        <Text text="{i18n>Current3}" />
                         <footer>
-                            <Text text="totale" />
+                            <Text text="{oModelTotali>/totaleC3}"/>
+                        </footer>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>LongTerm}" />
+                        <footer>
+                            <Text text="{oModelTotali>/totaleLT}"/>
                         </footer>
                     </Column>
                 </columns>
@@ -196,7 +209,9 @@
                 </items>
             </Table>
         </content>
-    </ScrollContainer>
+     </ScrollContainer>
+   <!-- </VBox > -->
         </semantic:content>
+    
     </semantic:SemanticPage>
 </mvc:View>

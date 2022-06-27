@@ -14,11 +14,11 @@
                 <layout:HorizontalLayout class="sapUiSmallMarginTop" allowWrapping="true">
                     <layout:VerticalLayout class="sapUiMediumMarginEnd">  
                         <ObjectIdentifier text="{i18n>imposta}: " class="sapUiTinyMarginBottom" id="impostaTime"/> 
-                        <ObjectIdentifier text="{i18n>Computazione}: " class="sapUiTinyMarginBottom" id="computazioneTime"/>
+                        <!-- <ObjectIdentifier text="{i18n>Computazione}: " class="sapUiTinyMarginBottom" id="computazioneTime"/> -->
                     </layout:VerticalLayout>  
                     <layout:VerticalLayout> 
                         <ObjectNumber number="{oModelTestata>/imposta}" class="sapUiTinyMarginBottom"/>
-                        <ObjectNumber number="{oModelTestata>/computationID}" class="sapUiTinyMarginBottom"/>
+                        <!-- <ObjectNumber number="{oModelTestata>/computationID}" class="sapUiTinyMarginBottom"/> -->
                     </layout:VerticalLayout>            
                 </layout:HorizontalLayout>
             </layout:VerticalLayout>
