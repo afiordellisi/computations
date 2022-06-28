@@ -320,14 +320,25 @@ sap.ui.define([
                             for (var i = 0; i < TD.length; i++) {
                                 TDImponibile += TD[i].imponibile;
                             }
-                            var PERImponibile = 0;
-                            for (var i = 0; i < PER.length; i++) {
-                                PERImponibile += PER[i].imponibile;
-                            }
+                            var PERImponibile = 0; 
+                            PERImponibile = PAImponibile + PDImponibile + TAImponibile + TDImponibile + that.getView().getModel("headerModel").oData.oModel[0].imponibile;
+                            // for (var i = 0; i < PER.length; i++) {
+                            //     PERImponibile += PER[i].imponibile;
+                            // }
                             var ACEImponibile = 0;
-                            for (var i = 0; i < ACE.length; i++) {
-                                ACEImponibile += ACE[i].imponibile;
+                            // for (var i = 0; i < ACE.length; i++) {
+                            //     ACEImponibile += ACE[i].imponibile;
+                            // }
+                            for (var i = 0; i <  PER.length; i++) {
+                                ACEImponibile += PER[i].imponibile;
                             }
+                            ACEImponibile += PERImponibile ;
+
+                            var RedditoImponibile = 0;
+                            for (var i = 0; i < ACE.length; i++) {
+                                RedditoImponibile += ACE[i].imponibile;
+                            }
+                            RedditoImponibile += ACEImponibile; //questo valore va salvato, quindi serve su backend
                             var data = {
                                 oModelPA : PA,
                                 oModelPD : PD,
@@ -339,8 +350,9 @@ sap.ui.define([
                                 oModelPDImponibile: PDImponibile,
                                 oModelTAImponibile: TAImponibile,
                                 oModelTDImponibile: TDImponibile,
-                                oModelPERImponibile: PERImponibile,
-                                oModelACEImponibile: ACEImponibile
+                                oModelPERImponibile: PERImponibile, 
+                                oModelACEImponibile: ACEImponibile, 
+                                oModelRedditoImponibile: RedditoImponibile
                             };
                             var DataModel = new sap.ui.model.json.JSONModel();
                             DataModel.setData(data);
