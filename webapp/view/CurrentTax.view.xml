@@ -86,7 +86,8 @@
 					<Column
                         resizable="false"
 						width="10%"
-						headerSpan="3">
+						headerSpan="3"
+                        hAlign="End">
 						<multiLabels>
 							<m:Label text="{i18n>imposteCorrenti}" textAlign="Center" width="100%"/>
 							<m:Label text="{i18n>imponibile}" textAlign="Center" width="100%"/>
@@ -98,7 +99,8 @@
 					<Column
                         resizable="false"
 						width="10%"
-						headerSpan="2">
+						headerSpan="2"
+                        hAlign="End">
 						<multiLabels>
 							<m:Label text="{i18n>imposteCorrenti}" textAlign="Center" width="100%"/>
 							<m:Label text="{i18n>imposta} {oModelPercentuale>/oModelPercentuale}%" textAlign="Center" width="100%"/>
@@ -110,7 +112,8 @@
                     <Column
                         resizable="false"
 						width="10%"
-						headerSpan="2">
+						headerSpan="2"
+                        hAlign="End">
 						<multiLabels>
 							<m:Label text="{i18n>imposteCorrenti}" textAlign="Center" width="100%"/>
 							<m:Label text="{i18n>unico}" textAlign="Center" width="100%"/>
@@ -124,7 +127,8 @@
                     <Column
                         resizable="false"
 						width="10%"
-						headerSpan="3">
+						headerSpan="3"
+                        hAlign="End">
 						<multiLabels>
 							<m:Label text="{i18n>imposteBilancio}" textAlign="Center" width="100%"/>
 							<m:Label text="{i18n>correnti}" textAlign="Center" width="100%"/>
@@ -138,7 +142,8 @@
                     <Column
                         resizable="false"
 						width="10%"
-						headerSpan="2">
+						headerSpan="2"
+                        hAlign="End">
 						<multiLabels>
 							<m:Label text="{i18n>imposteBilancio}" textAlign="Center" width="100%"/>
 							<m:Label text="{i18n>differite}" textAlign="Center" width="100%"/>
@@ -152,7 +157,8 @@
                     <Column
                         resizable="false"
 						width="10%"
-						headerSpan="2">
+						headerSpan="2"
+                        hAlign="End">
 						<multiLabels>
 							<m:Label text="{i18n>imposteBilancio}" textAlign="Center" width="100%"/>
 							<m:Label text="{i18n>totale}" textAlign="Center" width="100%"/>
@@ -211,8 +217,8 @@
                                                 <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	resizable="false">
-                                                <m:Label text="{oModelAnagrafica>/oModelPAImponibile}" textAlign="Center" width="100%"/>
+                                        <Column	width="10%"	resizable="false" hAlign="End">
+                                                <m:Label text="{oModelAnagrafica>/oModelPAImponibile}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
@@ -221,13 +227,13 @@
                                                 }}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%" resizable="false" id="colonnaImposta">
-                                            <m:Label text="{=${oModelAnagrafica>/oModelPAImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="Center" width="100%"/>
+                                        <Column	width="10%" resizable="false" id="colonnaImposta" hAlign="End">
+                                            <m:Label text="{=${oModelAnagrafica>/oModelPAImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
                                             </template>
                                         </Column>
-                                        <Column resizable="false"
+                                        <Column resizable="false" hAlign="End"
                                             width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
@@ -235,21 +241,21 @@
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%" resizable="false">
+                                        <Column	width="10%" resizable="false" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>correnti}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%" resizable="false">
+                                        <Column	width="10%" resizable="false" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>differite}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	resizable="false" width="10%">
+                                        <Column	resizable="false" width="10%" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>totale}"/>
@@ -294,8 +300,8 @@
                                                 <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	resizable="false">
-                                                <m:Label text="{oModelAnagrafica>/oModelPDImponibile}" textAlign="Center" width="100%"/>
+                                        <Column	width="10%"	resizable="false" hAlign="End">
+                                                <m:Label text="{oModelAnagrafica>/oModelPDImponibile}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
@@ -304,13 +310,13 @@
                                                 }}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%" resizable="false" id="colonnaImposta2">
-                                            <m:Label text="{=${oModelAnagrafica>/oModelPDImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="Center" width="100%"/>
+                                        <Column	width="10%" resizable="false" id="colonnaImposta2" hAlign="End">
+                                            <m:Label text="{=${oModelAnagrafica>/oModelPDImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
                                             </template>
                                         </Column>
-                                        <Column resizable="false"
+                                        <Column resizable="false" hAlign="End"
                                             width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
@@ -318,21 +324,21 @@
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%" resizable="false">
+                                        <Column	width="10%" resizable="false" hAlign="End"> 
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>correnti}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%" resizable="false">
+                                        <Column	width="10%" resizable="false" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>differite}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	resizable="false" width="10%">
+                                        <Column	resizable="false" width="10%" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>totale}"/>
@@ -377,8 +383,8 @@
                                                 <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	resizable="false">
-                                                <m:Label text="{oModelAnagrafica>/oModelTAImponibile}" textAlign="Center" width="100%"/>
+                                        <Column	width="10%"	resizable="false" hAlign="End">
+                                                <m:Label text="{oModelAnagrafica>/oModelTAImponibile}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
@@ -387,13 +393,13 @@
                                                 }}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%" resizable="false" id="colonnaImposta3">
-                                            <m:Label text="{=${oModelAnagrafica>/oModelTAImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="Center" width="100%"/>
+                                        <Column	width="10%" resizable="false" id="colonnaImposta3" hAlign="End">
+                                            <m:Label text="{=${oModelAnagrafica>/oModelTAImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
                                             </template>
                                         </Column>
-                                        <Column resizable="false"
+                                        <Column resizable="false" hAlign="End"
                                             width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
@@ -401,21 +407,21 @@
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%" resizable="false">
+                                        <Column	width="10%" resizable="false" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>correnti}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%" resizable="false">
+                                        <Column	width="10%" resizable="false" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>differite}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	resizable="false" width="10%">
+                                        <Column	resizable="false" width="10%" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>totale}"/>
@@ -460,8 +466,8 @@
                                                 <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	resizable="false">
-                                                <m:Label text="{oModelAnagrafica>/oModelTDImponibile}" textAlign="Center" width="100%"/>
+                                        <Column	width="10%"	resizable="false" hAlign="End">
+                                                <m:Label text="{oModelAnagrafica>/oModelTDImponibile}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
@@ -470,13 +476,13 @@
                                                 }}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%" resizable="false" id="colonnaImposta4">
-                                            <m:Label text="{=${oModelAnagrafica>/oModelTDImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="Center" width="100%"/>
+                                        <Column	width="10%" resizable="false" id="colonnaImposta4" hAlign="End">
+                                            <m:Label text="{=${oModelAnagrafica>/oModelTDImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
                                             </template>
                                         </Column>
-                                        <Column resizable="false"
+                                        <Column resizable="false" hAlign="End"
                                             width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
@@ -484,21 +490,21 @@
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%" resizable="false">
+                                        <Column	width="10%" resizable="false" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>correnti}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%" resizable="false">
+                                        <Column	width="10%" resizable="false" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>differite}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	resizable="false" width="10%">
+                                        <Column	resizable="false" width="10%" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>totale}"/>
@@ -543,8 +549,8 @@
                                                 <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	resizable="false">
-                                                <m:Label text="{oModelAnagrafica>/oModelPERImponibile}" textAlign="Center" width="100%"/>
+                                        <Column	width="10%"	resizable="false" hAlign="End">
+                                                <m:Label text="{oModelAnagrafica>/oModelPERImponibile}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
@@ -553,13 +559,13 @@
                                                 }}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%" resizable="false" id="colonnaImposta5">
-                                            <m:Label text="{=${oModelAnagrafica>/oModelPERImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="Center" width="100%"/>
+                                        <Column	width="10%" resizable="false" id="colonnaImposta5" hAlign="End">
+                                            <m:Label text="{=${oModelAnagrafica>/oModelPERImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
                                             </template>
                                         </Column>
-                                        <Column resizable="false"
+                                        <Column resizable="false" hAlign="End"
                                             width="10%">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
@@ -567,21 +573,21 @@
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%" resizable="false">
+                                        <Column	width="10%" resizable="false" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>correnti}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%" resizable="false">
+                                        <Column	width="10%" resizable="false" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>differite}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	resizable="false" width="10%">
+                                        <Column	resizable="false" width="10%" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>totale}"/>
@@ -626,8 +632,8 @@
                                                 <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
                                             </template>
                                         </Column>
-                                        <Column	width="10%"	resizable="false">
-                                                <m:Label text="{oModelAnagrafica>/oModelACEImponibile}" textAlign="Center" width="100%"/>
+                                        <Column	width="10%"	resizable="false" hAlign="End">
+                                                <m:Label text="{oModelAnagrafica>/oModelACEImponibile}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
@@ -636,35 +642,35 @@
                                                 }}" />
                                             </template>
                                         </Column>
-                                        <Column	width="10%" resizable="false" id="colonnaImposta6">
-                                            <m:Label text="{=${oModelAnagrafica>/oModelACEImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="Center" width="100%"/>
+                                        <Column	width="10%" resizable="false" id="colonnaImposta6" hAlign="End">
+                                            <m:Label text="{=${oModelAnagrafica>/oModelACEImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
                                             </template>
                                         </Column>
-                                        <Column resizable="false"
+                                        <Column resizable="false" hAlign="End"
                                             width="10%">
-                                                <m:Label text="" textAlign="Center" width="100%"/>
+                                                <m:Label text="" textAlign="Center" width="100%" />
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>unico}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%" resizable="false">
+                                        <Column	width="10%" resizable="false" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>correnti}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	width="10%" resizable="false">
+                                        <Column	width="10%" resizable="false" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>differite}"/>
                                             </template>
                                         </Column>
 
-                                        <Column	resizable="false" width="10%">
+                                        <Column	resizable="false" width="10%" hAlign="End">
                                                 <m:Label text="" textAlign="Center" width="100%"/>
                                             <template>
                                                 <m:Text text="{oModelAnagrafica>totale}"/>
