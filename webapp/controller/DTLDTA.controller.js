@@ -128,8 +128,8 @@ sap.ui.define([
                         var modello = [{
                             "computationId": null,
                             "imposta": null,
-                            "codiceRipresa": "Totali",
-                            "descrizioneRipresa": "",
+                            "codiceRipresa": "",
+                            "descrizioneRipresa": "Totale",
                             "OpeningBalance": 0,
                             "PriorYearAdjustments": 0,
                             "CurrentYearAccrual": 0,
@@ -146,7 +146,8 @@ sap.ui.define([
                             "current1": 0,
                             "current2": 0,
                             "current3": 0,
-                            "longTerm": 0
+                            "longTerm": 0,
+                            "movementBS": 0
                             }];
                             
                         
@@ -224,6 +225,10 @@ sap.ui.define([
 
                             if(oCompleteEntry.value[i].longTerm){
                                 modello[0].longTerm += oCompleteEntry.value[i].longTerm;
+                            }
+
+                            if(oCompleteEntry.value[i].movementBS){
+                                modello[0].movementBS += oCompleteEntry.value[i].movementBS;
                             }
                             
                         }

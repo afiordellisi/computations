@@ -116,8 +116,8 @@ sap.ui.define([
                         var modello = [{
                             "computationId": null,
                             "imposta": null,
-                            "codiceRipresa": "Totali",
-                            "descrizioneRipresa": "",
+                            "codiceRipresa": "",
+                            "descrizioneRipresa": "Totale",
                             "OpeningBalance": 0,
                             "PriorYearAdjustments": 0,
                             "CurrentYearAccrual": 0,

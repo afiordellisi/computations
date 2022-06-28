@@ -30,85 +30,86 @@
                 rows="{path:'oModelTiming>/oModel'}"
 				selectionMode="None" 
                 fixedColumnCount="2"
-                fixedBottomRowCount="1">
+                fixedBottomRowCount="1"
+                enableColumnReordering="false">
                 <t:columns>
-                    <t:Column width="11em" resizable="false">
+                    <t:Column width="11rem" >
                         <Label text="{i18n>CodiceDiff}" />
                         <t:template>
                             <Text text="{oModelTiming>codiceRipresa}" wrapping="false" />
                         </t:template>
 					</t:Column>
-                    <t:Column width="11em" >
+                    <t:Column width="11rem" >
                         <Label text="{i18n>DiffTemp}" />
                         <t:template>
                             <Text text="{oModelTiming>descrizioneRipresa}" textAlign="Right" wrapping="false" />
                         </t:template>
 					</t:Column>
-                    <t:Column width="11em"  hAlign="End" resizable="false">
+                    <t:Column width="11rem"  hAlign="End">
                         <Label text="{i18n>OpeningB}" />
                         <t:template>
                             <Text text="{oModelTiming>OpeningBalance}" textAlign="Right" wrapping="false"/>
                         </t:template>
 					</t:Column>
-                    <t:Column width="11em"  hAlign="End" resizable="false">
+                    <t:Column width="11rem"  hAlign="End">
                         <Label text="{i18n>PriorYear}" />
                         <t:template>
                             <Text text="{oModelTiming>PriorYearAdjustments}" wrapping="false"/>
                         </t:template>
 					</t:Column>
-                    <t:Column width="11em"  hAlign="End" resizable="false">
+                    <t:Column width="11rem"  hAlign="End">
                         <Label text="{i18n>Extraordinary}" />
                         <t:template>
                             <Input type="Number" value="{oModelTiming>extraordinaryTransactions}" textAlign="End"
-                            editable="{= ${oModelTiming>codiceRipresa} === 'Totali'? false : true}"/>
+                            editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
 					</t:Column>
-                    <t:Column width="11em"  hAlign="End" resizable="false">
+                    <t:Column width="11rem"  hAlign="End">
                         <Label text="{i18n>CurrYear}" />
                         <t:template>
                             <Text text="{oModelTiming>CurrentYearAccrual}" wrapping="false"/>
                         </t:template>
 					</t:Column>
-                    <t:Column width="11em"  hAlign="End" resizable="false">
+                    <t:Column width="11rem"  hAlign="End">
                         <Label text="{i18n>CurrYearUtili}" />
                         <t:template>
                             <Text text="{oModelTiming>CurrentYearUtilization}" wrapping="false"/>
                         </t:template>
 					</t:Column>
-                    <t:Column width="11em"  hAlign="End" resizable="false">
+                    <t:Column width="11rem"  hAlign="End">
                         <Label text="{i18n>OtherAdj}" />
                         <t:template>
-                            <Input type="Number" value="{oModelTiming>otherAdjustments}" textAlign="End" editable="{= ${oModelTiming>codiceRipresa} === 'Totali'? false : true}"/>
+                            <Input type="Number" value="{oModelTiming>otherAdjustments}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
 					</t:Column>
-                    <t:Column width="11em"  hAlign="End" resizable="false">
+                    <t:Column width="11rem"  hAlign="End">
                         <Label text="{i18n>ClosingB}" />
                         <t:template>
                             <Text text="{oModelTiming>closingBalance}" wrapping="false"/>
                         </t:template>
 					</t:Column>
-                    <t:Column width="11em"  hAlign="End" resizable="false">
+                    <t:Column width="11rem"  hAlign="End">
                         <Label text="{i18n>Current1}" />
                         <t:template>
                             <Text text="{oModelTiming>current1}" wrapping="false"/>
                         </t:template>
 					</t:Column>
-                    <t:Column width="11em"  hAlign="End" resizable="false">
+                    <t:Column width="11rem"  hAlign="End">
                         <Label text="{i18n>Current2}" />
                         <t:template>
-                            <Input type="Number" value="{oModelTiming>current2}" textAlign="End" editable="{= ${oModelTiming>codiceRipresa} === 'Totali'? false : true}"/>
+                            <Input type="Number" value="{oModelTiming>current2}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
 					</t:Column>
-                    <t:Column width="11em"  hAlign="End" resizable="false">
+                    <t:Column width="11rem"  hAlign="End">
                         <Label text="{i18n>Current3}" />
                         <t:template>
-                            <Input type="Number" value="{oModelTiming>current3}" textAlign="End" editable="{= ${oModelTiming>codiceRipresa} === 'Totali'? false : true}"/>
+                            <Input type="Number" value="{oModelTiming>current3}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
 					</t:Column>
-                    <t:Column width="11em"  hAlign="End" resizable="false">
+                    <t:Column width="11rem"  hAlign="End">
                         <Label text="{i18n>LongTerm}" />
                         <t:template>
-                            <Input type="Number" value="{oModelTiming>longTerm}" textAlign="End" editable="{= ${oModelTiming>codiceRipresa} === 'Totali'? false : true}"/>
+                            <Input type="Number" value="{oModelTiming>longTerm}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
 					</t:Column>
                 </t:columns>
