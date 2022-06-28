@@ -148,35 +148,87 @@ sap.ui.define([
                             "current3": 0,
                             "longTerm": 0
                             }];
-
-
-                        DataModel.setData(data);
-                        that.getView().setModel(DataModel, "oModelDT");                         
+                            
+                        
                         
                         // var DataModel2 = new sap.ui.model.json.JSONModel();
                         // var totali = {totaleOB : 0, totalePRA : 0, totaleExt : 0, totaleCYA : 0, totaleCYU : 0, totaleOtA : 0, totaleChangeTax : 0, totaleDevOp : 0, totaleDevMov : 0, totaleDevC : 0, totaleCNB : 0, totaleMPL : 0, totaleMBS : 0, totaleCGB : 0, totaleC1 : 0, totaleC2 : 0, totaleC3 : 0, totaleLT : 0};
+                        
 
                         for(var i =0; i<oCompleteEntry.value.length; i++){
-                            totali.totaleOB += oCompleteEntry.value[i].OpeningBalance;
-                            totali.totalePRA += oCompleteEntry.value[i].PriorYearAdjustments;
-                            totali.totaleExt += oCompleteEntry.value[i].extraordinaryTransactions;
-                            totali.totaleCYA += oCompleteEntry.value[i].CurrentYearAccrual;
-                            totali.totaleCYU += oCompleteEntry.value[i].CurrentYearUtilization;
-                            totali.totaleOtA += oCompleteEntry.value[i].otherAdjustments;
-                            totali.totaleChangeTax += oCompleteEntry.value[i].changeTaxRate;
-                            totali.totaleDevOp += oCompleteEntry.value[i].devaluationOpening;
-                            totali.totaleDevMov += oCompleteEntry.value[i].devaluationMovement;
-                            totali.totaleDevC += oCompleteEntry.value[i].devaluationClosing;
-                            totali.totaleCNB += oCompleteEntry.value[i].closingNetBalance;
-                            totali.totaleMPL += oCompleteEntry.value[i].movementPL;
-                            //totali.totaleMBS += oCompleteEntry.value[i].movementBS;
-                            totali.totaleCGB += oCompleteEntry.value[i].closingGrossBalance;
-                            totali.totaleC1 += oCompleteEntry.value[i].current1;
-                            totali.totaleC2 += oCompleteEntry.value[i].current2;
-                            totali.totaleC3 += oCompleteEntry.value[i].current3;
-                            totali.totaleLT += oCompleteEntry.value[i].longTerm;
+
+                            if(oCompleteEntry.value[i].OpeningBalance){
+                                //oCompleteEntry.value[i].OpeningBalance = 0;
+                                modello[0].OpeningBalance += oCompleteEntry.value[i].OpeningBalance;
+                            }
+                            
+                            if(oCompleteEntry.value[i].PriorYearAdjustments){
+                                modello[0].PriorYearAdjustments += oCompleteEntry.value[i].PriorYearAdjustments;
+                            }
+
+                            if(oCompleteEntry.value[i].extraordinaryTransactions){
+                                modello[0].extraordinaryTransactions += oCompleteEntry.value[i].extraordinaryTransactions;
+                            }
+
+                            if(oCompleteEntry.value[i].CurrentYearAccrual){
+                                modello[0].CurrentYearAccrual += oCompleteEntry.value[i].CurrentYearAccrual;
+                            }
+
+                            if(oCompleteEntry.value[i].CurrentYearUtilization){
+                                modello[0].CurrentYearUtilization += oCompleteEntry.value[i].CurrentYearUtilization;
+                            }
+
+                            if(oCompleteEntry.value[i].otherAdjustments){
+                                modello[0].otherAdjustments += oCompleteEntry.value[i].otherAdjustments;
+                            }
+                            
+                            if(oCompleteEntry.value[i].changeTaxRate){
+                                modello[0].changeTaxRate += oCompleteEntry.value[i].changeTaxRate;
+                            }
+
+                            if(oCompleteEntry.value[i].devaluationOpening){
+                                modello[0].devaluationOpening += oCompleteEntry.value[i].devaluationOpening;
+                            }
+                            
+                            if(oCompleteEntry.value[i].devaluationMovement){
+                                modello[0].devaluationMovement += oCompleteEntry.value[i].devaluationMovement;
+                            }
+                            
+                            if(oCompleteEntry.value[i].devaluationClosing){
+                                modello[0].devaluationClosing += oCompleteEntry.value[i].devaluationClosing;
+                            }
+
+                            if(oCompleteEntry.value[i].closingNetBalance){
+                                modello[0].closingNetBalance += oCompleteEntry.value[i].closingNetBalance;
+                            }
+                            
+                            if(oCompleteEntry.value[i].movementPL){
+                                modello[0].movementPL += oCompleteEntry.value[i].movementPL;
+                            }
+                            
+                            if(oCompleteEntry.value[i].closingGrossBalance){
+                                modello[0].closingGrossBalance += oCompleteEntry.value[i].closingGrossBalance;
+                            }
+                            
+                            if(oCompleteEntry.value[i].current1){
+                                modello[0].current1 += oCompleteEntry.value[i].current1;
+                            }
+                            
+                            if(oCompleteEntry.value[i].current2){
+                                modello[0].current2 += oCompleteEntry.value[i].current2;
+                            }
+
+                            if(oCompleteEntry.value[i].current3){
+                                modello[0].current3 += oCompleteEntry.value[i].current3;
+                            }
+
+                            if(oCompleteEntry.value[i].longTerm){
+                                modello[0].longTerm += oCompleteEntry.value[i].longTerm;
+                            }
+                            
                         }
 
+                        data.oModel.push(modello[0]);
 
                         DataModel.setData(data);
                         that.getView().setModel(DataModel, "oModelDT");
