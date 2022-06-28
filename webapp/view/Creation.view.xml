@@ -179,6 +179,190 @@
                                 </Table>
                     </WizardStep>
 
+                    <WizardStep id="taxRules" 
+                               	validated="true"
+                                title="{i18n>TaxRules}"
+                                activate="filterValidation4">
+                                
+                        <Table
+                            id="taxTableIRES"
+                            inset="false"
+                            items="{path:'oModelTaxIRES>/'}"
+                            class="sapFDynamicPageAlignContent"
+                            width="auto">
+                            <headerToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column visible="false">
+                                    <Text text="ID"/>
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>Region}"/>
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>Current}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Current1}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Current2}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Current3}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Current4}"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem highlight="{=${oModelTaxIRES>state} === 'Error' ? 'Error' : ${oModelTaxIRES>state}==='OK' ? 'Success' :  'None'}">
+                                    <cells>
+                                        <Text text="{oModelTaxIRES>ID}"/>
+                                        <ObjectListItem title="{oModelTaxIRES>descrizione}" >                     
+                                        </ObjectListItem>
+                                        <Input
+                                            change=".onValueChanged"
+                                            id="Current"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value=""
+                            
+                                        />
+                                        <Input
+                                            change=".onValueChanged"
+                                            id="Current1"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value=""
+                                        />
+                                        <Input
+                                            change=".onValueChanged"
+                                            id="Current2"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value=""
+                                        />
+                                        <Input
+                                            change=".onValueChanged"
+                                            id="Current3"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value=""
+                                        />
+                                        <Input
+                                            change=".onValueChanged"
+                                            id="Current4"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value=""
+                                        />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>	
+
+                        <Table
+                            id="taxTableIRAP"
+                            inset="false"
+                            items="{path:'oModelTaxIRAP>/'}"
+                            class="sapFDynamicPageAlignContent"
+                            width="auto">
+                            <headerToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column visible="false">
+                                    <Text text="ID"/>
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>Region}"/>
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>Current}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Current1}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Current2}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Current3}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Current4}"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem highlight="{=${oModelTaxIRAP>state} === 'Error' ? 'Error' : ${oModelTaxIRAP>state}==='OK' ? 'Success' :  'None'}">
+                                    <cells>
+                                        <Text text="{oModelTaxIRAP>ID}"/>
+                                        <ObjectListItem title="{oModelTaxIRAP>descrizione}" >                     
+                                        </ObjectListItem>
+                                        <Input
+                                            change=".onValueChanged"
+                                            id="CurrentIRAP"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value=""
+                            
+                                        />
+                                        <Input
+                                            change=".onValueChanged"
+                                            id="Current1IRAP"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value=""
+                                        />
+                                        <Input
+                                            change=".onValueChanged"
+                                            id="Current2IRAP"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value=""
+                                        />
+                                        <Input
+                                            change=".onValueChanged"
+                                            id="Current3IRAP"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value=""
+                                        />
+                                        <Input
+                                            change=".onValueChanged"
+                                            id="Current4IRAP"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value=""
+                                        />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>	
+
+
+                    </WizardStep>
+
                     <WizardStep id="confConfronto" 
                                	validated="true"
                                 title="{i18n>confConfronto}"

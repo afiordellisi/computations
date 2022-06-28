@@ -118,6 +118,34 @@ sap.ui.define([
                 }
             },
 
+            filterValidation4: function(oEvent){
+                this._filterTableTax();                
+            },
+
+            _filterTableTax: function(){
+                var that = this;
+                jQuery.ajax({
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Regions"),
+                    contentType: "application/json",
+                    type: 'GET',
+                    dataType: "json",
+                    async: false,
+                    success: function (oCompleteEntry) {
+                        var dataIRES = oCompleteEntry.value.filter(function(oItem){return oItem.imposta === "IRES"});
+                        var dataIRAP = oCompleteEntry.value.filter(function(oItem){return oItem.imposta === "IRAP"});
+                        var DataModelIRES = new sap.ui.model.json.JSONModel();
+                        var DataModelIRAP = new sap.ui.model.json.JSONModel();
+                        DataModelIRES.setData(dataIRES);
+                        DataModelIRAP.setData(dataIRAP);
+                        that.getView().setModel(DataModelIRES, "oModelTaxIRES");
+                        that.getView().setModel(DataModelIRAP, "oModelTaxIRAP");
+                    },
+                    error: function (error) {
+                        sap.m.MessageToast.show("Error");
+                    }
+                });
+            },
+
             handleFinishSelection: function(){
                 var oTable = this.getView().byId("confConfrontoTable");
                 var sSelectedPath = oTable.getSelectedItem();
