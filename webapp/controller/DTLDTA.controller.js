@@ -123,11 +123,38 @@ sap.ui.define([
                         var data = {
                             oModel: oCompleteEntry.value
                         };
+
+
+                        var modello = [{
+                            "computationId": null,
+                            "imposta": null,
+                            "codiceRipresa": "Totali",
+                            "descrizioneRipresa": "",
+                            "OpeningBalance": 0,
+                            "PriorYearAdjustments": 0,
+                            "CurrentYearAccrual": 0,
+                            "CurrentYearUtilization": 0,
+                            "extraordinaryTransactions": 0,
+                            "otherAdjustments": 0,
+                            "closingGrossBalance": 0,
+                            "changeTaxRate": 0,
+                            "devaluationOpening": 0,
+                            "devaluationMovement": 0,
+                            "devaluationClosing": 0,
+                            "closingNetBalance": 0,
+                            "movementPL": 0,
+                            "current1": 0,
+                            "current2": 0,
+                            "current3": 0,
+                            "longTerm": 0
+                            }];
+
+
                         DataModel.setData(data);
                         that.getView().setModel(DataModel, "oModelDT");                         
                         
-                        var DataModel2 = new sap.ui.model.json.JSONModel();
-                        var totali = {totaleOB : 0, totalePRA : 0, totaleExt : 0, totaleCYA : 0, totaleCYU : 0, totaleOtA : 0, totaleChangeTax : 0, totaleDevOp : 0, totaleDevMov : 0, totaleDevC : 0, totaleCNB : 0, totaleMPL : 0, totaleMBS : 0, totaleCGB : 0, totaleC1 : 0, totaleC2 : 0, totaleC3 : 0, totaleLT : 0};
+                        // var DataModel2 = new sap.ui.model.json.JSONModel();
+                        // var totali = {totaleOB : 0, totalePRA : 0, totaleExt : 0, totaleCYA : 0, totaleCYU : 0, totaleOtA : 0, totaleChangeTax : 0, totaleDevOp : 0, totaleDevMov : 0, totaleDevC : 0, totaleCNB : 0, totaleMPL : 0, totaleMBS : 0, totaleCGB : 0, totaleC1 : 0, totaleC2 : 0, totaleC3 : 0, totaleLT : 0};
 
                         for(var i =0; i<oCompleteEntry.value.length; i++){
                             totali.totaleOB += oCompleteEntry.value[i].OpeningBalance;
@@ -150,9 +177,13 @@ sap.ui.define([
                             totali.totaleLT += oCompleteEntry.value[i].longTerm;
                         }
 
-                        var data2 = totali;
-                        DataModel2.setData(data2);
-                        that.getView().setModel(DataModel2, "oModelTotali");
+
+                        DataModel.setData(data);
+                        that.getView().setModel(DataModel, "oModelDT");
+                        
+                        // var data2 = totali;
+                        // DataModel2.setData(data2);
+                        // that.getView().setModel(DataModel2, "oModelTotali");
                     },
                     error: function (error) {
                         sap.m.MessageToast.show("Error");
