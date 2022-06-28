@@ -127,7 +127,26 @@ sap.ui.define([
                         that.getView().setModel(DataModel, "oModelDT");                         
                         
                         var DataModel2 = new sap.ui.model.json.JSONModel();
-                        var totali = {totaleOB : 0, totalePRA : 0, totaleExt : 0, totaleCYA : 0, totaleCYU : 0, totaleOtA : 0, totaleChangeTax : 0, totaleDevOp : 0, totaleDevMov : 0, totaleDevC : 0, totaleCNB : 0, totaleMPL : 0, totaleMBS : 0, totaleCGB : 0, totaleC1 : 0, totaleC2 : 0, totaleC3 : 0, totaleLT : 0};
+                        var totali = {
+                            totaleOB : 0, 
+                            totalePRA : 0, 
+                            totaleExt : 0, 
+                            totaleCYA : 0, 
+                            totaleCYU : 0, 
+                            totaleOtA : 0, 
+                            totaleChangeTax : 0, 
+                            totaleDevOp : 0, 
+                            totaleDevMov : 0, 
+                            totaleDevC : 0, 
+                            totaleCNB : 0, 
+                            totaleMPL : 0, 
+                            totaleMBS : 0, 
+                            totaleCGB : 0, 
+                            totaleC1 : 0,
+                            totaleC2 : 0,
+                            totaleC3 : 0, 
+                            totaleLT : 0
+                        };
 
                         for(var i =0; i<oCompleteEntry.value.length; i++){
                             totali.totaleOB += oCompleteEntry.value[i].OpeningBalance;
