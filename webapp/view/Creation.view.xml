@@ -302,6 +302,12 @@
                                 <Column minScreenWidth="Tablet">
                                     <Text text="{i18n>Current4}"/>
                                 </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>ImponibilePrev}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Ripartizione}"/>
+                                </Column>
                             </columns>
                             <items>
                                 <ColumnListItem highlight="{=${oModelTaxIRAP>state} === 'Error' ? 'Error' : ${oModelTaxIRAP>state}==='OK' ? 'Success' :  'None'}">
@@ -355,6 +361,16 @@
                                             editable="true"
                                             value=""
                                         />
+                                        <Input
+                                            change=".onValueChanged"
+                                            id="ImponibilePrev"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value=""
+                                        />
+                                        <ObjectListItem title="" /> 
                                     </cells>
                                 </ColumnListItem>
                             </items>
