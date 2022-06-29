@@ -11,7 +11,6 @@ sap.ui.define([
     function (Controller, Filter, FilterOperator, JSONModel, BaseController) {
         "use strict";
         //var aFilter = [];
-        
 
         return BaseController.extend("tax.provisioning.computations.Creation.controller.Creation", {
             onInit: function () {
@@ -20,7 +19,29 @@ sap.ui.define([
 
                 this._oNavContainer = this.byId("wizardNavContainer");
 
+                var DataModel = new sap.ui.model.json.JSONModel();
+                DataModel.setData({"totale": 0});
+                this.getView().setModel(DataModel, "oModelTaxIRAPTotale");
+
                 this._parameterSetting();
+            },
+
+            
+
+            onValueChanged: function(oEvent){
+                var oModel = this.getView().getModel("oModelTaxIRAP").getData();
+
+                var totale = 0;
+                var imponibili = 0;
+
+                for(var i = 0; i < oModel.length; i++){
+                    imponibili = parseFloat(oModel[i].imponibile)
+                    totale += imponibili;
+                }
+                
+                var DataModel = new sap.ui.model.json.JSONModel();
+                DataModel.setData({"totale": totale});
+                this.getView().setModel(DataModel, "oModelTaxIRAPTotale");
             },
 
             filterValidation: function () {
@@ -189,7 +210,7 @@ sap.ui.define([
                                 current2: null,
                                 current3: null,
                                 current4: null,
-                                imponibile: null                           
+                                imponibile: 0                           
                             };
                     });
                         var DataModelIRES = new sap.ui.model.json.JSONModel();

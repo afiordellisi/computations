@@ -228,7 +228,6 @@
                                         <ObjectListItem title="{oModelTaxIRES>descrizione}" id="regionIRES">                     
                                         </ObjectListItem>
                                         <Input
-                                            change=".onValueChanged"
                                             id="Current"
                                             type="Number"
                                             placeholder=""
@@ -238,7 +237,6 @@
                             
                                         />
                                         <Input
-                                            change=".onValueChanged"
                                             id="Current1"
                                             type="Number"
                                             placeholder=""
@@ -247,7 +245,6 @@
                                             value="{oModelTaxIRES>current1}"
                                         />
                                         <Input
-                                            change=".onValueChanged"
                                             id="Current2"
                                             type="Number"
                                             placeholder=""
@@ -256,7 +253,6 @@
                                             value="{oModelTaxIRES>current2}"
                                         />
                                         <Input
-                                            change=".onValueChanged"
                                             id="Current3"
                                             type="Number"
                                             placeholder=""
@@ -265,7 +261,6 @@
                                             value="{oModelTaxIRES>current3}"
                                         />
                                         <Input
-                                            change=".onValueChanged"
                                             id="Current4"
                                             type="Number"
                                             placeholder=""
@@ -316,13 +311,12 @@
                                 </Column>
                             </columns>
                             <items>
-                                <ColumnListItem highlight="{=${oModelTaxIRAP>state} === 'Error' ? 'Error' : ${oModelTaxIRAP>state}==='OK' ? 'Success' :  'None'}">
+                                <ColumnListItem>
                                     <cells>
                                         <Text text="{oModelTaxIRAP>ID}"/>
                                         <ObjectListItem title="{oModelTaxIRAP>descrizione}" >                     
                                         </ObjectListItem>
                                         <Input
-                                            change=".onValueChanged"
                                             id="CurrentIRAP"
                                             type="Number"
                                             placeholder=""
@@ -332,7 +326,6 @@
                             
                                         />
                                         <Input
-                                            change=".onValueChanged"
                                             id="Current1IRAP"
                                             type="Number"
                                             placeholder=""
@@ -341,7 +334,6 @@
                                             value="{oModelTaxIRAP>current1}"
                                         />
                                         <Input
-                                            change=".onValueChanged"
                                             id="Current2IRAP"
                                             type="Number"
                                             placeholder=""
@@ -350,7 +342,6 @@
                                             value="{oModelTaxIRAP>current2}"
                                         />
                                         <Input
-                                            change=".onValueChanged"
                                             id="Current3IRAP"
                                             type="Number"
                                             placeholder=""
@@ -359,7 +350,6 @@
                                             value="{oModelTaxIRAP>current3}"
                                         />
                                         <Input
-                                            change=".onValueChanged"
                                             id="Current4IRAP"
                                             type="Number"
                                             placeholder=""
@@ -376,7 +366,7 @@
                                             editable="true"
                                             value="{oModelTaxIRAP>imponibile}"
                                         />
-                                        <ObjectListItem title="" /> 
+                                        <ObjectListItem title="{=${oModelTaxIRAP>imponibile}/${oModelTaxIRAPTotale>/totale}}" /> 
                                     </cells>
                                 </ColumnListItem>
                             </items>
