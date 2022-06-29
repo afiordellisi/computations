@@ -19,9 +19,7 @@ sap.ui.define([
 
                 this._oNavContainer = this.byId("wizardNavContainer");
 
-                var DataModel = new sap.ui.model.json.JSONModel();
-                DataModel.setData({"totale": 0});
-                this.getView().setModel(DataModel, "oModelTaxIRAPTotale");
+                
 
                 this._parameterSetting();
             },
