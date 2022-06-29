@@ -182,7 +182,7 @@
                     <WizardStep id="taxRules" 
                                	validated="true"
                                 title="{i18n>TaxRules}"
-                                activate="filterValidation4">
+                                activate="filterValidation3">
                                 
                         <Table
                             id="taxTableIRES"
@@ -214,12 +214,18 @@
                                 <Column minScreenWidth="Tablet">
                                     <Text text="{i18n>Current4}"/>
                                 </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>ImponibilePrev}" visible="false"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Ripartizione}" visible="false"/>
+                                </Column>
                             </columns>
                             <items>
-                                <ColumnListItem highlight="{=${oModelTaxIRES>state} === 'Error' ? 'Error' : ${oModelTaxIRES>state}==='OK' ? 'Success' :  'None'}">
+                                <ColumnListItem>
                                     <cells>
                                         <Text text="{oModelTaxIRES>ID}"/>
-                                        <ObjectListItem title="{oModelTaxIRES>descrizione}" >                     
+                                        <ObjectListItem title="{oModelTaxIRES>descrizione}" id="regionIRES">                     
                                         </ObjectListItem>
                                         <Input
                                             change=".onValueChanged"
@@ -228,7 +234,7 @@
                                             placeholder=""
                                             enabled="true"
                                             editable="true"
-                                            value=""
+                                            value="{oModelTaxIRES>current}"
                             
                                         />
                                         <Input
@@ -238,7 +244,7 @@
                                             placeholder=""
                                             enabled="true"
                                             editable="true"
-                                            value=""
+                                            value="{oModelTaxIRES>current1}"
                                         />
                                         <Input
                                             change=".onValueChanged"
@@ -247,7 +253,7 @@
                                             placeholder=""
                                             enabled="true"
                                             editable="true"
-                                            value=""
+                                            value="{oModelTaxIRES>current2}"
                                         />
                                         <Input
                                             change=".onValueChanged"
@@ -256,7 +262,7 @@
                                             placeholder=""
                                             enabled="true"
                                             editable="true"
-                                            value=""
+                                            value="{oModelTaxIRES>current3}"
                                         />
                                         <Input
                                             change=".onValueChanged"
@@ -265,7 +271,7 @@
                                             placeholder=""
                                             enabled="true"
                                             editable="true"
-                                            value=""
+                                            value="{oModelTaxIRES>current4}"
                                         />
                                     </cells>
                                 </ColumnListItem>
@@ -322,7 +328,7 @@
                                             placeholder=""
                                             enabled="true"
                                             editable="true"
-                                            value=""
+                                            value="{oModelTaxIRAP>current}"
                             
                                         />
                                         <Input
@@ -332,7 +338,7 @@
                                             placeholder=""
                                             enabled="true"
                                             editable="true"
-                                            value=""
+                                            value="{oModelTaxIRAP>current1}"
                                         />
                                         <Input
                                             change=".onValueChanged"
@@ -341,7 +347,7 @@
                                             placeholder=""
                                             enabled="true"
                                             editable="true"
-                                            value=""
+                                            value="{oModelTaxIRAP>current2}"
                                         />
                                         <Input
                                             change=".onValueChanged"
@@ -350,7 +356,7 @@
                                             placeholder=""
                                             enabled="true"
                                             editable="true"
-                                            value=""
+                                            value="{oModelTaxIRAP>current3}"
                                         />
                                         <Input
                                             change=".onValueChanged"
@@ -359,7 +365,7 @@
                                             placeholder=""
                                             enabled="true"
                                             editable="true"
-                                            value=""
+                                            value="{oModelTaxIRAP>current4}"
                                         />
                                         <Input
                                             change=".onValueChanged"
@@ -368,7 +374,7 @@
                                             placeholder=""
                                             enabled="true"
                                             editable="true"
-                                            value=""
+                                            value="{oModelTaxIRAP>imponibile}"
                                         />
                                         <ObjectListItem title="" /> 
                                     </cells>
@@ -382,7 +388,7 @@
                     <WizardStep id="confConfronto" 
                                	validated="true"
                                 title="{i18n>confConfronto}"
-                                activate="filterValidation3"
+                                activate="filterValidation4"
                                 complete="handleFinishSelection"
                                 >
                         

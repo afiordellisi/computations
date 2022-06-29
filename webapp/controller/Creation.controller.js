@@ -101,15 +101,10 @@ sap.ui.define([
                     //var versioneID = oItem.ID;
                    
                     //this.getView().getModel("parameterModel").oData.idVersione = versioneID;
-                    var aFilter = [];
-                    aFilter.push(this.getView().getModel("parameterModel").oData.societa);
-                    aFilter.push(this.getView().getModel("parameterModel").oData.ledger);
-                    aFilter.push(this.getView().getModel("parameterModel").oData.periodo);
+                    
 
-                    this._filterTableCompConfronto(aFilter);
-                    this.getView().byId("finishButton").setVisible(true);
-                    this.getView().byId("nextStepButton").setVisible(false);
-                    this.getView().byId("taxRule").setBlocked(true);
+                    this._filterTableTax();
+
                 }else {
                     sap.m.MessageToast.show("Selezionare una tax rule");
                     var oWizard = this.byId("CreateWizard");
@@ -119,7 +114,37 @@ sap.ui.define([
             },
 
             filterValidation4: function(oEvent){
-                this._filterTableTax();                
+                var modelloIRES = this.getView().getModel("oModelTaxIRES").getData();
+                var modelloIRAP = this.getView().getModel("oModelTaxIRAP").getData()
+
+                var checkIRES = modelloIRES.some(element => Object.values(element).some(val => val <= 0 && val >= 100));
+                var checkIRAP = modelloIRAP.some(element => Object.values(element).some(val => val <= 0 && val >= 100));
+
+                //var checkIRES = false;
+                //var checkIRAP = false;
+
+                if(!checkIRES && !checkIRAP){
+                    sap.m.MessageToast.show("Compilare tutti i campi");
+                    var oWizard = this.byId("CreateWizard");
+                    var oFirstStep = oWizard.getSteps()[3];
+                    oWizard.discardProgress(oFirstStep);
+                }
+                else{
+                    
+                    var aFilter = [];
+                    aFilter.push(this.getView().getModel("parameterModel").oData.societa);
+                    aFilter.push(this.getView().getModel("parameterModel").oData.ledger);
+                    aFilter.push(this.getView().getModel("parameterModel").oData.periodo);
+
+                    this._filterTableCompConfronto(aFilter);
+                    this.getView().byId("finishButton").setVisible(true);
+                    this.getView().byId("nextStepButton").setVisible(false);
+                    this.getView().byId("taxRule").setBlocked(true);
+                    
+                }    
+                
+                
+
             },
 
             _filterTableTax: function(){
@@ -131,12 +156,46 @@ sap.ui.define([
                     dataType: "json",
                     async: false,
                     success: function (oCompleteEntry) {
+          
+
                         var dataIRES = oCompleteEntry.value.filter(function(oItem){return oItem.imposta === "IRES"});
+
+                        var modelIRES = dataIRES.map((arr) => {
+
+                        
+                            return {
+                                ID: arr.ID,
+                                descrizione: arr.descrizione,
+                                imposta: arr.imposta,
+                                current: null,
+                                current1: null,
+                                current2: null,
+                                current3: null,
+                                current4: null                           
+                            };
+                        });
+
                         var dataIRAP = oCompleteEntry.value.filter(function(oItem){return oItem.imposta === "IRAP"});
+
+                        var modelIRAP = dataIRAP.map((arr) => {
+
+                        
+                            return {
+                                ID: arr.ID,
+                                descrizione: arr.descrizione,
+                                imposta: arr.imposta,
+                                current: null,
+                                current1: null,
+                                current2: null,
+                                current3: null,
+                                current4: null,
+                                imponibile: null                           
+                            };
+                    });
                         var DataModelIRES = new sap.ui.model.json.JSONModel();
                         var DataModelIRAP = new sap.ui.model.json.JSONModel();
-                        DataModelIRES.setData(dataIRES);
-                        DataModelIRAP.setData(dataIRAP);
+                        DataModelIRES.setData(modelIRES);
+                        DataModelIRAP.setData(modelIRAP);
                         that.getView().setModel(DataModelIRES, "oModelTaxIRES");
                         that.getView().setModel(DataModelIRAP, "oModelTaxIRAP");
                     },
@@ -174,9 +233,27 @@ sap.ui.define([
                     var idConfigurazione = this.getView().getModel("parameterModel").oData.idConfigurazione;
                     var idVersione = this.getView().getModel("parameterModel").oData.idVersione;
                     var idCompConfronto = this.getView().getModel("parameterModel").oData.idCompConfronto;
+
+                    var irap=this.getView().getModel("oModelTaxIRAP").getData();
+                    var ires=this.getView().getModel("oModelTaxIRES").getData();
+                    var itemRegion = irap.concat(ires);
+
+                    var confRegions = itemRegion.map((arr) => {
+
+                        
+                        return {
+                            region_ID: arr.ID,
+                            current: arr.current,
+                            current1: arr.current1,
+                            current2: arr.current2,
+                            current3: arr.current3,
+                            current4: arr.current4,
+                            imponibilePrevidenziale: arr.imponibile                           
+                        };
+                });
     
-                    var nuovaComputation = JSON.stringify({"descrizione": descrizioneComputation, "Configurazione_ID": idConfigurazione, "Versione_ID": idVersione, "compConfronto": idCompConfronto });
-    
+                    var nuovaComputation = JSON.stringify({"descrizione": descrizioneComputation, "Configurazione_ID": idConfigurazione, "Versione_ID": idVersione, "compConfronto": idCompConfronto, "confRegions": confRegions });
+
                     jQuery.ajax({
                     url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Computations"),
                     contentType: "application/json",
