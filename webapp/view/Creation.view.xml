@@ -360,13 +360,21 @@
                                         <Input
                                             change=".onValueChanged"
                                             id="ImponibilePrev"
-                                            type="Number"
                                             placeholder=""
                                             enabled="true"
                                             editable="true"
-                                            value="{oModelTaxIRAP>imponibile}"
+                                            value="{
+                                                path: 'oModelTaxIRAP>imponibile',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                                            }"
                                         />
-                                        <ObjectListItem title="{=${oModelTaxIRAP>imponibile}/${oModelTaxIRAPTotale>/totale}}" /> 
+                                        <!-- <Text text="{=${oModelTaxIRAP>imponibile}/${oModelTaxIRAPTotale>/totale}*100}" />  -->
+                                        <Text text="{parts: [{path: 'oModelTaxIRAP>imponibile'}, {path: 'oModelTaxIRAPTotale>/totale'}], formatter: '.formatter.formatRipartizione'}"/>
                                     </cells>
                                 </ColumnListItem>
                             </items>

@@ -3,16 +3,18 @@ sap.ui.define([
     'sap/ui/model/Filter',
     'sap/ui/model/FilterOperator',
     'sap/ui/model/json/JSONModel',
-    "./BaseController"
+    "./BaseController",
+    "../model/formatter",
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, Filter, FilterOperator, JSONModel, BaseController) {
+    function (Controller, Filter, FilterOperator, JSONModel, BaseController, formatter) {
         "use strict";
         //var aFilter = [];
 
         return BaseController.extend("tax.provisioning.computations.Creation.controller.Creation", {
+            formatter: formatter,
             onInit: function () {
                 
                 sap.ui.getCore().sapAppID = this.getOwnerComponent().getMetadata().getManifest()["sap.app"].id;
@@ -33,8 +35,14 @@ sap.ui.define([
                 var imponibili = 0;
 
                 for(var i = 0; i < oModel.length; i++){
-                    imponibili = parseFloat(oModel[i].imponibile)
-                    totale += imponibili;
+                    if(isNaN(parseFloat(oModel[i].imponibile)))
+                    {
+                        imponibili = 0;
+                    }
+                    else{
+                        imponibili = parseFloat(oModel[i].imponibile)
+                        totale += imponibili;
+                    }
                 }
                 
                 var DataModel = new sap.ui.model.json.JSONModel();
@@ -134,10 +142,22 @@ sap.ui.define([
 
             filterValidation4: function(oEvent){
                 var modelloIRES = this.getView().getModel("oModelTaxIRES").getData();
-                var modelloIRAP = this.getView().getModel("oModelTaxIRAP").getData()
+                var modelloIRAP = this.getView().getModel("oModelTaxIRAP").getData();
+
+                var aIRAPNOImponibile = modelloIRAP.map((arr) => {
+
+                        
+                    return {
+                        current: arr.current,
+                        current1: arr.current1,
+                        current2: arr.current2,
+                        current3: arr.current3,
+                        current4: arr.current4,                          
+                    };
+            });
 
                 var checkIRES = modelloIRES.some(element => Object.values(element).some(val => val <= 0 && val >= 100));
-                var checkIRAP = modelloIRAP.some(element => Object.values(element).some(val => val <= 0 && val >= 100));
+                var checkIRAP = aIRAPNOImponibile.some(element => Object.values(element).some(val => val <= 0 && val >= 100));
 
                 //var checkIRES = false;
                 //var checkIRAP = false;
@@ -208,7 +228,7 @@ sap.ui.define([
                                 current2: null,
                                 current3: null,
                                 current4: null,
-                                imponibile: 0                           
+                                imponibile: null                           
                             };
                     });
                         var DataModelIRES = new sap.ui.model.json.JSONModel();
