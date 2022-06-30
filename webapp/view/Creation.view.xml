@@ -314,7 +314,7 @@
                                 <ColumnListItem>
                                     <cells>
                                         <Text text="{oModelTaxIRAP>ID}"/>
-                                        <ObjectListItem title="{oModelTaxIRAP>descrizione}" >                     
+                                        <ObjectListItem title="{oModelTaxIRAP>descrizione}">                     
                                         </ObjectListItem>
                                         <Input
                                             id="CurrentIRAP"

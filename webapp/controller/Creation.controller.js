@@ -163,7 +163,7 @@ sap.ui.define([
                 //var checkIRAP = false;
 
                 if(!checkIRES && !checkIRAP){
-                    sap.m.MessageToast.show("Compilare tutti i campi");
+                    sap.m.MessageToast.show("Verificare campi inseriti");
                     var oWizard = this.byId("CreateWizard");
                     var oFirstStep = oWizard.getSteps()[3];
                     oWizard.discardProgress(oFirstStep);
@@ -611,7 +611,6 @@ sap.ui.define([
             this.getView().byId("ledger").setValue("");
             this.getView().byId("periodo").setValue("");
             this.getView().byId("inputDescrizione").setValue("");
-           
             }
         });
     });
