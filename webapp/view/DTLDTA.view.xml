@@ -32,26 +32,6 @@
         </semantic:headerContent>
 
         <semantic:content>
-            	<!-- <smartTable:SmartTable id="LineItemsSmartTable" 
-                entitySet="DTViewSet"
-                tableType="Table"
-                beforeRebindTable="setTable" 
-                useExportToExcel="true"
-                editTogglable="true"
-                editable="false"
-                editToggled="editFunction"                
-                beforeExport="onBeforeExport" 
-                useVariantManagement="false" 
-                useTablePersonalisation="true" 
-                showRowCount="false" 
-                enableAutoBinding="true" 
-                class="sapUiResponsiveContentPadding" 
-                enableAutoColumnWidth="true" 
-                initiallyVisibleFields="codiceRipresa,descrizioneRipresa,OpeningBalance,PriorYearAdjustments,extraordinaryTransactions,CurrentYearAccrual,CurrentYearUtilization,otherAdjustments,changeTaxRate,closingGrossBalance,devaluationOpening,devaluationMovement,devaluationClosing,closingNetBalance,movementPL,current1,current2,current3,current4">
-				<smartTable:layoutData>
-					<FlexItemData growFactor="1" baseSize="0%"/>
-				</smartTable:layoutData>
-			</smartTable:SmartTable> -->
             <t:Table
                 rows="{path:'oModelDT>/oModel'}"
 				selectionMode="None" 

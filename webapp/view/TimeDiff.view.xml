@@ -114,25 +114,6 @@
 					</t:Column>
                 </t:columns>
             </t:Table>
-
-
-            <!-- <smartTable:SmartTable id="LineItemsSmartTable" 
-                entitySet="TimingDifferencesViewSet"
-                tableType="AnalyticalTable"
-                xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-                beforeRebindTable="setTable" 
-                useExportToExcel="true" 
-                beforeExport="onBeforeExport" 
-                useVariantManagement="false" 
-                useTablePersonalisation="false" 
-                showRowCount="false" 
-                enableAutoBinding="true" 
-                class="sapUiResponsiveContentPadding" 
-                enableAutoColumnWidth="true" 
-                initiallyVisibleFields="codiceRipresa,descrizioneRipresa"
-                requestAtLeastFields="codiceRipresa,descrizioneRipresa">
-
-			</smartTable:SmartTable> -->
         </semantic:content>
     </semantic:SemanticPage>
 </mvc:View>
