@@ -1,0 +1,106 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified">
+	<Dialog
+		title="{i18n>newAllegato}"
+		save="onSaveAllegato"
+        press="onCloseConfigurazione"
+        id="DialogSalva">
+      	
+            <f:Form id="FormChange354"
+			editable="true">
+            	 <f:layout>
+            <f:ResponsiveGridLayout
+					labelSpanXL="3"
+					labelSpanL="3"
+					labelSpanM="3"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="4"
+					emptySpanL="4"
+					emptySpanM="4"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" />
+                    	</f:layout>
+                        <f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+                        <f:FormElement label="{i18n>descrizione}">
+							<f:fields>
+								<Input text="" id="descrizioneAllegato" valueState="None"/>
+							</f:fields>
+						</f:FormElement>
+                         <f:FormElement label="{i18n>data}">
+							<f:fields>
+								<DatePicker id="dataAllegato" valueState="None"/>
+							</f:fields>
+						</f:FormElement>
+                         <f:FormElement label="{i18n>rata}">
+							<f:fields>
+								<Input text="" id="rataAllegato" valueState="None"/>
+							</f:fields>
+						</f:FormElement>
+                         <f:FormElement label="{i18n>codiceTributo}">
+							<f:fields>
+								<Input text="" id="codiceTributoAllegato" valueState="None"/>
+							</f:fields>
+						</f:FormElement>
+                         <f:FormElement label="{i18n>anno}">
+							<f:fields>
+								<Input text="" id="annoAllegato" valueState="None"/>
+							</f:fields>
+						</f:FormElement>
+                         <f:FormElement label="{i18n>ravvedimento}">
+							<f:fields>
+								<Input text="" id="ravvedimentoAllegato" valueState="None"/>
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>importo}">
+							<f:fields>
+								<Input text="" id="importoAllegato" valueState="None" type="Number"/>
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>note}">
+							<f:fields>
+								<TextArea value="" rows="6" cols="22" id="noteAllegato" valueState="None"/>
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>insertAllegato}">
+							<f:fields>
+								<l:VerticalLayout>
+                                    <u:FileUploader
+                                        id="fileUploader"
+                                        name="myFileUpload"
+                                        sendXHR="true"
+                                        useMultipart="false"
+                                        change="change"
+                                        uploadUrl="upload/"
+                                        tooltip="Upload your file to the local server"
+                                        >
+                                    </u:FileUploader>
+                                    <!-- <Button
+                                        text="Upload File"
+                                        press="onSaveAllegato"/> -->
+
+                                </l:VerticalLayout>
+							</f:fields>
+						</f:FormElement>
+                    </f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+            </f:Form>
+            
+    <beginButton >
+    <Button text="{i18n>save}" press="onSaveAllegato" type="Emphasized"/>
+    </beginButton >
+    <endButton >
+    <Button text="{i18n>cancel}" press="onCloseConfigurazione"/>
+    </endButton >
+	</Dialog>
+</core:FragmentDefinition>
