@@ -1,0 +1,4 @@
+{
+  "[xml].editor.defaultFormatter": "dotjoshjohnson.xml",
+  "[javascript].editor.defaultFormatter": "esbenp.prettier-vscode"
+}

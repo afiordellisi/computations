@@ -1,98 +1,56 @@
-<mvc:View
-    controllerName="tax.provisioning.computations.controller.Allegati"
-	xmlns="sap.m"
-    xmlns:l="sap.ui.layout"
-    xmlns:semantic="sap.f.semantic"
-    xmlns:u="sap.ui.unified"
-	xmlns:f="sap.f"
-	xmlns:form="sap.ui.layout.form"
-    xmlns:core="sap.ui.core"
-	xmlns:mvc="sap.ui.core.mvc"
-    xmlns:upload="sap.m.upload">
-
-    <semantic:SemanticPage id="semanticPageAllegati" 
-                            headerPinnable="true" 
-                            toggleHeaderOnTitleClick="true" 
-                            preserveHeaderStateOnScroll="false" 
-                            titleAreaShrinkRatio="1:1.6:1.6" 
-                            showFooter="false" >
-
-     <!-- <semantic:titleContent>
-            <Button id="editAction" press=".onNavBack" type="Transparent"	icon="sap-icon://nav-back"/>
-	</semantic:titleContent> -->
-    <!-- <semantic:titleBreadcrumbs>
-			<Breadcrumbs>
-				<Link text="Lista codici GL" press=".onNavBack"/>
-			</Breadcrumbs>
-	</semantic:titleBreadcrumbs> -->
-
-    <semantic:headerContent>
-			<FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
-				<HBox class="sapUiMediumMarginTop">
-                    <VBox class="sapUiSmallMarginBottom" renderType="Bare">
-                        <HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <Label text="{i18n>codiceGL}: " class="sapUiMediumMarginEnd"/>
-                        </HBox>
-                        <!-- <HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <Label text="{i18n>descrizioneGL}: " class="sapUiMediumMarginEnd"/>
-                        </HBox> -->
-                    </VBox>
-                    <VBox class="sapUiSmallMarginBottom" renderType="Bare">
-                        <HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <Text text="{oModelTableAllegati>/oModelTestata/0}" class="sapUiMediumMarginEnd"/>
-                        </HBox>
-                        <!-- <HBox class="sapUiTinyMarginBottom" renderType="Bare">
-                            <Text text="{oModelTableAllegati>/oModelTestata/1}" class="sapUiMediumMarginEnd"/>
-                        </HBox> -->
-                    </VBox>
-                </HBox>
-			</FlexBox>
-		 </semantic:headerContent>
-
-         <semantic:content>
-         <Table id="idTableAllegati" inset="false" items="{path:'oModelTableAllegati>/oModel', sorter: {
+<mvc:View controllerName="tax.provisioning.computations.controller.Allegati"
+  xmlns="sap.m"
+  xmlns:semantic="sap.f.semantic"
+  xmlns:core="sap.ui.core"
+  xmlns:mvc="sap.ui.core.mvc">
+  <semantic:SemanticPage id="semanticPageAllegati" headerPinnable="true" toggleHeaderOnTitleClick="true" preserveHeaderStateOnScroll="false" titleAreaShrinkRatio="1:1.6:1.6" showFooter="false">
+    <semantic:titleHeading>
+      <ObjectAttribute title="{i18n>codiceGL}" text="{oModelTableAllegati>/oModelTestata/0}"/>
+    </semantic:titleHeading>
+    <semantic:content>
+      <Table id="idTableAllegati" inset="false" items="{path:'oModelTableAllegati>/oModel', sorter: {
 				path: 'createdAt',
 				descending: true
-			}}" class="sapFSemanticPageAlignContent" fixedLayout="false">
-            <headerToolbar>
-              <OverflowToolbar>
-                <Title text="{i18n>allegati}" level="H2"/>
-                <ToolbarSpacer/>
-                <Button id="newButton" text="{i18n>newAllegato}" icon="sap-icon://create" press="onNewAllegatoPress"/>
-              </OverflowToolbar>
-            </headerToolbar>
-            <columns>
-              <Column minScreenWidth="Tablet" demandPopin="true">
-                <Text text="{i18n>descrizione}"/>
-              </Column>
-              <Column minScreenWidth="Tablet" demandPopin="true">
-                <Text text="{i18n>importo}"/>
-              </Column>
-              <Column minScreenWidth="Tablet" demandPopin="true">
-                <Text text="{i18n>allegati}"/>
-              </Column>
-              <Column>
-                <Text text="{i18n>date}"/>
-              </Column>
-              <Column>
-                <Text text="{i18n>user}"/>
-              </Column>
-               <Column minScreenWidth="Tablet" demandPopin="true">
-                <Text text="{i18n>note}" />
-              </Column>
-            </columns>
-            <items>
-              <ColumnListItem vAlign="Middle" >
-                <cells>
-                    <Text text="{oModelTableAllegati>descrizione}"/>
-                    <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
+			}}">
+        <headerToolbar>
+          <OverflowToolbar>
+            <Title text="{i18n>Titleallegati} ({oModelTableAllegati>/oModel/length})" level="H2"/>
+            <ToolbarSpacer/>
+            <Button id="newButton" text="{i18n>newAllegato}" icon="sap-icon://create" press="onNewAllegatoPress"/>
+          </OverflowToolbar>
+        </headerToolbar>
+        <columns>
+          <Column >
+            <Text text="{i18n>descrizione}"/>
+          </Column>
+          <Column minScreenWidth="Tablet" demandPopin="true">
+            <Text text="{i18n>importo}"/>
+          </Column>
+          <Column minScreenWidth="Tablet" demandPopin="true" >
+            <Text text="{i18n>allegatoLabel}" />
+          </Column>
+          <Column minScreenWidth="Tablet" demandPopin="true">
+            <Text text="{i18n>date}"/>
+          </Column>
+          <Column minScreenWidth="Tablet" demandPopin="true">
+            <Text text="{i18n>user}" />
+          </Column>
+          <Column minScreenWidth="Tablet" demandPopin="true">
+            <Text text="{i18n>note}" />
+          </Column>
+        </columns>
+        <items>
+          <ColumnListItem vAlign="Middle">
+            <cells>
+              <Text text="{oModelTableAllegati>descrizione}"/>
+              <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
                                                 }}"/>
-                    <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati"/>
-                    <Text text="{path: 'oModelTableAllegati>createdAt', type: 'sap.ui.model.odata.type.DateTimeOffset',
+              <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati" wrapping="true"/>
+              <Text text="{path: 'oModelTableAllegati>createdAt', type: 'sap.ui.model.odata.type.DateTimeOffset',
                                                                 constraints: {
                                                                     precision: 3,
                                                                     v4: true
@@ -100,30 +58,13 @@
                                                                 formatOptions: {
                                                                     style: 'short' 
                                                                 }
-                               }"/> 
-                    <Text text="{oModelTableAllegati>createdBy}"/>   
-                    <Button icon="sap-icon://notes"/> 
-                                 <!--   press="onNotePress" -->
-                </cells>
-              </ColumnListItem>
-            </items>
-          </Table>
-        <!-- <l:VerticalLayout>
-         <u:FileUploader
-			id="fileUploader"
-			name="myFileUpload"
-            sendXHR="true"
-            useMultipart="false"
-			uploadUrl="upload/"
-			tooltip="Upload your file to the local server"
-			uploadComplete="handleUploadComplete">
-        </u:FileUploader>
-		<Button
-			text="Upload File"
-			press="onSaveAllegato"/>
-
-        </l:VerticalLayout> -->
-
-        </semantic:content>
-   </semantic:SemanticPage>
+                               }"/>
+              <Text text="{oModelTableAllegati>createdBy}"/>
+              <Button icon="sap-icon://notes" press="onNotePress"/>
+            </cells>
+          </ColumnListItem>
+        </items>
+      </Table>
+    </semantic:content>
+  </semantic:SemanticPage>
 </mvc:View>

@@ -193,14 +193,14 @@
                 },
                 {
                     "name": "Riprese",
-                    "pattern": "Computation/{ID}/Ripresa/{ripresaID},{imposta}",
+                    "pattern": "Computation/{ID}/{imposta}/Ripresa/{ripresaID}",
                     "target": [
                         "Riprese"
                     ]
                 },
                 {
                     "name": "Allegati",
-                    "pattern": "Computation/{ID}/Ripresa/{ripresaID},{imposta}/CodiceGL/{codiceGL}",
+                    "pattern": "Computation/{ID}/{imposta}/Ripresa/{ripresaID}/CodiceGL/{codiceGL}",
                     "target": [
                         "Allegati"
                     ]
