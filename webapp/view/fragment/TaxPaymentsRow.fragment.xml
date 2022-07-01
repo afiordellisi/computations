@@ -6,10 +6,7 @@
     xmlns:u="sap.ui.unified">
 	<Dialog
 		title="{i18n>newAllegato}"
-		save="onSaveAllegato"
-        press="onCloseConfigurazione"
         id="DialogSalva">
-      	
             <f:Form id="FormChange354"
 			editable="true">
             	 <f:layout>
@@ -100,7 +97,7 @@
     <Button text="{i18n>save}" press="onSaveAllegato" type="Emphasized"/>
     </beginButton >
     <endButton >
-    <Button text="{i18n>cancel}" press="onCloseConfigurazione"/>
+    <Button text="{i18n>cancel}" press="onCloseNewPayment"/>
     </endButton >
 	</Dialog>
 </core:FragmentDefinition>

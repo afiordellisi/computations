@@ -59,10 +59,6 @@ sap.ui.define([
                     dataType: "json",
                     async: false,
                     success: function (oCompleteEntry) {
-                        var linkArray = [];
-                        for (var i = 0; i < oCompleteEntry.value.length; i++) {
-                            linkArray.push(oCompleteEntry.value[i].ID)
-                        }
                         var arr = oCompleteEntry.value;
                         var V = arr.filter(versamento => versamento.tipologia === 'V');
                         var C = arr.filter(versamento => versamento.tipologia === 'C');
@@ -72,14 +68,43 @@ sap.ui.define([
                             oModelV: V,
                             oModelC: C,
                             oModelA: A,
-                            oModelO: O,
-                            oModelLink: linkArray
+                            oModelO: O
                         };
+                        var oModel = new JSONModel(data);
+                        that.getView().setModel(oModel, "oModelTableAllegati");
+                        that._setTotaliPayments(computazioneID);
+                    },
+                    error: function (error) {
+                        sap.m.MessageToast.show("Error");
+                    }
+                });
+            },
 
-                        var DataModel = new sap.ui.model.json.JSONModel();
-                        DataModel.setData(data);
-                        that.getView().setModel(DataModel, "oModelTableAllegati");
-
+            _setTotaliPayments: function(computazioneID){
+                var that = this;
+                // var descrizioneGL = descrizioneGL;
+                var computazioneID = computazioneID;
+                var imposta = this.getView().getModel("routingModel").getData().imposta;
+                jQuery.ajax({
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/TaxPayments?$apply=filter(computation_ID eq " + computazioneID + " and imposta eq '"+imposta+"')/groupby((tipologia),aggregate(importo with sum as Importo))"),
+                    contentType: "application/json",
+                    type: 'GET',
+                    dataType: "json",
+                    async: false,
+                    success: function (oCompleteEntry) {
+                        var totale = oCompleteEntry.value;
+                        var V = totale.filter(importo => importo.tipologia === 'V');
+                        var C = totale.filter(importo => importo.tipologia === 'C');
+                        var A = totale.filter(importo => importo.tipologia === 'A');
+                        var O = totale.filter(importo => importo.tipologia === 'O');
+                        var data = {
+                            oModelVTot: V[0],
+                            oModelCTot: C[0],
+                            oModelATot: A[0],
+                            oModelOTot: O[0]
+                        };
+                        var oModelTot = new JSONModel(data);
+                        that.getView().setModel(oModelTot, "oModelTableTotAllegati");
                     },
                     error: function (error) {
                         sap.m.MessageToast.show("Error");
@@ -133,8 +158,8 @@ sap.ui.define([
                     success: function (oCompleteEntry) {
                         var ID = oCompleteEntry.ID //allegatoID
                         
-                        //that._putAllegato(ID)
-                        that.onCloseConfigurazione();
+                        that._putAllegato(ID)
+                        that.onCloseNewPayment();
                     },
                     error: function (error) {
                         sap.m.MessageToast.show("Error");
@@ -148,8 +173,38 @@ sap.ui.define([
                 }  
             },
 
-            onNewAllegatoPress: function (oEvent) {
-                tipo = oEvent;
+            //sostituita da onAdd
+            // onNewAllegatoPress: function (oEvent) {
+            //     tipo = oEvent;
+            //     var oView = this.getView();
+            //     if (!this._pDialogConf) {
+            //         this._pDialogConf = Fragment.load({
+            //             id: oView.getId(),
+            //             name: "tax.provisioning.computations.view.fragment.TaxPaymentsRow",
+            //             controller: this
+            //         }).then(function (oDialogConf) {
+            //             oView.addDependent(oDialogConf);
+            //             return oDialogConf;
+            //         });
+            //     }
+            //     this._pDialogConf.then(function (oDialogConf) {
+            //         //this._configDialog(oButton, oDialogConf);
+            //         oDialogConf.open();
+            //     });
+            // },
+
+            onAdd: function(oEvent){
+                var sId = oEvent.getSource().getId();
+                if(sId.includes("addAcconto")){
+                    tipo = 'A';
+                }
+                if(sId.includes("addVersamento")){
+                    tipo = 'V';
+                }
+                if(sId.includes("addCompensazione")){
+                    tipo = 'C';
+                }
+               
                 var oView = this.getView();
                 if (!this._pDialogConf) {
                     this._pDialogConf = Fragment.load({
@@ -165,47 +220,15 @@ sap.ui.define([
                     //this._configDialog(oButton, oDialogConf);
                     oDialogConf.open();
                 });
-
             },
 
-            // onNotePress: function(){
-            //     var oView = this.getView();
-            //     if (!this._pDialogConf2) {
-            //         this._pDialogConf2 = Fragment.load({
-            //             id: oView.getId(),
-            //             name: "tax.provisioning.computations.view.fragment.Timeline",
-            //             controller: this
-            //         }).then(function (oDialogConf2) {
-            //             oView.addDependent(oDialogConf2);
-            //             return oDialogConf2;
-            //         });
-            //     }
-            //     this._pDialogConf2.then(function (oDialogConf2) {
-            //         //this._configDialog(oButton, oDialogConf);
-            //         oDialogConf2.open();
-            //     });
-
-            // },
-
-            onCloseConfigurazione: function (oEvent) {
-                    
+            onCloseNewPayment: function (oEvent) {
+                    var imposta = this.getView().getModel("routingModel").getData().imposta;
                     this.byId("DialogSalva").close();
                     this.byId("fileUploader").clear();
                     this.byId("descrizioneAllegato").setValue("");
                     this.byId("importoAllegato").setValue("");
                     this._setTableAllegati(computazioneID, imposta)
-
-                // if(this.byId("DialogSalva").getId().substring(90, 70) === 'DialogSalva'){
-                //     this.byId("DialogSalva").close();
-                //     this.byId("DialogSalva").dismiss();
-                //     this.byId("fileUploader").clear();
-
-                //     this.byId("descrizioneAllegato").setValue("");
-                //     this.byId("importoAllegato").setValue("");
-                //     this._setTableAllegati(ripresaID, codiceGL, computazioneID)
-                // }else{
-                //     this.byId("DialogSalva2").close();
-                // }
             },
 
             onClose: function(){
@@ -258,28 +281,6 @@ sap.ui.define([
                 var url = jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/TaxPayments/" + allegatoID + "/content ");
                 // Require the URLHelper and open the URL in a new window or tab (same as _blank):
                 URLHelper.redirect(url, true);
-
-
-                // jQuery.ajax({
-                //     url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/Computation/AllegatiRipresa/"+allegatoID+"/content "),
-                //     contentType: "application/json",
-                //     type: 'GET',
-                //     dataType: "json",
-                //     async: false,
-                //     success: function (oCompleteEntry) {
-                //         
-                //         // var data = {
-                //         //    oModel: oCompleteEntry,
-                //         //    //oModelTestata: testata
-                //         // };
-                //         // var DataModel = new sap.ui.model.json.JSONModel();
-                //         // DataModel.setData(data);
-                //         // that.getView().setModel(DataModel, "oModelTableLinkAllegati");
-                //     },
-                //     error: function (error) {
-                //         sap.m.MessageToast.show("Error");
-                //     }
-                // });
             },
 
             _validazioneAllegato: function(){

@@ -1,244 +1,265 @@
 <mvc:View controllerName="tax.provisioning.computations.controller.TaxPayments"
-        xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-        xmlns="sap.m"
-        xmlns:uxap="sap.uxap"
-        xmlns:ui="sap.ui.table"
-        xmlns:semantic="sap.f.semantic"
-        xmlns:layout="sap.ui.layout"
-        xmlns:core="sap.ui.core"
-        xmlns:form="sap.ui.layout.form"
-        xmlns:smartForm="sap.ui.comp.smartform"
-        xmlns:smartField="sap.ui.comp.smartfield"
-        xmlns:u="sap.ui.unified"
-        xmlns:tnt="sap.tnt">
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap"
+    xmlns:ui="sap.ui.table"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:smartForm="sap.ui.comp.smartform"
+    xmlns:smartField="sap.ui.comp.smartfield"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt">
 
-	<uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" preserveHeaderStateOnScroll="true" >
-    	<uxap:headerTitle >
-			<uxap:ObjectPageDynamicHeaderTitle >
-            <uxap:heading >
-				 <layout:VerticalLayout class="sapUiMediumMarginEnd">
-                <layout:HorizontalLayout class="sapUiSmallMarginTop" allowWrapping="true">
-                    <layout:VerticalLayout class="sapUiMediumMarginEnd">  
-                        <ObjectIdentifier text="{i18n>imposta}: " class="sapUiTinyMarginBottom" id="impostaTime"/> 
-                        <!-- <ObjectIdentifier text="{i18n>Computazione}: " class="sapUiTinyMarginBottom" id="computazioneTime"/> -->
-                    </layout:VerticalLayout>  
-                    <layout:VerticalLayout> 
-                        <ObjectNumber number="{oModelTestata>/imposta}" class="sapUiTinyMarginBottom"/>
-                        <!-- <ObjectNumber number="{oModelTestata>/computationID}" class="sapUiTinyMarginBottom"/> -->
-                    </layout:VerticalLayout>            
-                </layout:HorizontalLayout>
-            </layout:VerticalLayout>
-			</uxap:heading>
+    <uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" preserveHeaderStateOnScroll="true">
+        <uxap:headerTitle >
+            <uxap:ObjectPageDynamicHeaderTitle >
+                <uxap:heading >
+                    <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                        <layout:HorizontalLayout class="sapUiSmallMarginTop" allowWrapping="true">
+                            <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                                <ObjectIdentifier text="{i18n>imposta}:" class="sapUiTinyMarginBottom" id="impostaTime"/>
+                            </layout:VerticalLayout>
+                            <layout:VerticalLayout>
+                                <ObjectNumber number="{routingModel>/imposta}" class="sapUiTinyMarginBottom"/>
+                            </layout:VerticalLayout>
+                        </layout:HorizontalLayout>
+                    </layout:VerticalLayout>
+                </uxap:heading>
             </uxap:ObjectPageDynamicHeaderTitle>
-            </uxap:headerTitle>
+        </uxap:headerTitle>
         <uxap:sections>
-        	<uxap:ObjectPageSection titleUppercase="false" title="Section 1" class="sapUiTinyMarginBottom">
-            <uxap:subSections>
-					<uxap:ObjectPageSubSection id="personalSectionSS1" title="" titleUppercase="false">
-						<uxap:blocks>
-                        </uxap:blocks>
-					</uxap:ObjectPageSubSection>
-                    	</uxap:subSections>
-            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection titleUppercase="false" title="Section 2" showTitle="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="1" title="{i18n>credLFY}" titleUppercase="false">
+                        <uxap:blocks>
+                            <layout:VerticalLayout>
+                                <Table id="idTableCredito" inset="false" items="{path:'oModelTableAllegati>/oModelV', sorter: {
+                            path: 'createdAt',
+                            descending: true
+                        }}">
+                                    <headerToolbar>
+                                        <OverflowToolbar id="toolbarID">
+                                            <Title text="{i18n>versamenti}" level="H2"/>
+                                            <ToolbarSpacer/>
+                                            <Button id="addVersamento" icon="sap-icon://add" press="onAdd"/>
+                                        </OverflowToolbar>
+                                    </headerToolbar>
+                                    <columns>
+                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                            <Text text="{i18n>descrizione}"/>
+                                            <footer>
+                                                <Text text="{i18n>totale}"/>
+                                            </footer>
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                            <Text text="{i18n>data}"/>
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                            <Text text="{i18n>rata}"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="{i18n>codiceTributo}"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="{i18n>anno}"/>
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                            <Text text="{i18n>ravvedimento}" />
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                            <Text text="{i18n>importo}" />
+                                            <footer>
+                                            <Text text="{path: 'oModelTableTotAllegati>/oModelVTot/Importo', type: 'sap.ui.model.type.Float',
+                                                            formatOptions: {
+                                                                minFractionDigits: 2,
+                                                                maxFractionDigits: 2,
+                                                                groupingEnabled: true
+                                                            }}"/>
+                                        </footer>
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                            <Text text="{i18n>note}" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem vAlign="Middle">
+                                            <cells>
+                                                <Text text="{oModelTableAllegati>descrizione}"/>
+                                                <Text text="{path: 'oModelTableAllegati>data'}"/>
+                                                <Text text="{oModelTableAllegati>rata}"/>
+                                                <Text text="{oModelTableAllegati>codiceTributo}"/>
+                                                <Text text="{oModelTableAllegati>anno}"/>
+                                                <Text text="{oModelTableAllegati>ravvedimento}"/>
+                                                <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
+                                                            formatOptions: {
+                                                                minFractionDigits: 2,
+                                                                maxFractionDigits: 2,
+                                                                groupingEnabled: true
+                                                            }}"/>
+                                                <Text text="{oModelTableAllegati>note}"/>
+                                                <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati"/>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
 
-            <uxap:ObjectPageSection titleUppercase="false" title="Section 2" class="sapUiTinyMarginTop" showTitle="false">
-            <uxap:subSections>
-					<uxap:ObjectPageSubSection id="1" title="{i18n>credLFY}" titleUppercase="false" >
-						<uxap:blocks>
-                        <Table id="idTableCredito" inset="false" items="{path:'oModelTableAllegati>/oModelV', sorter: {
+                                <Table id="idTableVersamenti" inset="false" items="{path:'oModelTableAllegati>/oModelC', sorter: {
                             path: 'createdAt',
                             descending: true
-                        }}" class="sapFSemanticPageAlignContent" fixedLayout="false">
-                        <headerToolbar>
-                        <OverflowToolbar id="toolbarID">
-                            <!-- <Title text="{i18n>allegati}" level="H2"/> -->
-                            <ToolbarSpacer/>
-                            <Button id="newButton1" text="{i18n>newAllegato}" icon="sap-icon://create" press="onNewAllegatoPress"/>
-                        </OverflowToolbar>
-                        </headerToolbar>
-                        <columns>
-                         <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>descrizione}"/>
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>data}"/>
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>rata}"/>
-                        </Column>
-                        <Column>
-                            <Text text="{i18n>codiceTributo}"/>
-                        </Column>
-                        <Column>
-                            <Text text="{i18n>anno}"/>
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>ravvedimento}" />
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>importo}" />
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>note}" />
-                        </Column>
-                        </columns>
-                        <items>
-                        <ColumnListItem vAlign="Middle" >
-                            <cells>
-                                <Text text="{oModelTableAllegati>descrizione}"/>
-                               
-                                <Text text="{path: 'oModelTableAllegati>data'}"/> 
-                                <Text text="{oModelTableAllegati>rata}"/>   
-                                <Text text="{oModelTableAllegati>codiceTributo}"/>   
-                                <Text text="{oModelTableAllegati>anno}"/>   
-                                <Text text="{oModelTableAllegati>ravvedimento}"/>  
-                                <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
+                        }}">
+                                    <headerToolbar>
+                                        <OverflowToolbar>
+                                            <Title text="{i18n>compensazione}" level="H2"/>
+                                            <ToolbarSpacer/>
+                                            <Button id="addCompensazione" icon="sap-icon://add" press="onAdd"/>
+                                        </OverflowToolbar>
+                                    </headerToolbar>
+                                    <columns>
+                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                            <Text text="{i18n>descrizione}"/>
+                                            <footer>
+                                                <Text text="{i18n>totale}"/>
+                                            </footer>
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                            <Text text="{i18n>data}"/>
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                            <Text text="{i18n>rata}"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="{i18n>codiceTributo}"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="{i18n>anno}"/>
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                            <Text text="{i18n>ravvedimento}" />
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                            <Text text="{i18n>importo}" />
+                                            <footer>
+                                            <Text text="{path: 'oModelTableTotAllegati>/oModelCTot/Importo', type: 'sap.ui.model.type.Float',
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
                                                                 maxFractionDigits: 2,
                                                                 groupingEnabled: true
                                                             }}"/>
-                                <Text text="{oModelTableAllegati>note}"/>   
-                                <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati"/>
-                            </cells>
-                        </ColumnListItem>
-                        </items>
-                    </Table>
-                
-                        </uxap:blocks>
-					</uxap:ObjectPageSubSection>
-                    <uxap:ObjectPageSubSection id="2" title="{i18n>versamenti}" titleUppercase="false" >
-						<uxap:blocks>
-                        <Table id="idTableVersamenti" inset="false" items="{path:'oModelTableAllegati>/oModelC', sorter: {
-                            path: 'createdAt',
-                            descending: true
-                        }}" class="sapFSemanticPageAlignContent" fixedLayout="false">
-                        <headerToolbar>
-                        <OverflowToolbar>
-                            <!-- <Title text="{i18n>versamenti}" level="H2"/> -->
-                            <ToolbarSpacer/>
-                            <Button id="newButton2" text="{i18n>newAllegato}" icon="sap-icon://create" press="onNewAllegatoPress"/>
-                        </OverflowToolbar>
-                        </headerToolbar>
-                       <columns>
-                         <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>descrizione}"/>
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>data}"/>
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>rata}"/>
-                        </Column>
-                        <Column>
-                            <Text text="{i18n>codiceTributo}"/>
-                        </Column>
-                        <Column>
-                            <Text text="{i18n>anno}"/>
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>ravvedimento}" />
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>importo}" />
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>note}" />
-                        </Column>
-                        </columns>
-                        <items>
-                        <ColumnListItem vAlign="Middle" >
-                            <cells>
-                                <Text text="{oModelTableAllegati>descrizione}"/>
-                               
-                                <Text text="{path: 'oModelTableAllegati>data'}"/> 
-                                <Text text="{oModelTableAllegati>rata}"/>   
-                                <Text text="{oModelTableAllegati>codiceTributo}"/>   
-                                <Text text="{oModelTableAllegati>anno}"/>   
-                                <Text text="{oModelTableAllegati>ravvedimento}"/>  
-                                <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
-                                                            formatOptions: {
-                                                                minFractionDigits: 2,
-                                                                maxFractionDigits: 2,
-                                                                groupingEnabled: true
-                                                            }}"/>
-                                <Text text="{oModelTableAllegati>note}"/>   
-                                <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati"/>
-                            </cells>
-                        </ColumnListItem>
-                        </items>
-                    </Table>
-                
-                        </uxap:blocks>
-					</uxap:ObjectPageSubSection>
+                                        </footer>
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                            <Text text="{i18n>note}" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem vAlign="Middle">
+                                            <cells>
+                                                <Text text="{oModelTableAllegati>descrizione}"/>
 
-                     <uxap:ObjectPageSubSection id="3" title="{i18n>compensazione}" titleUppercase="false" >
-						<uxap:blocks>
-                        <Table id="idTableCompensazione" inset="false" items="{path:'oModelTableAllegati>/oModelA', sorter: {
-                            path: 'createdAt',
-                            descending: true
-                        }}" class="sapFSemanticPageAlignContent" fixedLayout="false">
-                        <headerToolbar>
-                        <OverflowToolbar>
-                            <!-- <Title text="{i18n>versamenti}" level="H2"/> -->
-                            <ToolbarSpacer/>
-                            <Button id="newButton3" text="{i18n>newAllegato}" icon="sap-icon://create" press="onNewAllegatoPress"/>
-                        </OverflowToolbar>
-                        </headerToolbar>
-                       <columns>
-                         <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>descrizione}"/>
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>data}"/>
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>rata}"/>
-                        </Column>
-                        <Column>
-                            <Text text="{i18n>codiceTributo}"/>
-                        </Column>
-                        <Column>
-                            <Text text="{i18n>anno}"/>
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>ravvedimento}" />
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>importo}" />
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>note}" />
-                        </Column>
-                        </columns>
-                        <items>
-                        <ColumnListItem vAlign="Middle" >
-                            <cells>
-                                <Text text="{oModelTableAllegati>descrizione}"/>
-                               
-                                <Text text="{path: 'oModelTableAllegati>data'}"/> 
-                                <Text text="{oModelTableAllegati>rata}"/>   
-                                <Text text="{oModelTableAllegati>codiceTributo}"/>   
-                                <Text text="{oModelTableAllegati>anno}"/>   
-                                <Text text="{oModelTableAllegati>ravvedimento}"/>  
-                                <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
+                                                <Text text="{path: 'oModelTableAllegati>data'}"/>
+                                                <Text text="{oModelTableAllegati>rata}"/>
+                                                <Text text="{oModelTableAllegati>codiceTributo}"/>
+                                                <Text text="{oModelTableAllegati>anno}"/>
+                                                <Text text="{oModelTableAllegati>ravvedimento}"/>
+                                                <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
                                                                 maxFractionDigits: 2,
                                                                 groupingEnabled: true
                                                             }}"/>
-                                <Text text="{oModelTableAllegati>note}"/>   
-                                <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati"/>
-                            </cells>
-                        </ColumnListItem>
-                        </items>
-                    </Table>
-                
+                                                <Text text="{oModelTableAllegati>note}"/>
+                                                <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati"/>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+
+
+
+                            </layout:VerticalLayout>
                         </uxap:blocks>
-					</uxap:ObjectPageSubSection>
-                    	</uxap:subSections>
+                    </uxap:ObjectPageSubSection>
+
+                    <uxap:ObjectPageSubSection id="2" title="{i18n>acconti}" titleUppercase="false">
+                        <uxap:blocks>
+                            <Table id="idTableCompensazione" inset="false" items="{path:'oModelTableAllegati>/oModelA', sorter: {
+                            path: 'createdAt',
+                            descending: true
+                        }}">
+                                <headerToolbar>
+                                    <OverflowToolbar>
+                                        <Title text="{i18n>accontiV}" level="H2"/>
+                                        <ToolbarSpacer/>
+                                        <Button id="addAcconto" icon="sap-icon://add" press="onAdd"/>
+                                    </OverflowToolbar>
+                                </headerToolbar>
+                                <columns>
+                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Text text="{i18n>descrizione}"/>
+                                        <footer>
+                                            <Text text="{i18n>totale}"/>
+                                        </footer>
+                                    </Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Text text="{i18n>data}"/>
+                                    </Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Text text="{i18n>rata}"/>
+                                    </Column>
+                                    <Column>
+                                        <Text text="{i18n>codiceTributo}"/>
+                                    </Column>
+                                    <Column>
+                                        <Text text="{i18n>anno}"/>
+                                    </Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Text text="{i18n>ravvedimento}" />
+                                    </Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true" >
+                                        <Text text="{i18n>importo}" />
+                                        <footer>
+                                            <Text text="{path: 'oModelTableTotAllegati>/oModelATot/Importo', type: 'sap.ui.model.type.Float',
+                                                            formatOptions: {
+                                                                minFractionDigits: 2,
+                                                                maxFractionDigits: 2,
+                                                                groupingEnabled: true
+                                                            }}" />
+                                        </footer>
+                                    </Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Text text="{i18n>note}" />
+                                    </Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Text text="{i18n>allegato}" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem  >
+                                        <cells>
+                                            <Text text="{oModelTableAllegati>descrizione}"/>
+                                            <Text text="{path: 'oModelTableAllegati>data'}"/>
+                                            <Text text="{oModelTableAllegati>rata}"/>
+                                            <Text text="{oModelTableAllegati>codiceTributo}"/>
+                                            <Text text="{oModelTableAllegati>anno}"/>
+                                            <Text text="{oModelTableAllegati>ravvedimento}"/>
+                                            <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
+                                                            formatOptions: {
+                                                                minFractionDigits: 2,
+                                                                maxFractionDigits: 2,
+                                                                groupingEnabled: true
+                                                            }}" />
+                                            <Text text="{oModelTableAllegati>note}"/>
+                                            <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
             </uxap:ObjectPageSection>
         </uxap:sections>
     </uxap:ObjectPageLayout>
-<!-- </Page> -->
 </mvc:View>
