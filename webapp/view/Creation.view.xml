@@ -179,10 +179,214 @@
                                 </Table>
                     </WizardStep>
 
+                    <WizardStep id="taxRules" 
+                               	validated="true"
+                                title="{i18n>TaxRules}"
+                                activate="filterValidation3">
+                                
+                        <Table
+                            id="taxTableIRES"
+                            inset="false"
+                            items="{path:'oModelTaxIRES>/'}"
+                            class="sapFDynamicPageAlignContent"
+                            width="auto">
+                            <headerToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column visible="false">
+                                    <Text text="ID"/>
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>Region}"/>
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>Current}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Current1}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Current2}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Current3}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Current4}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>ImponibilePrev}" visible="false"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Ripartizione}" visible="false"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{oModelTaxIRES>ID}"/>
+                                        <ObjectListItem title="{oModelTaxIRES>descrizione}" id="regionIRES">                     
+                                        </ObjectListItem>
+                                        <Input
+                                            id="Current"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value="{oModelTaxIRES>current}"
+                            
+                                        />
+                                        <Input
+                                            id="Current1"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value="{oModelTaxIRES>current1}"
+                                        />
+                                        <Input
+                                            id="Current2"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value="{oModelTaxIRES>current2}"
+                                        />
+                                        <Input
+                                            id="Current3"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value="{oModelTaxIRES>current3}"
+                                        />
+                                        <Input
+                                            id="Current4"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value="{oModelTaxIRES>current4}"
+                                        />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>	
+
+                        <Table
+                            id="taxTableIRAP"
+                            inset="false"
+                            items="{path:'oModelTaxIRAP>/'}"
+                            class="sapFDynamicPageAlignContent"
+                            width="auto">
+                            <headerToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column visible="false">
+                                    <Text text="ID"/>
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>Region}"/>
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>Current}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Current1}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Current2}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Current3}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Current4}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>ImponibilePrev}"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet">
+                                    <Text text="{i18n>Ripartizione}"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{oModelTaxIRAP>ID}"/>
+                                        <ObjectListItem title="{oModelTaxIRAP>descrizione}">                     
+                                        </ObjectListItem>
+                                        <Input
+                                            id="CurrentIRAP"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value="{oModelTaxIRAP>current}"
+                            
+                                        />
+                                        <Input
+                                            id="Current1IRAP"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value="{oModelTaxIRAP>current1}"
+                                        />
+                                        <Input
+                                            id="Current2IRAP"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value="{oModelTaxIRAP>current2}"
+                                        />
+                                        <Input
+                                            id="Current3IRAP"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value="{oModelTaxIRAP>current3}"
+                                        />
+                                        <Input
+                                            id="Current4IRAP"
+                                            type="Number"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value="{oModelTaxIRAP>current4}"
+                                        />
+                                        <Input
+                                            change=".onValueChanged"
+                                            id="ImponibilePrev"
+                                            placeholder=""
+                                            enabled="true"
+                                            editable="true"
+                                            value="{
+                                                path: 'oModelTaxIRAP>imponibile',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                                            }"
+                                        />
+                                        <!-- <Text text="{=${oModelTaxIRAP>imponibile}/${oModelTaxIRAPTotale>/totale}*100}" />  -->
+                                        <Text text="{parts: [{path: 'oModelTaxIRAP>imponibile'}, {path: 'oModelTaxIRAPTotale>/totale'}], formatter: '.formatter.formatRipartizione'}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>	
+
+
+                    </WizardStep>
+
                     <WizardStep id="confConfronto" 
                                	validated="true"
                                 title="{i18n>confConfronto}"
-                                activate="filterValidation3"
+                                activate="filterValidation4"
                                 complete="handleFinishSelection"
                                 >
                         
