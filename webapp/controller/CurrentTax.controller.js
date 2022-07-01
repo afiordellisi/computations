@@ -260,14 +260,14 @@ sap.ui.define([
                         imposta : this.getView().byId("impostaButton").getSelectedKey()
                     }, false);
                 }if(key === 'C06'){
-                    oRouter.navTo("Riprese", {
-                        ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
+                    oRouter.navTo("TaxPayments", {
+                        //ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
                         ID :  this.getView().getModel("computationModel").getData().ID,
                         imposta : this.getView().byId("impostaButton").getSelectedKey()
                     }, false);
                 }if(key === 'C07'){
                     oRouter.navTo("Riprese", {
-                        ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
+                        //ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
                         ID :  this.getView().getModel("computationModel").getData().ID,
                         imposta : this.getView().byId("impostaButton").getSelectedKey()
                         //conf : this.getView().getModel("computationModel").getData().conf
@@ -283,8 +283,8 @@ sap.ui.define([
                 //var conf = oEvent.conf;
 
                 this.getView().setModel(new JSONModel({
-                    "ID": ID
-                   // "conf": conf //ID computazione
+                    "ID": ID //ID computazione
+                   // "conf": conf 
                   }), "computationModel");
 
                 var imposta = this.getView().byId("impostaButton").getSelectedKey();
@@ -334,11 +334,11 @@ sap.ui.define([
                             }
                             ACEImponibile += PERImponibile ;
 
-                            var RedditoImponibile = 0;
+                            var RedditoImponibile = [{"imponibile": ACEImponibile, "imposta": 0, "Riferimento Dichiarazione": 0, "Correnti": 0, "Differite": 0, "Totale": 0}];
                             for (var i = 0; i < ACE.length; i++) {
-                                RedditoImponibile += ACE[i].imponibile;
+                                RedditoImponibile[0].imponibile += ACE[i].imponibile;
                             }
-                            RedditoImponibile += ACEImponibile; //questo valore va salvato, quindi serve su backend
+                            //RedditoImponibile.imponibile += ACEImponibile; //questo valore va salvato, quindi serve su backend
                             var data = {
                                 oModelPA : PA,
                                 oModelPD : PD,
@@ -523,6 +523,7 @@ sap.ui.define([
                 var that = this;
                 //var ID = this.getView().getModel("computationModel").getData().ID;
                 var configurazioneID = this.getView().getModel("oModelDescrizione").getData().oModelConfigurazioneID;
+                var computazioneID = this.getView().getModel("computationModel").getData().ID;
                 var imposta = this.getView().byId("impostaButton").getSelectedKey()
                 //var conf = this.getView().getModel("computationModel").getData().conf;
 
@@ -547,7 +548,7 @@ sap.ui.define([
             //     });
             // }if(imposta === 'IRAP'){
                 jQuery.ajax({
-                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/RegionsAVGView?$filter=configurazioneID eq "+configurazioneID+" and imposta eq '"+imposta+"'"),
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/RegionsAVGView?$filter=computazioneID eq "+computazioneID+" and imposta eq '"+imposta+"'"),
                     contentType: "application/json",
                     type: 'GET',
                     dataType: "json",

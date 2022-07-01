@@ -218,6 +218,13 @@
                     "target": [
                         "DTLDTA"
                     ]
+                },
+                {
+                    "name": "TaxPayments",
+                    "pattern": "Computation/{ID}/Imposta/{imposta}/TaxPayments",
+                    "target": [
+                        "TaxPayments"
+                    ]
                 }
             ],
             "targets": {
@@ -275,6 +282,14 @@
                     "clearControlAggregation": false,
                     "viewId": "DTLDTA",
                     "viewName": "DTLDTA",
+                    "viewLevel": 5
+                },
+                "TaxPayments": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "TaxPayments",
+                    "viewName": "TaxPayments",
                     "viewLevel": 5
                 }
             }
