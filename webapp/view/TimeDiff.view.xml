@@ -6,133 +6,101 @@
     xmlns:core="sap.ui.core"
     xmlns:t="sap.ui.table"
     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
-	xmlns:smartTable="sap.ui.comp.smarttable" 
+    xmlns:smartTable="sap.ui.comp.smarttable"
     xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
-    <semantic:SemanticPage id="timeDiffPage" headerPinnable="true" headerExpanded="true" toggleHeaderOnTitleClick="true" preserveHeaderStateOnScroll="false" titleAreaShrinkRatio="1:1.6:1.6" showFooter="false">
-        <semantic:headerContent>
-            <layout:VerticalLayout class="sapUiMediumMarginEnd">
-                <layout:HorizontalLayout class="sapUiSmallMarginTop" allowWrapping="true">
-                    <layout:VerticalLayout class="sapUiMediumMarginEnd">  
-                        <ObjectIdentifier text="{i18n>imposta}: " class="sapUiTinyMarginBottom" id="impostaTime"/> 
-                        <!-- <ObjectIdentifier text="{i18n>Computazione}: " class="sapUiTinyMarginBottom" id="computazioneTime"/> -->
-                    </layout:VerticalLayout>  
-                    <layout:VerticalLayout> 
-                        <ObjectNumber number="{oModelTestata>/imposta}" class="sapUiTinyMarginBottom"/>
-                        <!-- <ObjectNumber number="{oModelTestata>/computationID}" class="sapUiTinyMarginBottom"/> -->
-                    </layout:VerticalLayout>            
-                </layout:HorizontalLayout>
-            </layout:VerticalLayout>
-        </semantic:headerContent>
+    <semantic:SemanticPage id="timeDiffPage" headerPinnable="true" headerExpanded="true" toggleHeaderOnTitleClick="true" preserveHeaderStateOnScroll="false" titleAreaShrinkRatio="1:1.6:1.6" showFooter="true">
+        
+        <semantic:titleHeading>
+            <ObjectAttribute title="{i18n>imposta}" text="{oModelTestata>/imposta}"/>
+        </semantic:titleHeading>
 
         <semantic:content>
 
-            <t:Table
-                rows="{path:'oModelTiming>/oModel'}"
-				selectionMode="None" 
-                fixedColumnCount="2"
-                fixedBottomRowCount="1"
-                enableColumnReordering="false">
+            <t:Table rows="{path:'oModelTiming>/oModel'}" selectionMode="None" fixedColumnCount="2" fixedBottomRowCount="1" enableColumnReordering="false">
                 <t:columns>
-                    <t:Column width="11rem" >
+                    <t:Column width="11rem">
                         <Label text="{i18n>CodiceDiff}" />
                         <t:template>
                             <Text text="{oModelTiming>codiceRipresa}" wrapping="false" />
                         </t:template>
-					</t:Column>
-                    <t:Column width="11rem" >
+                    </t:Column>
+                    <t:Column width="11rem">
                         <Label text="{i18n>DiffTemp}" />
                         <t:template>
                             <Text text="{oModelTiming>descrizioneRipresa}" textAlign="Right" wrapping="false" />
                         </t:template>
-					</t:Column>
-                    <t:Column width="11rem"  hAlign="End">
+                    </t:Column>
+                    <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>OpeningB}" />
                         <t:template>
                             <Text text="{oModelTiming>OpeningBalance}" textAlign="Right" wrapping="false"/>
                         </t:template>
-					</t:Column>
-                    <t:Column width="11rem"  hAlign="End">
+                    </t:Column>
+                    <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>PriorYear}" />
                         <t:template>
                             <Text text="{oModelTiming>PriorYearAdjustments}" wrapping="false"/>
                         </t:template>
-					</t:Column>
-                    <t:Column width="11rem"  hAlign="End">
+                    </t:Column>
+                    <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>Extraordinary}" />
                         <t:template>
-                            <Input type="Number" value="{oModelTiming>extraordinaryTransactions}" textAlign="End"
-                            editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
+                            <Input type="Number" value="{oModelTiming>extraordinaryTransactions}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
-					</t:Column>
-                    <t:Column width="11rem"  hAlign="End">
+                    </t:Column>
+                    <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>CurrYear}" />
                         <t:template>
                             <Text text="{oModelTiming>CurrentYearAccrual}" wrapping="false"/>
                         </t:template>
-					</t:Column>
-                    <t:Column width="11rem"  hAlign="End">
+                    </t:Column>
+                    <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>CurrYearUtili}" />
                         <t:template>
                             <Text text="{oModelTiming>CurrentYearUtilization}" wrapping="false"/>
                         </t:template>
-					</t:Column>
-                    <t:Column width="11rem"  hAlign="End">
+                    </t:Column>
+                    <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>OtherAdj}" />
                         <t:template>
                             <Input type="Number" value="{oModelTiming>otherAdjustments}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
-					</t:Column>
-                    <t:Column width="11rem"  hAlign="End">
+                    </t:Column>
+                    <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>ClosingB}" />
                         <t:template>
                             <Text text="{oModelTiming>closingBalance}" wrapping="false"/>
                         </t:template>
-					</t:Column>
-                    <t:Column width="11rem"  hAlign="End">
+                    </t:Column>
+                    <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>Current1}" />
                         <t:template>
                             <Text text="{oModelTiming>current1}" wrapping="false"/>
                         </t:template>
-					</t:Column>
-                    <t:Column width="11rem"  hAlign="End">
+                    </t:Column>
+                    <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>Current2}" />
                         <t:template>
                             <Input type="Number" value="{oModelTiming>current2}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
-					</t:Column>
-                    <t:Column width="11rem"  hAlign="End">
+                    </t:Column>
+                    <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>Current3}" />
                         <t:template>
                             <Input type="Number" value="{oModelTiming>current3}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
-					</t:Column>
-                    <t:Column width="11rem"  hAlign="End">
+                    </t:Column>
+                    <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>LongTerm}" />
                         <t:template>
                             <Input type="Number" value="{oModelTiming>longTerm}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
-					</t:Column>
+                    </t:Column>
                 </t:columns>
             </t:Table>
-
-
-            <!-- <smartTable:SmartTable id="LineItemsSmartTable" 
-                entitySet="TimingDifferencesViewSet"
-                tableType="AnalyticalTable"
-                xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-                beforeRebindTable="setTable" 
-                useExportToExcel="true" 
-                beforeExport="onBeforeExport" 
-                useVariantManagement="false" 
-                useTablePersonalisation="false" 
-                showRowCount="false" 
-                enableAutoBinding="true" 
-                class="sapUiResponsiveContentPadding" 
-                enableAutoColumnWidth="true" 
-                initiallyVisibleFields="codiceRipresa,descrizioneRipresa"
-                requestAtLeastFields="codiceRipresa,descrizioneRipresa">
-
-			</smartTable:SmartTable> -->
         </semantic:content>
+        <semantic:footerCustomActions>
+            <Button text="{i18n>save}" type="Accept"/>
+        </semantic:footerCustomActions>
     </semantic:SemanticPage>
 </mvc:View>
