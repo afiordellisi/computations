@@ -1,0 +1,43 @@
+<core:FragmentDefinition
+	xmlns:m="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified"
+    xmlns="sap.suite.ui.commons">
+    <m:Dialog
+		title="{i18n>dialogNoteLabel} ({oModelNote>/length})"
+        id="DialogNote">	
+	<Timeline
+			id="idTimeline"
+			enableDoubleSided="false"
+      enableModelFilter="false"
+      showHeaderBar="false"
+      showSearch="false"
+      showSort="false"
+			sortOldestFirst="true"
+      growingThreshold="0"
+      enableScroll="false"
+			content="{oModelNote>/}">
+		<content>
+			<TimelineItem
+					id="idTemplateItem"
+					dateTime="{oModelNote>modifiedAt}"
+					userNameClickable="false"
+					userNameClicked="onUserNameClick"
+					select="onPressItems"
+					text="{oModelNote>nota}"
+					userName="{oModelNote>modifiedBy}"
+				>
+			</TimelineItem>
+		</content>
+	</Timeline>
+    <m:FeedInput
+            post="onPost"
+            showIcon="false"
+            growing="false" />
+       <m:endButton>
+    <m:Button text="{i18n>close}" press="onCloseNote"/>
+    </m:endButton >
+	</m:Dialog>
+</core:FragmentDefinition>

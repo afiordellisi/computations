@@ -1,372 +1,354 @@
-sap.ui.define([
-    "sap/ui/core/mvc/Controller",
-    'sap/ui/model/Filter',
-    'sap/ui/model/FilterOperator',
-    'sap/ui/model/json/JSONModel',
-    'sap/ui/core/Fragment',
-    "sap/ui/core/routing/History",
-    './BaseController',
-    "sap/m/library"
+sap.ui.define(
+  [
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/core/Fragment",
+    "./BaseController",
+    "sap/m/library",
+  ],
+  /**
+   * @param {typeof sap.ui.core.mvc.Controller} Controller
+   */
+  function (JSONModel, Fragment, BaseController, mobileLibrary) {
+    "use strict";
+    var codiceGL;
+    var ripresaID;
+    var versioneID;
+    var configurazioneID;
+    var computazioneID;
+    var descrizioneGL;
+    var URLHelper = mobileLibrary.URLHelper;
+    var file;
+    var imposta;
+    var allegatoID;
 
-],
-    /**
-     * @param {typeof sap.ui.core.mvc.Controller} Controller
-     */
-    function (Controller, Filter, FilterOperator, JSONModel, Fragment, History, BaseController, mobileLibrary) {
-        "use strict";
-        var codiceGL;
-        var ripresaID;
-        var versioneID;
-        var configurazioneID;
-        var computazioneID;
-        var descrizioneGL;
-        var URLHelper = mobileLibrary.URLHelper;
-        var file;
+    return BaseController.extend(
+      "tax.provisioning.computations.controller.Allegati",
+      {
+        onInit: function () {
+          this.getOwnerComponent()
+            .getRouter()
+            .getRoute("Allegati")
+            .attachPatternMatched(this._onObjectMatched, this);
+          sap.ui.getCore().sapAppID = this.getOwnerComponent()
+            .getMetadata()
+            .getManifest()["sap.app"].id;
+        },
 
-        return BaseController.extend("tax.provisioning.computations.controller.Allegati", {
-            onInit: function () {
-                //this._bDescendingSort = false;
-                //this.oProductsTable = this.oView.byId("productsTable");
-                this.oModel = this.getOwnerComponent().getModel();
-                this.getOwnerComponent().getRouter().getRoute("Allegati").attachPatternMatched(this._onObjectMatched, this);
+        _setTableAllegati: function (
+          ripresaID,
+          codiceGL,
+          computazioneID,
+          imposta
+        ) {
+          var that = this;
+          var codiceGL = codiceGL;
+          var ripresaID = ripresaID;
+          var computazioneID = computazioneID;
+          var testata = [codiceGL];
 
-                sap.ui.getCore().sapAppID = this.getOwnerComponent().getMetadata().getManifest()["sap.app"].id;
-                //this.getView().getModel("oModelAnagrafica");
-
-                this.oView = this.getView();
-
-                sap.ui.getCore().sapAppID = this.getOwnerComponent().getMetadata().getManifest()["sap.app"].id;
-
-                this.getView().setModel(new JSONModel({
-                        "Employees": [
-                            {
-                                "Name": "Laurent Dubois",
-                                "JobTitle": "Accounts Payable Manager",
-                                "Photo": "/images/Laurent_Dubois.png",
-                                "Icon": "sap-icon://activity-individual",
-                                "JobResponsibilities": "Plans, organizes and manages the operations and activities of an accounts payables.\nSupervises employees and monitors activities.\nFinal check of accounts payable payments and sign off.\nReporting to the head of finance.\n\n\"I am a diligent person. I put great attention to detail.\"",
-                                "HireDate": "Date(1371020400000)"
-                            },
-                            {
-                                "Name": "Sabine Mayer",
-                                "JobTitle": "Configuration Expert",
-                                "Photo": "/images/Sabine_Mayer.png",
-                                "Icon": "sap-icon://settings",
-                                "JobResponsibilities": "Implementing new Public Cloud ERP Financials system into his company and keeping it aligned with business.\nDuring the initial set-up of an ERP system: Customizing Financial Accounting settings such as organizational  structures, chart of accounts, and tax configuration (as part of implementation projects).\nDuring the ongoing maintenance of the configuration: Adapting the configuration to organizational and  process changes in business.\n\n\"I’m a versatile person. I keep the big picture in mind.\"",
-                                "HireDate": "Date(1376290800000)"
-                            },
-                            {
-                                "Name": "Alain Chevalier",
-                                "JobTitle": "Credit Analyst",
-                                "Photo": "/images/Alain_Chevalier.png",
-                                "Icon": "sap-icon://manager-insight",
-                                "JobResponsibilities": "Responsible for a high number of accounts (ca. 4000 customers).\nMonitor the credit risk of his customers.\nFocus on changes in his customer’s credit situation.\nRecurring checks on a regular basis.\nDecide on credit blocked sales orders.\nDecide on credit limits for his customers (according the company’s credit policy).\n\n\"I almost always find a pragmatic solution, that’s acceptable for my customers and my company.\"",
-                                "HireDate": "Date(1332403200000)"
-                            },
-                            {
-                                "Name": "Monique Legrand",
-                                "JobTitle": "GL Accountant",
-                                "Photo": "/images/Monique_Legrand.png",
-                                "Icon": "sap-icon://account",
-                                "JobResponsibilities": "Ensure and adjust correct structuring of company (e.g. chart of accounts, legal/management entities , profit centers etc. …).\nEnsure accuracy of financial data (profit center data).\nExplain financial data for both compliance and management purposes  (Profit center reporting).\nExecute, check, and explain period-end close.\nIdentify root causes of issues on accounts, track and correct these.\n\n\"I am a diligent person. I  put great attention to detail.\"",
-                                "HireDate": "Date(1422777600000)"
-                            },
-                            {
-                                "Name": "John Miller",
-                                "JobTitle": "GL Accountant",
-                                "Photo": "/images/John_Miller.png",
-                                "Icon": "sap-icon://account",
-                                "JobResponsibilities": "Ensure and adjust correct structuring of company (e.g. chart of accounts, legal/management entities , profit centers etc. …).\nEnsure accuracy of financial data (profit center data).\nExplain financial data for both compliance and management purposes  (Profit center reporting).\nExecute, check, and explain period-end close.\nIdentify root causes of issues on accounts, track and correct these.\n\n\"I am a diligent person. I  put great attention to detail.\"",
-                                "HireDate": "Date(1473404400000)"
-                            },
-                            {
-                                "Name": "Richard Wilson",
-                                "JobTitle": "Internal Auditor",
-                                "Photo": "/images/Richard_Wilson.png",
-                                "Icon": "sap-icon://badge",
-                                "JobResponsibilities": "Execute the audit (Setup meeting, request documents, do interview, etc.).\nFinish the report (Working papers, findings).\nFollow up action plans.",
-                                "HireDate": "Date(1167638400000)"
-                            },
-                            {
-                                "Name": "Julie Armstrong",
-                                "JobTitle": "Internal Auditor",
-                                "Photo": "/images/Julie_Armstrong.png",
-                                "Icon": "sap-icon://badge",
-                                "JobResponsibilities": "Execute the audit (Setup meeting, request documents, do interview, etc.).\nFinish the report (Working papers, findings).\nFollow up action plans.",
-                                "HireDate": "Date(1272697200000)"
-                            },
-                            {
-                                "Name": "Donna Moore",
-                                "JobTitle": "Expense Controller",
-                                "Photo": "/images/Donna_Moore.png",
-                                "Icon": "sap-icon://employee",
-                                "JobResponsibilities": "Keep Organizational Structure updated.\nOrganize and reorganize related objects into groups Keep object information up-to-date as needed.\nMaintain overhead-related structures and objects so costs can be distributed fairly.\nTrigger cost reposting to properly reflect changes that were not made in time.\n\n\"Everything needs to be as efficient as possible and always correct.\"",
-                                "HireDate": "Date(920275200000)"
-                            },
-                            {
-                                "Name": "Elena Petrova",
-                                "JobTitle": "Accounts Receivable Accountant",
-                                "Photo": "/images/Elena_Petrova.png",
-                                "Icon": "sap-icon://employee",
-                                "JobResponsibilities": "Responsible for a high number of accounts (ca. 5000 customers).\nCentral contact for all internal and external requests for invoice related issues (e.g. manage disputes on invoices, set dunning blocks). (ca. 15-30 calls per day).\nPost-processing of incoming payments; clearing accounts.\nCollect Cash.\nManage accounting related master data of his customers.\n\n\"I am a diligent person. I put great attention to detail.\"",
-                                "HireDate": "Date(1354348800000)"
-                            }
-                        ]
-                }), "modelloTimeline");
-
-                //this._setTestataAllegati();
-
-                //var sPath = sap.ui.require.toUrl("computations/webapp/localService/items.json"),
-                //oUploadSet = this.byId("UploadSet");
-
-                //this.getView().setModel(new JSONModel(sPath));
-
-                // Modify "add file" button
-                // oUploadSet.getDefaultFileUploader().setButtonOnly(false);
-                // oUploadSet.getDefaultFileUploader().setTooltip("");
-                // oUploadSet.getDefaultFileUploader().setIconOnly(true);
-                // oUploadSet.getDefaultFileUploader().setIcon("sap-icon://attachment");
+          jQuery.ajax({
+            url: jQuery.sap.getModulePath(
+              sap.ui.getCore().sapAppID +
+                "/catalog/AllegatiRipresa?$expand=computation,ripresa&$filter=computation_ID eq " +
+                computazioneID +
+                " and ripresa_ID eq '" +
+                ripresaID +
+                "' and codiceGL eq '" +
+                codiceGL +
+                "' and imposta eq '" +
+                imposta +
+                "'"
+            ),
+            contentType: "application/json",
+            type: "GET",
+            dataType: "json",
+            async: false,
+            success: function (oCompleteEntry) {
+              var linkArray = [];
+              for (var i = 0; i < oCompleteEntry.value.length; i++) {
+                linkArray.push(oCompleteEntry.value[i].ID);
+              }
+              var oData = {
+                oModel: oCompleteEntry.value,
+                oModelTestata: testata,
+                oModelLink: linkArray,
+              };
+              var oModel = new JSONModel(oData);
+              that.getView().setModel(oModel,"oModelTableAllegati");
             },
-
-            _setTableAllegati: function (ripresaID, codiceGL, computazioneID, imposta) {
-                var that = this;
-                var codiceGL = codiceGL;
-                var ripresaID = ripresaID;
-                // var descrizioneGL = descrizioneGL;
-                var computazioneID = computazioneID;
-                var testata = [codiceGL];
-
-
-                jQuery.ajax({
-                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/AllegatiRipresa?$expand=computation,ripresa&$filter=computation_ID eq " + computazioneID + " and ripresa_ID eq '" + ripresaID + "' and codiceGL eq '" + codiceGL + "' and imposta eq '"+imposta+"'"),
-                    contentType: "application/json",
-                    type: 'GET',
-                    dataType: "json",
-                    async: false,
-                    success: function (oCompleteEntry) {
-                        var linkArray = [];
-                        for (var i = 0; i < oCompleteEntry.value.length; i++) {
-                            linkArray.push(oCompleteEntry.value[i].ID)
-                        }
-                        var data = {
-                            oModel: oCompleteEntry.value,
-                            oModelTestata: testata,
-                            oModelLink: linkArray
-                        };
-
-                        var DataModel = new sap.ui.model.json.JSONModel();
-                        DataModel.setData(data);
-                        that.getView().setModel(DataModel, "oModelTableAllegati");
-
-                    },
-                    error: function (error) {
-                        sap.m.MessageToast.show("Error");
-                    }
-                });
+            error: function (error) {
+              sap.m.MessageToast.show("Error");
             },
+          });
+        },
 
-            _onObjectMatched: function (oEvent) {
-                var oEvent = oEvent.getParameter("arguments");
+        _onObjectMatched: function (oEvent) {
+          var oEvent = oEvent.getParameter("arguments");
+          computazioneID = oEvent.ID;
+          codiceGL = oEvent.codiceGL;
+          ripresaID = oEvent.ripresaID;
+          imposta = oEvent.imposta;
 
-                computazioneID = oEvent.ID;
-                codiceGL = oEvent.codiceGL;
-                ripresaID = oEvent.ripresaID; //ID ripresa singola
-                var imposta = oEvent.imposta;
+          this.getView().setModel(
+            new JSONModel({
+              ID: computazioneID,
+              ripresaID: ripresaID,
+              codiceGL: codiceGL,
+              imposta: imposta,
+            }),
+            "routingModel"
+          );
 
-                this.getView().setModel(new JSONModel({
-                    "ID": computazioneID,
-                    "ripresaID": ripresaID,
-                    "codiceGL": codiceGL,
-                    "imposta": imposta
-                }), "routingModel");
+          this._setTableAllegati(ripresaID, codiceGL, computazioneID, imposta);
+        },
 
-                this._setTableAllegati(ripresaID, codiceGL, computazioneID, imposta);
-                //this._setModelRouting(configurazioneID, ripresaID)
-            },
+        onSaveAllegato: function (oEvent) {
+          if (this._validazioneAllegato()) {
+            var nuovoAllegato;
+            var file = this.getView().byId("fileUploader").getValue();
 
-            onSaveAllegato: function (oEvent) {
-                if(this._validazioneAllegato()){
-                var nuovoAllegato;
-                var nuovoAllegato = JSON.stringify({
-                    "descrizione": this.getView().byId("descrizioneAllegato").getValue(),
-                    "importo": parseFloat(this.getView().byId("importoAllegato").getValue()),
-                    //"notes": this.getView().byId("note").getValue(),
-                    "computation_ID": computazioneID,
-                    "ripresa_ID": ripresaID,
-                    "codiceGL": codiceGL,
-                    "fileName": this.getView().byId("fileUploader").getValue(),
-                    "imposta": this.getView().getModel("routingModel").getData().imposta
-                    //"mediaType": "text/plain"
-                });
-
-                var that = this;
-
-                jQuery.ajax({
-                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/AllegatiRipresa"),
-                    contentType: "application/json",
-                    type: 'POST',
-                    data: nuovoAllegato,
-                    async: false,
-                    success: function (oCompleteEntry) {
-                        var ID = oCompleteEntry.ID //allegatoID
-                        
-                        that._putAllegato(ID)
-                        that.onCloseConfigurazione();
-                    },
-                    error: function (error) {
-                        sap.m.MessageToast.show("Error");
-                    }
-                });
-                }else{
-                    sap.m.MessageToast.show("Valorizzare i campi");
-                    this.getView().byId("descrizioneAllegato").setValueState("Error");
-                    this.getView().byId("importoAllegato").setValueState("Error");
-                    this.getView().byId("note").setValueState("Error");
-                }  
-            },
-
-            onNewAllegatoPress: function () {
-
-                var oView = this.getView();
-                if (!this._pDialogConf) {
-                    this._pDialogConf = Fragment.load({
-                        id: oView.getId(),
-                        name: "tax.provisioning.computations.view.fragment.Dialog",
-                        controller: this
-                    }).then(function (oDialogConf) {
-                        oView.addDependent(oDialogConf);
-                        return oDialogConf;
-                    });
-                }
-                this._pDialogConf.then(function (oDialogConf) {
-                    //this._configDialog(oButton, oDialogConf);
-                    oDialogConf.open();
-                });
-
-            },
-
-            onNotePress: function(){
-                var oView = this.getView();
-                if (!this._pDialogConf2) {
-                    this._pDialogConf2 = Fragment.load({
-                        id: oView.getId(),
-                        name: "tax.provisioning.computations.view.fragment.Timeline",
-                        controller: this
-                    }).then(function (oDialogConf2) {
-                        oView.addDependent(oDialogConf2);
-                        return oDialogConf2;
-                    });
-                }
-                this._pDialogConf2.then(function (oDialogConf2) {
-                    //this._configDialog(oButton, oDialogConf);
-                    oDialogConf2.open();
-                });
-
-            },
-
-            onCloseConfigurazione: function (oEvent) {
-                    
-                    this.byId("DialogSalva").close();
-                    this.byId("fileUploader").clear();
-                    this.byId("descrizioneAllegato").setValue("");
-                    this.byId("importoAllegato").setValue("");
-                    this._setTableAllegati(ripresaID, codiceGL, computazioneID, imposta)
-
-                // if(this.byId("DialogSalva").getId().substring(90, 70) === 'DialogSalva'){
-                //     this.byId("DialogSalva").close();
-                //     this.byId("DialogSalva").dismiss();
-                //     this.byId("fileUploader").clear();
-
-                //     this.byId("descrizioneAllegato").setValue("");
-                //     this.byId("importoAllegato").setValue("");
-                //     this._setTableAllegati(ripresaID, codiceGL, computazioneID)
-                // }else{
-                //     this.byId("DialogSalva2").close();
-                // }
-            },
-
-            onClose: function(){
-                this.byId("DialogSalva2").close();
-            },
-
-            onNavBack: function (oEvent) {
-                this.getRouter().navTo("Riprese", {
-                    ripresaID: ripresaID,
-                    ID: computazioneID,
-                    imposta: this.getView().getModel("routingModel").getData().imposta,
-                });
-            },
-
-            change: function (oEvent) {
-                this.getView().byId("fileUploader")
-                file = oEvent.getParameters("files").files[0]
-            },
-
-            _putAllegato: function (ID, nuovoAllegato) {
-                var that = this;
-                var allegatoID = ID;
-                var allegato = nuovoAllegato
-                // var formData = new FormData()
-                // formData.append('source', file)
-                // debugger;
-                jQuery.ajax({
-                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/AllegatiRipresa/" + allegatoID + "/content"),
-                    //    contentType: "text/plain",
-                    contentType: false,
-                    type: 'PUT',
-                    //  dataType: "json",
-                    data: file,
-                    processData: false,
-                    async: false,
-                    success: function (oCompleteEntry) {
-                        sap.m.MessageToast.show("Success");
-                        
-                    },
-                    error: function (error) {
-                        sap.m.MessageToast.show("Error");
-                    }
-                });
-            },
-
-            _linkAllegati: function (oEvent) {
-                var allegatoID = oEvent.getSource().getBindingContext("oModelTableAllegati").getObject().ID;
-                //var that = this;
-
-                var url = jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/AllegatiRipresa/" + allegatoID + "/content ");
-                // Require the URLHelper and open the URL in a new window or tab (same as _blank):
-                URLHelper.redirect(url, true);
-
-
-                // jQuery.ajax({
-                //     url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/Computation/AllegatiRipresa/"+allegatoID+"/content "),
-                //     contentType: "application/json",
-                //     type: 'GET',
-                //     dataType: "json",
-                //     async: false,
-                //     success: function (oCompleteEntry) {
-                //         
-                //         // var data = {
-                //         //    oModel: oCompleteEntry,
-                //         //    //oModelTestata: testata
-                //         // };
-                //         // var DataModel = new sap.ui.model.json.JSONModel();
-                //         // DataModel.setData(data);
-                //         // that.getView().setModel(DataModel, "oModelTableLinkAllegati");
-                //     },
-                //     error: function (error) {
-                //         sap.m.MessageToast.show("Error");
-                //     }
-                // });
-            },
-
-            _validazioneAllegato: function(){
-                var descriptionAllegato = this.getView().byId("descrizioneAllegato").getValue();
-                var importo = this.getView().byId("importoAllegato").getValue();
-                var note = this.getView().byId("note").getValue();
-                if(descriptionAllegato && importo && note)
-                return true;
-                else
-                return false;                
+            if (this.getView().byId("nota").getValue()) {
+              nuovoAllegato = JSON.stringify({
+                descrizione: this.getView()
+                  .byId("descrizioneAllegato")
+                  .getValue(),
+                importo: parseFloat(
+                  this.getView().byId("importoAllegato").getValue()
+                ),
+                computation_ID: computazioneID,
+                ripresa_ID: ripresaID,
+                codiceGL: codiceGL,
+                fileName: file,
+                imposta: this.getView().getModel("routingModel").getData()
+                  .imposta,
+                note: [{ nota: this.getView().byId("nota").getValue() }],
+              });
+            } else {
+              nuovoAllegato = JSON.stringify({
+                descrizione: this.getView()
+                  .byId("descrizioneAllegato")
+                  .getValue(),
+                importo: parseFloat(
+                  this.getView().byId("importoAllegato").getValue()
+                ),
+                computation_ID: computazioneID,
+                ripresa_ID: ripresaID,
+                codiceGL: codiceGL,
+                fileName: file,
+                imposta: this.getView().getModel("routingModel").getData()
+                  .imposta,
+              });
             }
-        });
-    });
+
+            var that = this;
+
+            jQuery.ajax({
+              url: jQuery.sap.getModulePath(
+                sap.ui.getCore().sapAppID + "/catalog/AllegatiRipresa"
+              ),
+              contentType: "application/json",
+              type: "POST",
+              data: nuovoAllegato,
+              async: false,
+              success: function (oCompleteEntry) {
+                var ID = oCompleteEntry.ID; //allegatoID
+                if (file) {
+                  that._putAllegato(ID);
+                }
+                that.onCloseAllegato();
+              },
+              error: function (error) {
+                sap.m.MessageToast.show("Error");
+              },
+            });
+          } else {
+            sap.m.MessageToast.show(
+              this.getResourceBundle().getText("campiObbligatoriLabel")
+            );
+          }
+        },
+
+        onNewAllegatoPress: function (oEvent) {
+          var oView = this.getView();
+          if (!this._pDialogConf) {
+            this._pDialogConf = Fragment.load({
+              id: oView.getId(),
+              name: "tax.provisioning.computations.view.fragment.NuovoAllegato",
+              controller: this,
+            }).then(function (oDialogConf) {
+              oView.addDependent(oDialogConf);
+              return oDialogConf;
+            });
+          }
+          this._pDialogConf.then(function (oDialogConf) {
+            //this._configDialog(oButton, oDialogConf);
+            oDialogConf.open();
+          });
+        },
+
+        onNotePress: function (oEvent) {
+          allegatoID = oEvent
+            .getSource()
+            .getParent()
+            .getBindingContext("oModelTableAllegati")
+            .getObject().ID;
+          this._setTimeline(allegatoID);
+          var oView = this.getView();
+          if (!this._pDialogNote) {
+            this._pDialogNote = Fragment.load({
+              id: oView.getId(),
+              name: "tax.provisioning.computations.view.fragment.Note",
+              controller: this,
+            }).then(function (pDialogNote) {
+              oView.addDependent(pDialogNote);
+              return pDialogNote;
+            });
+          }
+          this._pDialogNote.then(function (pDialogNote) {
+            pDialogNote.open();
+          });
+        },
+
+        onCloseAllegato: function (oEvent) {
+          this.byId("DialogNuovoAllegato").close();
+          this.byId("fileUploader").clear();
+          this.byId("descrizioneAllegato").setValue("");
+          this.byId("importoAllegato").setValue("");
+          this.byId("nota").setValue("");
+          this._setTableAllegati(ripresaID, codiceGL, computazioneID, imposta);
+        },
+
+        onCloseNote: function () {
+          this.byId("DialogNote").close();
+        },
+
+        onNavBack: function (oEvent) {
+          this.getRouter().navTo("Riprese", {
+            ripresaID: ripresaID,
+            ID: computazioneID,
+            imposta: this.getView().getModel("routingModel").getData().imposta,
+          });
+        },
+
+        change: function (oEvent) {
+          this.getView().byId("fileUploader");
+          file = oEvent.getParameters("files").files[0];
+        },
+
+        onPost: function (oEvent) {
+          var sNota = oEvent.getSource().getProperty("value");
+          var oBody = JSON.stringify({
+            allegatoRipresa_ID: allegatoID,
+            nota: sNota,
+          });
+          var that = this;
+          jQuery.ajax({
+            url: jQuery.sap.getModulePath(
+              sap.ui.getCore().sapAppID + "/catalog/AllegatiRipresaNote"
+            ),
+            contentType: "application/json",
+            type: "POST",
+            data: oBody,
+            async: false,
+            success: function (oCompleteEntry) {
+              that.onCloseNote();
+            },
+            error: function (error) {
+              sap.m.MessageToast.show("Error");
+            },
+          });
+        },
+
+        _putAllegato: function (ID, nuovoAllegato) {
+          var that = this;
+          var allegatoID = ID;
+          var allegato = nuovoAllegato;
+          jQuery.ajax({
+            url: jQuery.sap.getModulePath(
+              sap.ui.getCore().sapAppID +
+                "/catalog/AllegatiRipresa/" +
+                allegatoID +
+                "/content"
+            ),
+            contentType: false,
+            type: "PUT",
+            data: file,
+            processData: false,
+            async: false,
+            success: function (oCompleteEntry) {
+              sap.m.MessageToast.show("Success");
+            },
+            error: function (error) {
+              sap.m.MessageToast.show("Error");
+            },
+          });
+        },
+
+        _linkAllegati: function (oEvent) {
+          var allegatoID = oEvent
+            .getSource()
+            .getBindingContext("oModelTableAllegati")
+            .getObject().ID;
+
+          var url = jQuery.sap.getModulePath(
+            sap.ui.getCore().sapAppID +
+              "/catalog/AllegatiRipresa/" +
+              allegatoID +
+              "/content "
+          );
+          URLHelper.redirect(url, true);
+        },
+
+        _validazioneAllegato: function () {
+          var oDescriptionAllegato = this.getView().byId("descrizioneAllegato");
+          var oImportoAllegato = this.getView().byId("importoAllegato");
+          var oNota = this.getView().byId("nota");
+          var oFile = this.getView().byId("fileUploader");
+
+          oDescriptionAllegato.setValueState();
+          oImportoAllegato.setValueState();
+          oNota.setValueState();
+          oFile.setValueState();
+
+          if (!oDescriptionAllegato.getValue()) {
+            oDescriptionAllegato.setValueState("Error");
+          }
+          if (!oImportoAllegato.getValue()) {
+            oImportoAllegato.setValueState("Error");
+          }
+          if (!oNota.getValue() && !oFile.getValue()) {
+            oNota.setValueState("Error");
+            oFile.setValueState("Error");
+          }
+          if (
+            oDescriptionAllegato.getValue() &&
+            oImportoAllegato.getValue() &&
+            (oNota.getValue() || oFile.getValue())
+          )
+            return true;
+          else return false;
+        },
+        _setTimeline: function (allegatoID) {
+          var that = this;
+          jQuery.ajax({
+            url: jQuery.sap.getModulePath(
+              sap.ui.getCore().sapAppID +
+                "/catalog/AllegatiRipresaNote?$filter=allegatoRipresa_ID eq " +
+                allegatoID
+            ),
+            contentType: "application/json",
+            type: "GET",
+            async: false,
+            success: function (oCompleteEntry) {
+              var oModel = new JSONModel(oCompleteEntry.value);
+              that.getView().setModel(oModel,"oModelNote");
+            },
+            error: function (error) {
+              sap.m.MessageToast.show("Error");
+            },
+          });
+        },
+      }
+    );
+  }
+);
