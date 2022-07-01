@@ -51,9 +51,8 @@ sap.ui.define(
             dataType: "json",
             async: false,
             success: function (oCompleteEntry) {
-              var data = {
-                oModel: oCompleteEntry.value,
-              };
+              var data = oCompleteEntry.value;
+              
 
               var modello = [
                 {
@@ -132,27 +131,73 @@ sap.ui.define(
                 }
               }
 
-              data.oModel.push(modello[0]);
+              data.push(modello[0]);
 
-              for (var i = 0; i < data.oModel.length; i++) {
-                data.oModel[i].closingBalance =
-                  data.oModel[i].OpeningBalance +
-                  data.oModel[i].PriorYearAdjustments +
-                  data.oModel[i].extraordinaryTransactions +
-                  data.oModel[i].CurrentYearAccrual +
-                  data.oModel[i].CurrentYearUtilization +
-                  data.oModel[i].otherAdjustments;
+              for (var i = 0; i < data.length; i++) {
+                data[i].closingBalance =
+                  data[i].OpeningBalance +
+                  data[i].PriorYearAdjustments +
+                  data[i].extraordinaryTransactions +
+                  data[i].CurrentYearAccrual +
+                  data[i].CurrentYearUtilization +
+                  data[i].otherAdjustments;
               }
 
-              var DataModel = new sap.ui.model.json.JSONModel();
-              DataModel.setData(data);
-              that.getView().setModel(DataModel, "oModelTiming");
+              var oModel = new JSONModel(data);
+              that.getView().setModel(oModel, "oModelTiming");
             },
             error: function (error) {
               sap.m.MessageToast.show("Error");
             },
           });
         },
+
+        onValueChanged: function (oEvent){
+            var path = oEvent.getSource().getParent().getBindingContext("oModelTiming").getPath().substring(1);
+            this.getView().getModel("oModelTiming").getData()[path].updated = true;
+        }, 
+
+        onPressSave: function(oEvent){
+            var modello = this.getView().getModel("oModelTiming").getData();
+            var array = [];
+                array = modello.filter(item => item.updated === true);
+            var computation = modello[0].computationId;
+            var imposta = modello[0].imposta;
+            // var codiciRipresa = [];
+            // var extraordinaryTransactions = [];
+            // var otherAdjustments = [];
+            // var currents2 = [];
+            // var currents3 = [];
+            // var longTerms = [];
+
+            for(var i = 0; i < array.length; i++){
+                var codiceRipresa = array[i].codiceRipresa;
+                var extraordinaryTransaction = parseFloat(array[i].extraordinaryTransactions);
+                var otherAdjustment =  parseFloat(array[i].otherAdjustments);
+                var current2 = parseFloat(array[i].current2);
+                var current3 = parseFloat(array[i].current3);
+                var longTerm = parseFloat(array[i].longTerm);
+
+                var nuovaTiming = JSON.stringify({"extraordinaryTransactions": extraordinaryTransaction, "otherAdjustments": otherAdjustment, "current2": current2, "current3": current3, "longTerm": longTerm});
+                
+                jQuery.ajax({
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/TimingDifferences(codiceRipresa='" + codiceRipresa + "',computation=" + computation + ",imposta='" + imposta + "')"),
+                    contentType: "application/json",
+                    type: 'PATCH',
+                    dataType: "json",
+                    data: nuovaTiming,
+                    async: false,
+                    success: function (oCompleteEntry) {
+                        console.log("Success");
+                    },
+                    error: function (error) {
+                        console.log("Error");
+                    }
+                });
+            }
+
+            
+        }
       }
     );
   }

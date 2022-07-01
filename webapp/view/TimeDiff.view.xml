@@ -16,7 +16,7 @@
 
         <semantic:content>
 
-            <t:Table rows="{path:'oModelTiming>/oModel'}" selectionMode="None" fixedColumnCount="2" fixedBottomRowCount="1" enableColumnReordering="false">
+            <t:Table rows="{path:'oModelTiming>/'}" selectionMode="None" fixedColumnCount="2" fixedBottomRowCount="1" enableColumnReordering="false" id="timingTable">
                 <t:columns>
                     <t:Column width="11rem">
                         <Label text="{i18n>CodiceDiff}" />
@@ -45,7 +45,7 @@
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>Extraordinary}" />
                         <t:template>
-                            <Input type="Number" value="{oModelTiming>extraordinaryTransactions}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
+                            <Input type="Number" value="{oModelTiming>extraordinaryTransactions}" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
@@ -63,7 +63,7 @@
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>OtherAdj}" />
                         <t:template>
-                            <Input type="Number" value="{oModelTiming>otherAdjustments}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
+                            <Input type="Number" value="{oModelTiming>otherAdjustments}" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
@@ -81,26 +81,26 @@
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>Current2}" />
                         <t:template>
-                            <Input type="Number" value="{oModelTiming>current2}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
+                            <Input type="Number" value="{oModelTiming>current2}" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>Current3}" />
                         <t:template>
-                            <Input type="Number" value="{oModelTiming>current3}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
+                            <Input type="Number" value="{oModelTiming>current3}" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>LongTerm}" />
                         <t:template>
-                            <Input type="Number" value="{oModelTiming>longTerm}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
+                            <Input type="Number" value="{oModelTiming>longTerm}" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                 </t:columns>
             </t:Table>
         </semantic:content>
         <semantic:footerCustomActions>
-            <Button text="{i18n>save}" type="Accept"/>
+            <Button text="{i18n>save}" type="Accept" press="onPressSave"/>
         </semantic:footerCustomActions>
     </semantic:SemanticPage>
 </mvc:View>
