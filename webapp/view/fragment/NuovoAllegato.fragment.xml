@@ -1,0 +1,48 @@
+<core:FragmentDefinition xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout"
+  xmlns:u="sap.ui.unified"
+  xmlns:f="sap.ui.layout.form">
+  <Dialog title="{i18n>newAllegato}" id="DialogNuovoAllegato">
+    <f:Form id="FormChange354" editable="true">
+      <f:layout>
+        <f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false" />
+      </f:layout>
+      <f:formContainers>
+        <f:FormContainer>
+          <f:formElements>
+            <f:FormElement label="{i18n>descrizione}">
+              <f:fields>
+                <Input text="" id="descrizioneAllegato" valueState="None"/>
+              </f:fields>
+            </f:FormElement>
+            <f:FormElement label="{i18n>importo}">
+              <f:fields>
+                <Input text="" id="importoAllegato" valueState="None" type="Number"/>
+              </f:fields>
+            </f:FormElement>
+            <f:FormElement label="{i18n>note}">
+              <f:fields>
+                <TextArea value="" rows="6" cols="22" id="nota" valueState="None"/>
+              </f:fields>
+            </f:FormElement>
+            <f:FormElement label="{i18n>insertAllegato}">
+              <f:fields>
+                <l:VerticalLayout>
+                  <u:FileUploader id="fileUploader" name="myFileUpload" sendXHR="true" useMultipart="false" change="change" uploadUrl="upload/" tooltip="Upload your file to the local server">
+                  </u:FileUploader>
+                </l:VerticalLayout>
+              </f:fields>
+            </f:FormElement>
+          </f:formElements>
+        </f:FormContainer>
+      </f:formContainers>
+    </f:Form>
+    <beginButton >
+      <Button text="{i18n>save}" press="onSaveAllegato" type="Emphasized"/>
+    </beginButton >
+    <endButton >
+      <Button text="{i18n>cancel}" press="onCloseAllegato"/>
+    </endButton >
+  </Dialog>
+</core:FragmentDefinition>
