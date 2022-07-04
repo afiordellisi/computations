@@ -9,14 +9,14 @@
     xmlns:smartTable="sap.ui.comp.smarttable"
     xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     <semantic:SemanticPage id="timeDiffPage" headerPinnable="true" headerExpanded="true" toggleHeaderOnTitleClick="true" preserveHeaderStateOnScroll="false" titleAreaShrinkRatio="1:1.6:1.6" showFooter="true">
-        
+
         <semantic:titleHeading>
             <ObjectAttribute title="{i18n>imposta}" text="{oModelTestata>/imposta}"/>
         </semantic:titleHeading>
 
         <semantic:content>
 
-            <t:Table rows="{path:'oModelTiming>/oModel'}" selectionMode="None" fixedColumnCount="2" fixedBottomRowCount="1" enableColumnReordering="false">
+            <t:Table rows="{path:'oModelTiming>/'}" selectionMode="None" fixedColumnCount="2" fixedBottomRowCount="1" enableColumnReordering="false" id="timingTable">
                 <t:columns>
                     <t:Column width="11rem">
                         <Label text="{i18n>CodiceDiff}" />
@@ -33,74 +33,162 @@
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>OpeningB}" />
                         <t:template>
-                            <Text text="{oModelTiming>OpeningBalance}" textAlign="Right" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelTiming>OpeningBalance',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>PriorYear}" />
                         <t:template>
-                            <Text text="{oModelTiming>PriorYearAdjustments}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelTiming>PriorYearAdjustments',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>Extraordinary}" />
                         <t:template>
-                            <Input type="Number" value="{oModelTiming>extraordinaryTransactions}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
+                            <Input value="{
+                                                path: 'oModelTiming>extraordinaryTransactions',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                                            }" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>CurrYear}" />
                         <t:template>
-                            <Text text="{oModelTiming>CurrentYearAccrual}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelTiming>CurrentYearAccrual',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>CurrYearUtili}" />
                         <t:template>
-                            <Text text="{oModelTiming>CurrentYearUtilization}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelTiming>CurrentYearUtilization',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>OtherAdj}" />
                         <t:template>
-                            <Input type="Number" value="{oModelTiming>otherAdjustments}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
+                            <Input value="{
+                                                path: 'oModelTiming>otherAdjustments',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                                            }" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>ClosingB}" />
                         <t:template>
-                            <Text text="{oModelTiming>closingBalance}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelTiming>closingBalance',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>Current1}" />
                         <t:template>
-                            <Text text="{oModelTiming>current1}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelTiming>current1',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>Current2}" />
                         <t:template>
-                            <Input type="Number" value="{oModelTiming>current2}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
+                            <Input value="{
+                                                path: 'oModelTiming>current2',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                                            }" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>Current3}" />
                         <t:template>
-                            <Input type="Number" value="{oModelTiming>current3}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
+                            <Input value="{
+                                                path: 'oModelTiming>current3',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                                            }" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>LongTerm}" />
                         <t:template>
-                            <Input type="Number" value="{oModelTiming>longTerm}" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
+                            <Input value="{
+                                                path: 'oModelTiming>longTerm',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                                            }" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                 </t:columns>
             </t:Table>
         </semantic:content>
         <semantic:footerCustomActions>
-            <Button text="{i18n>save}" type="Accept"/>
+            <Button text="{i18n>save}" type="Accept" press="onPressSave"/>
         </semantic:footerCustomActions>
     </semantic:SemanticPage>
 </mvc:View>
