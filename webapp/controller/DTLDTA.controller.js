@@ -55,10 +55,8 @@ sap.ui.define([
                     async: false,
                     success: function (oCompleteEntry) {
                         
-                        var DataModel = new sap.ui.model.json.JSONModel();
-                        var data = {
-                            oModel: oCompleteEntry.value
-                        };
+                        var oModel = new JSONModel(data);
+                        var data = oCompleteEntry.value;
 
 
                         var modello = [{
@@ -92,7 +90,7 @@ sap.ui.define([
                         // var totali = {totaleOB : 0, totalePRA : 0, totaleExt : 0, totaleCYA : 0, totaleCYU : 0, totaleOtA : 0, totaleChangeTax : 0, totaleDevOp : 0, totaleDevMov : 0, totaleDevC : 0, totaleCNB : 0, totaleMPL : 0, totaleMBS : 0, totaleCGB : 0, totaleC1 : 0, totaleC2 : 0, totaleC3 : 0, totaleLT : 0};
                         
 
-                        for(var i =0; i<oCompleteEntry.value.length; i++){
+                        for(var i = 0; i < oCompleteEntry.value.length; i++){
 
                             if(oCompleteEntry.value[i].OpeningBalance){
                                 //oCompleteEntry.value[i].OpeningBalance = 0;
@@ -169,10 +167,10 @@ sap.ui.define([
                             
                         }
 
-                        data.oModel.push(modello[0]);
+                        data.push(modello[0]);
 
-                        DataModel.setData(data);
-                        that.getView().setModel(DataModel, "oModelDT");
+                        oModel.setData(data);
+                        that.getView().setModel(oModel, "oModelDT");
                         
                         // var data2 = totali;
                         // DataModel2.setData(data2);

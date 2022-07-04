@@ -15,7 +15,7 @@
         </semantic:titleHeading>
 
         <semantic:content>
-            <t:Table rows="{path:'oModelDT>/oModel'}" selectionMode="None" fixedColumnCount="2" fixedBottomRowCount="1" enableColumnReordering="false">
+            <t:Table rows="{path:'oModelDT>/'}" selectionMode="None" fixedColumnCount="2" fixedBottomRowCount="1" enableColumnReordering="false">
                 <t:columns>
                     <t:Column width="11rem" resizable="false">
                         <Label text="{i18n>CodiceRipresa}" />
@@ -27,12 +27,6 @@
                         <Label text="{i18n>DescrizioneRipresa}" />
                         <t:template>
                             <Text text="{oModelDT>descrizioneRipresa}" textAlign="{= ${oModelDT>descrizioneRipresa} === 'Totale' ? 'End' : 'Begin'}" wrapping="false"/>
-                        </t:template>
-                    </t:Column>
-                    <t:Column width="11rem" hAlign="End" resizable="false">
-                        <Label text="{i18n>OpeningB}" />
-                        <t:template>
-                            <Text text="{oModelDT>OpeningBalance}" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
@@ -98,13 +92,13 @@
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>devClosing}" />
                         <t:template>
-                            <Text text="{oModelDT>devaluationClosing}" wrapping="false"/>
+                            <Text text="{=${oModelDT>devaluationOpening}+${oModelDT>devaluationMovement}}" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>closNB}" />
                         <t:template>
-                            <Text text="{oModelDT>closingNetBalance}" wrapping="false"/>
+                            <Text text="{=${oModelDT>devaluationOpening}+${oModelDT>devaluationMovement}+${oModelDT>closingGrossBalance}}" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
@@ -147,7 +141,7 @@
             </t:Table>
         </semantic:content>
         <semantic:footerCustomActions>
-            <Button text="{i18n>save}" type="Accept"/>
+            <Button text="{i18n>save}" type="Accept" press="onPressSave"/>
         </semantic:footerCustomActions>
     </semantic:SemanticPage>
 </mvc:View>

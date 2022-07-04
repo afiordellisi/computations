@@ -26,10 +26,15 @@ sap.ui.define(
         },
 
         _onObjectMatched: function (oEvent) {
-          var oEvent = oEvent.getParameter("arguments");
-          var computationID = oEvent.ID;
-          var imposta = oEvent.imposta;
-
+          if(oEvent.getParameter === undefined){
+            var computationID = oEvent.ID;
+            var imposta = oEvent.imposta;
+          }
+          else{
+            var oEvent = oEvent.getParameter("arguments");
+            var computationID = oEvent.ID;
+            var imposta = oEvent.imposta;
+          }
           var dataTestata = { computationID: computationID, imposta: imposta };
           var DataModelTestata = new sap.ui.model.json.JSONModel();
           DataModelTestata.setData(dataTestata);
@@ -141,6 +146,47 @@ sap.ui.define(
                   data[i].CurrentYearAccrual +
                   data[i].CurrentYearUtilization +
                   data[i].otherAdjustments;
+
+                if(data[i].OpeningBalance === null){
+                    data[i].OpeningBalance = 0;
+                }
+
+                if(data[i].PriorYearAdjustments === null){
+                    data[i].PriorYearAdjustments = 0;
+                }
+
+                if(data[i].extraordinaryTransactions === null){
+                    data[i].extraordinaryTransactions = 0;
+                }
+
+                if(data[i].CurrentYearAccrual === null){
+                    data[i].CurrentYearAccrual = 0;
+                }
+
+                if(data[i].CurrentYearUtilization === null){
+                    data[i].CurrentYearUtilization = 0;
+                }
+
+                if(data[i].otherAdjustments === null){
+                    data[i].otherAdjustments = 0;
+                }
+
+                if(data[i].current1 === null){
+                    data[i].current1 = 0;
+                }
+
+                if(data[i].current2 === null){
+                    data[i].current2 = 0;
+                }
+
+                if(data[i].current3 === null){
+                    data[i].current3 = 0;
+                }
+
+                if(data[i].longTerm === null){
+                    data[i].longTerm = 0;
+                }
+                
               }
 
               var oModel = new JSONModel(data);
@@ -163,13 +209,9 @@ sap.ui.define(
                 array = modello.filter(item => item.updated === true);
             var computation = modello[0].computationId;
             var imposta = modello[0].imposta;
-            // var codiciRipresa = [];
-            // var extraordinaryTransactions = [];
-            // var otherAdjustments = [];
-            // var currents2 = [];
-            // var currents3 = [];
-            // var longTerms = [];
+            var that = this;
 
+            var oObject = {ID: computation, imposta: imposta}
             for(var i = 0; i < array.length; i++){
                 var codiceRipresa = array[i].codiceRipresa;
                 var extraordinaryTransaction = parseFloat(array[i].extraordinaryTransactions);
@@ -177,6 +219,7 @@ sap.ui.define(
                 var current2 = parseFloat(array[i].current2);
                 var current3 = parseFloat(array[i].current3);
                 var longTerm = parseFloat(array[i].longTerm);
+                var them = that;
 
                 var nuovaTiming = JSON.stringify({"extraordinaryTransactions": extraordinaryTransaction, "otherAdjustments": otherAdjustment, "current2": current2, "current3": current3, "longTerm": longTerm});
                 
@@ -188,12 +231,15 @@ sap.ui.define(
                     data: nuovaTiming,
                     async: false,
                     success: function (oCompleteEntry) {
-                        console.log("Success");
+                        sap.m.MessageToast.show("Success");
+                        them._onObjectMatched(oObject);
                     },
                     error: function (error) {
-                        console.log("Error");
+                        sap.m.MessageToast.show("Error");
                     }
                 });
+
+                
             }
 
             
