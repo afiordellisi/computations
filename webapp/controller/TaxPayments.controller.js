@@ -64,11 +64,24 @@ sap.ui.define([
                         var C = arr.filter(versamento => versamento.tipologia === 'C');
                         var A = arr.filter(versamento => versamento.tipologia === 'A');
                         var O = arr.filter(versamento => versamento.tipologia === 'O');
+                        var AM = arr.filter(versamento => versamento.tipologia === 'AM');
+                        var CD = arr.filter(versamento => versamento.tipologia === 'CD');
+                        if(AM.length == 0){
+                            AM = [{descrizione : that.getResourceBundle().getText("altriMov"), importo : null, note : "" }]
+                        }
+                        if(CD.length == 0){
+                            CD = [{descrizione : that.getResourceBundle().getText("credDeb"), importo : null, note : "" , allegato: ""},
+                            {descrizione : that.getResourceBundle().getText("adj"), importo : null, note : "" , allegato: ""},
+                            {descrizione : that.getResourceBundle().getText("otherVariation"), importo : null, note : "" , allegato: ""},
+                            {descrizione : that.getResourceBundle().getText("UNICOLY"), importo : null, note : "" , allegato: ""}]
+                        }
                         var data = {
                             oModelV: V,
                             oModelC: C,
                             oModelA: A,
-                            oModelO: O
+                            oModelO: O,
+                            oModelAM : AM,
+                            oModelCD: CD
                         };
                         var oModel = new JSONModel(data);
                         that.getView().setModel(oModel, "oModelTableAllegati");
@@ -97,11 +110,24 @@ sap.ui.define([
                         var C = totale.filter(importo => importo.tipologia === 'C');
                         var A = totale.filter(importo => importo.tipologia === 'A');
                         var O = totale.filter(importo => importo.tipologia === 'O');
+                        var tot;
+                        if(V.length >0){
+                            tot = V[0].Importo;
+                            if (C.length >0){
+                                tot += C[0].Importo;
+                                if(O.length >0){
+                                    tot += O[0].Importo;
+                                }
+                            }
+                        }
+                        var totArray = [{"Importo" : tot }]; 
+                        //totArrat.Importo = tot;
                         var data = {
                             oModelVTot: V[0],
                             oModelCTot: C[0],
                             oModelATot: A[0],
-                            oModelOTot: O[0]
+                            oModelOTot: O[0],
+                            oModelTotali: totArray[0]
                         };
                         var oModelTot = new JSONModel(data);
                         that.getView().setModel(oModelTot, "oModelTableTotAllegati");
