@@ -16,21 +16,30 @@
 
         <semantic:content>
             <t:Table rows="{path:'oModelDT>/'}" selectionMode="None" fixedColumnCount="2" fixedBottomRowCount="1" enableColumnReordering="false">
+                <t:extension>
+                    <OverflowToolbar style="Clear">
+                        <Title id="title" text="{i18n>DTA}"/>
+                    </OverflowToolbar>
+                </t:extension>
+                <t:rowSettingsTemplate>
+                    <t:RowSettings highlight="{oModelDT>state}" highlightText="{StatusText}"/>
+                    
+                </t:rowSettingsTemplate>
                 <t:columns>
                     <t:Column width="11rem" resizable="false">
-                        <Label text="{i18n>CodiceRipresa}" />
+                        <Label text="{i18n>CodiceDiff}" />
                         <t:template>
                             <Text text="{oModelDT>codiceRipresa}" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem">
-                        <Label text="{i18n>DescrizioneRipresa}" />
+                        <Label text="{i18n>DiffTemp}" />
                         <t:template>
                             <Text text="{oModelDT>descrizioneRipresa}" textAlign="{= ${oModelDT>descrizioneRipresa} === 'Totale' ? 'End' : 'Begin'}" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
-                        <Label text="{i18n>OpeningB}" />
+                        <Label text="{i18n>OpeningGB}" />
                         <t:template>
                             <Text text="{
                                 path: 'oModelDT>OpeningBalance',

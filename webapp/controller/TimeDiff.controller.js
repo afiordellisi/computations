@@ -306,7 +306,7 @@ sap.ui.define(
           else{
               sap.m.MessageToast.show(this.getResourceBundle().getText("valorizzareRecord"));
           }
-        },
+        }
       }
     );
   }
