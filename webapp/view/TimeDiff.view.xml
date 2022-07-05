@@ -17,6 +17,15 @@
         <semantic:content>
 
             <t:Table rows="{path:'oModelTiming>/'}" selectionMode="None" fixedColumnCount="2" fixedBottomRowCount="1" enableColumnReordering="false" id="timingTable">
+                <t:extension>
+                    <OverflowToolbar style="Clear">
+                        <Title id="title" text="{i18n>Timing}"/>
+                    </OverflowToolbar>
+                </t:extension>
+                <t:rowSettingsTemplate>
+                    <t:RowSettings highlight="{oModelTiming>state}" highlightText="{StatusText}"/>
+                    <!-- <m:ColumnListItem highlight="{=${oModelAlgoritmoTable>state} === 'Error' ? 'Error' : ${oModelAlgoritmoTable>state}==='OK' ? 'Success' :  'None'}"/> -->
+                </t:rowSettingsTemplate>
                 <t:columns>
                     <t:Column width="11rem">
                         <Label text="{i18n>CodiceDiff}" />
