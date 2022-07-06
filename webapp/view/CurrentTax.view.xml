@@ -218,7 +218,7 @@
                                             </template>
                                         </Column>
                                         <Column	width="10%"	resizable="false" hAlign="End">
-                                                <m:Label text="{oModelAnagrafica>/oModelPAImponibile}" textAlign="End" width="100%"/>
+                                                <m:Label text="{oModelTotali>/oModelPAImponibile/imponibile}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
@@ -301,7 +301,7 @@
                                             </template>
                                         </Column>
                                         <Column	width="10%"	resizable="false" hAlign="End">
-                                                <m:Label text="{oModelAnagrafica>/oModelPDImponibile}" textAlign="End" width="100%"/>
+                                                <m:Label text="{oModelTotali>/oModelPDImponibile/imponibile}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
@@ -311,7 +311,7 @@
                                             </template>
                                         </Column>
                                         <Column	width="10%" resizable="false" id="colonnaImposta2" hAlign="End">
-                                            <m:Label text="{=${oModelAnagrafica>/oModelPDImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="End" width="100%"/>
+                                            <m:Label text="{=${oModelTotali>/oModelPDImponibile}*${oModelPercentuale>/oModelPercentuale}/100}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
                                             </template>
@@ -384,7 +384,7 @@
                                             </template>
                                         </Column>
                                         <Column	width="10%"	resizable="false" hAlign="End">
-                                                <m:Label text="{oModelAnagrafica>/oModelTAImponibile}" textAlign="End" width="100%"/>
+                                                <m:Label text="{oModelTotali>/oModelTAImponibile/imponibile}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
@@ -467,7 +467,7 @@
                                             </template>
                                         </Column>
                                         <Column	width="10%"	resizable="false" hAlign="End">
-                                                <m:Label text="{oModelAnagrafica>/oModelTDImponibile}" textAlign="End" width="100%"/>
+                                                <m:Label text="{oModelTotali>/oModelTDImponibile/imponibile}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
@@ -550,7 +550,7 @@
                                             </template>
                                         </Column>
                                         <Column	width="10%"	resizable="false" hAlign="End">
-                                                <m:Label text="{oModelAnagrafica>/oModelPERImponibile}" textAlign="End" width="100%"/>
+                                                <m:Label text="{oModelTotali>/oModelPERImponibile/imponibile}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
@@ -633,7 +633,7 @@
                                             </template>
                                         </Column>
                                         <Column	width="10%"	resizable="false" hAlign="End">
-                                                <m:Label text="{oModelAnagrafica>/oModelACEImponibile}" textAlign="End" width="100%"/>
+                                                <m:Label text="{oModelTotali>/oModelACEImponibile/imponibile}" textAlign="End" width="100%"/>
                                             <template>
                                                 <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
@@ -692,7 +692,7 @@
                                     id="table8"
                                     ariaLabelledBy="title"
                                     selectionMode="None"
-                                    rows="{path:'oModelAnagrafica>/oModelRedditoImponibile'}"
+                                    rows="{path:'oModelTotali>/oModelRedditoImponibile'}"
                                     enableColumnFreeze="false"
                                     visibleRowCount="1"
                                     showColumnVisibilityMenu="false"
@@ -718,7 +718,7 @@
                                         <Column	width="10%"	resizable="false" hAlign="End">
                                                 <m:Label text="" textAlign="End" width="100%"/>
                                             <template>
-                                                <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                <m:Text text="{path: 'oModelTotali>/oModelRedditoImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
