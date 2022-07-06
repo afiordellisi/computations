@@ -18,6 +18,7 @@ sap.ui.define([
         var URLHelper = mobileLibrary.URLHelper;
         var file;
         var tipo;
+        var sText;
 
         return BaseController.extend("tax.provisioning.computations.controller.TaxPayments", {
             onInit: function () {
@@ -60,19 +61,24 @@ sap.ui.define([
                     async: false,
                     success: function (oCompleteEntry) {
                         var arr = oCompleteEntry.value;
+                      //  var compConfronto = oCompleteEntry.value
                         var V = arr.filter(versamento => versamento.tipologia === 'V');
                         var C = arr.filter(versamento => versamento.tipologia === 'C');
                         var A = arr.filter(versamento => versamento.tipologia === 'A');
                         var O = arr.filter(versamento => versamento.tipologia === 'O');
                         var AM = arr.filter(versamento => versamento.tipologia === 'AM');
-                        var CD = arr.filter(versamento => versamento.tipologia === 'CD');
                         if(AM.length == 0){
                             AM = [{descrizione : that.getResourceBundle().getText("altriMov"), importo : null, note : "" }]
                         }
-                        if(CD.length == 0){
-                            CD = [{descrizione : that.getResourceBundle().getText("credDeb"), importo : null, note : "" , allegato: ""},
+                        if(O.length == 0){ //implementare il recupero della riga salvata
+                            O = [{descrizione : that.getResourceBundle().getText("credDeb"), importo : null, note : "" , allegato: ""},
                             {descrizione : that.getResourceBundle().getText("adj"), importo : null, note : "" , allegato: ""},
                             {descrizione : that.getResourceBundle().getText("otherVariation"), importo : null, note : "" , allegato: ""},
+                            {descrizione : that.getResourceBundle().getText("UNICOLY"), importo : null, note : "" , allegato: ""}]
+                        }else {
+                            O = [{descrizione : that.getResourceBundle().getText("credDeb"), importo : null, note : "" , allegato: ""},
+                            {descrizione : that.getResourceBundle().getText("adj"), importo : null, note : "" , allegato: ""},
+                            {descrizione : O[0].descrizione, importo : O[0].importo, note : O[0].note, allegato: O[0].fileName},
                             {descrizione : that.getResourceBundle().getText("UNICOLY"), importo : null, note : "" , allegato: ""}]
                         }
                         var data = {
@@ -80,12 +86,12 @@ sap.ui.define([
                             oModelC: C,
                             oModelA: A,
                             oModelO: O,
-                            oModelAM : AM,
-                            oModelCD: CD
+                            oModelAM : AM
                         };
                         var oModel = new JSONModel(data);
                         that.getView().setModel(oModel, "oModelTableAllegati");
                         that._setTotaliPayments(computazioneID);
+                        that.setCreditoRisLastFY(compConfronto,imposta);
                     },
                     error: function (error) {
                         sap.m.MessageToast.show("Error");
@@ -99,7 +105,8 @@ sap.ui.define([
                 var computazioneID = computazioneID;
                 var imposta = this.getView().getModel("routingModel").getData().imposta;
                 jQuery.ajax({
-                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/TaxPayments?$apply=filter(computation_ID eq " + computazioneID + " and imposta eq '"+imposta+"')/groupby((tipologia),aggregate(importo with sum as Importo))"),
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/TaxPaymentsView(imposta='"+imposta+"',computationId="+computazioneID+")/Set"),
+                    //url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/TaxPayments?$apply=filter(computation_ID eq " + computazioneID + " and imposta eq '"+imposta+"')/groupby((tipologia),aggregate(importo with sum as Importo))"),
                     contentType: "application/json",
                     type: 'GET',
                     dataType: "json",
@@ -110,15 +117,15 @@ sap.ui.define([
                         var C = totale.filter(importo => importo.tipologia === 'C');
                         var A = totale.filter(importo => importo.tipologia === 'A');
                         var O = totale.filter(importo => importo.tipologia === 'O');
-                        var tot;
+                        var tot = 0;
                         if(V.length >0){
-                            tot = V[0].Importo;
-                            if (C.length >0){
-                                tot += C[0].Importo;
-                                if(O.length >0){
-                                    tot += O[0].Importo;
-                                }
-                            }
+                            tot += V[0].Importo;
+                        }
+                        if (C.length >0){
+                                tot += C[0].Importo;   
+                        }
+                        if(O.length >0){
+                            tot += O[0].Importo;
                         }
                         var totArray = [{"Importo" : tot }]; 
                         //totArrat.Importo = tot;
@@ -199,25 +206,48 @@ sap.ui.define([
                 }  
             },
 
-            //sostituita da onAdd
-            // onNewAllegatoPress: function (oEvent) {
-            //     tipo = oEvent;
-            //     var oView = this.getView();
-            //     if (!this._pDialogConf) {
-            //         this._pDialogConf = Fragment.load({
-            //             id: oView.getId(),
-            //             name: "tax.provisioning.computations.view.fragment.TaxPaymentsRow",
-            //             controller: this
-            //         }).then(function (oDialogConf) {
-            //             oView.addDependent(oDialogConf);
-            //             return oDialogConf;
-            //         });
-            //     }
-            //     this._pDialogConf.then(function (oDialogConf) {
-            //         //this._configDialog(oButton, oDialogConf);
-            //         oDialogConf.open();
-            //     });
-            // },
+            onSaveAltro: function(){
+                if (this._validazioneAllegatoAltro()) {
+                var altriMovimenti;
+                var fileName = this.getView().byId("fileUploaderMov").getValue();
+                var that = this;
+
+                altriMovimenti = JSON.stringify({
+                    "computation_ID": computazioneID,
+                    "imposta": this.getView().getModel("routingModel").getData().imposta,
+                    "descrizione": sText,
+                    "importo": parseFloat(this.getView().byId("importoMov").getValue()),
+                    "note": this.getView().byId("notaMov").getValue(),
+                    "fileName": this.getView().byId("fileUploaderMov").getValue(),
+                    "tipologia": tipo
+                });
+
+                jQuery.ajax({
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/TaxPayments"),
+                    contentType: "application/json",
+                    type: 'POST',
+                    data: altriMovimenti,
+                    async: false,
+                    success: function (oCompleteEntry) {
+                        var ID = oCompleteEntry.ID //allegatoID
+                        if(that.getView().byId("fileUploaderMov").getValue()){
+                            that._putAllegatoAltro(ID)
+                        }
+                        that.onCloseAltro();
+                    },
+                    error: function (error) {
+                        sap.m.MessageToast.show("Error");
+                    }
+                });
+                
+            }
+                // }else{
+                //     sap.m.MessageToast.show("Valorizzare i campi");
+                //     this.getView().byId("descrizioneAllegato").setValueState("Error");
+                //     this.getView().byId("importoAllegato").setValueState("Error");
+                //     this.getView().byId("note").setValueState("Error");
+                // }  
+            },
 
             onAdd: function(oEvent){
                 var sId = oEvent.getSource().getId();
@@ -246,6 +276,43 @@ sap.ui.define([
                     //this._configDialog(oButton, oDialogConf);
                     oDialogConf.open();
                 });
+            },
+
+            onEdit: function(oEvent){
+                var sId = oEvent.getSource().getId();
+                if(sId.includes("addAltroMovimento")){
+                    sText = this.getResourceBundle().getText("altriMov")
+                    tipo = 'AM'
+                }if(sId.includes("addCredito")){
+                    sText = this.getResourceBundle().getText("otherVariation")
+                    tipo = 'O'
+                }
+                var that = this;
+                var oView = this.getView();
+                if (!this._pDialogConf2) {
+                    this._pDialogConf2 = Fragment.load({
+                        id: oView.getId(),
+                        name: "tax.provisioning.computations.view.fragment.AltriMovimenti",
+                        controller: this
+                    }).then(function (oDialogConf2) {
+                        that.byId("descrizioneMov").setText(sText)
+                        oView.addDependent(oDialogConf2);
+                        return oDialogConf2;
+                    });
+                }
+                this._pDialogConf2.then(function (oDialogConf2) {
+                    //this._configDialog(oButton, oDialogConf);
+                    that.byId("descrizioneMov").setText(sText)
+                    oDialogConf2.open();
+                });
+            },
+
+            onCloseAltro:function(){
+                this.byId("DialogAltriMov").close();
+                this.byId("fileUploaderMov").clear();
+                this.byId("notaMov").setValue("");
+                //this.byId("descrizioneAllegato").setValue("");
+                this.byId("importoMov").setValue("");
             },
 
             onCloseNewPayment: function (oEvent) {
@@ -278,21 +345,34 @@ sap.ui.define([
                 var that = this;
                 var allegatoID = ID;
                 var allegato = nuovoAllegato
-                // var formData = new FormData()
-                // formData.append('source', file)
-                // debugger;
                 jQuery.ajax({
                     url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/TaxPayments/" + allegatoID + "/content"),
-                    //    contentType: "text/plain",
                     contentType: false,
                     type: 'PUT',
-                    //  dataType: "json",
                     data: file,
                     processData: false,
                     async: false,
                     success: function (oCompleteEntry) {
                         sap.m.MessageToast.show("Success");
-                        
+                    },
+                    error: function (error) {
+                        sap.m.MessageToast.show("Error");
+                    }
+                });
+            },
+
+            _putAllegatoAltro: function(ID){
+                var that = this;
+                var allegatoID = ID;
+                jQuery.ajax({
+                    url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/TaxPayments/" + allegatoID + "/content"),
+                    contentType: false,
+                    type: 'PUT',
+                    data: file,
+                    processData: false,
+                    async: false,
+                    success: function (oCompleteEntry) {
+                        sap.m.MessageToast.show("Success");
                     },
                     error: function (error) {
                         sap.m.MessageToast.show("Error");
@@ -310,13 +390,57 @@ sap.ui.define([
             },
 
             _validazioneAllegato: function(){
-                var descriptionAllegato = this.getView().byId("descrizioneAllegato").getValue();
-                var importo = this.getView().byId("importoAllegato").getValue();
-                var note = this.getView().byId("noteAllegato").getValue();
-                if(descriptionAllegato && importo && note)
-                return true;
-                else
-                return false;                
+                var oDescriptionAllegato = this.getView().byId("descrizioneAllegato");
+                var oImportoAllegato = this.getView().byId("importoAllegato");
+                var oNota = this.getView().byId("noteAllegato");
+                var oFile = this.getView().byId("fileUploader");
+
+                oDescriptionAllegato.setValueState();
+                oImportoAllegato.setValueState();
+                oNota.setValueState();
+                oFile.setValueState();
+
+                if (!oDescriptionAllegato.getValue()) {
+                    oDescriptionAllegato.setValueState("Error");
+                }
+                if (!oImportoAllegato.getValue()) {
+                    oImportoAllegato.setValueState("Error");
+                }
+                if (!oNota.getValue() && !oFile.getValue()) {
+                    oNota.setValueState("Error");
+                    oFile.setValueState("Error");
+                }
+                if (
+                    oDescriptionAllegato.getValue() &&
+                    oImportoAllegato.getValue() &&
+                    (oNota.getValue() || oFile.getValue())
+                )
+                    return true;
+                else return false;
+            }, 
+
+            _validazioneAllegatoAltro: function(){
+                var oImportoAllegato = this.getView().byId("importoMov");
+                var oNota = this.getView().byId("notaMov");
+                var oFile = this.getView().byId("fileUploaderMov");
+
+                oImportoAllegato.setValueState();
+                oNota.setValueState();
+                oFile.setValueState();
+
+                if (!oImportoAllegato.getValue()) {
+                    oImportoAllegato.setValueState("Error");
+                }
+                if (!oNota.getValue() && !oFile.getValue()) {
+                    oNota.setValueState("Error");
+                    oFile.setValueState("Error");
+                }
+                if (
+                    oImportoAllegato.getValue() &&
+                    (oNota.getValue() || oFile.getValue())
+                )
+                    return true;
+                else return false;
             }
         });
     });

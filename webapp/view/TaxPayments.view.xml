@@ -12,7 +12,7 @@
     xmlns:u="sap.ui.unified"
     xmlns:tnt="sap.tnt">
 
-    <uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" preserveHeaderStateOnScroll="true">
+    <uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" preserveHeaderStateOnScroll="false">
         <uxap:headerTitle >
             <uxap:ObjectPageDynamicHeaderTitle >
                 <uxap:heading >
@@ -30,48 +30,47 @@
             </uxap:ObjectPageDynamicHeaderTitle>
         </uxap:headerTitle>
         <uxap:sections>
-            <uxap:ObjectPageSection titleUppercase="false" title="Section 2" showTitle="false">
+            <uxap:ObjectPageSection titleUppercase="false" title="Section 1" showTitle="false">
                 <uxap:subSections>
-                    <uxap:ObjectPageSubSection id="1" title="{i18n>credLFY}" titleUppercase="false">
+                    <uxap:ObjectPageSubSection id="1" title="{i18n>credLFY}" titleUppercase="false" >
                         <uxap:blocks>
                             <layout:VerticalLayout>
-                                <!-- <Table id="idTableCreditoRisultante" inset="false" items="{path:'oModelTableAllegati>/oModelCD', sorter: {
+                                <Table id="idTableCreditoRisultante" inset="false" items="{path:'oModelTableAllegati>/oModelO', sorter: {
                             path: 'createdAt',
                             descending: true
                         }}">
                                     <headerToolbar>
                                         <OverflowToolbar id="toolbarID1">
-                                            <Title text="{i18n>versamenti}" level="H2"/>
                                             <ToolbarSpacer/>
-                                            <Button id="addCredito" icon="sap-icon://add" press="onAdd"/>
+                                            <Button id="addCredito" icon="sap-icon://edit" press="onEdit"/>
                                         </OverflowToolbar>
                                     </headerToolbar>
                                     <columns>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="20%">
                                             <Text text="{i18n>descrizione}"/>
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
-                                            <Text text="{i18n>data}"/>
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+                                            <Text text=""/>
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
-                                            <Text text="{i18n>rata}"/>
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+                                            <Text text=""/>
                                         </Column>
-                                        <Column>
-                                            <Text text="{i18n>codiceTributo}"/>
+                                        <Column width="10%">
+                                            <Text text=""/>
                                         </Column>
-                                        <Column>
-                                            <Text text="{i18n>anno}"/>
+                                        <Column width="10%">
+                                            <Text text=""/>
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
-                                            <Text text="{i18n>ravvedimento}" />
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+                                            <Text text="" />
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>importo}" />
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>note}" />
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>allegato}" />
                                         </Column>
                                     </columns>
@@ -95,12 +94,12 @@
                                             </cells>
                                         </ColumnListItem>
                                     </items>
-                                </Table> -->
+                                </Table>
 
                                 <Table id="idTableVersamenti" inset="false" items="{path:'oModelTableAllegati>/oModelV', sorter: {
                             path: 'createdAt',
                             descending: true
-                        }}" >
+                        }}" class="sapUiMediumMarginTop">
                                     <headerToolbar>
                                         <OverflowToolbar id="toolbarID">
                                             <Title text="{i18n>versamenti}" level="H2"/>
@@ -109,28 +108,28 @@
                                         </OverflowToolbar>
                                     </headerToolbar>
                                     <columns>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="20%">
                                             <Text text="{i18n>descrizione}"/>
                                             <footer>
                                                 <Text text="{i18n>totale}"/>
                                             </footer>
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>data}"/>
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>rata}"/>
                                         </Column>
-                                        <Column>
+                                        <Column width="10%">
                                             <Text text="{i18n>codiceTributo}"/>
                                         </Column>
-                                        <Column>
+                                        <Column width="10%">
                                             <Text text="{i18n>anno}"/>
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>ravvedimento}" />
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>importo}" />
                                             <footer>
                                                 <Text text="{path: 'oModelTableTotAllegati>/oModelVTot/Importo', type: 'sap.ui.model.type.Float',
@@ -141,10 +140,10 @@
                                                             }}"/>
                                             </footer>
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>note}" />
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>allegato}" />
                                         </Column>
                                     </columns>
@@ -182,28 +181,28 @@
                                         </OverflowToolbar>
                                     </headerToolbar>
                                     <columns>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="20%">
                                             <Text text="{i18n>descrizione}"/>
                                             <footer>
                                                 <Text text="{i18n>totale}"/>
                                             </footer>
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>data}"/>
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>rata}"/>
                                         </Column>
-                                        <Column>
+                                        <Column width="10%">
                                             <Text text="{i18n>codiceTributo}"/>
                                         </Column>
-                                        <Column>
+                                        <Column width="10%">
                                             <Text text="{i18n>anno}"/>
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>ravvedimento}" />
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>importo}" />
                                             <footer>
                                                 <Text text="{path: 'oModelTableTotAllegati>/oModelCTot/Importo', type: 'sap.ui.model.type.Float',
@@ -214,10 +213,10 @@
                                                             }}"/>
                                             </footer>
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>note}" />
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>allegato}" />
                                         </Column>
                                     </columns>
@@ -250,32 +249,32 @@
                                         <OverflowToolbar>
                                             <!-- <Title text="{i18n>altriMov}" level="H2"/> -->
                                             <ToolbarSpacer/>
-                                            <Button id="addAltroMovimento" icon="sap-icon://add" press="onAdd"/>
+                                            <Button id="addAltroMovimento" icon="sap-icon://edit" press="onEdit"/>
                                         </OverflowToolbar>
                                     </headerToolbar>
                                     <columns>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="20%">
                                             <Text text="{i18n>descrizione}"/>
                                             <footer>
                                                 <Text text="{i18n>credRes}"/>
                                             </footer>
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>data}"/>
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>rata}"/>
                                         </Column>
-                                        <Column>
+                                        <Column width="10%">
                                             <Text text="{i18n>codiceTributo}"/>
                                         </Column>
-                                        <Column>
+                                        <Column width="10%">
                                             <Text text="{i18n>anno}"/>
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>ravvedimento}" />
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>importo}" />
                                             <footer>
                                                 <Text text="{path: 'oModelTableTotAllegati>/oModelTotali/Importo', type: 'sap.ui.model.type.Float',
@@ -286,10 +285,10 @@
                                                             }}"/>
                                             </footer>
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>note}" />
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>allegato}" />
                                         </Column>
                                     </columns>
@@ -303,8 +302,8 @@
                                                 <Text text="{oModelTableAllegati>codiceTributo}"/>
                                                 <Text text="{oModelTableAllegati>anno}"/>
                                                 <Text text="{oModelTableAllegati>ravvedimento}"/>
-                                                <Input value="{oModelTableAllegati>importo}"/>
-                                                <Input value="{oModelTableAllegati>note}"/>
+                                                <Text text="{oModelTableAllegati>importo}"/>
+                                                <Text text="{oModelTableAllegati>note}"/>
                                                 <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati" wrapping="true"/>
                                             </cells>
                                         </ColumnListItem>
@@ -315,8 +314,11 @@
                             </layout:VerticalLayout>
                         </uxap:blocks>
                     </uxap:ObjectPageSubSection>
-
-                    <uxap:ObjectPageSubSection id="2" title="{i18n>acconti}" titleUppercase="false">
+                    </uxap:subSections>
+                    </uxap:ObjectPageSection >
+                    <uxap:ObjectPageSection titleUppercase="false" title="Section 2" showTitle="false">
+                     <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="2" title="{i18n>accontiV}" titleUppercase="false">
                         <uxap:blocks>
                             <Table id="idTableCompensazione" inset="false" items="{path:'oModelTableAllegati>/oModelA', sorter: {
                             path: 'createdAt',
@@ -330,28 +332,28 @@
                                     </OverflowToolbar>
                                 </headerToolbar>
                                 <columns>
-                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                    <Column minScreenWidth="Tablet" demandPopin="true" width="20%">
                                         <Text text="{i18n>descrizione}"/>
                                         <footer>
                                             <Text text="{i18n>totale}"/>
                                         </footer>
                                     </Column>
-                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                    <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                         <Text text="{i18n>data}"/>
                                     </Column>
-                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                    <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                         <Text text="{i18n>rata}"/>
                                     </Column>
-                                    <Column>
+                                    <Column width="10%">
                                         <Text text="{i18n>codiceTributo}"/>
                                     </Column>
-                                    <Column>
+                                    <Column width="10%">
                                         <Text text="{i18n>anno}"/>
                                     </Column>
-                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                    <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                         <Text text="{i18n>ravvedimento}" />
                                     </Column>
-                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                    <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                         <Text text="{i18n>importo}" />
                                         <footer>
                                             <Text text="{path: 'oModelTableTotAllegati>/oModelATot/Importo', type: 'sap.ui.model.type.Float',
@@ -362,10 +364,10 @@
                                                             }}" />
                                         </footer>
                                     </Column>
-                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                    <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                         <Text text="{i18n>note}" />
                                     </Column>
-                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                    <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                         <Text text="{i18n>allegato}" />
                                     </Column>
                                 </columns>

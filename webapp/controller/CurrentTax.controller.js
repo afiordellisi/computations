@@ -59,48 +59,47 @@ sap.ui.define([
                             dataType: "json",
                             async: false,
                             success: function (oCompleteEntry) {
-                                var arr = oCompleteEntry.value;
-                                var PA = arr.filter(codiceRipresa => codiceRipresa.tipologia === 'P' && codiceRipresa.tipoVariazione === 'A');
-                                var PD = arr.filter(codiceRipresa => codiceRipresa.tipologia === 'P' && codiceRipresa.tipoVariazione === 'D');
-                                var TA = arr.filter(codiceRipresa => codiceRipresa.tipologia === 'T' && codiceRipresa.tipoVariazione === 'A');
-                                var TD = arr.filter(codiceRipresa => codiceRipresa.tipologia === 'T' && codiceRipresa.tipoVariazione === 'D');
-                                var PER = arr.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'PER');
-                                var ACE = arr.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'ACE');
-                                var PAImponibile = 0;
-                                for (var i = 0; i < PA.length; i++) {
-                                    PAImponibile += PA[i].imponibile;
-                                }
-                                var PDImponibile = 0;
-                                for (var i = 0; i < PD.length; i++) {
-                                    PDImponibile += PD[i].imponibile;
-                                }
-                                var TAImponibile = 0;
-                                for (var i = 0; i < TA.length; i++) {
-                                    TAImponibile += TA[i].imponibile;
-                                }
-                                var TDImponibile = 0;
-                                for (var i = 0; i < TD.length; i++) {
-                                    TDImponibile += TD[i].imponibile;
-                                }
-                                var PERImponibile = 0; 
-                                PERImponibile = PAImponibile + PDImponibile + TAImponibile + TDImponibile + that.getView().getModel("headerModel").oData.oModel[0].imponibile;
-                                // for (var i = 0; i < PER.length; i++) {
-                                //     PERImponibile += PER[i].imponibile;
-                                // }
-                                var ACEImponibile = 0;
-                                // for (var i = 0; i < ACE.length; i++) {
-                                //     ACEImponibile += ACE[i].imponibile;
-                                // }
-                                for (var i = 0; i <  PER.length; i++) {
-                                    ACEImponibile += PER[i].imponibile;
-                                }
-                                ACEImponibile += PERImponibile ;
+                            var arr = oCompleteEntry.value;
+                            var PA = arr.filter(codiceRipresa => codiceRipresa.tipologia === 'P' && codiceRipresa.tipoVariazione === 'A');
+                            var PD = arr.filter(codiceRipresa => codiceRipresa.tipologia === 'P' && codiceRipresa.tipoVariazione === 'D');
+                            var TA = arr.filter(codiceRipresa => codiceRipresa.tipologia === 'T' && codiceRipresa.tipoVariazione === 'A');
+                            var TD = arr.filter(codiceRipresa => codiceRipresa.tipologia === 'T' && codiceRipresa.tipoVariazione === 'D');
+                            var PER = arr.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'PER');
+                            var ACE = arr.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'ACE');
+                            // var PAImponibile = 0;
+                            // for (var i = 0; i < PA.length; i++) {
+                            //     PAImponibile += PA[i].imponibile;
+                            // }
+                            // var PDImponibile = 0;
+                            // for (var i = 0; i < PD.length; i++) {
+                            //     PDImponibile += PD[i].imponibile;
+                            // }
+                            // var TAImponibile = 0;
+                            // for (var i = 0; i < TA.length; i++) {
+                            //     TAImponibile += TA[i].imponibile;
+                            // }
+                            // var TDImponibile = 0;
+                            // for (var i = 0; i < TD.length; i++) {
+                            //     TDImponibile += TD[i].imponibile;
+                            // }
+                            // var PERImponibile = 0; 
+                            // PERImponibile = PAImponibile + PDImponibile + TAImponibile + TDImponibile + that.getView().getModel("headerModel").oData.oModel[0].imponibile;
+                            // // for (var i = 0; i < PER.length; i++) {
+                            // //     PERImponibile += PER[i].imponibile;
+                            // // }
+                            // var ACEImponibile = 0;
+                            // // for (var i = 0; i < ACE.length; i++) {
+                            // //     ACEImponibile += ACE[i].imponibile;
+                            // // }
+                            // for (var i = 0; i <  PER.length; i++) {
+                            //     ACEImponibile += PER[i].imponibile;
+                            // }
+                            // ACEImponibile += PERImponibile ;
 
-                                var RedditoImponibile = 0;
-                                for (var i = 0; i < ACE.length; i++) {
-                                    RedditoImponibile += ACE[i].imponibile;
-                                }
-                                RedditoImponibile += ACEImponibile; //questo valore va salvato, quindi serve su backend
+                            // var RedditoImponibile = [{"imponibile": ACEImponibile, "imposta": 0, "Riferimento Dichiarazione": 0, "Correnti": 0, "Differite": 0, "Totale": 0}];
+                            // for (var i = 0; i < ACE.length; i++) {
+                            //     RedditoImponibile[0].imponibile += ACE[i].imponibile;
+                            // }
                                 var data = {
                                     oModelPA : PA,
                                     oModelPD : PD,
@@ -108,13 +107,13 @@ sap.ui.define([
                                     oModelTD : TD,
                                     oModelPER : PER,
                                     oModelACE : ACE, 
-                                    oModelPAImponibile: PAImponibile,
-                                    oModelPDImponibile: PDImponibile,
-                                    oModelTAImponibile: TAImponibile,
-                                    oModelTDImponibile: TDImponibile,
-                                    oModelPERImponibile: PERImponibile, 
-                                    oModelACEImponibile: ACEImponibile, 
-                                    oModelRedditoImponibile: RedditoImponibile
+                                    // oModelPAImponibile: PAImponibile,
+                                    // oModelPDImponibile: PDImponibile,
+                                    // oModelTAImponibile: TAImponibile,
+                                    // oModelTDImponibile: TDImponibile,
+                                    // oModelPERImponibile: PERImponibile, 
+                                    // oModelACEImponibile: ACEImponibile, 
+                                    // oModelRedditoImponibile: RedditoImponibile
                                 };
                                 var DataModel = new sap.ui.model.json.JSONModel();
                                 DataModel.setData(data);
@@ -276,6 +275,33 @@ sap.ui.define([
                 this.getView().byId("navigationList")
             },
 
+            _setTotaliRiprese: function(){
+                var ID = this.getView().getModel("computationModel").getData().ID;
+                var imposta = this.getView().byId("impostaButton").getSelectedKey();
+
+                var that = this;
+                    jQuery.ajax({
+                        url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/KPITotRipresaView?$filter=computationId eq "+ID+" and imposta eq '"+imposta+"'"),
+                        contentType: "application/json",
+                        type: 'GET',
+                        dataType: "json",
+                        async: false,
+                        success: function (oCompleteEntry) {
+                            var arr = oCompleteEntry.value[0];
+                            
+                            var data = {
+                                arr
+                            };
+                            var DataModel = new sap.ui.model.json.JSONModel();
+                            DataModel.setData(data);
+                            that.getView().setModel(DataModel, "oModelTotali");
+                        },
+                        error: function (error) {
+                            sap.m.MessageToast.show("Error");
+                        }
+                    });
+            },
+
             _onObjectMatched: function (oEvent) {
                 var oEvent = oEvent.getParameter("arguments");
                 
@@ -304,59 +330,59 @@ sap.ui.define([
                             var TD = arr.filter(codiceRipresa => codiceRipresa.tipologia === 'T' && codiceRipresa.tipoVariazione === 'D');
                             var PER = arr.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'PER');
                             var ACE = arr.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'ACE');
-                            var PAImponibile = 0;
-                            for (var i = 0; i < PA.length; i++) {
-                                PAImponibile += PA[i].imponibile;
-                            }
-                            var PDImponibile = 0;
-                            for (var i = 0; i < PD.length; i++) {
-                                PDImponibile += PD[i].imponibile;
-                            }
-                            var TAImponibile = 0;
-                            for (var i = 0; i < TA.length; i++) {
-                                TAImponibile += TA[i].imponibile;
-                            }
-                            var TDImponibile = 0;
-                            for (var i = 0; i < TD.length; i++) {
-                                TDImponibile += TD[i].imponibile;
-                            }
-                            var PERImponibile = 0; 
-                            PERImponibile = PAImponibile + PDImponibile + TAImponibile + TDImponibile + that.getView().getModel("headerModel").oData.oModel[0].imponibile;
-                            // for (var i = 0; i < PER.length; i++) {
-                            //     PERImponibile += PER[i].imponibile;
+                            // var PAImponibile = 0;
+                            // for (var i = 0; i < PA.length; i++) {
+                            //     PAImponibile += PA[i].imponibile;
                             // }
-                            var ACEImponibile = 0;
-                            // for (var i = 0; i < ACE.length; i++) {
-                            //     ACEImponibile += ACE[i].imponibile;
+                            // var PDImponibile = 0;
+                            // for (var i = 0; i < PD.length; i++) {
+                            //     PDImponibile += PD[i].imponibile;
                             // }
-                            for (var i = 0; i <  PER.length; i++) {
-                                ACEImponibile += PER[i].imponibile;
-                            }
-                            ACEImponibile += PERImponibile ;
+                            // var TAImponibile = 0;
+                            // for (var i = 0; i < TA.length; i++) {
+                            //     TAImponibile += TA[i].imponibile;
+                            // }
+                            // var TDImponibile = 0;
+                            // for (var i = 0; i < TD.length; i++) {
+                            //     TDImponibile += TD[i].imponibile;
+                            // }
+                            // var PERImponibile = 0; 
+                            // PERImponibile = PAImponibile + PDImponibile + TAImponibile + TDImponibile + that.getView().getModel("headerModel").oData.oModel[0].imponibile;
+                            // // for (var i = 0; i < PER.length; i++) {
+                            // //     PERImponibile += PER[i].imponibile;
+                            // // }
+                            // var ACEImponibile = 0;
+                            // // for (var i = 0; i < ACE.length; i++) {
+                            // //     ACEImponibile += ACE[i].imponibile;
+                            // // }
+                            // for (var i = 0; i <  PER.length; i++) {
+                            //     ACEImponibile += PER[i].imponibile;
+                            // }
+                            // ACEImponibile += PERImponibile ;
 
-                            var RedditoImponibile = [{"imponibile": ACEImponibile, "imposta": 0, "Riferimento Dichiarazione": 0, "Correnti": 0, "Differite": 0, "Totale": 0}];
-                            for (var i = 0; i < ACE.length; i++) {
-                                RedditoImponibile[0].imponibile += ACE[i].imponibile;
-                            }
-                            //RedditoImponibile.imponibile += ACEImponibile; //questo valore va salvato, quindi serve su backend
+                            // var RedditoImponibile = [{"imponibile": ACEImponibile, "imposta": 0, "Riferimento Dichiarazione": 0, "Correnti": 0, "Differite": 0, "Totale": 0}];
+                            // for (var i = 0; i < ACE.length; i++) {
+                            //     RedditoImponibile[0].imponibile += ACE[i].imponibile;
+                            // }
                             var data = {
                                 oModelPA : PA,
                                 oModelPD : PD,
                                 oModelTA : TA,
                                 oModelTD : TD,
                                 oModelPER : PER,
-                                oModelACE : ACE, 
-                                oModelPAImponibile: PAImponibile,
-                                oModelPDImponibile: PDImponibile,
-                                oModelTAImponibile: TAImponibile,
-                                oModelTDImponibile: TDImponibile,
-                                oModelPERImponibile: PERImponibile, 
-                                oModelACEImponibile: ACEImponibile, 
-                                oModelRedditoImponibile: RedditoImponibile
+                                oModelACE : ACE
+                                // oModelPAImponibile: PAImponibile,
+                                // oModelPDImponibile: PDImponibile,
+                                // oModelTAImponibile: TAImponibile,
+                                // oModelTDImponibile: TDImponibile,
+                                // oModelPERImponibile: PERImponibile, 
+                                // oModelACEImponibile: ACEImponibile, 
+                                // oModelRedditoImponibile: RedditoImponibile
                             };
                             var DataModel = new sap.ui.model.json.JSONModel();
                             DataModel.setData(data);
                             that.getView().setModel(DataModel, "oModelAnagrafica");
+                            that._setTotaliRiprese();
                         },
                         error: function (error) {
                             sap.m.MessageToast.show("Error");

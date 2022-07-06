@@ -74,7 +74,7 @@ sap.ui.define(
                 oModelLink: linkArray,
               };
               var oModel = new JSONModel(oData);
-              that.getView().setModel(oModel,"oModelTableAllegati");
+              that.getView().setModel(oModel, "oModelTableAllegati");
             },
             error: function (error) {
               sap.m.MessageToast.show("Error");
@@ -105,7 +105,7 @@ sap.ui.define(
         onSaveAllegato: function (oEvent) {
           if (this._validazioneAllegato()) {
             var nuovoAllegato;
-            var file = this.getView().byId("fileUploader").getValue();
+            var fileName = this.getView().byId("fileUploader").getValue();
 
             if (this.getView().byId("nota").getValue()) {
               nuovoAllegato = JSON.stringify({
@@ -118,7 +118,7 @@ sap.ui.define(
                 computation_ID: computazioneID,
                 ripresa_ID: ripresaID,
                 codiceGL: codiceGL,
-                fileName: file,
+                fileName: fileName,
                 imposta: this.getView().getModel("routingModel").getData()
                   .imposta,
                 note: [{ nota: this.getView().byId("nota").getValue() }],
@@ -134,7 +134,7 @@ sap.ui.define(
                 computation_ID: computazioneID,
                 ripresa_ID: ripresaID,
                 codiceGL: codiceGL,
-                fileName: file,
+                fileName: fileName,
                 imposta: this.getView().getModel("routingModel").getData()
                   .imposta,
               });
@@ -152,7 +152,7 @@ sap.ui.define(
               async: false,
               success: function (oCompleteEntry) {
                 var ID = oCompleteEntry.ID; //allegatoID
-                if (file) {
+                if (fileName) {
                   that._putAllegato(ID);
                 }
                 that.onCloseAllegato();
@@ -341,7 +341,7 @@ sap.ui.define(
             async: false,
             success: function (oCompleteEntry) {
               var oModel = new JSONModel(oCompleteEntry.value);
-              that.getView().setModel(oModel,"oModelNote");
+              that.getView().setModel(oModel, "oModelNote");
             },
             error: function (error) {
               sap.m.MessageToast.show("Error");
