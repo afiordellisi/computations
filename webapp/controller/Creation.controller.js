@@ -156,20 +156,14 @@ sap.ui.define([
                     };
             });
 
-                var checkIRES = modelloIRES.some(element => Object.values(element).some(val => val <= 0 && val >= 100));
-                var checkIRAP = aIRAPNOImponibile.some(element => Object.values(element).some(val => val <= 0 && val >= 100));
+                var checkIRES = modelloIRES.some(element => Object.values(element).some(val => val <= 0 || val >= 100));
+                var checkIRAP = aIRAPNOImponibile.some(element => Object.values(element).some(val => val <= 0 || val >= 100));
 
                 //var checkIRES = false;
                 //var checkIRAP = false;
 
                 if(!checkIRES && !checkIRAP){
-                    sap.m.MessageToast.show("Verificare campi inseriti");
-                    var oWizard = this.byId("CreateWizard");
-                    var oFirstStep = oWizard.getSteps()[3];
-                    oWizard.discardProgress(oFirstStep);
-                }
-                else{
-                    
+
                     var aFilter = [];
                     aFilter.push(this.getView().getModel("parameterModel").oData.societa);
                     aFilter.push(this.getView().getModel("parameterModel").oData.ledger);
@@ -179,6 +173,16 @@ sap.ui.define([
                     this.getView().byId("finishButton").setVisible(true);
                     this.getView().byId("nextStepButton").setVisible(false);
                     this.getView().byId("taxRule").setBlocked(true);
+
+
+                    
+                }
+                else{
+                    
+                    sap.m.MessageToast.show("Verificare campi inseriti");
+                    var oWizard = this.byId("CreateWizard");
+                    var oFirstStep = oWizard.getSteps()[3];
+                    oWizard.discardProgress(oFirstStep);
                     
                 }    
                 
