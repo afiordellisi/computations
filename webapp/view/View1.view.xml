@@ -23,7 +23,7 @@
 
         <!-- Content -->
         <semantic:content>
-            <Table id="idTable" inset="false" items="{path:'tableModel>/oModel', sorter: {
+            <Table id="idTable" inset="false" items="{path:'tableModel>/', sorter: {
 				path: 'createdAt',
 				descending: true
 			}}" class="sapFSemanticPageAlignContent" width="auto">
