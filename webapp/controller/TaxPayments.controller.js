@@ -117,18 +117,19 @@ sap.ui.define([
                         var C = totale.filter(importo => importo.tipologia === 'C');
                         var A = totale.filter(importo => importo.tipologia === 'A');
                         var O = totale.filter(importo => importo.tipologia === 'O');
-                        var tot = 0;
-                        if(V.length >0){
-                            tot += V[0].Importo;
-                        }
-                        if (C.length >0){
-                                tot += C[0].Importo;   
-                        }
-                        if(O.length >0){
-                            tot += O[0].Importo;
-                        }
-                        var totArray = [{"Importo" : tot }]; 
-                        //totArrat.Importo = tot;
+                        var AM = totale.filter(importo => importo.tipologia === 'AM');
+                        var tot = Math.max(V[0].creditoDebitoResiduo,C[0].creditoDebitoResiduo,AM[0].creditoDebitoResiduo,O[0].creditoDebitoResiduo ) ;
+                        // if(V.length >0){
+                        //     tot += V[0].Importo;
+                        // }
+                        // if (C.length >0){
+                        //         tot += C[0].Importo;   
+                        // }
+                        // if(O.length >0){
+                        //     tot += O[0].Importo;
+                        // }
+                        var totArray = [{"creditoDebitoResiduo" : tot }]; 
+                        totArray.Importo = tot;
                         var data = {
                             oModelVTot: V[0],
                             oModelCTot: C[0],

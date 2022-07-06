@@ -118,6 +118,7 @@ sap.ui.define([
                                 var DataModel = new sap.ui.model.json.JSONModel();
                                 DataModel.setData(data);
                                 that.getView().setModel(DataModel, "oModelAnagrafica");
+                                that._setTotaliRiprese();
                             },
                             error: function (error) {
                                 sap.m.MessageToast.show("Error");
@@ -288,9 +289,21 @@ sap.ui.define([
                         async: false,
                         success: function (oCompleteEntry) {
                             var arr = oCompleteEntry.value[0];
-                            
+                            var PAImponibile = {"imponibile": arr.imponibilePA}
+                            var PDImponibile = {"imponibile": arr.imponibilePD}
+                            var TAImponibile = {"imponibile": arr.imponibileTA}
+                            var TDImponibile = {"imponibile": arr.imponibileTD}
+                            var PERImponibile = {"imponibile": arr.imponibilePER}
+                            var ACEImponibile = {"imponibile": arr.imponibileACE}
+                            var RedditoImponibile = {"imponibile": arr.redditoImponibile}
                             var data = {
-                                arr
+                                oModelPAImponibile: PAImponibile,
+                                oModelPDImponibile: PDImponibile,
+                                oModelTAImponibile: TAImponibile,
+                                oModelTDImponibile: TDImponibile,
+                                oModelPERImponibile: PERImponibile, 
+                                oModelACEImponibile: ACEImponibile, 
+                                oModelRedditoImponibile: RedditoImponibile
                             };
                             var DataModel = new sap.ui.model.json.JSONModel();
                             DataModel.setData(data);

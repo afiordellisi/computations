@@ -277,7 +277,7 @@
                                         <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>importo}" />
                                             <footer>
-                                                <Text text="{path: 'oModelTableTotAllegati>/oModelTotali/Importo', type: 'sap.ui.model.type.Float',
+                                                <Text text="{path: 'oModelTableTotAllegati>/oModelTotali/creditoDebitoResiduo', type: 'sap.ui.model.type.Float',
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
                                                                 maxFractionDigits: 2,
