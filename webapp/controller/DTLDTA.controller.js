@@ -97,80 +97,6 @@ sap.ui.define(
                 },
               ];
 
-              for (var i = 0; i < data.length; i++) {
-                if (data[i].OpeningBalance === null) {
-                  data[i].OpeningBalance = 0;
-                }
-
-                if (data[i].PriorYearAdjustments === null) {
-                  data[i].PriorYearAdjustments = 0;
-                }
-
-                if (data[i].extraordinaryTransactions === null) {
-                  data[i].extraordinaryTransactions = 0;
-                }
-
-                if (data[i].CurrentYearAccrual === null) {
-                  data[i].CurrentYearAccrual = 0;
-                }
-
-                if (data[i].CurrentYearUtilization === null) {
-                  data[i].CurrentYearUtilization = 0;
-                }
-
-                if (data[i].otherAdjustments === null) {
-                  data[i].otherAdjustments = 0;
-                }
-
-                if (data[i].changeTaxRate === null) {
-                  data[i].changeTaxRate = 0;
-                }
-
-                if (data[i].closingGrossBalance === null) {
-                  data[i].closingGrossBalance = 0;
-                }
-
-                if (data[i].devaluationOpening === null) {
-                  data[i].devaluationOpening = 0;
-                }
-
-                if (data[i].devaluationMovement === null) {
-                  data[i].devaluationMovement = 0;
-                }
-
-                if (data[i].devaluationClosing === null) {
-                  data[i].devaluationClosing = 0;
-                }
-
-                if (data[i].closingNetBalance === null) {
-                  data[i].closingNetBalance = 0;
-                }
-
-                if (data[i].movementPL === null) {
-                  data[i].movementPL = 0;
-                }
-
-                if (data[i].movementBS === null) {
-                  data[i].movementBS = 0;
-                }
-
-                if (data[i].current1 === null) {
-                  data[i].current1 = 0;
-                }
-
-                if (data[i].current2 === null) {
-                  data[i].current2 = 0;
-                }
-
-                if (data[i].current3 === null) {
-                  data[i].current3 = 0;
-                }
-
-                if (data[i].longTerm === null) {
-                  data[i].longTerm = 0;
-                }
-              }
-
               data.push(oTotale[0]);
 
               oModel.setData(data);
@@ -290,6 +216,77 @@ sap.ui.define(
             }
           }
 
+          for (var i = 0; i < data.length; i++) {
+            if (data[i].OpeningBalance === null) {
+              data[i].OpeningBalance = 0;
+            }
+
+            if (data[i].PriorYearAdjustments === null) {
+              data[i].PriorYearAdjustments = 0;
+            }
+
+            if (data[i].extraordinaryTransactions === null) {
+              data[i].extraordinaryTransactions = 0;
+            }
+
+            if (data[i].CurrentYearAccrual === null) {
+              data[i].CurrentYearAccrual = 0;
+            }
+
+            if (data[i].CurrentYearUtilization === null) {
+              data[i].CurrentYearUtilization = 0;
+            }
+
+            if (data[i].otherAdjustments === null) {
+              data[i].otherAdjustments = 0;
+            }
+
+            if (data[i].changeTaxRate === null) {
+              data[i].changeTaxRate = 0;
+            }
+
+            if (data[i].closingGrossBalance === null) {
+              data[i].closingGrossBalance = 0;
+            }
+
+            if (data[i].devaluationOpening === null) {
+              data[i].devaluationOpening = 0;
+            }
+
+            if (data[i].devaluationMovement === null) {
+              data[i].devaluationMovement = 0;
+            }
+
+            data[i].devaluationClosing = data[i].devaluationOpening + data[i].devaluationMovement;
+
+            data[i].closingNetBalance = data[i].closingGrossBalance + data[i].devaluationClosing;
+            
+
+            if (data[i].movementPL === null) {
+              data[i].movementPL = 0;
+            }
+
+            if (data[i].movementBS === null) {
+              data[i].movementBS = 0;
+            }
+
+            if (data[i].current1 === null) {
+              data[i].current1 = 0;
+            }
+
+            if (data[i].current2 === null) {
+              data[i].current2 = 0;
+            }
+
+            if (data[i].current3 === null) {
+              data[i].current3 = 0;
+            }
+
+            if (data[i].longTerm === null) {
+              data[i].longTerm = 0;
+            }
+          }
+
           oModel.getData()[data.length - 1] = oTotale;
 
           oModel.refresh();
@@ -333,7 +330,7 @@ sap.ui.define(
 
               var nuovoDTA = JSON.stringify({
                 devaluationMovement: devaluationMovement,
-                movementBS: movementBS
+                movementBS: movementBS,
               });
 
               jQuery.ajax({
@@ -353,17 +350,15 @@ sap.ui.define(
                 data: nuovoDTA,
                 async: false,
                 success: function (oCompleteEntry) {
-                  them.getView().getModel("oModelDT").getData()[
-                    indice
-                  ].state = "Success";
+                  them.getView().getModel("oModelDT").getData()[indice].state =
+                    "Success";
                   them.getView().getModel("oModelDT").getData()[
                     indice
                   ].updated = false;
                 },
                 error: function (error) {
-                  them.getView().getModel("oModelDT").getData()[
-                    indice
-                  ].state = "Error";
+                  them.getView().getModel("oModelDT").getData()[indice].state =
+                    "Error";
                 },
               });
             }
@@ -374,7 +369,7 @@ sap.ui.define(
               this.getResourceBundle().getText("valorizzareRecord")
             );
           }
-        }
+        },
       }
     );
   }
