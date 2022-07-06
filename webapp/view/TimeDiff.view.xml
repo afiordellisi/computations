@@ -78,7 +78,7 @@
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
                                                 }
-                                            }" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
+                                            }" change=".onValueChanged" textAlign="End" type="Number" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
@@ -120,7 +120,7 @@
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
                                                 }
-                                            }" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
+                                            }" change=".onValueChanged" textAlign="End" type="Number" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
@@ -162,7 +162,7 @@
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
                                                 }
-                                            }" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
+                                            }" change=".onValueChanged" textAlign="End"  type="Number" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
@@ -190,7 +190,7 @@
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
                                                 }
-                                            }" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
+                                            }" change=".onValueChanged" textAlign="End" type="Number" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                 </t:columns>

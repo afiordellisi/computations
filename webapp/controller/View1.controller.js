@@ -43,6 +43,7 @@ sap.ui.define([
                 oModel.read("/ComputationsView", {
                     filters: aFilter,
                     success: function(oData, response) {
+                        var arr = oData.results;
                         var data = {
                                     oModel: oData.results
                                 };
