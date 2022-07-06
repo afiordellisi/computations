@@ -15,139 +15,286 @@
         </semantic:titleHeading>
 
         <semantic:content>
-            <t:Table rows="{path:'oModelDT>/oModel'}" selectionMode="None" fixedColumnCount="2" fixedBottomRowCount="1" enableColumnReordering="false">
+            <t:Table rows="{path:'oModelDT>/'}" selectionMode="None" fixedColumnCount="2" fixedBottomRowCount="1" enableColumnReordering="false">
+                <t:extension>
+                    <OverflowToolbar style="Clear">
+                        <Title id="title" text="{i18n>DTA}"/>
+                    </OverflowToolbar>
+                </t:extension>
+                <t:rowSettingsTemplate>
+                    <t:RowSettings highlight="{oModelDT>state}" highlightText="{StatusText}"/>
+                    
+                </t:rowSettingsTemplate>
                 <t:columns>
                     <t:Column width="11rem" resizable="false">
-                        <Label text="{i18n>CodiceRipresa}" />
+                        <Label text="{i18n>CodiceDiff}" />
                         <t:template>
                             <Text text="{oModelDT>codiceRipresa}" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem">
-                        <Label text="{i18n>DescrizioneRipresa}" />
+                        <Label text="{i18n>DiffTemp}" />
                         <t:template>
                             <Text text="{oModelDT>descrizioneRipresa}" textAlign="{= ${oModelDT>descrizioneRipresa} === 'Totale' ? 'End' : 'Begin'}" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
-                        <Label text="{i18n>OpeningB}" />
+                        <Label text="{i18n>OpeningGB}" />
                         <t:template>
-                            <Text text="{oModelDT>OpeningBalance}" wrapping="false"/>
-                        </t:template>
-                    </t:Column>
-                    <t:Column width="11rem" hAlign="End" resizable="false">
-                        <Label text="{i18n>OpeningB}" />
-                        <t:template>
-                            <Text text="{oModelDT>OpeningBalance}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelDT>OpeningBalance',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>PriorYear}" />
                         <t:template>
-                            <Text text="{oModelDT>PriorYearAdjustments}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelDT>PriorYearAdjustments',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>Extraordinary}" />
                         <t:template>
-                            <Text text="{oModelDT>extraordinaryTransactions}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelDT>extraordinaryTransactions',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>CurrYear}" />
                         <t:template>
-                            <Text text="{oModelDT>CurrentYearAccrual}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelDT>CurrentYearAccrual',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>CurrYearUtili}" />
                         <t:template>
-                            <Text text="{oModelDT>CurrentYearUtilization}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelDT>CurrentYearUtilization',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>OtherAdj}" />
                         <t:template>
-                            <Text text="{oModelDT>otherAdjustments}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelDT>otherAdjustments',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>changetax}" />
                         <t:template>
-                            <Text text="{oModelDT>changeTaxRate}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelDT>changeTaxRate',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>closingGB}" />
                         <t:template>
-                            <Text text="{oModelDT>closingGrossBalance}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelDT>closingGrossBalance',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>devOpen}" />
                         <t:template>
-                            <Text text="{oModelDT>devaluationOpening}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelDT>devaluationOpening',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>devMov}" />
                         <t:template>
-                            <Text text="{oModelDT>devaluationMovement}" wrapping="false"/>
+                            <Input value="{
+                                                path: 'oModelDT>devaluationMovement',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                                            }" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>devClosing}" />
                         <t:template>
-                            <Text text="{oModelDT>devaluationClosing}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelDT>devaluationClosing',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>closNB}" />
                         <t:template>
-                            <Text text="{oModelDT>closingNetBalance}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelDT>closingNetBalance',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>movementPL}" />
                         <t:template>
-                            <Text text="{oModelDT>movementPL}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelDT>movementPL',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>movementBS}" />
                         <t:template>
-                            <Input type="Number" editable="{= ${oModelDT>descrizioneRipresa} === 'Totale'? false : true}" textAlign="End" value="{oModelDT>movementBS}"/>
+                            <Input value="{
+                                                path: 'oModelDT>movementBS',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                                            }" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>Current1}" />
                         <t:template>
-                            <Text text="{oModelDT>current1}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelDT>current1',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>Current2}" />
                         <t:template>
-                            <Text text="{oModelDT>current2}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelDT>current2',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>Current3}" />
                         <t:template>
-                            <Text text="{oModelDT>current3}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelDT>current3',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
                         <Label text="{i18n>LongTerm}" />
                         <t:template>
-                            <Text text="{oModelDT>current4}" wrapping="false"/>
+                            <Text text="{
+                                path: 'oModelDT>longTerm',
+                                type: 'sap.ui.model.type.Float',
+                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                            }" textAlign="Right" wrapping="false"/>
                         </t:template>
                     </t:Column>
                 </t:columns>
             </t:Table>
         </semantic:content>
         <semantic:footerCustomActions>
-            <Button text="{i18n>save}" type="Accept"/>
+            <Button text="{i18n>save}" type="Accept" press="onPressSave"/>
         </semantic:footerCustomActions>
     </semantic:SemanticPage>
 </mvc:View>
