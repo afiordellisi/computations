@@ -77,55 +77,7 @@ sap.ui.define(
                 },
               ];
 
-              for (var i = 0; i < data.length; i++) {
-                data[i].closingBalance =
-                  data[i].OpeningBalance +
-                  data[i].PriorYearAdjustments +
-                  data[i].extraordinaryTransactions +
-                  data[i].CurrentYearAccrual +
-                  data[i].CurrentYearUtilization +
-                  data[i].otherAdjustments;
-
-                if (data[i].OpeningBalance === null) {
-                  data[i].OpeningBalance = 0;
-                }
-
-                if (data[i].PriorYearAdjustments === null) {
-                  data[i].PriorYearAdjustments = 0;
-                }
-
-                if (data[i].extraordinaryTransactions === null) {
-                  data[i].extraordinaryTransactions = 0;
-                }
-
-                if (data[i].CurrentYearAccrual === null) {
-                  data[i].CurrentYearAccrual = 0;
-                }
-
-                if (data[i].CurrentYearUtilization === null) {
-                  data[i].CurrentYearUtilization = 0;
-                }
-
-                if (data[i].otherAdjustments === null) {
-                  data[i].otherAdjustments = 0;
-                }
-
-                if (data[i].current1 === null) {
-                  data[i].current1 = 0;
-                }
-
-                if (data[i].current2 === null) {
-                  data[i].current2 = 0;
-                }
-
-                if (data[i].current3 === null) {
-                  data[i].current3 = 0;
-                }
-
-                if (data[i].longTerm === null) {
-                  data[i].longTerm = 0;
-                }
-              }
+              
 
               data.push(oTotale[0]);
 
@@ -208,6 +160,56 @@ sap.ui.define(
 
             if (data[i].longTerm) {
               oTotale.longTerm += data[i].longTerm;
+            }
+          }
+
+          for (var i = 0; i < data.length; i++) {
+            data[i].closingBalance =
+              data[i].OpeningBalance +
+              data[i].PriorYearAdjustments +
+              data[i].extraordinaryTransactions +
+              data[i].CurrentYearAccrual +
+              data[i].CurrentYearUtilization +
+              data[i].otherAdjustments;
+
+            if (data[i].OpeningBalance === null) {
+              data[i].OpeningBalance = 0;
+            }
+
+            if (data[i].PriorYearAdjustments === null) {
+              data[i].PriorYearAdjustments = 0;
+            }
+
+            if (data[i].extraordinaryTransactions === null) {
+              data[i].extraordinaryTransactions = 0;
+            }
+
+            if (data[i].CurrentYearAccrual === null) {
+              data[i].CurrentYearAccrual = 0;
+            }
+
+            if (data[i].CurrentYearUtilization === null) {
+              data[i].CurrentYearUtilization = 0;
+            }
+
+            if (data[i].otherAdjustments === null) {
+              data[i].otherAdjustments = 0;
+            }
+
+            if (data[i].current1 === null) {
+              data[i].current1 = 0;
+            }
+
+            if (data[i].current2 === null) {
+              data[i].current2 = 0;
+            }
+
+            if (data[i].current3 === null) {
+              data[i].current3 = 0;
+            }
+
+            if (data[i].longTerm === null) {
+              data[i].longTerm = 0;
             }
           }
 

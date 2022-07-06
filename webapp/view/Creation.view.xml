@@ -191,6 +191,9 @@
                             class="sapFDynamicPageAlignContent"
                             width="auto">
                             <headerToolbar>
+                                <OverflowToolbar>
+				                    <Title text="{i18n>ires}" level="H2"/>
+                                </OverflowToolbar>
                             </headerToolbar>
                             <columns>
                                 <Column visible="false">
@@ -200,19 +203,19 @@
                                     <Text text="{i18n>Region}"/>
                                 </Column>
                                 <Column>
-                                    <Text text="{i18n>Current}"/>
+                                    <Text text="{i18n>CurrentPerc}"/>
                                 </Column>
                                 <Column minScreenWidth="Tablet">
-                                    <Text text="{i18n>Current1}"/>
+                                    <Text text="{i18n>Current1Perc}"/>
                                 </Column>
                                 <Column minScreenWidth="Tablet">
-                                    <Text text="{i18n>Current2}"/>
+                                    <Text text="{i18n>Current2Perc}"/>
                                 </Column>
                                 <Column minScreenWidth="Tablet">
-                                    <Text text="{i18n>Current3}"/>
+                                    <Text text="{i18n>Current3Perc}"/>
                                 </Column>
                                 <Column minScreenWidth="Tablet">
-                                    <Text text="{i18n>Current4}"/>
+                                    <Text text="{i18n>Current4Perc}"/>
                                 </Column>
                                 <Column minScreenWidth="Tablet">
                                     <Text text="{i18n>ImponibilePrev}" visible="false"/>
@@ -272,7 +275,7 @@
                                 </ColumnListItem>
                             </items>
                         </Table>	
-
+                        <Text text=""/>
                         <Table
                             id="taxTableIRAP"
                             inset="false"
@@ -280,6 +283,9 @@
                             class="sapFDynamicPageAlignContent"
                             width="auto">
                             <headerToolbar>
+                                <OverflowToolbar>
+				                    <Title text="{i18n>irap}" level="H2"/>
+                                </OverflowToolbar>
                             </headerToolbar>
                             <columns>
                                 <Column visible="false">
@@ -289,19 +295,19 @@
                                     <Text text="{i18n>Region}"/>
                                 </Column>
                                 <Column>
-                                    <Text text="{i18n>Current}"/>
+                                    <Text text="{i18n>CurrentPerc}"/>
                                 </Column>
                                 <Column minScreenWidth="Tablet">
-                                    <Text text="{i18n>Current1}"/>
+                                    <Text text="{i18n>Current1Perc}"/>
                                 </Column>
                                 <Column minScreenWidth="Tablet">
-                                    <Text text="{i18n>Current2}"/>
+                                    <Text text="{i18n>Current2Perc}"/>
                                 </Column>
                                 <Column minScreenWidth="Tablet">
-                                    <Text text="{i18n>Current3}"/>
+                                    <Text text="{i18n>Current3Perc}"/>
                                 </Column>
                                 <Column minScreenWidth="Tablet">
-                                    <Text text="{i18n>Current4}"/>
+                                    <Text text="{i18n>Current4Perc}"/>
                                 </Column>
                                 <Column minScreenWidth="Tablet">
                                     <Text text="{i18n>ImponibilePrev}"/>

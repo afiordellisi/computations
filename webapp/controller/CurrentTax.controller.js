@@ -66,181 +66,26 @@ sap.ui.define([
                             var TD = arr.filter(codiceRipresa => codiceRipresa.tipologia === 'T' && codiceRipresa.tipoVariazione === 'D');
                             var PER = arr.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'PER');
                             var ACE = arr.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'ACE');
-                            // var PAImponibile = 0;
-                            // for (var i = 0; i < PA.length; i++) {
-                            //     PAImponibile += PA[i].imponibile;
-                            // }
-                            // var PDImponibile = 0;
-                            // for (var i = 0; i < PD.length; i++) {
-                            //     PDImponibile += PD[i].imponibile;
-                            // }
-                            // var TAImponibile = 0;
-                            // for (var i = 0; i < TA.length; i++) {
-                            //     TAImponibile += TA[i].imponibile;
-                            // }
-                            // var TDImponibile = 0;
-                            // for (var i = 0; i < TD.length; i++) {
-                            //     TDImponibile += TD[i].imponibile;
-                            // }
-                            // var PERImponibile = 0; 
-                            // PERImponibile = PAImponibile + PDImponibile + TAImponibile + TDImponibile + that.getView().getModel("headerModel").oData.oModel[0].imponibile;
-                            // // for (var i = 0; i < PER.length; i++) {
-                            // //     PERImponibile += PER[i].imponibile;
-                            // // }
-                            // var ACEImponibile = 0;
-                            // // for (var i = 0; i < ACE.length; i++) {
-                            // //     ACEImponibile += ACE[i].imponibile;
-                            // // }
-                            // for (var i = 0; i <  PER.length; i++) {
-                            //     ACEImponibile += PER[i].imponibile;
-                            // }
-                            // ACEImponibile += PERImponibile ;
-
-                            // var RedditoImponibile = [{"imponibile": ACEImponibile, "imposta": 0, "Riferimento Dichiarazione": 0, "Correnti": 0, "Differite": 0, "Totale": 0}];
-                            // for (var i = 0; i < ACE.length; i++) {
-                            //     RedditoImponibile[0].imponibile += ACE[i].imponibile;
-                            // }
-                                var data = {
-                                    oModelPA : PA,
-                                    oModelPD : PD,
-                                    oModelTA : TA,
-                                    oModelTD : TD,
-                                    oModelPER : PER,
-                                    oModelACE : ACE, 
-                                    // oModelPAImponibile: PAImponibile,
-                                    // oModelPDImponibile: PDImponibile,
-                                    // oModelTAImponibile: TAImponibile,
-                                    // oModelTDImponibile: TDImponibile,
-                                    // oModelPERImponibile: PERImponibile, 
-                                    // oModelACEImponibile: ACEImponibile, 
-                                    // oModelRedditoImponibile: RedditoImponibile
-                                };
-                                var DataModel = new sap.ui.model.json.JSONModel();
-                                DataModel.setData(data);
-                                that.getView().setModel(DataModel, "oModelAnagrafica");
-                                that._setTotaliRiprese();
+                           
+                            var data = {
+                                oModelPA : PA,
+                                oModelPD : PD,
+                                oModelTA : TA,
+                                oModelTD : TD,
+                                oModelPER : PER,
+                                oModelACE : ACE
+                            };
+                            var DataModel = new sap.ui.model.json.JSONModel();
+                            DataModel.setData(data);
+                            that.getView().setModel(DataModel, "oModelAnagrafica");
+                            that._setTotaliRiprese();
                             },
                             error: function (error) {
                                 sap.m.MessageToast.show("Error");
                             }
                         });
-                    /*}else{
-                        //var computazioneID = JSON.stringify({"id": ID});
-                        jQuery.ajax({
-                            url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/TotaliRipresaNoConf?$expand=codiceRipresa&$filter=imposta eq '"+imposta+"' and ID eq "+ID+""),
-                            contentType: "application/json",
-                            type: 'GET',
-                            dataType: "json",
-                            async: false,
-                            success: function (oCompleteEntry) {
-                            var arr = oCompleteEntry.value;
-                            
-                            var aItems = arr.map((arr) => {
-                                return {
-                                codiceRipresa: arr.codiceRipresa.ID,
-                                descrizioneRipresa: arr.codiceRipresa.descrizioneRipresa,
-                                imponibile: 0,
-                                tipoVariazione: arr.codiceRipresa.tipoVariazione,
-                                tipologia: arr.codiceRipresa.tipologia, 
-                                imponibile: arr.totaleRipresa
-                                };
-                            });
-                            var PA = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'P' && codiceRipresa.tipoVariazione === 'A');
-                            var PD = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'P' && codiceRipresa.tipoVariazione === 'D');
-                            var TA = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'T' && codiceRipresa.tipoVariazione === 'A');
-                            var TD = aItems.filter(codiceRipresa => codiceRipresa.tipologia === 'T' && codiceRipresa.tipoVariazione === 'D');
-                            var PER = aItems.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'PER');
-                            var ACE = aItems.filter(codiceRipresa => codiceRipresa.tipoVariazione === 'ACE');
-                            var PAImponibile = 0;
-                            for (var i = 0; i < PA.length; i++) {
-                                PAImponibile += PA[i].imponibile;
-                            }
-                            var PDImponibile = 0;
-                            for (var i = 0; i < PD.length; i++) {
-                                PDImponibile += PD[i].imponibile;
-                            }
-                            var TAImponibile = 0;
-                            for (var i = 0; i < TA.length; i++) {
-                                TAImponibile += TA[i].imponibile;
-                            }
-                            var TDImponibile = 0;
-                            for (var i = 0; i < TD.length; i++) {
-                                TDImponibile += TD[i].imponibile;
-                            }
-                            var PERImponibile = 0;
-                            for (var i = 0; i < PER.length; i++) {
-                                PERImponibile += PER[i].imponibile;
-                            }
-                            var ACEImponibile = 0;
-                            for (var i = 0; i < ACE.length; i++) {
-                                ACEImponibile += ACE[i].imponibile;
-                            }
-                                var data = {
-                                    oModelPA : PA,
-                                    oModelPA : PA,
-                                    oModelPD : PD,
-                                    oModelTA : TA,
-                                    oModelTD : TD,
-                                    oModelPER : PER,
-                                    oModelACE : ACE, 
-                                    oModelPAImponibile: PAImponibile,
-                                    oModelPDImponibile: PDImponibile,
-                                    oModelTAImponibile: TAImponibile,
-                                    oModelTDImponibile: TDImponibile,
-                                    oModelPERImponibile: PERImponibile,
-                                    oModelACEImponibile: ACEImponibile
-                                }
-                                var DataModel = new sap.ui.model.json.JSONModel();
-                                DataModel.setData(data);
-                                that.getView().setModel(DataModel, "oModelAnagrafica");
-                            },
-                            error: function (error) {
-                                sap.m.MessageToast.show("Error");
-                            }
-                        });
-                    }*/
 
-                this._setTitle();
-                        //     var arr = oCompleteEntry.value;
-                        // var PA = [];
-                        // var PD = [];
-                        // var TA = [];
-                        // var TD = [];
-                        // var PER = [];
-                        // var ACE = [];
-                        // for(var i=0; i<arr.length; i++){
-                        //     if(arr[i].codiceRipresa.tipologia === 'P' && arr[i].codiceRipresa.tipoVariazione === 'A'){
-                        //         PA.push(arr[i]);
-                        //     }
-                        //     if(arr[i].codiceRipresa.tipologia === 'P' && arr[i].codiceRipresa.tipoVariazione === 'D'){
-                        //         PD.push(arr[i]);
-                        //     }
-                        //     if(arr[i].codiceRipresa.tipologia === 'T' && arr[i].codiceRipresa.tipoVariazione === 'A'){
-                        //         TA.push(arr[i]);
-                        //     }
-                        //     if(arr[i].codiceRipresa.tipologia === 'T' && arr[i].codiceRipresa.tipoVariazione === 'D'){
-                        //         TD.push(arr[i]);
-                        //     }
-                        //     if(arr[i].codiceRipresa.tipoVariazione === 'PER'){
-                        //         PER.push(arr[i]);
-                        //     }
-                        //     if(arr[i].codiceRipresa.tipoVariazione === 'ACE'){
-                        //         ACE.push(arr[i]);
-                        //     }
-                        // }
-                        // var PAImponibile;
-                        // var data = {
-                        //     oModelPA : PA,
-                        //     oModelPD : PD,
-                        //     oModelTA : TA,
-                        //     oModelTD : TD,
-                        //     oModelPER : PER,
-                        //     oModelACE : ACE, 
-                        //     oModelPAImponibile: PAImponibile
-                        // };
-                        // var DataModel = new sap.ui.model.json.JSONModel();
-                        // DataModel.setData(data);
-                        // that.getView().setModel(DataModel, "oModelAnagrafica");
+                        this._setTitle();
             },
 
             listaFunzionalita: function(oEvent){
@@ -249,28 +94,23 @@ sap.ui.define([
                 
                 if(key === 'C04'){
                     oRouter.navTo("TimeDiff", {
-                        //ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
                         ID :  this.getView().getModel("computationModel").getData().ID,
                         imposta : this.getView().byId("impostaButton").getSelectedKey()
                     }, false);
                 }if(key === 'C05'){
                     oRouter.navTo("DTLDTA", {
-                        //ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
                         ID :  this.getView().getModel("computationModel").getData().ID,
                         imposta : this.getView().byId("impostaButton").getSelectedKey()
                     }, false);
                 }if(key === 'C06'){
                     oRouter.navTo("TaxPayments", {
-                        //ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
                         ID :  this.getView().getModel("computationModel").getData().ID,
                         imposta : this.getView().byId("impostaButton").getSelectedKey()
                     }, false);
                 }if(key === 'C07'){
                     oRouter.navTo("Riprese", {
-                        //ripresaID : oEvent.getSource().getBindingContext("oModelAnagrafica").getObject().codiceRipresa,
                         ID :  this.getView().getModel("computationModel").getData().ID,
                         imposta : this.getView().byId("impostaButton").getSelectedKey()
-                        //conf : this.getView().getModel("computationModel").getData().conf
                     }, false);
                 }
                 this.getView().byId("navigationList")
