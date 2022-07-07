@@ -1,14 +1,9 @@
-<mvc:View controllerName="tax.provisioning.computations.controller.View1"
+<mvc:View controllerName="tax.provisioning.computations.controller.Home"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
     xmlns:semantic="sap.f.semantic"
-    xmlns:layout="sap.ui.layout"
     xmlns:core="sap.ui.core"
-    xmlns:fb="sap.ui.comp.filterbar"
     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar">
-    <!-- <Page id="page" title="{i18n>title}">
-        <content />
-    </Page> -->
      <semantic:SemanticPage id="semanticPage" headerPinnable="true" toggleHeaderOnTitleClick="true" preserveHeaderStateOnScroll="false" titleAreaShrinkRatio="1:1.6:1.6" showFooter="false">
         <semantic:headerContent>
           <smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="items" showGoOnFB="true" search="onGo" >
@@ -31,7 +26,6 @@
               <OverflowToolbar>
                 <Title text="{i18n>computations}" level="H2"/>
                 <ToolbarSpacer/>
-                <!-- <Button text="{i18n>import}" icon="sap-icon://upload-to-cloud" press="onImportPressed"/> -->
                  <Button id="newButton" text="{i18n>new}" icon="sap-icon://create" press="onNewPress"/>
               </OverflowToolbar>
             </headerToolbar>
@@ -142,9 +136,5 @@
             </items>
           </Table>
         </semantic:content>
-        <semantic:footerCustomActions>
-          <Button text="{i18n>save}" press="onSave" />
-          <Button text="{i18n>cancel}" press="onCancelRefresh"/>
-        </semantic:footerCustomActions>
       </semantic:SemanticPage>
 </mvc:View>

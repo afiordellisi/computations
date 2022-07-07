@@ -1,29 +1,13 @@
 sap.ui.define(
-  [
-    "sap/ui/core/mvc/Controller",
-    "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator",
-    "sap/ui/model/json/JSONModel",
-    "./BaseController",
-    "sap/ui/core/Fragment",
-  ],
+  ["sap/ui/model/Filter", "sap/ui/model/json/JSONModel", "./BaseController"],
   /**
    * @param {typeof sap.ui.core.mvc.Controller} Controller
    */
-  function (
-    Controller,
-    Filter,
-    FilterOperator,
-    JSONModel,
-    BaseController,
-    Fragment
-  ) {
+  function (Filter, JSONModel, BaseController) {
     "use strict";
 
-    var oGlobalBusyDialog = new sap.m.BusyDialog();
-
     return BaseController.extend(
-      "tax.provisioning.computations.controller.View1",
+      "tax.provisioning.computations.controller.Home",
       {
         onInit: function () {
           sap.ui.getCore().sapAppID = this.getOwnerComponent()
@@ -62,12 +46,9 @@ sap.ui.define(
             success: function (response) {
               var oData = response.results;
               var oDataModel = new JSONModel(oData);
-              // DataModel.setData(data);
-              //  that.getView().setModel(DataModel, "tableModel");
               that.setModel(oDataModel, "tableModel");
               that.onCloseDialog();
             },
-
             error: function (response) {
               sap.m.MessageToast.show("Error");
               that.onCloseDialog();
@@ -80,7 +61,7 @@ sap.ui.define(
             "CurrentTax",
             {
               ID: oEvent.getSource().getBindingContext("tableModel").getObject()
-                .ID, //ID computazione
+                .ID,
             },
             false
           );

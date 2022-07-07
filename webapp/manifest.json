@@ -171,10 +171,10 @@
             },
             "routes": [
                 {
-                    "name": "View1",
+                    "name": "Home",
                     "pattern": "",
                     "target": [
-                        "View1"
+                        "Home"
                     ]
                 },
                 {
@@ -207,33 +207,33 @@
                 },
                 {
                     "name": "TimeDiff",
-                    "pattern": "Computation/{ID}/Imposta/{imposta}/TimeDiff",
+                    "pattern": "Computation/{ID}/{imposta}/TimeDiff",
                     "target": [
                         "TimeDiff"
                     ]
                 },
                 {
                     "name": "DTLDTA",
-                    "pattern": "Computation/{ID}/Imposta/{imposta}/DTLDTA",
+                    "pattern": "Computation/{ID}/{imposta}/DTLDTA",
                     "target": [
                         "DTLDTA"
                     ]
                 },
                 {
                     "name": "TaxPayments",
-                    "pattern": "Computation/{ID}/Imposta/{imposta}/TaxPayments",
+                    "pattern": "Computation/{ID}/{imposta}/TaxPayments",
                     "target": [
                         "TaxPayments"
                     ]
                 }
             ],
             "targets": {
-                "View1": {
+                "Home": {
                     "viewType": "XML",
                     "transition": "slide",
                     "clearControlAggregation": false,
-                    "viewId": "View1",
-                    "viewName": "View1",
+                    "viewId": "Home",
+                    "viewName": "Home",
                     "viewLevel": 1
                 },
                 "Creation": {
