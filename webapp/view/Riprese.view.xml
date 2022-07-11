@@ -61,7 +61,7 @@
                 minFractionDigits: 2,
                 maxFractionDigits: 2,
                 groupingEnabled: true
-            }}" class="sapUiTinyMarginBottom"/>
+            }}" />
             </footer>
           </Column>
           <Column minScreenWidth="Tablet" demandPopin="true">
@@ -94,7 +94,7 @@
                   minFractionDigits: 2,
                   maxFractionDigits: 2,
                   groupingEnabled: true
-              }}" class="sapUiTinyMarginBottom" />
+              }}" />
             </footer>
           </Column>
         </columns>

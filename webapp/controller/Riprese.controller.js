@@ -30,7 +30,6 @@ sap.ui.define(
             .getMetadata()
             .getManifest()["sap.app"].id;
            var sTarget=this.getView().byId("percentualeTable")
-         //oInput.getBindingContext().getPath() + "/" + oInput.getBindingPath("value");
      
         },
         _onObjectMatched: function (oEvent) {
@@ -51,15 +50,16 @@ sap.ui.define(
             "IDcomputationModel"
           );
         },
+
         handleActionPress: function (oEvent) {},
+
         handleItemPress: function (oEvent) {
           oEvent
             .getSource()
             .getBindingContext("oModelAnagraficaSingola")
             .getObject();
 
-          var oRouter = this.getOwnerComponent().getRouter();
-          oRouter.navTo(
+          this.getRouter().navTo(
             "Allegati",
             {
               ID: this.getView().getModel("IDcomputationModel").getData().ID, //computazione ID
