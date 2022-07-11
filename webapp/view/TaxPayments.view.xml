@@ -73,6 +73,9 @@
                                         <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>allegato}" />
                                         </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+                                            <!-- <Text text="{i18n>allegato}" /> -->
+                                        </Column>
                                     </columns>
                                     <items>
                                         <ColumnListItem vAlign="Middle">
@@ -89,8 +92,10 @@
                                                                 maxFractionDigits: 2,
                                                                 groupingEnabled: true
                                                             }}"/>
-                                                <Text text="{oModelTableAllegati>note}"/>
+                                                <Button icon="sap-icon://notes" press="onNotePress" visible="{=${oModelTableAllegati>note}!== '' ? true : false}"/>
+                                                <!-- text="{oModelTableAllegati>note}" -->
                                                 <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati" wrapping="true"/>
+                                                <Button icon="sap-icon://edit"  press="onEditInserimento" visible="{=${oModelTableAllegati>importo}!==null ? true : ${oModelTableAllegati>descrizione}=== 'Prior Year Adjustments' ? true : false}"/>
                                             </cells>
                                         </ColumnListItem>
                                     </items>
@@ -146,6 +151,7 @@
                                         <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>allegato}" />
                                         </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%"/>
                                     </columns>
                                     <items>
                                         <ColumnListItem vAlign="Middle">
@@ -162,8 +168,10 @@
                                                                 maxFractionDigits: 2,
                                                                 groupingEnabled: true
                                                             }}"/>
-                                                <Text text="{oModelTableAllegati>note}"/>
+                                                <Button icon="sap-icon://notes" press="onNotePress" visible="{=${oModelTableAllegati>note}!== '' ? true : false}"/>
+                                                <!-- <Text text="{oModelTableAllegati>note}"/> -->
                                                 <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati" wrapping="true"/>
+                                                <Button icon="sap-icon://edit"  press="onEditInserimento" visible="{=${oModelTableAllegati>importo}!==null ? true : false}"/>
                                             </cells>
                                         </ColumnListItem>
                                     </items>
@@ -219,6 +227,7 @@
                                         <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>allegato}" />
                                         </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%"/>
                                     </columns>
                                     <items>
                                         <ColumnListItem vAlign="Middle">
@@ -236,8 +245,10 @@
                                                                 maxFractionDigits: 2,
                                                                 groupingEnabled: true
                                                             }}"/>
-                                                <Text text="{oModelTableAllegati>note}"/>
+                                                <Button icon="sap-icon://notes" press="onNotePress" visible="{=${oModelTableAllegati>note}!== '' ? true : false}"/>
+                                                <!-- <Text text="{oModelTableAllegati>note}"/> -->
                                                 <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati" wrapping="true"/>
+                                                <Button icon="sap-icon://edit"  press="onEditInserimento" visible="{=${oModelTableAllegati>importo}!==null ? true : false}"/>
                                             </cells>
                                         </ColumnListItem>
                                     </items>
@@ -291,6 +302,7 @@
                                         <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>allegato}" />
                                         </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%"/>
                                     </columns>
                                     <items>
                                         <ColumnListItem vAlign="Middle">
@@ -302,9 +314,16 @@
                                                 <Text text="{oModelTableAllegati>codiceTributo}"/>
                                                 <Text text="{oModelTableAllegati>anno}"/>
                                                 <Text text="{oModelTableAllegati>ravvedimento}"/>
-                                                <Text text="{oModelTableAllegati>importo}"/>
-                                                <Text text="{oModelTableAllegati>note}"/>
+                                                <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
+                                                            formatOptions: {
+                                                                minFractionDigits: 2,
+                                                                maxFractionDigits: 2,
+                                                                groupingEnabled: true
+                                                            }}"/>
+                                                <Button icon="sap-icon://notes" press="onNotePress" visible="{=${oModelTableAllegati>note}!== '' ? true : false}"/>
+                                                <!-- <Text text="{oModelTableAllegati>note}"/> -->
                                                 <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati" wrapping="true"/>
+                                                <Button icon="sap-icon://edit"  press="onEditInserimento" visible="{=${oModelTableAllegati>importo}!==null ? true : false}"/>
                                             </cells>
                                         </ColumnListItem>
                                     </items>
@@ -320,13 +339,77 @@
                      <uxap:subSections>
                     <uxap:ObjectPageSubSection id="2" title="{i18n>accontiV}" titleUppercase="false">
                         <uxap:blocks>
-                            <Table id="idTableCompensazione" inset="false" items="{path:'oModelTableAllegati>/oModelA', sorter: {
+                        <layout:VerticalLayout>
+                        <Table id="idTableAccontiSaldo" inset="false" items="{path:'oModelTableAllegati>/oModelAS'}">
+                                    <headerToolbar>
+                                        <OverflowToolbar>
+                                            <!-- <Title text="{i18n>altriMov}" level="H2"/> -->
+                                            <ToolbarSpacer/>
+                                            <Button id="addAccontoSaldo" icon="sap-icon://edit" press="onEdit"/>
+                                        </OverflowToolbar>
+                                    </headerToolbar>
+                                    <columns>
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="20%">
+                                            <!-- <Text text="{i18n>descrizione}"/> -->
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+                                            <!-- <Text text="{i18n>data}"/> -->
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+                                            <!-- <Text text="{i18n>rata}"/> -->
+                                        </Column>
+                                        <Column width="10%">
+                                            <!-- <Text text="{i18n>codiceTributo}"/> -->
+                                        </Column>
+                                        <Column width="10%">
+                                            <!-- <Text text="{i18n>anno}"/> -->
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+                                            <!-- <Text text="{i18n>ravvedimento}" /> -->
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+                                            <!-- <Text text="{i18n>importo}" /> -->
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+                                            <!-- <Text text="{i18n>note}" /> -->
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+                                            <!-- <Text text="{i18n>allegato}" /> -->
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="10%"/>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem vAlign="Middle">
+                                            <cells>
+                                                <Text text="{oModelTableAllegati>descrizione}"/>
+
+                                                <Text text="{path: 'oModelTableAllegati>data'}"/>
+                                                <Text text="{oModelTableAllegati>rata}"/>
+                                                <Text text="{oModelTableAllegati>codiceTributo}"/>
+                                                <Text text="{oModelTableAllegati>anno}"/>
+                                                <Text text="{oModelTableAllegati>ravvedimento}"/>
+                                                <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
+                                                            formatOptions: {
+                                                                minFractionDigits: 2,
+                                                                maxFractionDigits: 2,
+                                                                groupingEnabled: true
+                                                            }}"/>
+
+                                                <Button icon="sap-icon://notes" press="onNotePress" visible="{=${oModelTableAllegati>note}!== '' ? true : false}"/>
+                                                <!-- <Text text="{oModelTableAllegati>note}"/> -->
+                                                <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati" wrapping="true"/>
+                                                <Button icon="sap-icon://edit"  press="onEditInserimento" visible="{=${oModelTableAllegati>importo}!==null ? true : false}"/>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            <Table id="idTableAcconti" inset="false" items="{path:'oModelTableAllegati>/oModelA', sorter: {
                             path: 'createdAt',
                             descending: true
-                        }}">
+                        }}" >
                                 <headerToolbar>
                                     <OverflowToolbar>
-                                        <Title text="{i18n>accontiV}" level="H2"/>
+                                         <Title text="{i18n>accontiV}" level="H2"/>
                                         <ToolbarSpacer/>
                                         <Button id="addAcconto" icon="sap-icon://add" press="onAdd"/>
                                     </OverflowToolbar>
@@ -370,6 +453,7 @@
                                     <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                         <Text text="{i18n>allegato}" />
                                     </Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true" width="10%"/>
                                 </columns>
                                 <items>
                                     <ColumnListItem  >
@@ -386,12 +470,15 @@
                                                                 maxFractionDigits: 2,
                                                                 groupingEnabled: true
                                                             }}" />
-                                            <Text text="{oModelTableAllegati>note}"/>
+                                            <Button icon="sap-icon://notes" press="onNotePress" visible="{=${oModelTableAllegati>note}!== '' ? true : false}"/>
+                                            <!-- <Text text="{oModelTableAllegati>note}"/> -->
                                             <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati" wrapping="true"/>
+                                            <Button icon="sap-icon://edit"  press="onEditInserimento" visible="{=${oModelTableAllegati>importo}!==null ? true : false}"/>
                                         </cells>
                                     </ColumnListItem>
                                 </items>
                             </Table>
+                            </layout:VerticalLayout>
                         </uxap:blocks>
                     </uxap:ObjectPageSubSection>
                 </uxap:subSections>

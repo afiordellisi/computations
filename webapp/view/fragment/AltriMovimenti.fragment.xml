@@ -23,7 +23,7 @@
             </f:FormElement>
             <f:FormElement label="{i18n>note}">
               <f:fields>
-                <TextArea value="" rows="6" cols="22" id="notaMov" valueState="None"/>
+                <TextArea value="" maxLength="500" rows="6" cols="22" id="notaMov" valueState="None"/>
               </f:fields>
             </f:FormElement>
             <f:FormElement label="{i18n>insertAllegato}">
