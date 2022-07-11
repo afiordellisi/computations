@@ -59,7 +59,7 @@
                                     <smartForm:GroupElement label="{i18n>descrizione}">
                                     <!-- <core:label text="descrizione"/>  -->
                                         <!-- <Label text="Descrizione"/> -->
-                                        <Input id="inputDescrizione" placeholder="Inserire descrizione" required="true" />
+                                        <Input id="inputDescrizione" placeholder="{i18n>insertDesc}" required="true" />
                                     </smartForm:GroupElement> 
                                     
                                     </smartForm:Group>
