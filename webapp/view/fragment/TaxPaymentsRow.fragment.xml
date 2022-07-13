@@ -50,7 +50,9 @@
 						</f:FormElement>
                          <f:FormElement label="{i18n>anno}">
 							<f:fields>
-								<Input text="" id="annoAllegato" valueState="None"/>
+								<ComboBox items="{path: 'YearModel>/data/items'}" id="annoAllegato" valueState="None">
+                                	<core:Item key="{YearModel>key}" text="{YearModel>year}" />
+                                </ComboBox>
 							</f:fields>
 						</f:FormElement>
                          <f:FormElement label="{i18n>ravvedimento}">

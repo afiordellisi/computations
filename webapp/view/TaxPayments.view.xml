@@ -46,6 +46,9 @@
                                         </OverflowToolbar>
                                     </headerToolbar>
                                     <columns>
+                                        <Column minScreenWidth="Tablet" demandPopin="true" width="20%" visible="false">
+                                            <Text text="{i18n>ID}"/>
+                                        </Column>                                        
                                         <Column minScreenWidth="Tablet" demandPopin="true" width="20%">
                                             <Text text="{i18n>descrizione}"/>
                                         </Column>
@@ -80,6 +83,7 @@
                                     <items>
                                         <ColumnListItem vAlign="Middle">
                                             <cells>
+                                                <Text text="{oModelTableAllegati>ID}"/>
                                                 <Text text="{oModelTableAllegati>descrizione}"/>
                                                 <Text text="{path: 'oModelTableAllegati>data'}"/>
                                                 <Text text="{oModelTableAllegati>rata}"/>
@@ -95,7 +99,7 @@
                                                 <Button icon="sap-icon://notes" press="onNotePress" visible="{=${oModelTableAllegati>note}!== '' ? true : false}"/>
                                                 <!-- text="{oModelTableAllegati>note}" -->
                                                 <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati" wrapping="true"/>
-                                                <Button icon="sap-icon://edit"  press="onEditInserimento" visible="{=${oModelTableAllegati>importo}!==null ? true : ${oModelTableAllegati>descrizione}=== 'Prior Year Adjustments' ? true : false}"/>
+                                                <Button icon="sap-icon://edit" id="updateInserimento" press="onEditInserimento" visible="{=${oModelTableAllegati>importo}!==null ? true : ${oModelTableAllegati>descrizione}=== 'Prior Year Adjustments' ? true : false}"/>
                                             </cells>
                                         </ColumnListItem>
                                     </items>
