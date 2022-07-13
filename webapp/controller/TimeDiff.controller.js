@@ -235,6 +235,7 @@ sap.ui.define(
         },
 
         onPressSave: function (oEvent) {
+          this.onOpenBusyDialog();
           var modello = this.getView().getModel("oModelTiming").getData();
           var array = [];
           array = modello.filter((item) => item.updated === true);
@@ -303,10 +304,11 @@ sap.ui.define(
             }
 
           this._setTotali();
-        
+          this.onCloseBusyDialog();
           }
           else{
               sap.m.MessageToast.show(this.getResourceBundle().getText("valorizzareRecord"));
+              this.onCloseBusyDialog();
           }
         }
       }
