@@ -42,7 +42,7 @@
                                     <headerToolbar>
                                         <OverflowToolbar id="toolbarID1">
                                             <ToolbarSpacer/>
-                                            <Button id="addCredito" icon="sap-icon://edit" press="onEdit"/>
+                                            <!-- <Button id="addCredito" icon="sap-icon://edit" press="onEdit"/> -->
                                         </OverflowToolbar>
                                     </headerToolbar>
                                     <columns>
@@ -89,7 +89,7 @@
                                                 <Text text="{oModelTableAllegati>rata}"/>
                                                 <Text text="{oModelTableAllegati>codiceTributo}"/>
                                                 <Text text="{oModelTableAllegati>anno}"/>
-                                                <Text text="{oModelTableAllegati>ravvedimento}"/>
+                                                <CheckBox selected="{oModelTableAllegati>ravvedimento}" editable="false" visible="false"/>
                                                 <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
@@ -98,8 +98,8 @@
                                                             }}"/>
                                                 <Button icon="sap-icon://notes" press="onNotePress" visible="{=${oModelTableAllegati>note}!== '' ? true : false}"/>
                                                 <!-- text="{oModelTableAllegati>note}" -->
-                                                <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati" wrapping="true"/>
-                                                <Button icon="sap-icon://edit" id="updateInserimento" press="onEditInserimento" visible="{=${oModelTableAllegati>importo}!==null ? true : ${oModelTableAllegati>descrizione}=== 'Prior Year Adjustments' ? true : false}"/>
+                                                <Link text="{oModelTableAllegati>allegato}" press="_linkAllegati" wrapping="true"/>
+                                                <Button icon="sap-icon://edit" id="updateInserimento" press="onEditInserimento" visible="{=${oModelTableAllegati>importo}!==null ? true : ${oModelTableAllegati>descrizione}=== 'Prior Year Adjustments' ? true : ${oModelTableAllegati>descrizione}=== 'Altre variazioni' ? true : false}"/>
                                             </cells>
                                         </ColumnListItem>
                                     </items>
@@ -165,7 +165,7 @@
                                                 <Text text="{oModelTableAllegati>rata}"/>
                                                 <Text text="{oModelTableAllegati>codiceTributo}"/>
                                                 <Text text="{oModelTableAllegati>anno}"/>
-                                                <Text text="{oModelTableAllegati>ravvedimento}"/>
+                                                <CheckBox selected="{oModelTableAllegati>ravvedimento}" editable="false"/>
                                                 <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
@@ -242,7 +242,7 @@
                                                 <Text text="{oModelTableAllegati>rata}"/>
                                                 <Text text="{oModelTableAllegati>codiceTributo}"/>
                                                 <Text text="{oModelTableAllegati>anno}"/>
-                                                <Text text="{oModelTableAllegati>ravvedimento}"/>
+                                                <CheckBox selected="{oModelTableAllegati>ravvedimento}" editable="false"/>
                                                 <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
@@ -264,7 +264,7 @@
                                         <OverflowToolbar>
                                             <!-- <Title text="{i18n>altriMov}" level="H2"/> -->
                                             <ToolbarSpacer/>
-                                            <Button id="addAltroMovimento" icon="sap-icon://edit" press="onEdit"/>
+                                            <!-- <Button id="addAltroMovimento" icon="sap-icon://edit" press="onEdit" visible="false"/> -->
                                         </OverflowToolbar>
                                     </headerToolbar>
                                     <columns>
@@ -317,7 +317,7 @@
                                                 <Text text="{oModelTableAllegati>rata}"/>
                                                 <Text text="{oModelTableAllegati>codiceTributo}"/>
                                                 <Text text="{oModelTableAllegati>anno}"/>
-                                                <Text text="{oModelTableAllegati>ravvedimento}"/>
+                                                <CheckBox selected="{oModelTableAllegati>ravvedimento}" editable="false" visible="false"/>
                                                 <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
@@ -327,7 +327,7 @@
                                                 <Button icon="sap-icon://notes" press="onNotePress" visible="{=${oModelTableAllegati>note}!== '' ? true : false}"/>
                                                 <!-- <Text text="{oModelTableAllegati>note}"/> -->
                                                 <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati" wrapping="true"/>
-                                                <Button icon="sap-icon://edit"  press="onEditInserimento" visible="{=${oModelTableAllegati>importo}!==null ? true : false}"/>
+                                                <Button icon="sap-icon://edit"  press="onEditInserimento" visible="{=${oModelTableAllegati>importo}!==null ? true : ${oModelTableAllegati>descrizione}=== 'Altri movimenti credito (debito)' ? true : false}"/>
                                             </cells>
                                         </ColumnListItem>
                                     </items>
@@ -349,7 +349,7 @@
                                         <OverflowToolbar>
                                             <!-- <Title text="{i18n>altriMov}" level="H2"/> -->
                                             <ToolbarSpacer/>
-                                            <Button id="addAccontoSaldo" icon="sap-icon://edit" press="onEdit"/>
+                                            <!-- <Button id="addAccontoSaldo" icon="sap-icon://edit" press="onEdit" visible="false"/> -->
                                         </OverflowToolbar>
                                     </headerToolbar>
                                     <columns>
@@ -391,7 +391,7 @@
                                                 <Text text="{oModelTableAllegati>rata}"/>
                                                 <Text text="{oModelTableAllegati>codiceTributo}"/>
                                                 <Text text="{oModelTableAllegati>anno}"/>
-                                                <Text text="{oModelTableAllegati>ravvedimento}"/>
+                                                <CheckBox selected="{oModelTableAllegati>ravvedimento}" editable="false" visible="false"/>
                                                 <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
@@ -402,7 +402,7 @@
                                                 <Button icon="sap-icon://notes" press="onNotePress" visible="{=${oModelTableAllegati>note}!== '' ? true : false}"/>
                                                 <!-- <Text text="{oModelTableAllegati>note}"/> -->
                                                 <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati" wrapping="true"/>
-                                                <Button icon="sap-icon://edit"  press="onEditInserimento" visible="{=${oModelTableAllegati>importo}!==null ? true : false}"/>
+                                                <Button icon="sap-icon://edit"  press="onEditInserimento" visible="{=${oModelTableAllegati>importo}!==null ? true : ${oModelTableAllegati>descrizione}=== 'Acconti versati - saldo a bilancio' ? true : false}"/>
                                             </cells>
                                         </ColumnListItem>
                                     </items>
@@ -467,7 +467,7 @@
                                             <Text text="{oModelTableAllegati>rata}"/>
                                             <Text text="{oModelTableAllegati>codiceTributo}"/>
                                             <Text text="{oModelTableAllegati>anno}"/>
-                                            <Text text="{oModelTableAllegati>ravvedimento}"/>
+                                            <CheckBox selected="{oModelTableAllegati>ravvedimento}" editable="false"/>
                                             <Text text="{path: 'oModelTableAllegati>importo', type: 'sap.ui.model.type.Float',
                                                             formatOptions: {
                                                                 minFractionDigits: 2,

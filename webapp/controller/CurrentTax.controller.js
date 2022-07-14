@@ -98,6 +98,9 @@ sap.ui.define(
             if(impostaValida){
                 this.getView().byId("tableIRAP2").setVisible(true);
                 this.getView().byId("tableIRAP").setVisible(true);
+                this.getView().byId("table1HeaderIrap").setVisible(true);
+                this.getView().byId("table1").setVisible(false);
+                
                 var oModelIrap = [
                     {descrizione : this.getResourceBundle().getText("ricavi"), raggruppamento : "A1", valore : '', imposta: this.getView().byId("impostaButton").getSelectedKey() },
                     {descrizione : this.getResourceBundle().getText("rimanenze"), raggruppamento : "A2", valore : '', imposta: this.getView().byId("impostaButton").getSelectedKey() },
@@ -134,6 +137,8 @@ sap.ui.define(
             }else{
                 this.getView().byId("tableIRAP2").setVisible(false);
                 this.getView().byId("tableIRAP").setVisible(false);
+                this.getView().byId("table1HeaderIrap").setVisible(false);
+                this.getView().byId("table1").setVisible(true);
             }
             
         },
@@ -183,12 +188,21 @@ sap.ui.define(
                 data: updateComputation,
                 async: false,
                 success: function (oCompleteEntry) {
+                    var IdComputazione = oCompleteEntry.ID
                     sap.m.MessageToast.show("Success");
+                    that.getRouter().navTo(
+                        "CurrentTax",
+                        {
+                          ID: IdComputazione
+                        },
+                        false
+                      );
                 },
                 error: function (error) {
                     sap.m.MessageToast.show("Error");
                 }
-                });  
+                }); 
+
 
         },
 
@@ -197,7 +211,7 @@ sap.ui.define(
           var ID = this.getView().getModel("computationModel").getData().ID;
           //var conf = this.getView().getModel("computationModel").getData().conf;
           var imposta = that.getView().byId("impostaButton").getSelectedKey();
-
+          this._setHeader();
           //if(conf != "false"){
           jQuery.ajax({
             url: jQuery.sap.getModulePath(
@@ -224,6 +238,16 @@ sap.ui.define(
                   codiceRipresa.tipologia === "P" &&
                   codiceRipresa.tipoVariazione === "D"
               );
+              var PDIRAP = arr.filter(
+                (codiceRipresa) =>
+                  codiceRipresa.tipologia === "P" &&
+                  codiceRipresa.tipoVariazione === "D" &&
+                  codiceRipresa.produzione !== 'S'
+              );
+              var VPL = arr.filter(
+                (codiceRipresa) =>
+                  codiceRipresa.produzione === 'S'
+              );
               var TA = arr.filter(
                 (codiceRipresa) =>
                   codiceRipresa.tipologia === "T" &&
@@ -248,6 +272,8 @@ sap.ui.define(
                 oModelTD: TD,
                 oModelPER: PER,
                 oModelACE: ACE,
+                oModelPDIRAP: PDIRAP,
+                oModelVPL: VPL
               };
               var DataModel = new sap.ui.model.json.JSONModel();
               DataModel.setData(data);
@@ -345,6 +371,9 @@ sap.ui.define(
               var PERImponibile = { imponibile: arr.imponibilePER };
               var ACEImponibile = { imponibile: arr.imponibileACE };
               var RedditoImponibile = { imponibile: arr.redditoImponibile };
+              var PDIRAPImponibile = { imponibile: arr.imponibilePDIRAP };
+              var VPL = { imponibile: arr.VPL };
+              var VPN = { imponibile: arr.VPN };
               var data = {
                 oModelPAImponibile: PAImponibile,
                 oModelPDImponibile: PDImponibile,
@@ -353,6 +382,9 @@ sap.ui.define(
                 oModelPERImponibile: PERImponibile,
                 oModelACEImponibile: ACEImponibile,
                 oModelRedditoImponibile: RedditoImponibile,
+                oModelPDIRAPImponibile: PDIRAPImponibile,
+                oModelVPLImponibile: VPL,
+                oModelVPNImponibile: VPN
               };
               var DataModel = new sap.ui.model.json.JSONModel();
               DataModel.setData(data);
@@ -366,7 +398,7 @@ sap.ui.define(
 
         _onObjectMatched: function (oEvent) {
           var oEvent = oEvent.getParameter("arguments");
-
+          this._setHeader();
           var ID = oEvent.ID; //ID computazione
           //var conf = oEvent.conf;
 
@@ -406,6 +438,16 @@ sap.ui.define(
                   codiceRipresa.tipologia === "P" &&
                   codiceRipresa.tipoVariazione === "D"
               );
+              var PDIRAP = arr.filter(
+                (codiceRipresa) =>
+                  codiceRipresa.tipologia === "P" &&
+                  codiceRipresa.tipoVariazione === "D" &&
+                  codiceRipresa.produzione !== 'S'
+              );
+              var VPL = arr.filter(
+                (codiceRipresa) =>
+                  codiceRipresa.produzione === 'S'
+              );
               var TA = arr.filter(
                 (codiceRipresa) =>
                   codiceRipresa.tipologia === "T" &&
@@ -430,6 +472,8 @@ sap.ui.define(
                 oModelTD: TD,
                 oModelPER: PER,
                 oModelACE: ACE,
+                oModelPDIRAP: PDIRAP,
+                oModelVPL: VPL
               };
               var DataModel = new sap.ui.model.json.JSONModel();
               DataModel.setData(data);
@@ -462,6 +506,31 @@ sap.ui.define(
             }),
             "headerModel"
           );
+
+          this.getView().setModel(
+            new JSONModel({
+              oModel: [
+                {
+                  imponibile: 250000,
+                  // "imposta": "60.000",
+                  unico: "",
+                  // "correnti": "60.000",
+                  differite: "",
+                  //"totale": "60.000",
+                  impostaPerc: 24,
+                  testo: "Valore della produzione lorda rettificato",
+                },
+              ],
+            }),
+            "headerModelIRAP"
+          );
+
+          this.getView().setModel(
+            new JSONModel({
+                  imposta: this.getView().byId("impostaButton").getSelectedKey()
+            }),
+            "oModelImposta"
+          );
         },
 
         _setTitle: function () {
@@ -480,10 +549,7 @@ sap.ui.define(
             async: false,
             success: function (oCompleteEntry) {
               var data = {
-                oModelDescrizione: oCompleteEntry.value[0].descrizione,
-                oModelConfigurazioneID:
-                  oCompleteEntry.value[0].Configurazione_ID,
-                oModelParamentri: oCompleteEntry.value[0].Versione,
+                oModelParamentri: oCompleteEntry.value[0].Versione
               };
               var DataModel = new sap.ui.model.json.JSONModel();
               DataModel.setData(data);
