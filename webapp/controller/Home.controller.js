@@ -20,7 +20,7 @@ sap.ui.define(
         },
 
         onGo: function (oEvent) {
-          this.onOpenDialog();
+          this.onOpenBusyDialog();
           var that = this;
           var aFilter = [];
 
@@ -47,11 +47,11 @@ sap.ui.define(
               var oData = response.results;
               var oDataModel = new JSONModel(oData);
               that.setModel(oDataModel, "tableModel");
-              that.onCloseDialog();
+              that.onCloseBusyDialog();
             },
             error: function (response) {
               sap.m.MessageToast.show("Error");
-              that.onCloseDialog();
+              that.onCloseBusyDialog();
             },
           });
         },

@@ -1,0 +1,119 @@
+<mvc:View controllerName="tax.provisioning.computations.controller.TaxLiquidation"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.uxap"
+    xmlns:m="sap.m"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core">
+
+    <ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+        <headerTitle>
+            <ObjectPageDynamicHeaderTitle>
+                <navigationActions>
+                </navigationActions>
+            </ObjectPageDynamicHeaderTitle>
+        </headerTitle>
+        <headerContent>
+        </headerContent>
+        <sections>
+            <ObjectPageSection title="{i18n>LiquidazioneIRES}" visible="{= ${oModelTestata>/imposta} === 'IRES'? true : false}" id="sectionIRES">
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <m:Table id="imponibile" mode="None" inset="false" width="auto" items="{oModelRedditoImponibile>/}">
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:Text text="{oModelRedditoImponibile>descrizione}" />
+                                            <m:Text text="{oModelRedditoImponibile>percentualeNetta}" />
+                                            <m:Text text="{
+                                                path: 'oModelRedditoImponibile>redditoImponibile',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                                    minFractionDigits: 2,
+                                                                    maxFractionDigits: 2,
+                                                                    groupingEnabled: true
+                                                                }
+                                            }" textAlign="Right" wrapping="false"/>
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <m:Table id="ritenute" mode="None" inset="false" width="auto" items="{oModelRitenute>/}">
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:Text text="{oModelRitenute>descrizione}" />
+                                            <m:Text text="" />
+                                            <m:Input value="{
+                                                path: 'oModelRitenute>importo',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }
+                                            }" change=".onValueChanged" textAlign="End" type="Number"/>
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+            <ObjectPageSection title="{i18n>LiquidazioneIRAP}" visible="{= ${oModelTestata>/imposta} === 'IRAP'? true : false}" id="sectionIRAP">
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <m:Table id="liquidazioneIRAP" mode="None" inset="false" width="auto" items="{oModelTestata>/}">
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text="test"/>
+                                    </m:Column>
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:Text text="{oModelTestata>/imposta}" />
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+        </sections>
+    </ObjectPageLayout>
+
+</mvc:View>

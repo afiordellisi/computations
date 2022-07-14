@@ -225,6 +225,13 @@
                     "target": [
                         "TaxPayments"
                     ]
+                },
+                {
+                    "name": "TaxLiquidation",
+                    "pattern": "Computation/{ID}/{imposta}/TaxLiquidation",
+                    "target": [
+                        "TaxLiquidation"
+                    ]
                 }
             ],
             "targets": {
@@ -290,6 +297,14 @@
                     "clearControlAggregation": false,
                     "viewId": "TaxPayments",
                     "viewName": "TaxPayments",
+                    "viewLevel": 5
+                },
+                "TaxLiquidation": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "TaxLiquidation",
+                    "viewName": "TaxLiquidation",
                     "viewLevel": 5
                 }
             }

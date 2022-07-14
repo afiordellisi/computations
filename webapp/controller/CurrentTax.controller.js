@@ -333,7 +333,7 @@ sap.ui.define(
           }
           if (key === "C07") {
             oRouter.navTo(
-              "Riprese",
+              "TaxLiquidation",
               {
                 ID: this.getView().getModel("computationModel").getData().ID,
                 imposta: this.getView().byId("impostaButton").getSelectedKey(),
