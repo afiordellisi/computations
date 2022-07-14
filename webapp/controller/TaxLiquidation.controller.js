@@ -36,9 +36,11 @@ sap.ui.define(
           this._setRedditoImponibile();
           this._setRitenute();
           this._setCredito();
+          this._setVersamenti();
+          this._setImpostaCredito();
         },
 
-        _setRedditoImponibile: function(oEvent){
+        _setRedditoImponibile: function(){
             var computationID = this.getView().getModel("oModelTestata").getData().computationID;
             var imposta = this.getView().getModel("oModelTestata").getData().imposta;
             var that = this;
@@ -162,7 +164,117 @@ sap.ui.define(
         },
 
         _setCredito: function(){
-            
+            var computationID = this.getView().getModel("oModelTestata").getData().computationID;
+            var imposta = this.getView().getModel("oModelTestata").getData().imposta;
+            var that = this;
+            jQuery.ajax({
+                url: jQuery.sap.getModulePath(
+                  sap.ui.getCore().sapAppID +
+                    "/catalog/TaxPaymentsView(imposta='" +
+                    imposta +
+                    "',computationId=" +
+                    computationID +
+                    ")/Set"
+                ),
+                contentType: "application/json",
+                type: "GET",
+                dataType: "json",
+                async: false,
+                success: function (oCompleteEntry) {
+                  var data = oCompleteEntry.value;
+
+                  var V = data.filter((importo) => importo.tipologia === "V");
+                  var AM = data.filter((importo) => importo.tipologia === "AM");
+                  var C = data.filter((importo) => importo.tipologia === "C");
+
+                  var sCreditoPrecedente = that.getResourceBundle().getText("sCreditoPrecedente");
+                  var sCreditoAcquisito = that.getResourceBundle().getText("sCreditoAcquisito");
+                  var sCreditoPrecInComp = that.getResourceBundle().getText("sCreditoPrecInComp");
+                  var sCreditoPrecUtil = that.getResourceBundle().getText("sCreditoPrecUtil");
+
+                  var oCreditoPrec = [{
+                    importo: V[0].Importo,
+                    descrizione: sCreditoPrecedente                      
+                  }];
+
+                  var oCreditoAcquisito = {
+                    importo: AM[0].Importo,
+                    descrizione: sCreditoAcquisito
+                  };
+
+                  var oCreditoPrecComp = {
+                    importo: C[0].Importo,
+                    descrizione: sCreditoPrecInComp
+                  };
+
+                  var oCreditoPrecUtil = {
+                      importo : V[0].Importo + AM[0].Importo + C[0].Importo,
+                      descrizione: sCreditoPrecUtil
+                  }
+
+                  oCreditoPrec.push(oCreditoAcquisito, oCreditoPrecComp, oCreditoPrecUtil);
+
+                  var oModel = new JSONModel(oCreditoPrec);
+                  that.getView().setModel(oModel, "oModelCredito");
+                },
+                error: function (error) {
+                  sap.m.MessageToast.show("Error");
+                },
+              });
+        },
+
+        _setVersamenti: function(){
+            var computationID = this.getView().getModel("oModelTestata").getData().computationID;
+            var imposta = this.getView().getModel("oModelTestata").getData().imposta;
+            var that = this;
+            jQuery.ajax({
+                url: jQuery.sap.getModulePath(
+                  sap.ui.getCore().sapAppID +
+                    "/catalog/TaxPaymentsView(imposta='" +
+                    imposta +
+                    "',computationId=" +
+                    computationID +
+                    ")/Set"
+                ),
+                contentType: "application/json",
+                type: "GET",
+                dataType: "json",
+                async: false,
+                success: function (oCompleteEntry) {
+                  var data = oCompleteEntry.value;
+
+                  var A = data.filter((importo) => importo.tipologia === "A");
+
+                  var sVersamenti = that.getResourceBundle().getText("sVersamenti");
+
+                  var oVersamenti = [{
+                    importo: A[0].Importo,
+                    descrizione: sVersamenti                      
+                  }];
+
+                  var oModel = new JSONModel(oVersamenti);
+                  that.getView().setModel(oModel, "oModelVersamenti");
+                },
+                error: function (error) {
+                  sap.m.MessageToast.show("Error");
+                },
+              });
+        },
+
+        _setImpostaCredito: function(){
+            var sImpostaCredito = this.getResourceBundle().getText("sImpostaCredito");
+            var modelloCredito = this.getView().getModel("oModelCredito").getData();
+            var modelloVersamenti = this.getView().getModel("oModelVersamenti").getData();
+            var importoCreditoUtil = modelloCredito.filter((credito) => credito.descrizione === this.getResourceBundle().getText("sCreditoPrecUtil"))[0].importo;
+            var importoVersamenti = modelloVersamenti[0].importo;
+
+            var oImpostaCredito = [{
+                descrizione: sImpostaCredito,
+                importo: importoVersamenti + importoCreditoUtil                
+            }];
+
+            var oModel = new JSONModel(oImpostaCredito);
+            this.getView().setModel(oModel, "oModelImpostaCredito");
         }
       }
     );

@@ -109,7 +109,87 @@
                                         <m:cells>
                                             <m:Text text="{oModelCredito>descrizione}" />
                                             <m:Text text="" />
-                                            <m:Text text="{oModelCredito>importo}" />
+                                            <m:Text text="{
+                                                path: 'oModelCredito>importo',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                                    minFractionDigits: 2,
+                                                                    maxFractionDigits: 2,
+                                                                    groupingEnabled: true
+                                                                }
+                                            }" textAlign="Right" wrapping="false"/>
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <m:Table id="versamenti" mode="None" inset="false" width="auto" items="{oModelVersamenti>/}">
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:Text text="{oModelVersamenti>descrizione}" />
+                                            <m:Text text="" />
+                                            <m:Text text="{
+                                                path: 'oModelVersamenti>importo',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                                    minFractionDigits: 2,
+                                                                    maxFractionDigits: 2,
+                                                                    groupingEnabled: true
+                                                                }
+                                            }" textAlign="Right" wrapping="false"/>
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <m:Table id="impostaCredito" mode="None" inset="false" width="auto" items="{oModelImpostaCredito>/}">
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:Text text="{oModelImpostaCredito>descrizione}" />
+                                            <m:Text text="" />
+                                            <m:Text text="{
+                                                path: 'oModelImpostaCredito>importo',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                                    minFractionDigits: 2,
+                                                                    maxFractionDigits: 2,
+                                                                    groupingEnabled: true
+                                                                }
+                                            }" textAlign="Right" wrapping="false"/>
                                         </m:cells>
                                     </m:ColumnListItem>
                                 </m:items>
