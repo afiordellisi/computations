@@ -35,7 +35,7 @@ sap.ui.define(
 
           this._setRedditoImponibile();
           this._setRitenute();
-          
+          this._setCredito();
         },
 
         _setRedditoImponibile: function(oEvent){
@@ -58,9 +58,19 @@ sap.ui.define(
                 success: function (oCompleteEntry) {
                     var fRedditoImponibile = oCompleteEntry.value[0].redditoImponibile;
                     var sDescrizioneReddito = that.getResourceBundle().getText("descrReddito");
-                    var percentuale = null
+                    var percentuale = null;
+                    var descrizioneImposta = that.getResourceBundle().getText("descrImpostaNetta");
+
+                    var oImposta = [{
+                         descrizione: descrizioneImposta,
+                         percentualeNetta: 0,
+                         redditoImponibile: 0
+                    }];
+
+                    var data = [{descrizione : sDescrizioneReddito, percentualeNetta: percentuale, redditoImponibile: fRedditoImponibile}];
+                    data.push(oImposta[0]);
                     
-                    var oModel = new JSONModel([{descrizione : sDescrizioneReddito, percentualeNetta: percentuale, redditoImponibile: fRedditoImponibile}]);
+                    var oModel = new JSONModel(data);
                     that.getView().setModel(oModel, "oModelRedditoImponibile");
 
                     that._setPercRegion();
@@ -89,18 +99,27 @@ sap.ui.define(
                 dataType: "json",
                 async: false,
                 success: function (oCompleteEntry) {
+
+
+                    var oModel = that.getView().getModel("oModelRedditoImponibile");
+                    var data = oModel.getData();
+                    var oImposta = that.getView().getModel("oModelRedditoImponibile").getData()[
+                        data.length - 1
+                    ];
+
                   var percImpostaNetta = oCompleteEntry.value[0].currentAvg;
-                  var oModel = that.getView().getModel("oModelRedditoImponibile");
-                  var data = oModel.getData();
                   var fRedditoImponibile = data[0].redditoImponibile;
                   var sdescrImpostaNetta = that.getResourceBundle().getText("descrImpostaNetta");
                   var ftotImportoPerc = percImpostaNetta * fRedditoImponibile;
-                  var nuovaRiga = {descrizione: sdescrImpostaNetta, percentualeNetta: percImpostaNetta + "%", redditoImponibile: ftotImportoPerc};
-                  var updateModel = data.concat(nuovaRiga);
 
-                  var oModelPercentuale = new JSONModel();
-                  oModelPercentuale.setData(updateModel);
-                  that.getView().setModel(oModelPercentuale, "oModelRedditoImponibile");
+                  oImposta = {
+                    descrizione: sdescrImpostaNetta,
+                    percentualeNetta: percImpostaNetta + "%",
+                    redditoImponibile: ftotImportoPerc
+                  }
+
+                  oModel.getData()[data.length - 1] = oImposta;
+                  oModel.refresh();
                 },
                 error: function (error) {
                   sap.m.MessageToast.show("Error");
@@ -109,12 +128,41 @@ sap.ui.define(
         },
 
         _setRitenute: function(){
+
+            // jQuery.ajax({
+            //     url: jQuery.sap.getModulePath(
+            //       sap.ui.getCore().sapAppID +
+            //         "/catalog/TaxLiquidation"
+            //     ),
+            //     contentType: "application/json",
+            //     type: "GET",
+            //     dataType: "json",
+            //     async: false,
+            //     success: function (oCompleteEntry) {
+                  
+            //     },
+            //     error: function (error) {
+            //       sap.m.MessageToast.show("Error");
+            //     }
+            // });
+
             var sDescrRitenute = this.getResourceBundle().getText("descrRitenute");
             var sDescrCrediti = this.getResourceBundle().getText("sDescrCrediti");
             var sDetrazioni = this.getResourceBundle().getText("sDetrazioni");
+
+            var sImpostaDovuta = this.getResourceBundle().getText("sImpostaDovuta");
+            var oImpostaDovuta = [{
+                descrizione: sImpostaDovuta
+            }]
             var descrizioni = [{descrizione: sDescrRitenute}, {descrizione: sDescrCrediti}, {descrizione: sDetrazioni}];
+            descrizioni.push(oImpostaDovuta[0])
+
             var oModel = new JSONModel(descrizioni);
             this.getView().setModel(oModel, "oModelRitenute");
+        },
+
+        _setCredito: function(){
+            
         }
       }
     );
