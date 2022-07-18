@@ -56,15 +56,15 @@
                     <t:Column width="11rem" hAlign="End">
                         <Label text="{i18n>PriorYear}" />
                         <t:template>
-                            <Text text="{
-                                path: 'oModelTiming>PriorYearAdjustments',
-                                type: 'sap.ui.model.type.Float',
-                                formatOptions: {
+                            <Input value="{
+                                                path: 'oModelTiming>PriorYearAdjustments',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
                                                 }
-                            }" textAlign="Right" wrapping="false"/>
+                                            }" change=".onValueChanged" textAlign="End" type="Number" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End">
