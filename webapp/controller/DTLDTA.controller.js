@@ -38,9 +38,14 @@ sap.ui.define(
         },
 
         _onObjectMatched: function (oEvent) {
-          var oEvent = oEvent.getParameter("arguments");
-          var computationID = oEvent.ID;
-          var imposta = oEvent.imposta;
+          if (oEvent.getParameter === undefined) {
+            var computationID = oEvent.ID;
+            var imposta = oEvent.imposta;
+          } else{
+            var oEvent = oEvent.getParameter("arguments");
+            var computationID = oEvent.ID;
+            var imposta = oEvent.imposta;
+          }
 
           var dataTestata = { computationID: computationID, imposta: imposta };
           var DataModelTestata = new sap.ui.model.json.JSONModel();
@@ -182,10 +187,11 @@ sap.ui.define(
               data[i].devaluationMovement = 0;
             }
 
-            data[i].devaluationClosing = data[i].devaluationOpening + data[i].devaluationMovement;
+            data[i].devaluationClosing =
+              data[i].devaluationOpening + data[i].devaluationMovement;
 
-            data[i].closingNetBalance = data[i].closingGrossBalance + data[i].devaluationClosing;
-            
+            data[i].closingNetBalance =
+              data[i].closingGrossBalance + data[i].devaluationClosing;
 
             if (data[i].movementPL === null) {
               data[i].movementPL = 0;
@@ -333,7 +339,7 @@ sap.ui.define(
               var nuovoDTA = JSON.stringify({
                 devaluationMovement: devaluationMovement,
                 movementBS: movementBS,
-                devaluationClosing: devaluationClosing
+                devaluationClosing: devaluationClosing,
               });
 
               jQuery.ajax({
@@ -366,7 +372,8 @@ sap.ui.define(
               });
             }
 
-            this._setTotali();
+            this._onObjectMatched(oObject);
+            //this._setTotali();
             this.onCloseBusyDialog();
           } else {
             sap.m.MessageToast.show(

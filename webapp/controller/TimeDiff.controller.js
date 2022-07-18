@@ -34,6 +34,7 @@ sap.ui.define(
             var computationID = oEvent.ID;
             var imposta = oEvent.imposta;
           }
+          
           var dataTestata = { computationID: computationID, imposta: imposta };
           var DataModelTestata = new sap.ui.model.json.JSONModel();
           DataModelTestata.setData(dataTestata);
@@ -307,7 +308,8 @@ sap.ui.define(
               });
             }
 
-            this._setTotali();
+            this._onObjectMatched(oObject);
+            //this._setTotali();
             this.onCloseBusyDialog();
           } else {
             sap.m.MessageToast.show(
