@@ -34,6 +34,7 @@ sap.ui.define(
             var computationID = oEvent.ID;
             var imposta = oEvent.imposta;
           }
+          
           var dataTestata = { computationID: computationID, imposta: imposta };
           var DataModelTestata = new sap.ui.model.json.JSONModel();
           DataModelTestata.setData(dataTestata);
@@ -65,9 +66,9 @@ sap.ui.define(
                   descrizioneRipresa: "Totale",
                   OpeningBalance: 0,
                   PriorYearAdjustments: 0,
+                  extraordinaryTransactions: 0,
                   CurrentYearAccrual: 0,
                   CurrentYearUtilization: 0,
-                  extraordinaryTransactions: 0,
                   otherAdjustments: 0,
                   closingBalance: 0,
                   current1: 0,
@@ -76,8 +77,6 @@ sap.ui.define(
                   longTerm: 0,
                 },
               ];
-
-              
 
               data.push(oTotale[0]);
 
@@ -115,53 +114,6 @@ sap.ui.define(
             current3: 0,
             longTerm: 0,
           };
-
-          for (var i = 0; i < data.length - 1; i++) {
-            if (data[i].OpeningBalance) {
-              oTotale.OpeningBalance += data[i].OpeningBalance;
-            }
-
-            if (data[i].PriorYearAdjustments) {
-              oTotale.PriorYearAdjustments += data[i].PriorYearAdjustments;
-            }
-
-            if (data[i].extraordinaryTransactions) {
-              oTotale.extraordinaryTransactions +=
-                data[i].extraordinaryTransactions;
-            }
-
-            if (data[i].CurrentYearAccrual) {
-              oTotale.CurrentYearAccrual += data[i].CurrentYearAccrual;
-            }
-
-            if (data[i].CurrentYearUtilization) {
-              oTotale.CurrentYearUtilization += data[i].CurrentYearUtilization;
-            }
-
-            if (data[i].otherAdjustments) {
-              oTotale.otherAdjustments += data[i].otherAdjustments;
-            }
-
-            if (data[i].closingBalance) {
-              oTotale.closingBalance += data[i].closingBalance;
-            }
-
-            if (data[i].current1) {
-              oTotale.current1 += data[i].current1;
-            }
-
-            if (data[i].current2) {
-              oTotale.current2 += data[i].current2;
-            }
-
-            if (data[i].current3) {
-              oTotale.current3 += data[i].current3;
-            }
-
-            if (data[i].longTerm) {
-              oTotale.longTerm += data[i].longTerm;
-            }
-          }
 
           for (var i = 0; i < data.length; i++) {
             data[i].closingBalance =
@@ -213,6 +165,53 @@ sap.ui.define(
             }
           }
 
+          for (var i = 0; i < data.length - 1; i++) {
+            if (data[i].OpeningBalance) {
+              oTotale.OpeningBalance += data[i].OpeningBalance;
+            }
+
+            if (data[i].PriorYearAdjustments) {
+              oTotale.PriorYearAdjustments += data[i].PriorYearAdjustments;
+            }
+
+            if (data[i].extraordinaryTransactions) {
+              oTotale.extraordinaryTransactions +=
+                data[i].extraordinaryTransactions;
+            }
+
+            if (data[i].CurrentYearAccrual) {
+              oTotale.CurrentYearAccrual += data[i].CurrentYearAccrual;
+            }
+
+            if (data[i].CurrentYearUtilization) {
+              oTotale.CurrentYearUtilization += data[i].CurrentYearUtilization;
+            }
+
+            if (data[i].otherAdjustments) {
+              oTotale.otherAdjustments += data[i].otherAdjustments;
+            }
+
+            if (data[i].closingBalance) {
+              oTotale.closingBalance += data[i].closingBalance;
+            }
+
+            if (data[i].current1) {
+              oTotale.current1 += data[i].current1;
+            }
+
+            if (data[i].current2) {
+              oTotale.current2 += data[i].current2;
+            }
+
+            if (data[i].current3) {
+              oTotale.current3 += data[i].current3;
+            }
+
+            if (data[i].longTerm) {
+              oTotale.longTerm += data[i].longTerm;
+            }
+          }
+
           //modelloTotali = data.concat(oTotale)
 
           oModel.getData()[data.length - 1] = oTotale;
@@ -245,35 +244,41 @@ sap.ui.define(
 
           var oObject = { ID: computation, imposta: imposta };
 
-          if(array.length > 0){
+          if (array.length > 0) {
             for (var i = 0; i < array.length; i++) {
-                var codiceRipresa = array[i].codiceRipresa;
-                var extraordinaryTransaction = parseFloat(
+              var codiceRipresa = array[i].codiceRipresa;
+              var extraordinaryTransaction = parseFloat(
                 array[i].extraordinaryTransactions
-                );
-                var otherAdjustment = parseFloat(array[i].otherAdjustments);
-                var current2 = parseFloat(array[i].current2);
-                var current3 = parseFloat(array[i].current3);
-                var longTerm = parseFloat(array[i].longTerm);
+              );
+              var otherAdjustment = parseFloat(array[i].otherAdjustments);
+              var current2 = parseFloat(array[i].current2);
+              var current3 = parseFloat(array[i].current3);
+              var longTerm = parseFloat(array[i].longTerm);
+              var priorYearAdjustments = parseFloat(
+                array[i].PriorYearAdjustments
+              );
+              var closingBalance = parseFloat(array[i].closingBalance);
 
-                var indice = that
+              var indice = that
                 .getView()
                 .getModel("oModelTiming")
                 .getData()
                 .findIndex((x) => x.codiceRipresa === codiceRipresa);
-                var them = that;
+              var them = that;
 
-                var nuovaTiming = JSON.stringify({
+              var nuovaTiming = JSON.stringify({
                 extraordinaryTransactions: extraordinaryTransaction,
                 otherAdjustments: otherAdjustment,
                 current2: current2,
                 current3: current3,
                 longTerm: longTerm,
-                });
+                priorYearAdjustments: priorYearAdjustments,
+                closingBalance: closingBalance,
+              });
 
-                jQuery.ajax({
+              jQuery.ajax({
                 url: jQuery.sap.getModulePath(
-                    sap.ui.getCore().sapAppID +
+                  sap.ui.getCore().sapAppID +
                     "/catalog/TimingDifferences(codiceRipresa='" +
                     codiceRipresa +
                     "',computation=" +
@@ -288,29 +293,31 @@ sap.ui.define(
                 data: nuovaTiming,
                 async: false,
                 success: function (oCompleteEntry) {
-                    them.getView().getModel("oModelTiming").getData()[
+                  them.getView().getModel("oModelTiming").getData()[
                     indice
-                    ].state = "Success";
-                    them.getView().getModel("oModelTiming").getData()[
-                        indice
-                      ].updated = false;
+                  ].state = "Success";
+                  them.getView().getModel("oModelTiming").getData()[
+                    indice
+                  ].updated = false;
                 },
                 error: function (error) {
-                    them.getView().getModel("oModelTiming").getData()[
+                  them.getView().getModel("oModelTiming").getData()[
                     indice
-                    ].state = "Error";
+                  ].state = "Error";
                 },
-                });
+              });
             }
 
-          this._setTotali();
-          this.onCloseBusyDialog();
+            this._onObjectMatched(oObject);
+            //this._setTotali();
+            this.onCloseBusyDialog();
+          } else {
+            sap.m.MessageToast.show(
+              this.getResourceBundle().getText("valorizzareRecord")
+            );
+            this.onCloseBusyDialog();
           }
-          else{
-              sap.m.MessageToast.show(this.getResourceBundle().getText("valorizzareRecord"));
-              this.onCloseBusyDialog();
-          }
-        }
+        },
       }
     );
   }

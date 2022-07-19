@@ -6,7 +6,7 @@
     xmlns:layout="sap.ui.layout"
     xmlns:core="sap.ui.core">
 
-    <ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+    <ObjectPageLayout id="ObjectPageLayout" showFooter="{= ${oModelTestata>/imposta} === 'IRES'? true : false}" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
         <headerTitle>
             <ObjectPageDynamicHeaderTitle>
                 <navigationActions>
@@ -22,7 +22,7 @@
                         <blocks>
                             <m:Table id="imponibile" mode="None" inset="false" width="auto" items="{oModelRedditoImponibile>/}">
                                 <m:columns>
-                                    <m:Column>
+                                    <m:Column hAlign="{= ${oModelRedditoImponibile>descrizione} === 'Imposta netta (IRES)' ? 'End' : 'Begin'}" >
                                         <m:Text text=""/>
                                     </m:Column>
                                     <m:Column>
@@ -81,7 +81,115 @@
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
                                                 }
-                                            }" change=".onValueChanged" textAlign="End" type="Number"/>
+                                            }" change=".onValueChanged" textAlign="End" type="Number" editable="{= ${oModelRitenute>descrizione} === 'Imposta dovuta (IRES)' ? false : true}"/>
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <m:Table id="credito" mode="None" inset="false" width="auto" items="{oModelCredito>/}">
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:Text text="{oModelCredito>descrizione}" />
+                                            <m:Text text="" />
+                                            <m:Text text="{
+                                                path: 'oModelCredito>importo',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                                    minFractionDigits: 2,
+                                                                    maxFractionDigits: 2,
+                                                                    groupingEnabled: true
+                                                                }
+                                            }" textAlign="Right" wrapping="false"/>
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <m:Table id="versamenti" mode="None" inset="false" width="auto" items="{oModelVersamenti>/}">
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:Text text="{oModelVersamenti>descrizione}" />
+                                            <m:Text text="" />
+                                            <m:Text text="{
+                                                path: 'oModelVersamenti>importo',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                                    minFractionDigits: 2,
+                                                                    maxFractionDigits: 2,
+                                                                    groupingEnabled: true
+                                                                }
+                                            }" textAlign="Right" wrapping="false"/>
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <m:Table id="impostaCredito" mode="None" inset="false" width="auto" items="{oModelImpostaCredito>/}">
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:Text text="{oModelImpostaCredito>descrizione}" />
+                                            <m:Text text="" />
+                                            <m:Text text="{
+                                                path: 'oModelImpostaCredito>importo',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                                    minFractionDigits: 2,
+                                                                    maxFractionDigits: 2,
+                                                                    groupingEnabled: true
+                                                                }
+                                            }" textAlign="Right" wrapping="false"/>
                                         </m:cells>
                                     </m:ColumnListItem>
                                 </m:items>
@@ -114,6 +222,12 @@
                 </subSections>
             </ObjectPageSection>
         </sections>
+        <footer>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer/>
+				<m:Button type="Accept" text="{i18n>save}" press="onSaveImpostaDovuta"/>
+			</m:OverflowToolbar>
+		</footer>
     </ObjectPageLayout>
 
 </mvc:View>
