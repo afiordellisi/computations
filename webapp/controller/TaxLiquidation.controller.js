@@ -466,11 +466,16 @@ sap.ui.define(
               this.getResourceBundle().getText("sCreditoPrecUtil")
           )[0].importo;
           var importoVersamenti = modelloVersamenti[0].importo;
+          var modelloRitenute = this.getView().getModel("oModelRitenute").getData();
+          var tipologiaNull = modelloRitenute.filter(
+            (taxLiquidation) => taxLiquidation.tipologia === null
+          );
+          var importoImpostaDovutaIres = tipologiaNull[0].importo;
 
           var oImpostaCredito = [
             {
               descrizione: sImpostaCredito,
-              importo: importoVersamenti + importoCreditoUtil,
+              importo: importoVersamenti + importoCreditoUtil + importoImpostaDovutaIres,
             },
           ];
 
