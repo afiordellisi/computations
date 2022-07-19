@@ -327,7 +327,7 @@ sap.ui.define(
                 array[i].devaluationMovement
               );
               var movementBS = parseFloat(array[i].movementBS);
-              var devaluationClosing = parseFloat(array[i].devaluationClosing);
+              var devaluationClosing = parseFloat(array[i].devaluationMovement + array[i].devaluationOpening);
 
               var indice = that
                 .getView()

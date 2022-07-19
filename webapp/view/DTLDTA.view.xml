@@ -175,7 +175,7 @@
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
                                                 }
-                                            }" change=".onValueChanged" textAlign="End" type="Number" editable="{= ${oModelDT>descrizioneRipresa} === 'Totale'? false : true}"/>
+                                            }" change=".onValueChanged" textAlign="End" type="Float" editable="{= ${oModelDT>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">
@@ -231,7 +231,7 @@
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
                                                 }
-                                            }" change=".onValueChanged" textAlign="End" type="Number" editable="{= ${oModelDT>descrizioneRipresa} === 'Totale'? false : true}"/>
+                                            }" change=".onValueChanged" textAlign="End" type="Float" editable="{= ${oModelDT>descrizioneRipresa} === 'Totale'? false : true}"/>
                         </t:template>
                     </t:Column>
                     <t:Column width="11rem" hAlign="End" resizable="false">

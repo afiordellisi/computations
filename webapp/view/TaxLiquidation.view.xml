@@ -22,13 +22,13 @@
                         <blocks>
                             <m:Table id="imponibile" mode="None" inset="false" width="auto" items="{oModelRedditoImponibile>/}">
                                 <m:columns>
-                                    <m:Column hAlign="{= ${oModelRedditoImponibile>descrizione} === 'Imposta netta (IRES)' ? 'End' : 'Begin'}" >
-                                        <m:Text text=""/>
-                                    </m:Column>
                                     <m:Column>
                                         <m:Text text=""/>
                                     </m:Column>
                                     <m:Column>
+                                        <m:Text text=""/>
+                                    </m:Column>
+                                    <m:Column hAlign="End">
                                         <m:Text text=""/>
                                     </m:Column>
                                 </m:columns>
@@ -45,7 +45,7 @@
                                                                     maxFractionDigits: 2,
                                                                     groupingEnabled: true
                                                                 }
-                                            }" textAlign="Right" wrapping="false"/>
+                                            }" textAlign="End" wrapping="false"/>
                                         </m:cells>
                                     </m:ColumnListItem>
                                 </m:items>
@@ -64,7 +64,7 @@
                                     <m:Column>
                                         <m:Text text=""/>
                                     </m:Column>
-                                    <m:Column>
+                                    <m:Column hAlign="End">
                                         <m:Text text=""/>
                                     </m:Column>
                                 </m:columns>
@@ -81,7 +81,7 @@
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
                                                 }
-                                            }" change=".onValueChanged" textAlign="End" type="Number" editable="{= ${oModelRitenute>descrizione} === 'Imposta dovuta (IRES)' ? false : true}"/>
+                                            }" change=".onValueChanged" textAlign="End" type="Float" editable="{= ${oModelRitenute>tipologia} ? true : false}"/>
                                         </m:cells>
                                     </m:ColumnListItem>
                                 </m:items>
@@ -100,7 +100,7 @@
                                     <m:Column>
                                         <m:Text text=""/>
                                     </m:Column>
-                                    <m:Column>
+                                    <m:Column hAlign="End">
                                         <m:Text text=""/>
                                     </m:Column>
                                 </m:columns>
@@ -136,7 +136,7 @@
                                     <m:Column>
                                         <m:Text text=""/>
                                     </m:Column>
-                                    <m:Column>
+                                    <m:Column hAlign="End">
                                         <m:Text text=""/>
                                     </m:Column>
                                 </m:columns>
@@ -172,7 +172,7 @@
                                     <m:Column>
                                         <m:Text text=""/>
                                     </m:Column>
-                                    <m:Column>
+                                    <m:Column hAlign="End">
                                         <m:Text text=""/>
                                     </m:Column>
                                 </m:columns>
@@ -225,7 +225,7 @@
         <footer>
 			<m:OverflowToolbar>
 				<m:ToolbarSpacer/>
-				<m:Button type="Accept" text="{i18n>save}" press="onSaveImpostaDovuta"/>
+				<m:Button type="Accept" text="{i18n>save}" press="onSaveIRES"/>
 			</m:OverflowToolbar>
 		</footer>
     </ObjectPageLayout>
