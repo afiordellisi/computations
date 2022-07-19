@@ -315,11 +315,19 @@ sap.ui.define([
                         that.getView().byId("smartForm").setBlocked(false);
 
                         that._resetFields();
+
+                        var IdComputazione = oCompleteEntry.ID                        
                         
-                        
-                        
-                        var oRouter = that.getOwnerComponent().getRouter();
-                        oRouter.navTo("View1");
+                        // var oRouter = that.getOwnerComponent().getRouter();
+                        // oRouter.navTo("Home");
+
+                        that.getRouter().navTo(
+                            "CurrentTax",
+                            {
+                              ID: IdComputazione,
+                            },
+                            false
+                          );
     
                     },
                     error: function (error) {
@@ -453,7 +461,7 @@ sap.ui.define([
             handleWizardCancel: function(){
                 this._resetFields();
                 var oRouter = this.getOwnerComponent().getRouter();
-                oRouter.navTo("View1");
+                oRouter.navTo("Home");
             },
 
             _filterTableCreation: function (aFilter) {

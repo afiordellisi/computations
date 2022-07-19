@@ -15,18 +15,9 @@
     <uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" preserveHeaderStateOnScroll="false">
         <uxap:headerTitle >
             <uxap:ObjectPageDynamicHeaderTitle >
-                <uxap:heading >
-                    <layout:VerticalLayout class="sapUiMediumMarginEnd">
-                        <layout:HorizontalLayout class="sapUiSmallMarginTop" allowWrapping="true">
-                            <layout:VerticalLayout class="sapUiMediumMarginEnd">
-                                <ObjectIdentifier text="{i18n>imposta}:" class="sapUiTinyMarginBottom" id="impostaTime"/>
-                            </layout:VerticalLayout>
-                            <layout:VerticalLayout>
-                                <ObjectNumber number="{routingModel>/imposta}" class="sapUiTinyMarginBottom"/>
-                            </layout:VerticalLayout>
-                        </layout:HorizontalLayout>
-                    </layout:VerticalLayout>
-                </uxap:heading>
+                <uxap:expandedHeading >
+                 <ObjectAttribute title="{i18n>imposta}" text="{routingModel>/imposta}"/>
+                </uxap:expandedHeading>
             </uxap:ObjectPageDynamicHeaderTitle>
         </uxap:headerTitle>
         <uxap:sections>
@@ -51,6 +42,9 @@
                                         </Column>                                        
                                         <Column minScreenWidth="Tablet" demandPopin="true" width="20%">
                                             <Text text="{i18n>descrizione}"/>
+                                            <footer>
+                                                <Text text="{path: 'oModelTableTotAllegati>/oModelUNICO/descrizione'}"/>
+                                            </footer>
                                         </Column>
                                         <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text=""/>
@@ -69,6 +63,14 @@
                                         </Column>
                                         <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>importo}" />
+                                            <footer>
+                                                <Text text="{path: 'oModelTableTotAllegati>/oModelUNICO/importo', type: 'sap.ui.model.type.Float',
+                                                            formatOptions: {
+                                                                minFractionDigits: 2,
+                                                                maxFractionDigits: 2,
+                                                                groupingEnabled: true
+                                                            }}"/>
+                                            </footer>
                                         </Column>
                                         <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
                                             <Text text="{i18n>note}" />
@@ -77,7 +79,7 @@
                                             <Text text="{i18n>allegato}" />
                                         </Column>
                                         <Column minScreenWidth="Tablet" demandPopin="true" width="10%">
-                                            <!-- <Text text="{i18n>allegato}" /> -->
+                                            
                                         </Column>
                                     </columns>
                                     <items>

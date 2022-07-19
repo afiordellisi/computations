@@ -72,17 +72,17 @@ sap.ui.define(
         updateTrialBalance: function (oEvent) {
           var oView = this.getView();
           this._setNewTrialBalance();
-          if (!this._pDialogConf) {          
-          this._pDialogConf = Fragment.load({
-            id: oView.getId(),
-            name:
-              "tax.provisioning.computations.view.fragment.NewTrialBalanceComputations",
-            controller: this,
-          }).then(function (oDialogConf) {
-            oView.addDependent(oDialogConf);
-            return oDialogConf;
-          });
-        }
+          if (!this._pDialogConf) {
+            this._pDialogConf = Fragment.load({
+              id: oView.getId(),
+              name:
+                "tax.provisioning.computations.view.fragment.NewTrialBalanceComputations",
+              controller: this,
+            }).then(function (oDialogConf) {
+              oView.addDependent(oDialogConf);
+              return oDialogConf;
+            });
+          }
           this._pDialogConf.then(function (oDialogConf) {
             //this._configDialog(oButton, oDialogConf);
             oDialogConf.open();
@@ -90,127 +90,249 @@ sap.ui.define(
         },
 
         onCloseNewComputation: function () {
-            this.byId("DialogNewTrialBalance").close();
-            this.byId("descrizioneNewComputation").setValue("");
+          this.byId("DialogNewTrialBalance").close();
+          this.byId("descrizioneNewComputation").setValue("");
         },
 
-        _tableIrap: function(impostaValida){
-            if(impostaValida){
-                this.getView().byId("tableIRAP2").setVisible(true);
-                this.getView().byId("tableIRAP").setVisible(true);
-                this.getView().byId("table1HeaderIrap").setVisible(true);
-                this.getView().byId("table1").setVisible(false);
-                
-                var oModelIrap = [
-                    {descrizione : this.getResourceBundle().getText("ricavi"), raggruppamento : "A1", valore : '', imposta: this.getView().byId("impostaButton").getSelectedKey() },
-                    {descrizione : this.getResourceBundle().getText("rimanenze"), raggruppamento : "A2", valore : '', imposta: this.getView().byId("impostaButton").getSelectedKey() },
-                    {descrizione : this.getResourceBundle().getText("lavori"), raggruppamento : "A3", valore : '', imposta: this.getView().byId("impostaButton").getSelectedKey() },
-                    {descrizione : this.getResourceBundle().getText("incrementoImm"), raggruppamento : "A4", valore : '', imposta: this.getView().byId("impostaButton").getSelectedKey() },
-                    {descrizione : this.getResourceBundle().getText("otherRicavi"), raggruppamento : "A5", valore : '', imposta: this.getView().byId("impostaButton").getSelectedKey() },
-                    {descrizione : this.getResourceBundle().getText("totPos"), raggruppamento : null, valore : '', imposta: this.getView().byId("impostaButton").getSelectedKey() }
-                    ]
-                    var oModelIrap2 = [
-                    {descrizione : this.getResourceBundle().getText("matPrime"), raggruppamento : "B6", valore : '', imposta: this.getView().byId("impostaButton").getSelectedKey() },
-                    {descrizione : this.getResourceBundle().getText("servizi"), raggruppamento : "B7", valore : '', imposta: this.getView().byId("impostaButton").getSelectedKey() },
-                    {descrizione : this.getResourceBundle().getText("godBeniTerzi"), raggruppamento : "B8", valore : '', imposta: this.getView().byId("impostaButton").getSelectedKey() },
-                    {descrizione : this.getResourceBundle().getText("ammImm"), raggruppamento : "B10a", valore : '', imposta: this.getView().byId("impostaButton").getSelectedKey() },
-                    {descrizione : this.getResourceBundle().getText("ammMat"), raggruppamento : "B10b", valore : '', imposta: this.getView().byId("impostaButton").getSelectedKey() },
-                    {descrizione : this.getResourceBundle().getText("varRimanenze"), raggruppamento : "B11", valore : '', imposta: this.getView().byId("impostaButton").getSelectedKey() },
-                    {descrizione : this.getResourceBundle().getText("oneriGestione"), raggruppamento : "B14", valore : '', imposta: this.getView().byId("impostaButton").getSelectedKey() },
-                    {descrizione : this.getResourceBundle().getText("totNeg"), raggruppamento : null, valore : '', imposta: this.getView().byId("impostaButton").getSelectedKey() }
-                    ]
-                    this.getView().setModel(
-                        new JSONModel({
-                                oModelIrap
-                            },
-                        ),
-                        "oModelTableIRAP"
-                      );
-                    
-                      this.getView().setModel(
-                        new JSONModel({
-                                oModelIrap2
-                            },
-                        ),
-                        "oModelTableIRAP2"
-                      );
-            }else{
-                this.getView().byId("tableIRAP2").setVisible(false);
-                this.getView().byId("tableIRAP").setVisible(false);
-                this.getView().byId("table1HeaderIrap").setVisible(false);
-                this.getView().byId("table1").setVisible(true);
-            }
-            
+        _tableIrap: function (impostaValida) {
+          if (impostaValida) {
+            this.getView().byId("tableIRAP2").setVisible(true);
+            this.getView().byId("tableIRAP").setVisible(true);
+            this.getView().byId("table1HeaderIrap").setVisible(true);
+            this.getView().byId("table1").setVisible(false);
+
+            var oModelIrap = [
+              {
+                descrizione: this.getResourceBundle().getText("ricavi"),
+                raggruppamento: "A1",
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+              {
+                descrizione: this.getResourceBundle().getText("rimanenze"),
+                raggruppamento: "A2",
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+              {
+                descrizione: this.getResourceBundle().getText("lavori"),
+                raggruppamento: "A3",
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+              {
+                descrizione: this.getResourceBundle().getText("incrementoImm"),
+                raggruppamento: "A4",
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+              {
+                descrizione: this.getResourceBundle().getText("otherRicavi"),
+                raggruppamento: "A5",
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+              {
+                descrizione: this.getResourceBundle().getText("totPos"),
+                raggruppamento: null,
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+            ];
+            var oModelIrap2 = [
+              {
+                descrizione: this.getResourceBundle().getText("matPrime"),
+                raggruppamento: "B6",
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+              {
+                descrizione: this.getResourceBundle().getText("servizi"),
+                raggruppamento: "B7",
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+              {
+                descrizione: this.getResourceBundle().getText("godBeniTerzi"),
+                raggruppamento: "B8",
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+              {
+                descrizione: this.getResourceBundle().getText("ammImm"),
+                raggruppamento: "B10a",
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+              {
+                descrizione: this.getResourceBundle().getText("ammMat"),
+                raggruppamento: "B10b",
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+              {
+                descrizione: this.getResourceBundle().getText("varRimanenze"),
+                raggruppamento: "B11",
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+              {
+                descrizione: this.getResourceBundle().getText("oneriGestione"),
+                raggruppamento: "B14",
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+              {
+                descrizione: this.getResourceBundle().getText("totNeg"),
+                raggruppamento: null,
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+            ];
+            this.getView().setModel(
+              new JSONModel({
+                oModelIrap,
+              }),
+              "oModelTableIRAP"
+            );
+
+            this.getView().setModel(
+              new JSONModel({
+                oModelIrap2,
+              }),
+              "oModelTableIRAP2"
+            );
+          } else {
+            this.getView().byId("tableIRAP2").setVisible(false);
+            this.getView().byId("tableIRAP").setVisible(false);
+            this.getView().byId("table1HeaderIrap").setVisible(false);
+            this.getView().byId("table1").setVisible(true);
+          }
         },
 
-        onSaveNewComputation: function(oEvent){
-            var oTable = this.getView().byId("idNewTaxRule");
-            var oPath = oTable.getSelectedItem().getBindingContext("oModelNewTrialBalance").getPath().split("/")[1];
-            var versioneID = oTable.getSelectedItem().getModel("oModelNewTrialBalance").oData[0].ID;
+        onSaveNewComputation: function (oEvent) {
+          var oTable = this.getView().byId("idNewTaxRule");
+          var oSelectedItem = oTable.getSelectedItem();
+
+          if (
+            this.getView().byId("descrizioneNewComputation").getValue() &&
+            oSelectedItem
+          ) {
+            var versioneID = oSelectedItem.getModel("oModelNewTrialBalance")
+              .oData[0].ID;
+            // var oPath = oTable
+            //   .getSelectedItem()
+            //   .getBindingContext("oModelNewTrialBaance")
+            //   .getPath()
+            //   .split("/")[1];
+
             var ID = this.getView().getModel("computationModel").getData().ID;
             var descrizione = this.byId("descrizioneNewComputation").getValue();
 
             var that = this;
 
             jQuery.ajax({
-                url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Computations("+ID+")?$expand=confRegions"),
-                contentType: "application/json",
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                success: function (oCompleteEntry) {
-                    sap.m.MessageToast.show("Success");
-                    var oData = oCompleteEntry;
-                    var oDataModel = new JSONModel(oData);
-                    that.setModel(oDataModel, "oModelInfoComputazione");
-                    that.onCloseNewComputation();
-                    that._setTotaliRiprese();
+              url: jQuery.sap.getModulePath(
+                sap.ui.getCore().sapAppID +
+                  "/catalog/Computations(" +
+                  ID +
+                  ")?$expand=confRegions"
+              ),
+              contentType: "application/json",
+              type: "GET",
+              dataType: "json",
+              async: false,
+              success: function (oCompleteEntry) {
+                sap.m.MessageToast.show("Success");
+                var oData = oCompleteEntry;
+                var oDataModel = new JSONModel(oData);
+                that.setModel(oDataModel, "oModelInfoComputazione");
+                that.onCloseNewComputation();
+                that._setTotaliRiprese();
+              },
+              error: function (error) {
+                sap.m.MessageToast.show("Error");
+              },
+            });
 
-                },
-                error: function (error) {
-                    sap.m.MessageToast.show("Error");
-                }
-                });  
-            
             var updateComputation = JSON.stringify({
-                "descrizione": descrizione, 
-                "Configurazione_ID": this.getView().getModel("oModelInfoComputazione").oData.Configurazione_ID, 
-                "Versione_ID": versioneID, 
-                "compConfronto": this.getView().getModel("oModelInfoComputazione").oData.compConfronto, 
-                "confRegions": this.getView().getModel("oModelInfoComputazione").oData.confRegions 
+              descrizione: descrizione,
+              Configurazione_ID: this.getView().getModel(
+                "oModelInfoComputazione"
+              ).oData.Configurazione_ID,
+              Versione_ID: versioneID,
+              compConfronto: this.getView().getModel("oModelInfoComputazione")
+                .oData.compConfronto,
+              confRegions: this.getView().getModel("oModelInfoComputazione")
+                .oData.confRegions,
             });
 
             jQuery.ajax({
-                url: jQuery.sap.getModulePath(sap.ui.getCore().sapAppID + "/catalog/Computations"),
-                contentType: "application/json",
-                type: 'POST',
-                dataType: "json",
-                data: updateComputation,
-                async: false,
-                success: function (oCompleteEntry) {
-                    var IdComputazione = oCompleteEntry.ID
-                    sap.m.MessageToast.show("Success");
-                    that.getRouter().navTo(
-                        "CurrentTax",
-                        {
-                          ID: IdComputazione
-                        },
-                        false
-                      );
+              url: jQuery.sap.getModulePath(
+                sap.ui.getCore().sapAppID + "/catalog/Computations"
+              ),
+              contentType: "application/json",
+              type: "POST",
+              dataType: "json",
+              data: updateComputation,
+              async: false,
+              success: function (oCompleteEntry) {
+                var IdComputazione = oCompleteEntry.ID;
+
+                that._copyComputation(IdComputazione);
+              },
+              error: function (error) {
+                sap.m.MessageToast.show("Error");
+              },
+            });
+          } else {
+            sap.m.MessageToast.show(
+              this.getResourceBundle().getText("campiObbligatoriLabel")
+            );
+          }
+        },
+
+        _copyComputation: function (IdComputazione) {
+          var that = this;
+
+          var dataID = JSON.stringify({
+            source: this.getView().getModel("computationModel").getData().ID,
+            target: IdComputazione,
+          });
+
+          jQuery.ajax({
+            url: jQuery.sap.getModulePath(
+              sap.ui.getCore().sapAppID + "/catalog/CopyComputation"
+            ),
+            contentType: "application/json",
+            type: "POST",
+            dataType: "json",
+            data: dataID,
+            async: false,
+            success: function (oCompleteEntry) {
+              sap.m.MessageToast.show("Success");
+              that.getRouter().navTo(
+                "CurrentTax",
+                {
+                  ID: IdComputazione,
                 },
-                error: function (error) {
-                    sap.m.MessageToast.show("Error");
-                }
-                }); 
-
-
+                false
+              );
+            },
+            error: function (error) {
+              sap.m.MessageToast.show("Error");
+            },
+          });
         },
 
         onScegliImposta: function (oEvent) {
           var that = this;
           var ID = this.getView().getModel("computationModel").getData().ID;
           //var conf = this.getView().getModel("computationModel").getData().conf;
-          var imposta = that.getView().byId("impostaButton").getSelectedKey();
+          var imposta = this.getView().byId("impostaButton").getSelectedKey();
+          var percentuale = parseFloat(
+            this.getModel("oModelPercentuale").getData().oModelPercentuale
+          );
           this._setHeader();
           //if(conf != "false"){
           jQuery.ajax({
@@ -242,11 +364,10 @@ sap.ui.define(
                 (codiceRipresa) =>
                   codiceRipresa.tipologia === "P" &&
                   codiceRipresa.tipoVariazione === "D" &&
-                  codiceRipresa.produzione !== 'S'
+                  codiceRipresa.produzione !== "S"
               );
               var VPL = arr.filter(
-                (codiceRipresa) =>
-                  codiceRipresa.produzione === 'S'
+                (codiceRipresa) => codiceRipresa.produzione === "S"
               );
               var TA = arr.filter(
                 (codiceRipresa) =>
@@ -266,28 +387,83 @@ sap.ui.define(
               );
 
               var data = {
-                oModelPA: PA,
-                oModelPD: PD,
-                oModelTA: TA,
-                oModelTD: TD,
-                oModelPER: PER,
-                oModelACE: ACE,
-                oModelPDIRAP: PDIRAP,
-                oModelVPL: VPL
+                oModelPA: PA.map((arr) => {
+                  return {
+                    codiceRipresa: arr.codiceRipresa,
+                    descrizioneRipresa: arr.descrizioneRipresa,
+                    imponibile: arr.imponibile,
+                    PAImpostaSingola: (arr.imponibile * percentuale) / 100,
+                  };
+                }),
+                oModelPD: PD.map((arr) => {
+                  return {
+                    codiceRipresa: arr.codiceRipresa,
+                    descrizioneRipresa: arr.descrizioneRipresa,
+                    imponibile: arr.imponibile,
+                    PDImpostaSingola: (arr.imponibile * percentuale) / 100,
+                  };
+                }),
+                oModelTA: TA.map((arr) => {
+                  return {
+                    codiceRipresa: arr.codiceRipresa,
+                    descrizioneRipresa: arr.descrizioneRipresa,
+                    imponibile: arr.imponibile,
+                    TAImpostaSingola: (arr.imponibile * percentuale) / 100,
+                  };
+                }),
+                oModelTD: TD.map((arr) => {
+                  return {
+                    codiceRipresa: arr.codiceRipresa,
+                    descrizioneRipresa: arr.descrizioneRipresa,
+                    imponibile: arr.imponibile,
+                    TDImpostaSingola: (arr.imponibile * percentuale) / 100,
+                  };
+                }),
+                oModelPER: PER.map((arr) => {
+                  return {
+                    codiceRipresa: arr.codiceRipresa,
+                    descrizioneRipresa: arr.descrizioneRipresa,
+                    imponibile: arr.imponibile,
+                    PERImpostaSingola: (arr.imponibile * percentuale) / 100,
+                  };
+                }),
+                oModelACE: ACE.map((arr) => {
+                  return {
+                    codiceRipresa: arr.codiceRipresa,
+                    descrizioneRipresa: arr.descrizioneRipresa,
+                    imponibile: arr.imponibile,
+                    ACEImpostaSingola: (arr.imponibile * percentuale) / 100,
+                  };
+                }),
+                oModelPDIRAP: PDIRAP.map((arr) => {
+                  return {
+                    codiceRipresa: arr.codiceRipresa,
+                    descrizioneRipresa: arr.descrizioneRipresa,
+                    imponibile: arr.imponibile,
+                    PDIRAPImpostaSingola: (arr.imponibile * percentuale) / 100,
+                  };
+                }),
+                oModelVPL: VPL.map((arr) => {
+                  return {
+                    codiceRipresa: arr.codiceRipresa,
+                    descrizioneRipresa: arr.descrizioneRipresa,
+                    imponibile: arr.imponibile,
+                    VPLImpostaSingola: (arr.imponibile * percentuale) / 100,
+                  };
+                }),
               };
               var DataModel = new sap.ui.model.json.JSONModel();
               DataModel.setData(data);
               that.getView().setModel(DataModel, "oModelAnagrafica");
               that._setTotaliRiprese();
               var impostaValida;
-              if(imposta === 'IRAP'){
+              if (imposta === "IRAP") {
                 impostaValida = true;
                 that._tableIrap(impostaValida);
-              }else{
+              } else {
                 impostaValida = false;
                 that._tableIrap(impostaValida);
               }
-              
             },
             error: function (error) {
               sap.m.MessageToast.show("Error");
@@ -374,6 +550,20 @@ sap.ui.define(
               var PDIRAPImponibile = { imponibile: arr.imponibilePDIRAP };
               var VPL = { imponibile: arr.VPL };
               var VPN = { imponibile: arr.VPN };
+              var percentuale = parseFloat(
+                that.getModel("oModelPercentuale").getData().oModelPercentuale
+              );
+              var impostaPER =
+                ((that.getView().getModel("oModelAnagrafica").getData()
+                  .oModelPER[0].imponibile +
+                  that.getView().getModel("oModelAnagrafica").getData()
+                    .oModelPER[1].imponibile) *
+                  percentuale) /
+                100;
+              var produzione = that
+                .getView()
+                .getModel("headerModelIRAP")
+                .getData().oModel[0].imponibile;
               var data = {
                 oModelPAImponibile: PAImponibile,
                 oModelPDImponibile: PDImponibile,
@@ -384,7 +574,24 @@ sap.ui.define(
                 oModelRedditoImponibile: RedditoImponibile,
                 oModelPDIRAPImponibile: PDIRAPImponibile,
                 oModelVPLImponibile: VPL,
-                oModelVPNImponibile: VPN
+                oModelVPNImponibile: VPN,
+                PAImposta: (PAImponibile.imponibile * percentuale) / 100,
+                PDImposta: (PDImponibile.imponibile * percentuale) / 100,
+                TAImposta: (TAImponibile.imponibile * percentuale) / 100,
+                TDImposta: (TDImponibile.imponibile * percentuale) / 100,
+                PERImposta:
+                  (PAImponibile.imponibile * percentuale) / 100 +
+                  (PDImponibile.imponibile * percentuale) / 100 +
+                  (TAImponibile.imponibile * percentuale) / 100 +
+                  (TDImponibile.imponibile * percentuale) / 100,
+                ACEImposta:
+                  (PAImponibile.imponibile * percentuale) / 100 +
+                  (PDImponibile.imponibile * percentuale) / 100 +
+                  (TAImponibile.imponibile * percentuale) / 100 +
+                  (TDImponibile.imponibile * percentuale) / 100 +
+                  impostaPER,
+                VPLImposta: impostaPER + (produzione * percentuale) / 100,
+                VPNImposta: (VPN.imponibile * percentuale) / 100,
               };
               var DataModel = new sap.ui.model.json.JSONModel();
               DataModel.setData(data);
@@ -409,8 +616,12 @@ sap.ui.define(
             }),
             "computationModel"
           );
+          this._setPercentuale();
 
           var imposta = this.getView().byId("impostaButton").getSelectedKey();
+          var percentuale = parseFloat(
+            this.getModel("oModelPercentuale").getData().oModelPercentuale
+          );
           var that = this;
           //if(conf != "false"){
           jQuery.ajax({
@@ -442,11 +653,10 @@ sap.ui.define(
                 (codiceRipresa) =>
                   codiceRipresa.tipologia === "P" &&
                   codiceRipresa.tipoVariazione === "D" &&
-                  codiceRipresa.produzione !== 'S'
+                  codiceRipresa.produzione !== "S"
               );
               var VPL = arr.filter(
-                (codiceRipresa) =>
-                  codiceRipresa.produzione === 'S'
+                (codiceRipresa) => codiceRipresa.produzione === "S"
               );
               var TA = arr.filter(
                 (codiceRipresa) =>
@@ -466,14 +676,70 @@ sap.ui.define(
               );
 
               var data = {
-                oModelPA: PA,
-                oModelPD: PD,
-                oModelTA: TA,
-                oModelTD: TD,
-                oModelPER: PER,
-                oModelACE: ACE,
-                oModelPDIRAP: PDIRAP,
-                oModelVPL: VPL
+                oModelPA: PA.map((arr) => {
+                  return {
+                    codiceRipresa: arr.codiceRipresa,
+                    descrizioneRipresa: arr.descrizioneRipresa,
+                    imponibile: arr.imponibile,
+                    PAImpostaSingola: (arr.imponibile * percentuale) / 100,
+                  };
+                }),
+                oModelPD: PD.map((arr) => {
+                  return {
+                    codiceRipresa: arr.codiceRipresa,
+                    descrizioneRipresa: arr.descrizioneRipresa,
+                    imponibile: arr.imponibile,
+                    PDImpostaSingola: (arr.imponibile * percentuale) / 100,
+                  };
+                }),
+                oModelTA: TA.map((arr) => {
+                  return {
+                    codiceRipresa: arr.codiceRipresa,
+                    descrizioneRipresa: arr.descrizioneRipresa,
+                    imponibile: arr.imponibile,
+                    TAImpostaSingola: (arr.imponibile * percentuale) / 100,
+                  };
+                }),
+                oModelTD: TD.map((arr) => {
+                  return {
+                    codiceRipresa: arr.codiceRipresa,
+                    descrizioneRipresa: arr.descrizioneRipresa,
+                    imponibile: arr.imponibile,
+                    TDImpostaSingola: (arr.imponibile * percentuale) / 100,
+                  };
+                }),
+                oModelPER: PER.map((arr) => {
+                  return {
+                    codiceRipresa: arr.codiceRipresa,
+                    descrizioneRipresa: arr.descrizioneRipresa,
+                    imponibile: arr.imponibile,
+                    PERImpostaSingola: (arr.imponibile * percentuale) / 100,
+                  };
+                }),
+                oModelACE: ACE.map((arr) => {
+                  return {
+                    codiceRipresa: arr.codiceRipresa,
+                    descrizioneRipresa: arr.descrizioneRipresa,
+                    imponibile: arr.imponibile,
+                    ACEImpostaSingola: (arr.imponibile * percentuale) / 100,
+                  };
+                }),
+                oModelPDIRAP: PDIRAP.map((arr) => {
+                  return {
+                    codiceRipresa: arr.codiceRipresa,
+                    descrizioneRipresa: arr.descrizioneRipresa,
+                    imponibile: arr.imponibile,
+                    PDIRAPImpostaSingola: (arr.imponibile * percentuale) / 100,
+                  };
+                }),
+                oModelVPL: VPL.map((arr) => {
+                  return {
+                    codiceRipresa: arr.codiceRipresa,
+                    descrizioneRipresa: arr.descrizioneRipresa,
+                    imponibile: arr.imponibile,
+                    VPLImpostaSingola: (arr.imponibile * percentuale) / 100,
+                  };
+                }),
               };
               var DataModel = new sap.ui.model.json.JSONModel();
               DataModel.setData(data);
@@ -527,7 +793,7 @@ sap.ui.define(
 
           this.getView().setModel(
             new JSONModel({
-                  imposta: this.getView().byId("impostaButton").getSelectedKey()
+              imposta: this.getView().byId("impostaButton").getSelectedKey(),
             }),
             "oModelImposta"
           );
@@ -536,6 +802,9 @@ sap.ui.define(
         _setTitle: function () {
           var that = this;
           var ID = this.getView().getModel("computationModel").getData().ID;
+          var percentuale = parseFloat(
+            this.getModel("oModelPercentuale").getData().oModelPercentuale
+          );
           jQuery.ajax({
             url: jQuery.sap.getModulePath(
               sap.ui.getCore().sapAppID +
@@ -549,7 +818,12 @@ sap.ui.define(
             async: false,
             success: function (oCompleteEntry) {
               var data = {
-                oModelParamentri: oCompleteEntry.value[0].Versione
+                oModelDescrizione: oCompleteEntry.value[0],
+                oModelParamentri: oCompleteEntry.value[0].Versione,
+                oModelImpostaHeader:
+                  (oCompleteEntry.value[0].Versione.utilePerditaCY *
+                    percentuale) /
+                  100,
               };
               var DataModel = new sap.ui.model.json.JSONModel();
               DataModel.setData(data);
@@ -567,13 +841,22 @@ sap.ui.define(
         _setPercentuale: function () {
           var that = this;
           //var ID = this.getView().getModel("computationModel").getData().ID;
-          var configurazioneID = this.getView()
-            .getModel("oModelDescrizione")
-            .getData().oModelConfigurazioneID;
+          //   var configurazioneID = this.getView()
+          //     .getModel("oModelDescrizione")
+          //     .getData().oModelConfigurazioneID;
           var computazioneID = this.getView()
             .getModel("computationModel")
             .getData().ID;
           var imposta = this.getView().byId("impostaButton").getSelectedKey();
+
+          //   var fUtilePerditaCY = this.getModel("oModelDescrizione").getData()
+          //     .oModelParamentri.utilePerditaCY;
+          //   var fPAImponibile = this.getModel("oModelTotali").getData()
+          //     .oModelPAImponibile.imponibile;
+
+          //   var fPAImponibileSingolo = this.getModel("oModelAnagrafica").getData()
+          //     .oModelPA;
+
           //var conf = this.getView().getModel("computationModel").getData().conf;
 
           jQuery.ajax({
@@ -592,6 +875,11 @@ sap.ui.define(
             success: function (oCompleteEntry) {
               var data = {
                 oModelPercentuale: oCompleteEntry.value[0].currentAvg,
+                // utilePerditaCY:
+                //   (fUtilePerditaCY * oCompleteEntry.value[0].currentAvg) / 100,
+                // PAImposta:
+                //   (fPAImponibile * oCompleteEntry.value[0].currentAvg) / 100,
+                //  PAImpostaSingola: fPAImponibileSingolo.map(imponibile => imponibile * parseFloat(oCompleteEntry.value[0].currentAvg) / 100 )
               };
               var DataModel = new sap.ui.model.json.JSONModel();
               DataModel.setData(data);
