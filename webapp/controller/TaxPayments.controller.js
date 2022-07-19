@@ -81,7 +81,9 @@ sap.ui.define(
               var C = arr.filter((versamento) => versamento.tipologia === "C");
               var A = arr.filter((versamento) => versamento.tipologia === "A");
               var O = arr.filter((versamento) => versamento.tipologia === "O");
-              var creditoDebitoUnicoLFY = that.getView().getModel("oModelTableTotAllegati") //qui non esiste il modello
+              var creditoDebitoUnicoLFY = that
+                .getView()
+                .getModel("oModelTableTotAllegati"); //qui non esiste il modello
               var PYA = arr.filter(
                 (versamento) => versamento.tipologia === "PYA"
               );
@@ -137,7 +139,7 @@ sap.ui.define(
                     importo: null,
                     note: "",
                     allegato: "",
-                  }
+                  },
                 ];
               }
               if (O.length == 1) {
@@ -250,8 +252,11 @@ sap.ui.define(
               var A = totale.filter((importo) => importo.tipologia === "A");
               var O = totale.filter((importo) => importo.tipologia === "O");
               var AM = totale.filter((importo) => importo.tipologia === "AM");
-              var creditoDebitoUnicoLFY = totale[0].creditoDebitoUnicoLFY
-              var UNICO = {"descrizione" : that.getResourceBundle().getText("UNICOLY"), "importo" : creditoDebitoUnicoLFY}
+              var creditoDebitoUnicoLFY = totale[0].creditoDebitoUnicoLFY;
+              var UNICO = {
+                descrizione: that.getResourceBundle().getText("UNICOLY"),
+                importo: creditoDebitoUnicoLFY,
+              };
               if (oCompleteEntry.value.length > 0) {
                 var tot = oCompleteEntry.value[0].creditoDebitoResiduo;
               } else {
@@ -265,7 +270,7 @@ sap.ui.define(
                 oModelATot: A[0],
                 oModelOTot: O[0],
                 oModelTotali: totArray[0],
-                oModelUNICO : UNICO
+                oModelUNICO: UNICO,
               };
               var oModelTot = new JSONModel(data);
               that.getView().setModel(oModelTot, "oModelTableTotAllegati");
@@ -293,13 +298,30 @@ sap.ui.define(
           this._setTableAllegati(computazioneID, imposta);
           //this._setModelRouting(configurazioneID, ripresaID)
         },
+        // handleChangeYear: function (oEvent) {
+        //   var oValidatedComboBox = oEvent.getSource(),
+        //     sSelectedKey = oValidatedComboBox.getSelectedKey(),
+        //     sValue = oValidatedComboBox.getValue();
 
+        //   if (!sSelectedKey && sValue) {
+        //     oValidatedComboBox.setValueState("Error");
+        //   } else {
+        //     oValidatedComboBox.setValueState("None");
+        //   }
+        // },
         onSaveAllegato: function (oEvent) {
           //this.onOpenDialog();
           if (this._validazioneAllegato()) {
             if (IDinserimento === undefined || IDinserimento === "") {
               var nuovoAllegato;
-
+              var importo = parseFloat(
+                this.getView().byId("importoAllegatoTax").getValue()
+              );
+              if ((tipo = "C")) {
+                if (importo > 0) {
+                  importo = -importo;
+                }
+              }
               var nuovoAllegato = JSON.stringify({
                 descrizione: this.getView()
                   .byId("descrizioneAllegatoTax")
@@ -313,9 +335,7 @@ sap.ui.define(
                 ravvedimento: this.getView()
                   .byId("ravvedimentoAllegatoTax")
                   .getSelected(),
-                importo: parseFloat(
-                  this.getView().byId("importoAllegatoTax").getValue()
-                ),
+                importo: importo,
                 note: this.getView().byId("noteAllegatoTax").getValue(),
                 computation_ID: computazioneID,
                 fileName: this.getView().byId("fileUploaderTax").getValue(),
@@ -363,8 +383,12 @@ sap.ui.define(
                   descrizione: sText,
                   data: this.getView().byId("dataAllegatoTax").getValue(),
                   rata: this.getView().byId("rataAllegatoTax").getValue(),
-                  codiceTributo: this.getView().byId("codiceTributoAllegatoTax").getValue(),
-                  ravvedimento: this.getView().byId("ravvedimentoAllegatoTax").getSelected(),
+                  codiceTributo: this.getView()
+                    .byId("codiceTributoAllegatoTax")
+                    .getValue(),
+                  ravvedimento: this.getView()
+                    .byId("ravvedimentoAllegatoTax")
+                    .getSelected(),
                   importo: parseFloat(
                     this.getView().byId("importoAllegatoTax").getValue()
                   ),
@@ -386,9 +410,7 @@ sap.ui.define(
                   async: false,
                   success: function (oCompleteEntry) {
                     var ID = oCompleteEntry.ID; //allegatoID
-                    if (
-                      that.getView().byId("fileUploaderTax").getValue()
-                    ) {
+                    if (that.getView().byId("fileUploaderTax").getValue()) {
                       that._putAllegatoAltro(ID);
                     }
                     IDinserimento = undefined;
@@ -742,47 +764,47 @@ sap.ui.define(
           var data = {
             items: [
               {
-                key: "",
+                key: "0",
                 year: currentYear,
               },
               {
-                key: "",
+                key: "1",
                 year: currentYear + 1,
               },
               {
-                key: "",
+                key: "2",
                 year: currentYear + 2,
               },
               {
-                key: "",
+                key: "3",
                 year: currentYear + 3,
               },
               {
-                key: "",
+                key: "4",
                 year: currentYear + 4,
               },
               {
-                key: "",
+                key: "5",
                 year: currentYear + 5,
               },
               {
-                key: "",
+                key: "6",
                 year: currentYear + 6,
               },
               {
-                key: "",
+                key: "7",
                 year: currentYear + 7,
               },
               {
-                key: "",
+                key: "8",
                 year: currentYear + 8,
               },
               {
-                key: "",
+                key: "9",
                 year: currentYear + 9,
               },
               {
-                key: "",
+                key: "10",
                 year: currentYear + 10,
               },
             ],
@@ -1126,6 +1148,8 @@ sap.ui.define(
           );
           var oAnnoAllegato = this.getView().byId("annoAllegatoTax");
 
+          
+
           oDescriptionAllegato.setValueState();
           oImportoAllegato.setValueState();
           //oNota.setValueState();
@@ -1154,9 +1178,13 @@ sap.ui.define(
           if (!oCodiceTributoAllegato.getValue()) {
             oCodiceTributoAllegato.setValueState("Error");
           }
-          if (!oAnnoAllegato.getValue()) {
+      
+          if (!oAnnoAllegato.getSelectedKey() && oAnnoAllegato.getValue()) {
             oAnnoAllegato.setValueState("Error");
-          }
+          } 
+          // if (!oAnnoAllegato.getValue()) {
+          //   oAnnoAllegato.setValueState("Error");
+          // }
           if (
             oDescriptionAllegato.getValue() &&
             oImportoAllegato.getValue() &&
@@ -1164,7 +1192,7 @@ sap.ui.define(
             oDataAllegato.getValue() &&
             oRataAllegato.getValue() &&
             oCodiceTributoAllegato.getValue() &&
-            oAnnoAllegato.getValue()
+            (oAnnoAllegato.getSelectedKey() && oAnnoAllegato.getValue())
           )
             return true;
           else return false;
