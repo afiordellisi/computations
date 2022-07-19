@@ -81,6 +81,7 @@ sap.ui.define(
               var C = arr.filter((versamento) => versamento.tipologia === "C");
               var A = arr.filter((versamento) => versamento.tipologia === "A");
               var O = arr.filter((versamento) => versamento.tipologia === "O");
+              var creditoDebitoUnicoLFY = that.getView().getModel("oModelTableTotAllegati") //qui non esiste il modello
               var PYA = arr.filter(
                 (versamento) => versamento.tipologia === "PYA"
               );
@@ -136,14 +137,7 @@ sap.ui.define(
                     importo: null,
                     note: "",
                     allegato: "",
-                  },
-                  {
-                    ID: "",
-                    descrizione: that.getResourceBundle().getText("UNICOLY"),
-                    importo: null,
-                    note: "",
-                    allegato: "",
-                  },
+                  }
                 ];
               }
               if (O.length == 1) {
@@ -256,6 +250,8 @@ sap.ui.define(
               var A = totale.filter((importo) => importo.tipologia === "A");
               var O = totale.filter((importo) => importo.tipologia === "O");
               var AM = totale.filter((importo) => importo.tipologia === "AM");
+              var creditoDebitoUnicoLFY = totale[0].creditoDebitoUnicoLFY
+              var UNICO = {"descrizione" : that.getResourceBundle().getText("UNICOLY"), "importo" : creditoDebitoUnicoLFY}
               if (oCompleteEntry.value.length > 0) {
                 var tot = oCompleteEntry.value[0].creditoDebitoResiduo;
               } else {
@@ -269,6 +265,7 @@ sap.ui.define(
                 oModelATot: A[0],
                 oModelOTot: O[0],
                 oModelTotali: totArray[0],
+                oModelUNICO : UNICO
               };
               var oModelTot = new JSONModel(data);
               that.getView().setModel(oModelTot, "oModelTableTotAllegati");
@@ -987,6 +984,9 @@ sap.ui.define(
           this.byId("fileUploaderMovUpdate").clear();
           this.byId("notaMovUpdate").setValue("");
           this.byId("importoMovUpdate").setValue("");
+          this.byId("notaMovUpdate").setValueState("None");
+          this.byId("importoMovUpdate").setValueState("None");
+          this.byId("fileUploaderMovUpdate").setValueState("None");
           this._setTableAllegati(computazioneID, imposta);
         },
 
@@ -1003,6 +1003,15 @@ sap.ui.define(
           this.getView().byId("codiceTributoAllegatoTax").setValue("");
           this.getView().byId("ravvedimentoAllegatoTax").setSelected(false);
           this.byId("importoAllegatoTax").setValue("");
+
+          this.byId("fileUploaderTax").setValueState("None");
+          this.byId("descrizioneAllegatoTax").setValueState("None");
+          this.getView().byId("annoAllegatoTax").setValueState("None");
+          this.getView().byId("dataAllegatoTax").setValueState("None");
+          this.getView().byId("rataAllegatoTax").setValueState("None");
+          this.getView().byId("noteAllegatoTax").setValueState("None");
+          this.getView().byId("codiceTributoAllegatoTax").setValueState("None");
+          this.byId("importoAllegatoTax").setValueState("None");
           this._setTableAllegati(computazioneID, imposta);
         },
 
