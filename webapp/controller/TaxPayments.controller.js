@@ -216,7 +216,7 @@ sap.ui.define(
               var oModel = new JSONModel(data);
               that.getView().setModel(oModel, "oModelTableAllegati");
               that._setTotaliPayments(computazioneID);
-              that.setCreditoRisLastFY(compConfronto, imposta);
+      //        that.setCreditoRisLastFY(compConfronto, imposta); non serve?
             },
             error: function (error) {
               sap.m.MessageToast.show("Error");
@@ -422,60 +422,10 @@ sap.ui.define(
               }
             }
           }
-          // else{
-          //     sap.m.MessageToast.show("Valorizzare i campi");
-          //     this.getView().byId("descrizioneAllegatoTax").setValueState("Error");
-          //     this.getView().byId("importoAllegatoTax").setValueState("Error");
-          //     this.getView().byId("note").setValueState("Error");
-          // }
+        
         },
 
-        // onSaveAltro: function () {
-        //   if (this._validazioneAllegatoAltro()) {
-        //     var altriMovimenti;
-        //     var fileName = this.getView().byId("fileUploaderMov").getValue();
-        //     var that = this;
-
-        //     altriMovimenti = JSON.stringify({
-        //       computation_ID: computazioneID,
-        //       imposta: this.getView().getModel("routingModel").getData()
-        //         .imposta,
-        //       descrizione: sText,
-        //       importo: parseFloat(this.getView().byId("importoMov").getValue()),
-        //       note: this.getView().byId("notaMov").getValue(),
-        //       fileName: fileName,
-        //       tipologia: tipo,
-        //     });
-
-        //     jQuery.ajax({
-        //       url: jQuery.sap.getModulePath(
-        //         sap.ui.getCore().sapAppID + "/catalog/TaxPayments"
-        //       ),
-        //       contentType: "application/json",
-        //       type: "POST",
-        //       data: altriMovimenti,
-        //       async: false,
-        //       success: function (oCompleteEntry) {
-        //         var ID = oCompleteEntry.ID; //allegatoID
-        //         if (that.getView().byId("fileUploaderMov").getValue()) {
-        //           that._putAllegatoAltro(ID);
-        //         }
-        //         IDinserimento = undefined;
-        //         that.onCloseAltro();
-        //       },
-        //       error: function (error) {
-        //         sap.m.MessageToast.show("Error");
-        //       },
-        //     });
-        //   }
-        //   // }else{
-        //   //     sap.m.MessageToast.show("Valorizzare i campi");
-        //   //     this.getView().byId("descrizioneAllegato").setValueState("Error");
-        //   //     this.getView().byId("importoAllegato").setValueState("Error");
-        //   //     this.getView().byId("note").setValueState("Error");
-        //   // }
-        // },
-
+      
         onSaveUpdateAltro: function (oEvent) {
           if (this._validazioneAllegatoUpdate()) {
             if (tipo == "O") {
