@@ -204,20 +204,63 @@
                 </subSections>
             </ObjectPageSection>
 
-            <ObjectPageSection title="{i18n>LiquidazioneIRAP}" visible="{= ${oModelTestata>/imposta} === 'IRAP'? true : false}" id="sectionIRAP">
+            <ObjectPageSection visible="{= ${oModelTestata>/imposta} === 'IRAP'? true : false}" id="sectionIRAP">
                 <subSections>
                     <ObjectPageSubSection>
                         <blocks>
-                            <m:Table id="liquidazioneIRAP" mode="None" inset="false" width="auto" items="{oModelTestata>/}">
+                            <m:Table id="liquidazioneIRAP" mode="None" inset="false" width="auto" items="{oModelTaxRates>/}">
                                 <m:columns>
                                     <m:Column>
-                                        <m:Text text="test"/>
+                                        <m:Text text="{i18n>RegioneProv}"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="{i18n>ImponibilePrev}"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="{i18n>ValProdNetta}"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="{i18n>AliquotaIrap}"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="{i18n>ImpostaIrap}"/>
                                     </m:Column>
                                 </m:columns>
                                 <m:items>
                                     <m:ColumnListItem>
                                         <m:cells>
-                                            <m:Text text="{oModelTestata>/imposta}" />
+                                            <m:Text text="{oModelTaxRates>descrizione}" />
+                                            <m:Text text="{
+                                                path: 'oModelTaxRates>imponibilePrevidenziale',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                                    minFractionDigits: 2,
+                                                                    maxFractionDigits: 2,
+                                                                    preserveDecimals: false,
+                                                                    groupingEnabled: true
+                                                                }
+                                            }" textAlign="Right" wrapping="false"/>
+                                            <m:Text text="{
+                                                path: 'oModelTaxRates>ValoreProduzioneNetta',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                                    minFractionDigits: 2,
+                                                                    maxFractionDigits: 2,
+                                                                    preserveDecimals: false,
+                                                                    groupingEnabled: true
+                                                                }
+                                            }" textAlign="Right" wrapping="false"/>
+                                            <m:Text text="{oModelTaxRates>current}%" />
+                                            <m:Text text="{
+                                                path: 'oModelTaxRates>ImpostaIRAP',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                                    minFractionDigits: 2,
+                                                                    maxFractionDigits: 2,
+                                                                    preserveDecimals: false,
+                                                                    groupingEnabled: true
+                                                                }
+                                            }" textAlign="Right" wrapping="false"/>
                                         </m:cells>
                                     </m:ColumnListItem>
                                 </m:items>

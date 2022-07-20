@@ -33,11 +33,16 @@ sap.ui.define(
           var DataModelTestata = new JSONModel(dataTestata);
           this.getView().setModel(DataModelTestata, "oModelTestata");
 
-          this._setRedditoImponibile();
-          this._getRitenute();
-          this._setCredito();
-          this._setVersamenti();
-          this._setImpostaCredito();
+          if(imposta === 'IRES'){
+            this._setRedditoImponibile();
+            this._getRitenute();
+            this._setCredito();
+            this._setVersamenti();
+            this._setImpostaCredito();
+          }
+          else{
+            this._setTaxRates();
+          }
         },
 
         _setRedditoImponibile: function () {
@@ -130,7 +135,10 @@ sap.ui.define(
               var sdescrImpostaNetta = that
                 .getResourceBundle()
                 .getText("descrImpostaNetta");
-              var ftotImportoPerc = -(percImpostaNetta * fRedditoImponibile / 100);
+              var ftotImportoPerc = -(
+                (percImpostaNetta * fRedditoImponibile) /
+                100
+              );
 
               oImposta = {
                 descrizione: sdescrImpostaNetta,
@@ -148,13 +156,15 @@ sap.ui.define(
         },
 
         _getRitenute: function () {
-            var computationID = this.getView().getModel("oModelTestata").getData()
+          var computationID = this.getView().getModel("oModelTestata").getData()
             .computationID;
           var that = this;
 
           jQuery.ajax({
             url: jQuery.sap.getModulePath(
-              sap.ui.getCore().sapAppID + "/catalog/TaxLiquidationIRES?$filter=computation_ID eq " +  computationID
+              sap.ui.getCore().sapAppID +
+                "/catalog/TaxLiquidationIRES?$filter=computation_ID eq " +
+                computationID
             ),
             contentType: "application/json",
             type: "GET",
@@ -183,19 +193,17 @@ sap.ui.define(
           var sDescrRitenute = this.getResourceBundle().getText(
             "descrRitenute"
           );
-          var sDescrCrediti = this.getResourceBundle().getText(
-            "sDescrCrediti"
-          );
+          var sDescrCrediti = this.getResourceBundle().getText("sDescrCrediti");
           var sDetrazioni = this.getResourceBundle().getText("sDetrazioni");
 
           if (data.value.length > 0) {
             var R = data.value.filter((importo) => importo.tipologia === "R");
             var C = data.value.filter((importo) => importo.tipologia === "C");
             var D = data.value.filter((importo) => importo.tipologia === "D");
-            
-              var Rimporto = R[0].importo;
-              var Cimporto = C[0].importo;
-              var Dimporto = D[0].importo;
+
+            var Rimporto = R[0].importo;
+            var Cimporto = C[0].importo;
+            var Dimporto = D[0].importo;
             var impostaDovutaIRES =
               redditoImponibile + Rimporto + Cimporto + Dimporto;
             var aRitenute = [
@@ -225,59 +233,16 @@ sap.ui.define(
               { descrizione: sDescrRitenute, importo: 0, tipologia: "R" },
               { descrizione: sDescrCrediti, importo: 0, tipologia: "C" },
               { descrizione: sDetrazioni, importo: 0, tipologia: "D" },
-              { descrizione: sImpostaDovuta, importo: redditoImponibile, tipologia: null },
+              {
+                descrizione: sImpostaDovuta,
+                importo: redditoImponibile,
+                tipologia: null,
+              },
             ];
-
           }
-            var oModel = new JSONModel(aRitenute);
-            this.getView().setModel(oModel, "oModelRitenute");
+          var oModel = new JSONModel(aRitenute);
+          this.getView().setModel(oModel, "oModelRitenute");
         },
-
-        /*_setTotaliRitenute: function () {
-          var oModelRitenute = this.getView().getModel("oModelRitenute");
-          var data = oModelRitenute.getData();
-          var R = data.filter((importo) => importo.tipologia === "R");
-          var C = data.filter((importo) => importo.tipologia === "C");
-          var D = data.filter((importo) => importo.tipologia === "D");
-          var sImpostaDovuta = this.getResourceBundle().getText(
-            "sImpostaDovuta"
-          );
-
-          var oModelRedditoImponibile = this.getView()
-            .getModel("oModelRedditoImponibile")
-            .getData();
-          var impostaNettaIRES = oModelRedditoImponibile.filter(
-            (taxLiquidation) => taxLiquidation.percentualeNetta !== null
-          );
-          var redditoImponibile = impostaNettaIRES[0].redditoImponibile;
-
-          if (R) {
-            var Rimporto = R[0].importo;
-          } else {
-            var Rimporto = 0;
-          }
-          if (C) {
-            var Cimporto = C[0].importo;
-          } else {
-            var Cimporto = 0;
-          }
-          if (D) {
-            var Dimporto = D[0].importo;
-          } else {
-            var Dimporto = 0;
-          }
-          var impostaDovutaIRES =
-            redditoImponibile + Rimporto + Cimporto + Dimporto;
-          var aRitenute = [
-            {
-              descrizione: sImpostaDovuta,
-              importo: impostaDovutaIRES,
-              tipologia: null,
-            }
-          ];
-          data.concat(aRitenute);
-          oModelRitenute.refresh();
-        },*/
 
         onSaveIRES: function () {
           var modello = this.getView().getModel("oModelRitenute");
@@ -466,7 +431,9 @@ sap.ui.define(
               this.getResourceBundle().getText("sCreditoPrecUtil")
           )[0].importo;
           var importoVersamenti = modelloVersamenti[0].importo;
-          var modelloRitenute = this.getView().getModel("oModelRitenute").getData();
+          var modelloRitenute = this.getView()
+            .getModel("oModelRitenute")
+            .getData();
           var tipologiaNull = modelloRitenute.filter(
             (taxLiquidation) => taxLiquidation.tipologia === null
           );
@@ -475,12 +442,41 @@ sap.ui.define(
           var oImpostaCredito = [
             {
               descrizione: sImpostaCredito,
-              importo: importoVersamenti + importoCreditoUtil + importoImpostaDovutaIres,
+              importo:
+                importoVersamenti +
+                importoCreditoUtil +
+                importoImpostaDovutaIres,
             },
           ];
 
           var oModel = new JSONModel(oImpostaCredito);
           this.getView().setModel(oModel, "oModelImpostaCredito");
+        },
+
+        _setTaxRates: function () {
+          var computationID = this.getView().getModel("oModelTestata").getData()
+            .computationID;
+
+          var that = this;
+          jQuery.ajax({
+            url: jQuery.sap.getModulePath(
+              sap.ui.getCore().sapAppID +
+                "/catalog/RegionIRAPTaxLiquidation?$filter=computazioneID eq " + computationID
+            ),
+            contentType: "application/json",
+            type: "GET",
+            dataType: "json",
+            async: false,
+            success: function (oCompleteEntry) {
+              var data = oCompleteEntry.value;
+
+              var oModel = new JSONModel(data);
+              that.getView().setModel(oModel, "oModelTaxRates");
+            },
+            error: function (error) {
+              sap.m.MessageToast.show("Error");
+            },
+          });
         },
       }
     );
