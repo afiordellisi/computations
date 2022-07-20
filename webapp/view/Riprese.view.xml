@@ -60,6 +60,7 @@
               <ObjectNumber number="{path: 'oModelTotali>/TotaleCY', type: 'sap.ui.model.type.Float', formatOptions: {
                 minFractionDigits: 2,
                 maxFractionDigits: 2,
+                preserveDecimals: false,
                 groupingEnabled: true
             }}" />
             </footer>
@@ -73,6 +74,7 @@
               <ObjectNumber number="{path: 'oModelTotali>/TotaleAuto',type: 'sap.ui.model.type.Float', formatOptions: {
                   minFractionDigits: 2,
                   maxFractionDigits: 2,
+                  preserveDecimals: false,
                   groupingEnabled: true
               }}"/>
             </footer>
@@ -83,6 +85,7 @@
               <ObjectNumber number="{path: 'oModelTotali>/TotaleManuale',type: 'sap.ui.model.type.Float', formatOptions: {
                   minFractionDigits: 2,
                   maxFractionDigits: 2,
+                  preserveDecimals: false,
                   groupingEnabled: true
               }}" />
             </footer>
@@ -93,6 +96,7 @@
               <ObjectNumber number="{path: 'oModelTotali>/totaleRipresa',type: 'sap.ui.model.type.Float', formatOptions: {
                   minFractionDigits: 2,
                   maxFractionDigits: 2,
+                  preserveDecimals: false,
                   groupingEnabled: true
               }}" />
             </footer>
@@ -107,27 +111,32 @@
               <Text text="{path: 'oModelAnagraficaSingola>importoLY', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
               <Link text="{path: 'oModelAnagraficaSingola>importoCY', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" press="handleActionPress"/>
               <Text text="{oModelAnagraficaSingola>percentuale}" />
               <Text text="{path: 'oModelAnagraficaSingola>ripresaAuto', type: 'sap.ui.model.type.Float', formatOptions: {
                   minFractionDigits: 2,
                   maxFractionDigits: 2,
+                  preserveDecimals: false,
                   groupingEnabled: true
               }}" />
               <Text text="{path: 'oModelAnagraficaSingola>ripresaManuale', type: 'sap.ui.model.type.Float', formatOptions: {
                     minFractionDigits: 2,
                     maxFractionDigits: 2,
+                    preserveDecimals: false,
                     groupingEnabled: true
                 }}" />
               <Text text="{path: 'oModelAnagraficaSingola>totaleRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                       minFractionDigits: 2,
                       maxFractionDigits: 2,
+                      preserveDecimals: false,
                       groupingEnabled: true
                   }}" />
             </cells>

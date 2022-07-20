@@ -88,6 +88,7 @@
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                     <Text text="{tableModel>descrizioneConfigurazione}"/>
@@ -96,30 +97,35 @@
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                     <Text text="{path: 'tableModel>ires', type: 'sap.ui.model.type.Float',
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                     <Text text="{path: 'tableModel>valoreProduzione', type: 'sap.ui.model.type.Float',
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                     <Text text="{path: 'tableModel>irap', type: 'sap.ui.model.type.Float',
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                     <Text text="{path: 'tableModel>movement', type: 'sap.ui.model.type.Float',
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                     <Text text="{path: 'tableModel>createdAt', type: 'sap.ui.model.odata.type.DateTimeOffset',

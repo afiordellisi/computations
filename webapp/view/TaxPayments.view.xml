@@ -68,6 +68,7 @@
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
                                                                 maxFractionDigits: 2,
+                                                                preserveDecimals: false,
                                                                 groupingEnabled: true
                                                             }}"/>
                                             </footer>
@@ -96,6 +97,7 @@
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
                                                                 maxFractionDigits: 2,
+                                                                preserveDecimals: false,
                                                                 groupingEnabled: true
                                                             }}"/>
                                                 <Button icon="sap-icon://notes" press="onNotePress" visible="{=${oModelTableAllegati>note}!== '' ? true : false}"/>
@@ -147,6 +149,7 @@
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
                                                                 maxFractionDigits: 2,
+                                                                preserveDecimals: false,
                                                                 groupingEnabled: true
                                                             }}"/>
                                             </footer>
@@ -172,6 +175,7 @@
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
                                                                 maxFractionDigits: 2,
+                                                                preserveDecimals: false,
                                                                 groupingEnabled: true
                                                             }}"/>
                                                 <Button icon="sap-icon://notes" press="onNotePress" visible="{=${oModelTableAllegati>note}!== '' ? true : false}"/>
@@ -223,6 +227,7 @@
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
                                                                 maxFractionDigits: 2,
+                                                                preserveDecimals: false,
                                                                 groupingEnabled: true
                                                             }}"/>
                                             </footer>
@@ -249,6 +254,7 @@
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
                                                                 maxFractionDigits: 2,
+                                                                preserveDecimals: false,
                                                                 groupingEnabled: true
                                                             }}"/>
                                                 <Button icon="sap-icon://notes" press="onNotePress" visible="{=${oModelTableAllegati>note}!== '' ? true : false}"/>
@@ -298,6 +304,7 @@
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
                                                                 maxFractionDigits: 2,
+                                                                preserveDecimals: false,
                                                                 groupingEnabled: true
                                                             }}"/>
                                             </footer>
@@ -324,6 +331,7 @@
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
                                                                 maxFractionDigits: 2,
+                                                                preserveDecimals: false,
                                                                 groupingEnabled: true
                                                             }}"/>
                                                 <Button icon="sap-icon://notes" press="onNotePress" visible="{=${oModelTableAllegati>note}!== '' ? true : false}"/>
@@ -398,6 +406,7 @@
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
                                                                 maxFractionDigits: 2,
+                                                                preserveDecimals: false,
                                                                 groupingEnabled: true
                                                             }}"/>
 
@@ -449,6 +458,7 @@
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
                                                                 maxFractionDigits: 2,
+                                                                preserveDecimals: false,
                                                                 groupingEnabled: true
                                                             }}" />
                                         </footer>
@@ -474,6 +484,7 @@
                                                             formatOptions: {
                                                                 minFractionDigits: 2,
                                                                 maxFractionDigits: 2,
+                                                                preserveDecimals: false,
                                                                 groupingEnabled: true
                                                             }}" />
                                             <Button icon="sap-icon://notes" press="onNotePress" visible="{=${oModelTableAllegati>note}!== '' ? true : false}"/>

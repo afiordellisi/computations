@@ -78,6 +78,7 @@
                                 <m:Text text="{path: 'oModelDescrizione>/oModelImpostaHeader', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                             </template>
@@ -227,6 +228,7 @@
                                 <m:Text text="{path: 'oModelTableIRAP>valore', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
                             </template>
@@ -290,6 +292,7 @@
                                 <m:Text text="{path: 'oModelTableIRAP2>valore', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
                             </template>
@@ -370,12 +373,14 @@
                                         <m:Label text="{path: 'oModelTotali>/oModelPAImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
                                         </template>
@@ -384,12 +389,14 @@
                                         <m:Label text="{path: 'oModelTotali>/PAImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -406,6 +413,7 @@
                                         <m:Label text="{path: 'oModelTotali>/PAImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
@@ -413,6 +421,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -424,6 +433,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -435,6 +445,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -472,12 +483,14 @@
                                         <m:Label text="{path: 'oModelTotali>/oModelPDImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
                                         </template>
@@ -486,12 +499,14 @@
                                         <m:Label text="{path: 'oModelTotali>/PDImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -511,12 +526,14 @@
                                         <m:Label text="{path: 'oModelTotali>/PDImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -528,6 +545,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -539,6 +557,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -577,12 +596,14 @@
                                         <m:Label text="{path: 'oModelTotali>/oModelPDImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
                                         </template>
@@ -591,12 +612,14 @@
                                         <m:Label text="{path: 'oModelTotali>/PDIRAPImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -616,12 +639,14 @@
                                          <m:Label text="{path: 'oModelTotali>/PDIRAPImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                              <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -633,6 +658,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -644,6 +670,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -681,12 +708,14 @@
                                         <m:Label text="{path: 'oModelTotali>/oModelTAImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
                                         </template>
@@ -695,12 +724,14 @@
                                         <m:Label text="{path: 'oModelTotali>/TAImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -717,6 +748,7 @@
                                         <m:Label text="{path: 'oModelTotali>/TAImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
@@ -724,6 +756,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -735,6 +768,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -746,6 +780,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -783,12 +818,14 @@
                                         <m:Label text="{path: 'oModelTotali>/oModelTDImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
                                         </template>
@@ -797,12 +834,14 @@
                                         <m:Label text="{path: 'oModelTotali>/TDImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -819,6 +858,7 @@
                                         <m:Label text="{path: 'oModelTotali>/TDImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
@@ -826,6 +866,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -837,6 +878,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -848,6 +890,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -885,12 +928,14 @@
                                         <m:Label text="{path: 'oModelTotali>/oModelPERImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
                                         </template>
@@ -899,12 +944,14 @@
                                         <m:Label text="{path: 'oModelTotali>/PERImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>PERImpostaSingola', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -936,6 +983,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -973,12 +1021,14 @@
                                         <m:Label text="{path: 'oModelTotali>/oModelACEImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
                                         </template>
@@ -987,12 +1037,14 @@
                                         <m:Label text="{path: 'oModelTotali>/ACEImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -1009,6 +1061,7 @@
                                         <m:Label text="{path: 'oModelTotali>/ACEImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
@@ -1016,6 +1069,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -1027,6 +1081,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -1038,6 +1093,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -1077,6 +1133,7 @@
                                             <m:Text text="{path: 'oModelTotali>/oModelRedditoImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
                                         </template>
@@ -1100,6 +1157,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -1111,6 +1169,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -1122,6 +1181,7 @@
                                           <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -1159,12 +1219,14 @@
                                         <m:Label text="{path: 'oModelTotali>/oModelVPLImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
                                         </template>
@@ -1173,12 +1235,14 @@
                                         <m:Label text="{path: 'oModelTotali>/VPLImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -1195,6 +1259,7 @@
                                         <m:Label text="{path: 'oModelTotali>/VPLImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
@@ -1202,6 +1267,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -1213,6 +1279,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -1224,6 +1291,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -1263,6 +1331,7 @@
                                             <m:Text text="{path: 'oModelTotali>/oModelVPNImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
                                         </template>
@@ -1271,12 +1340,14 @@
                                         <m:Label text="{path: 'oModelTotali>/VPNImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
                                             <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -1294,6 +1365,7 @@
                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -1305,6 +1377,7 @@
                                             <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>
@@ -1316,6 +1389,7 @@
                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
                                         </template>

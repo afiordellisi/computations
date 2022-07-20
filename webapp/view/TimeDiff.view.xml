@@ -48,6 +48,7 @@
                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }
                             }" textAlign="Right" wrapping="false"/>
@@ -62,6 +63,7 @@
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }
                                             }" change=".onValueChanged" textAlign="End" type="Float" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
@@ -76,6 +78,7 @@
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }
                                             }" change=".onValueChanged" textAlign="End" type="Float" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
@@ -90,6 +93,7 @@
                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }
                             }" textAlign="Right" wrapping="false"/>
@@ -104,6 +108,7 @@
                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }
                             }" textAlign="Right" wrapping="false"/>
@@ -118,6 +123,7 @@
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }
                                             }" change=".onValueChanged" textAlign="End" type="Float" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
@@ -132,6 +138,7 @@
                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }
                             }" textAlign="Right" wrapping="false"/>
@@ -146,6 +153,7 @@
                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }
                             }" textAlign="Right" wrapping="false"/>
@@ -160,6 +168,7 @@
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }
                                             }" change=".onValueChanged" textAlign="End"  type="Float" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
@@ -174,6 +183,7 @@
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }
                                             }" change=".onValueChanged" textAlign="End" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
@@ -188,6 +198,7 @@
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }
                                             }" change=".onValueChanged" textAlign="End" type="Float" editable="{= ${oModelTiming>descrizioneRipresa} === 'Totale'? false : true}"/>
