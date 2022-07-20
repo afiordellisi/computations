@@ -47,6 +47,7 @@
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
               <Link text="{oModelTableAllegati>fileName}" press="_linkAllegati" wrapping="true"/>

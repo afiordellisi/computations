@@ -109,6 +109,7 @@
                                                         <Text text="{path: 'tableModel>utilePerditaCY', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" /> 
                                                         <Text text="{path: 'tableModel>createdAt', type: 'sap.ui.model.odata.type.DateTimeOffset',
@@ -379,6 +380,7 @@
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
+                                                    preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }
                                             }"
