@@ -349,109 +349,157 @@ sap.ui.define(
             dataType: "json",
             async: false,
             success: function (oCompleteEntry) {
-              var arr = oCompleteEntry.value;
-              var PA = arr.filter(
-                (codiceRipresa) =>
-                  codiceRipresa.tipologia === "P" &&
-                  codiceRipresa.tipoVariazione === "A"
-              );
-              var PD = arr.filter(
-                (codiceRipresa) =>
-                  codiceRipresa.tipologia === "P" &&
-                  codiceRipresa.tipoVariazione === "D"
-              );
-              var PDIRAP = arr.filter(
-                (codiceRipresa) =>
-                  codiceRipresa.tipologia === "P" &&
-                  codiceRipresa.tipoVariazione === "D" &&
-                  codiceRipresa.produzione !== "S"
-              );
-              var VPL = arr.filter(
-                (codiceRipresa) => codiceRipresa.produzione === "S"
-              );
-              var TA = arr.filter(
-                (codiceRipresa) =>
-                  codiceRipresa.tipologia === "T" &&
-                  codiceRipresa.tipoVariazione === "A"
-              );
-              var TD = arr.filter(
-                (codiceRipresa) =>
-                  codiceRipresa.tipologia === "T" &&
-                  codiceRipresa.tipoVariazione === "D"
-              );
-              var PER = arr.filter(
-                (codiceRipresa) => codiceRipresa.tipoVariazione === "PER"
-              );
-              var ACE = arr.filter(
-                (codiceRipresa) => codiceRipresa.tipoVariazione === "ACE"
-              );
-
-              var data = {
-                oModelPA: PA.map((arr) => {
-                  return {
-                    codiceRipresa: arr.codiceRipresa,
-                    descrizioneRipresa: arr.descrizioneRipresa,
-                    imponibile: arr.imponibile,
-                    PAImpostaSingola: (arr.imponibile * percentuale) / 100,
-                  };
-                }),
-                oModelPD: PD.map((arr) => {
-                  return {
-                    codiceRipresa: arr.codiceRipresa,
-                    descrizioneRipresa: arr.descrizioneRipresa,
-                    imponibile: arr.imponibile,
-                    PDImpostaSingola: (arr.imponibile * percentuale) / 100,
-                  };
-                }),
-                oModelTA: TA.map((arr) => {
-                  return {
-                    codiceRipresa: arr.codiceRipresa,
-                    descrizioneRipresa: arr.descrizioneRipresa,
-                    imponibile: arr.imponibile,
-                    TAImpostaSingola: (arr.imponibile * percentuale) / 100,
-                  };
-                }),
-                oModelTD: TD.map((arr) => {
-                  return {
-                    codiceRipresa: arr.codiceRipresa,
-                    descrizioneRipresa: arr.descrizioneRipresa,
-                    imponibile: arr.imponibile,
-                    TDImpostaSingola: (arr.imponibile * percentuale) / 100,
-                  };
-                }),
-                oModelPER: PER.map((arr) => {
-                  return {
-                    codiceRipresa: arr.codiceRipresa,
-                    descrizioneRipresa: arr.descrizioneRipresa,
-                    imponibile: arr.imponibile,
-                    PERImpostaSingola: (arr.imponibile * percentuale) / 100,
-                  };
-                }),
-                oModelACE: ACE.map((arr) => {
-                  return {
-                    codiceRipresa: arr.codiceRipresa,
-                    descrizioneRipresa: arr.descrizioneRipresa,
-                    imponibile: arr.imponibile,
-                    ACEImpostaSingola: (arr.imponibile * percentuale) / 100,
-                  };
-                }),
-                oModelPDIRAP: PDIRAP.map((arr) => {
-                  return {
-                    codiceRipresa: arr.codiceRipresa,
-                    descrizioneRipresa: arr.descrizioneRipresa,
-                    imponibile: arr.imponibile,
-                    PDIRAPImpostaSingola: (arr.imponibile * percentuale) / 100,
-                  };
-                }),
-                oModelVPL: VPL.map((arr) => {
-                  return {
-                    codiceRipresa: arr.codiceRipresa,
-                    descrizioneRipresa: arr.descrizioneRipresa,
-                    imponibile: arr.imponibile,
-                    VPLImpostaSingola: (arr.imponibile * percentuale) / 100,
-                  };
-                }),
-              };
+                var arr = oCompleteEntry.value;
+                var PA = arr.filter(
+                  (codiceRipresa) =>
+                    codiceRipresa.tipologia === "P" &&
+                    codiceRipresa.tipoVariazione === "A"
+                );
+                var PD = arr.filter(
+                  (codiceRipresa) =>
+                    codiceRipresa.tipologia === "P" &&
+                    codiceRipresa.tipoVariazione === "D"
+                );
+                var PDIRAP = arr.filter(
+                  (codiceRipresa) =>
+                    codiceRipresa.tipologia === "P" &&
+                    codiceRipresa.tipoVariazione === "D" &&
+                    codiceRipresa.produzione !== "S"
+                );
+                var VPL = arr.filter(
+                  (codiceRipresa) => codiceRipresa.produzione === "S"
+                );
+                var TA = arr.filter(
+                  (codiceRipresa) =>
+                    codiceRipresa.tipologia === "T" &&
+                    codiceRipresa.tipoVariazione === "A"
+                );
+                var TD = arr.filter(
+                  (codiceRipresa) =>
+                    codiceRipresa.tipologia === "T" &&
+                    codiceRipresa.tipoVariazione === "D"
+                );
+                var PER = arr.filter(
+                  (codiceRipresa) => codiceRipresa.tipoVariazione === "PER"
+                );
+                var ACE = arr.filter(
+                  (codiceRipresa) => codiceRipresa.tipoVariazione === "ACE"
+                );
+  
+                var data = {
+                  oModelPA: PA.map((arr) => {
+                    return {
+                      codiceRipresa: arr.codiceRipresa,
+                      descrizioneRipresa: arr.descrizioneRipresa,
+                      imponibile: arr.imponibile,
+                      UNICO: arr.UNICO,
+                      correnti: arr.correnti,
+                      currentAvg: arr.currentAvg,
+                      differite: arr.differite,
+                      impostaPercRipresa: arr.impostaPercRipresa,
+                      produzione: arr.produzione,
+                      totale: arr.totale
+                    };
+                  }),
+                  oModelPD: PD.map((arr) => {
+                    return {
+                      codiceRipresa: arr.codiceRipresa,
+                      descrizioneRipresa: arr.descrizioneRipresa,
+                      imponibile: arr.imponibile,
+                      UNICO: arr.UNICO,
+                      correnti: arr.correnti,
+                      currentAvg: arr.currentAvg,
+                      differite: arr.differite,
+                      impostaPercRipresa: arr.impostaPercRipresa,
+                      produzione: arr.produzione,
+                      totale: arr.totale
+                    };
+                  }),
+                  oModelTA: TA.map((arr) => {
+                    return {
+                      codiceRipresa: arr.codiceRipresa,
+                      descrizioneRipresa: arr.descrizioneRipresa,
+                      imponibile: arr.imponibile,
+                      UNICO: arr.UNICO,
+                      correnti: arr.correnti,
+                      currentAvg: arr.currentAvg,
+                      differite: arr.differite,
+                      impostaPercRipresa: arr.impostaPercRipresa,
+                      produzione: arr.produzione,
+                      totale: arr.totale
+                    };
+                  }),
+                  oModelTD: TD.map((arr) => {
+                    return {
+                      codiceRipresa: arr.codiceRipresa,
+                      descrizioneRipresa: arr.descrizioneRipresa,
+                      imponibile: arr.imponibile,
+                      UNICO: arr.UNICO,
+                      correnti: arr.correnti,
+                      currentAvg: arr.currentAvg,
+                      differite: arr.differite,
+                      impostaPercRipresa: arr.impostaPercRipresa,
+                      produzione: arr.produzione,
+                      totale: arr.totale
+                    };
+                  }),
+                  oModelPER: PER.map((arr) => {
+                    return {
+                      codiceRipresa: arr.codiceRipresa,
+                      descrizioneRipresa: arr.descrizioneRipresa,
+                      imponibile: arr.imponibile,
+                      UNICO: arr.UNICO,
+                      correnti: arr.correnti,
+                      currentAvg: arr.currentAvg,
+                      differite: arr.differite,
+                      impostaPercRipresa: arr.impostaPercRipresa,
+                      produzione: arr.produzione,
+                      totale: arr.totale
+                    };
+                  }),
+                  oModelACE: ACE.map((arr) => {
+                    return {
+                      codiceRipresa: arr.codiceRipresa,
+                      descrizioneRipresa: arr.descrizioneRipresa,
+                      imponibile: arr.imponibile,
+                      UNICO: arr.UNICO,
+                      correnti: arr.correnti,
+                      currentAvg: arr.currentAvg,
+                      differite: arr.differite,
+                      impostaPercRipresa: arr.impostaPercRipresa,
+                      produzione: arr.produzione,
+                      totale: arr.totale
+                    };
+                  }),
+                  oModelPDIRAP: PDIRAP.map((arr) => {
+                    return {
+                      codiceRipresa: arr.codiceRipresa,
+                      descrizioneRipresa: arr.descrizioneRipresa,
+                      imponibile: arr.imponibile,
+                      UNICO: arr.UNICO,
+                      correnti: arr.correnti,
+                      currentAvg: arr.currentAvg,
+                      differite: arr.differite,
+                      impostaPercRipresa: arr.impostaPercRipresa,
+                      produzione: arr.produzione,
+                      totale: arr.totale
+                    };
+                  }),
+                  oModelVPL: VPL.map((arr) => {
+                    return {
+                      codiceRipresa: arr.codiceRipresa,
+                      descrizioneRipresa: arr.descrizioneRipresa,
+                      imponibile: arr.imponibile,
+                      UNICO: arr.UNICO,
+                      correnti: arr.correnti,
+                      currentAvg: arr.currentAvg,
+                      differite: arr.differite,
+                      impostaPercRipresa: arr.impostaPercRipresa,
+                      produzione: arr.produzione,
+                      totale: arr.totale
+                    };
+                  }),
+                };
               var DataModel = new sap.ui.model.json.JSONModel();
               DataModel.setData(data);
               that.getView().setModel(DataModel, "oModelAnagrafica");
@@ -577,6 +625,7 @@ sap.ui.define(
                 oModelVPNImponibile: VPN,
                 PAImposta: (PAImponibile.imponibile * percentuale) / 100,
                 PDImposta: (PDImponibile.imponibile * percentuale) / 100,
+                PDIRAPImposta: (PDIRAPImponibile.imponibile * percentuale) / 100,
                 TAImposta: (TAImponibile.imponibile * percentuale) / 100,
                 TDImposta: (TDImponibile.imponibile * percentuale) / 100,
                 PERImposta:
@@ -681,7 +730,13 @@ sap.ui.define(
                     codiceRipresa: arr.codiceRipresa,
                     descrizioneRipresa: arr.descrizioneRipresa,
                     imponibile: arr.imponibile,
-                    PAImpostaSingola: (arr.imponibile * percentuale) / 100,
+                    UNICO: arr.UNICO,
+                    correnti: arr.correnti,
+                    currentAvg: arr.currentAvg,
+                    differite: arr.differite,
+                    impostaPercRipresa: arr.impostaPercRipresa,
+                    produzione: arr.produzione,
+                    totale: arr.totale
                   };
                 }),
                 oModelPD: PD.map((arr) => {
@@ -689,7 +744,13 @@ sap.ui.define(
                     codiceRipresa: arr.codiceRipresa,
                     descrizioneRipresa: arr.descrizioneRipresa,
                     imponibile: arr.imponibile,
-                    PDImpostaSingola: (arr.imponibile * percentuale) / 100,
+                    UNICO: arr.UNICO,
+                    correnti: arr.correnti,
+                    currentAvg: arr.currentAvg,
+                    differite: arr.differite,
+                    impostaPercRipresa: arr.impostaPercRipresa,
+                    produzione: arr.produzione,
+                    totale: arr.totale
                   };
                 }),
                 oModelTA: TA.map((arr) => {
@@ -697,7 +758,13 @@ sap.ui.define(
                     codiceRipresa: arr.codiceRipresa,
                     descrizioneRipresa: arr.descrizioneRipresa,
                     imponibile: arr.imponibile,
-                    TAImpostaSingola: (arr.imponibile * percentuale) / 100,
+                    UNICO: arr.UNICO,
+                    correnti: arr.correnti,
+                    currentAvg: arr.currentAvg,
+                    differite: arr.differite,
+                    impostaPercRipresa: arr.impostaPercRipresa,
+                    produzione: arr.produzione,
+                    totale: arr.totale
                   };
                 }),
                 oModelTD: TD.map((arr) => {
@@ -705,7 +772,13 @@ sap.ui.define(
                     codiceRipresa: arr.codiceRipresa,
                     descrizioneRipresa: arr.descrizioneRipresa,
                     imponibile: arr.imponibile,
-                    TDImpostaSingola: (arr.imponibile * percentuale) / 100,
+                    UNICO: arr.UNICO,
+                    correnti: arr.correnti,
+                    currentAvg: arr.currentAvg,
+                    differite: arr.differite,
+                    impostaPercRipresa: arr.impostaPercRipresa,
+                    produzione: arr.produzione,
+                    totale: arr.totale
                   };
                 }),
                 oModelPER: PER.map((arr) => {
@@ -713,7 +786,13 @@ sap.ui.define(
                     codiceRipresa: arr.codiceRipresa,
                     descrizioneRipresa: arr.descrizioneRipresa,
                     imponibile: arr.imponibile,
-                    PERImpostaSingola: (arr.imponibile * percentuale) / 100,
+                    UNICO: arr.UNICO,
+                    correnti: arr.correnti,
+                    currentAvg: arr.currentAvg,
+                    differite: arr.differite,
+                    impostaPercRipresa: arr.impostaPercRipresa,
+                    produzione: arr.produzione,
+                    totale: arr.totale
                   };
                 }),
                 oModelACE: ACE.map((arr) => {
@@ -721,7 +800,13 @@ sap.ui.define(
                     codiceRipresa: arr.codiceRipresa,
                     descrizioneRipresa: arr.descrizioneRipresa,
                     imponibile: arr.imponibile,
-                    ACEImpostaSingola: (arr.imponibile * percentuale) / 100,
+                    UNICO: arr.UNICO,
+                    correnti: arr.correnti,
+                    currentAvg: arr.currentAvg,
+                    differite: arr.differite,
+                    impostaPercRipresa: arr.impostaPercRipresa,
+                    produzione: arr.produzione,
+                    totale: arr.totale
                   };
                 }),
                 oModelPDIRAP: PDIRAP.map((arr) => {
@@ -729,7 +814,13 @@ sap.ui.define(
                     codiceRipresa: arr.codiceRipresa,
                     descrizioneRipresa: arr.descrizioneRipresa,
                     imponibile: arr.imponibile,
-                    PDIRAPImpostaSingola: (arr.imponibile * percentuale) / 100,
+                    UNICO: arr.UNICO,
+                    correnti: arr.correnti,
+                    currentAvg: arr.currentAvg,
+                    differite: arr.differite,
+                    impostaPercRipresa: arr.impostaPercRipresa,
+                    produzione: arr.produzione,
+                    totale: arr.totale
                   };
                 }),
                 oModelVPL: VPL.map((arr) => {
@@ -737,7 +828,13 @@ sap.ui.define(
                     codiceRipresa: arr.codiceRipresa,
                     descrizioneRipresa: arr.descrizioneRipresa,
                     imponibile: arr.imponibile,
-                    VPLImpostaSingola: (arr.imponibile * percentuale) / 100,
+                    UNICO: arr.UNICO,
+                    correnti: arr.correnti,
+                    currentAvg: arr.currentAvg,
+                    differite: arr.differite,
+                    impostaPercRipresa: arr.impostaPercRipresa,
+                    produzione: arr.produzione,
+                    totale: arr.totale
                   };
                 }),
               };

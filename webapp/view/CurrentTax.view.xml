@@ -387,7 +387,7 @@
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
-                                            <m:Text text="{path: 'oModelAnagrafica>PAImpostaSingola', type: 'sap.ui.model.type.Float', formatOptions: {
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
@@ -402,23 +402,41 @@
                                     </Column>
 
                                     <Column width="10%" resizable="false" hAlign="End">
-                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                        <m:Label text="{path: 'oModelTotali>/PAImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" textAlign="End" width="100%"/>
                                         <template>
-                                            <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
+                                            <!-- <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/> -->
+                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column width="10%" resizable="false" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>differite}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column resizable="false" width="10%" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>totale}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
                                 </columns>
@@ -471,7 +489,7 @@
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
-                                            <m:Text text="{path: 'oModelAnagrafica>PDImpostaSingola', type: 'sap.ui.model.type.Float', formatOptions: {
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
@@ -486,23 +504,43 @@
                                     </Column>
 
                                     <Column width="10%" resizable="false" hAlign="End">
-                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <!-- <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
                                             <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
+                                        </template> -->
+                                        <m:Label text="{path: 'oModelTotali>/PDImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" textAlign="End" width="100%"/>
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column width="10%" resizable="false" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>differite}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column resizable="false" width="10%" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>totale}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
                                 </columns>
@@ -556,7 +594,7 @@
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
-                                            <m:Text text="{path: 'oModelAnagrafica>PDIRAPImpostaSingola', type: 'sap.ui.model.type.Float', formatOptions: {
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
@@ -571,23 +609,43 @@
                                     </Column>
 
                                     <Column width="10%" resizable="false" hAlign="End">
-                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <!-- <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
                                             <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
+                                        </template> -->
+                                         <m:Label text="{path: 'oModelTotali>/PDIRAPImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" textAlign="End" width="100%"/>
+                                        <template>
+                                             <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column width="10%" resizable="false" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>differite}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column resizable="false" width="10%" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>totale}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
                                 </columns>
@@ -633,14 +691,14 @@
                                                 }}" />
                                         </template>
                                     </Column>
-                                    <Column width="10%" resizable="false" id="colonnaImposta3" hAlign="End">
+                                    <Column width="10%" resizable="false" hAlign="End">
                                         <m:Label text="{path: 'oModelTotali>/TAImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
-                                            <m:Text text="{path: 'oModelAnagrafica>TAImpostaSingola', type: 'sap.ui.model.type.Float', formatOptions: {
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
@@ -655,23 +713,41 @@
                                     </Column>
 
                                     <Column width="10%" resizable="false" hAlign="End">
-                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                        <m:Label text="{path: 'oModelTotali>/TAImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" textAlign="End" width="100%"/>
                                         <template>
-                                            <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
+                                            <!-- <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/> -->
+                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column width="10%" resizable="false" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{= - ${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column resizable="false" width="10%" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>totale}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
                                 </columns>
@@ -688,7 +764,7 @@
                         <uxap:blocks>
                             <Table id="table5" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelTD'}" enableColumnFreeze="true" visibleRowCount="{path:'oModelAnagrafica>/oModelTD/length'}" showColumnVisibilityMenu="false" enableColumnReordering="false">
                                 <columns>
-                                    <Column resizable="false" width="10%">
+                                   <Column resizable="false" width="10%">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
                                             <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
@@ -717,14 +793,14 @@
                                                 }}" />
                                         </template>
                                     </Column>
-                                    <Column width="10%" resizable="false" id="colonnaImposta4" hAlign="End">
+                                    <Column width="10%" resizable="false" hAlign="End">
                                         <m:Label text="{path: 'oModelTotali>/TDImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
-                                            <m:Text text="{path: 'oModelAnagrafica>TDImpostaSingola', type: 'sap.ui.model.type.Float', formatOptions: {
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
@@ -739,23 +815,41 @@
                                     </Column>
 
                                     <Column width="10%" resizable="false" hAlign="End">
-                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                        <m:Label text="{path: 'oModelTotali>/TDImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" textAlign="End" width="100%"/>
                                         <template>
-                                            <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
+                                            <!-- <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/> -->
+                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column width="10%" resizable="false" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{= - ${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column resizable="false" width="10%" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>totale}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
                                 </columns>
@@ -839,7 +933,11 @@
                                     <Column resizable="false" width="10%" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>totale}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
                                 </columns>
@@ -885,14 +983,14 @@
                                                 }}" />
                                         </template>
                                     </Column>
-                                    <Column width="10%" resizable="false" id="colonnaImposta6" hAlign="End">
+                                    <Column width="10%" resizable="false" hAlign="End">
                                         <m:Label text="{path: 'oModelTotali>/ACEImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
-                                            <m:Text text="{path: 'oModelAnagrafica>ACEImpostaSingola', type: 'sap.ui.model.type.Float', formatOptions: {
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
@@ -900,31 +998,48 @@
                                         </template>
                                     </Column>
                                     <Column resizable="false" hAlign="End" width="10%">
-                                        <m:Label text="" textAlign="Center" width="100%" />
+                                        <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
                                             <m:Text text="{oModelAnagrafica>unico}"/>
                                         </template>
                                     </Column>
 
                                     <Column width="10%" resizable="false" hAlign="End">
-                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                        <m:Label text="{path: 'oModelTotali>/ACEImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" textAlign="End" width="100%"/>
                                         <template>
-                                            <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
+                                            <!-- <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/> -->
+                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column width="10%" resizable="false" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <!-- da prevedere il campo differite con segno opposto al valore di correnti nel caso di riprese ti tipo TMG -->
-                                            <m:Text text="{oModelAnagrafica>differite}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column resizable="false" width="10%" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>totale}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
                                 </columns>
@@ -982,21 +1097,33 @@
                                     <Column width="10%" resizable="false" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>correnti}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column width="10%" resizable="false" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>differite}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column resizable="false" width="10%" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>totale}"/>
+                                          <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
                                 </columns>
@@ -1013,7 +1140,7 @@
                         <uxap:blocks>
                             <Table id="table9" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelVPL'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelAnagrafica>/oModelVPL/length'}" showColumnVisibilityMenu="false" enableColumnReordering="false">
                                 <columns>
-                                    <Column resizable="false" width="10%">
+                                   <Column resizable="false" width="10%">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
                                             <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
@@ -1049,7 +1176,7 @@
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
-                                            <m:Text text="{path: 'oModelAnagrafica>VPLImpostaSingola', type: 'sap.ui.model.type.Float', formatOptions: {
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
@@ -1064,23 +1191,41 @@
                                     </Column>
 
                                     <Column width="10%" resizable="false" hAlign="End">
-                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                        <m:Label text="{path: 'oModelTotali>/VPLImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}" textAlign="End" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>correnti}"/>
+                                            <!-- <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/> -->
+                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column width="10%" resizable="false" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>differite}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column resizable="false" width="10%" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>totale}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
                                 </columns>
@@ -1129,7 +1274,7 @@
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                                         <template>
-                                            <m:Text text="{path: 'oModelAnagrafica>VPNImpostaSingola', type: 'sap.ui.model.type.Float', formatOptions: {
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
@@ -1146,21 +1291,33 @@
                                     <Column width="10%" resizable="false" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>correnti}"/>
+                                           <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column width="10%" resizable="false" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>differite}"/>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
 
                                     <Column resizable="false" width="10%" hAlign="End">
                                         <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
-                                            <m:Text text="{oModelAnagrafica>totale}"/>
+                                           <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    groupingEnabled: true
+                                                }}"/>
                                         </template>
                                     </Column>
                                 </columns>
