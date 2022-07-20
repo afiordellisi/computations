@@ -142,7 +142,35 @@ sap.ui.define(
                   },
                 ];
               }
-              if (O.length == 1) {
+             
+              else {
+                var oAltreVariazioni = O.filter(
+                  (versamento) => versamento.descrizione === "Altre variazioni"
+                )[0];
+                var oPriorYearAdjustments = O.filter(
+                  (versamento) =>
+                    versamento.descrizione === "Prior Year Adjustments"
+                )[0];
+                if (!oAltreVariazioni) {
+                 var oAltreVariazioni = {
+                    ID: "",
+                    descrizione: that
+                      .getResourceBundle()
+                      .getText("otherVariation"),
+                    importo: null,
+                    note: "",
+                    allegato: "",
+                  };
+                }
+                if (!oPriorYearAdjustments) {
+                  var  oPriorYearAdjustments = {
+                    ID: "",
+                    descrizione: that.getResourceBundle().getText("adj"),
+                    importo: null,
+                    note: "",
+                    allegato: "",
+                  };
+                }
                 O = [
                   {
                     ID: "",
@@ -152,18 +180,20 @@ sap.ui.define(
                     allegato: "",
                   },
                   {
-                    ID: "",
+                    ID: oPriorYearAdjustments.ID,
                     descrizione: that.getResourceBundle().getText("adj"),
-                    importo: null,
-                    note: "",
-                    allegato: "",
+                    importo: oPriorYearAdjustments.importo,
+                    note: oPriorYearAdjustments.note,
+                    allegato: oPriorYearAdjustments.fileName,
                   },
                   {
-                    ID: O[0].ID,
-                    descrizione: O[0].descrizione,
-                    importo: O[0].importo,
-                    note: O[0].note,
-                    allegato: O[0].fileName,
+                    ID: oAltreVariazioni.ID,
+                    descrizione: that
+                      .getResourceBundle()
+                      .getText("otherVariation"),
+                    importo: oAltreVariazioni.importo,
+                    note: oAltreVariazioni.note,
+                    allegato: oAltreVariazioni.fileName,
                   },
                   {
                     ID: "",
@@ -174,38 +204,7 @@ sap.ui.define(
                   },
                 ];
               }
-              if (O.length == 2) {
-                O = [
-                  {
-                    ID: "",
-                    descrizione: that.getResourceBundle().getText("credDeb"),
-                    importo: null,
-                    note: "",
-                    allegato: "",
-                  },
-                  {
-                    ID: O[1].ID,
-                    descrizione: that.getResourceBundle().getText("adj"),
-                    importo: O[1].importo,
-                    note: O[1].note,
-                    allegato: O[1].fileName,
-                  },
-                  {
-                    ID: O[0].ID,
-                    descrizione: O[0].descrizione,
-                    importo: O[0].importo,
-                    note: O[0].note,
-                    allegato: O[0].fileName,
-                  },
-                  {
-                    ID: "",
-                    descrizione: that.getResourceBundle().getText("UNICOLY"),
-                    importo: null,
-                    note: "",
-                    allegato: "",
-                  },
-                ];
-              }
+            
               var data = {
                 oModelV: V, //versamenti
                 oModelC: C, //compensazioni
@@ -1148,8 +1147,6 @@ sap.ui.define(
           );
           var oAnnoAllegato = this.getView().byId("annoAllegatoTax");
 
-          
-
           oDescriptionAllegato.setValueState();
           oImportoAllegato.setValueState();
           //oNota.setValueState();
@@ -1178,10 +1175,10 @@ sap.ui.define(
           if (!oCodiceTributoAllegato.getValue()) {
             oCodiceTributoAllegato.setValueState("Error");
           }
-      
+
           if (!oAnnoAllegato.getSelectedKey() && oAnnoAllegato.getValue()) {
             oAnnoAllegato.setValueState("Error");
-          } 
+          }
           // if (!oAnnoAllegato.getValue()) {
           //   oAnnoAllegato.setValueState("Error");
           // }
@@ -1192,7 +1189,8 @@ sap.ui.define(
             oDataAllegato.getValue() &&
             oRataAllegato.getValue() &&
             oCodiceTributoAllegato.getValue() &&
-            (oAnnoAllegato.getSelectedKey() && oAnnoAllegato.getValue())
+            oAnnoAllegato.getSelectedKey() &&
+            oAnnoAllegato.getValue()
           )
             return true;
           else return false;
