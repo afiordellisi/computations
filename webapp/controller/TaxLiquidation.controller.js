@@ -288,11 +288,11 @@ sap.ui.define(
             data: taxLiquidationIRES,
             async: false,
             success: function (oCompleteEntry) {
-              sap.m.MessageToast.show("success");
+              sap.m.MessageToast.show("Success");
               that._getRitenute();
             },
             error: function (error) {
-              sap.m.MessageToast.show("error");
+              sap.m.MessageToast.show("Error");
             },
           });
         },
