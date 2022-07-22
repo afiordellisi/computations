@@ -189,6 +189,26 @@ sap.ui.define(
                 imposta: this.getView().byId("impostaButton").getSelectedKey(),
               },
             ];
+            var oModelIrap3 = [
+                {
+                  descrizione: this.getResourceBundle().getText("interessiAttivi"),
+                  raggruppamento: "C16",
+                  valore: "",
+                  imposta: this.getView().byId("impostaButton").getSelectedKey(),
+                },
+                {
+                  descrizione: this.getResourceBundle().getText("interessiPassivi"),
+                  raggruppamento: "C17",
+                  valore: "",
+                  imposta: this.getView().byId("impostaButton").getSelectedKey(),
+                },
+                {
+                  descrizione: this.getResourceBundle().getText("margineInteresse"),
+                  raggruppamento: null,
+                  valore: "",
+                  imposta: this.getView().byId("impostaButton").getSelectedKey(),
+                }
+              ];
             this.getView().setModel(
               new JSONModel({
                 oModelIrap,
@@ -202,6 +222,13 @@ sap.ui.define(
               }),
               "oModelTableIRAP2"
             );
+
+            this.getView().setModel(
+                new JSONModel({
+                  oModelIrap3,
+                }),
+                "oModelTableIRAP3"
+              );
           } else {
             this.getView().byId("tableIRAP2").setVisible(false);
             this.getView().byId("tableIRAP").setVisible(false);
