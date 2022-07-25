@@ -33,15 +33,17 @@ sap.ui.define(
           var DataModelTestata = new JSONModel(dataTestata);
           this.getView().setModel(DataModelTestata, "oModelTestata");
 
-          if(imposta === 'IRES'){
+          if (imposta === "IRES") {
             this._setRedditoImponibile();
             this._getRitenute();
             this._setCredito();
             this._setVersamenti();
             this._setImpostaCredito();
-          }
-          else{
+          } else {
             this._setTaxRates();
+            this._setCredito();
+            this._setVersamenti();
+            this._setImpostaCredito();
           }
         },
 
@@ -461,7 +463,8 @@ sap.ui.define(
           jQuery.ajax({
             url: jQuery.sap.getModulePath(
               sap.ui.getCore().sapAppID +
-                "/catalog/RegionIRAPTaxLiquidation?$filter=computazioneID eq " + computationID
+                "/catalog/RegionIRAPTaxLiquidation?$filter=computazioneID eq " +
+                computationID
             ),
             contentType: "application/json",
             type: "GET",
@@ -470,13 +473,53 @@ sap.ui.define(
             success: function (oCompleteEntry) {
               var data = oCompleteEntry.value;
 
+              var oTotale = [
+                {
+                  ID: null,
+                  descrizione: "Totali",
+                  imponibilePrevidenziale: 0,
+                  ValoreProduzioneNetta: 0,
+                  current: 0,
+                  ImpostaIRAP: 0
+                },
+              ];
+
+              data.push(oTotale[0]);
+
               var oModel = new JSONModel(data);
               that.getView().setModel(oModel, "oModelTaxRates");
+              that._setTotali();
             },
             error: function (error) {
               sap.m.MessageToast.show("Error");
             },
           });
+        },
+
+        _setTotali: function () {
+          var oModel = this.getView().getModel("oModelTaxRates");
+          var data = oModel.getData();
+          
+          var imponibilePrevidenzialeTot = data[0].imponibilePrevidenzialeTot;
+          var currentAvg = data[0].currentAvg;
+          var ImpostaIRAPTot = data[0].ImpostaIRAPTot;
+
+          var oTotale = 
+            {
+              ID: null,
+              descrizione: "Totali",
+              imponibilePrevidenziale: imponibilePrevidenzialeTot,
+              ValoreProduzioneNetta: 0,
+              current: currentAvg,
+              ImpostaIRAP: ImpostaIRAPTot
+            };
+
+          for(var i = 0; i < data.length; i++){
+            oTotale.ValoreProduzioneNetta += data[i].ValoreProduzioneNetta;
+          }
+
+          oModel.getData()[data.length - 1] = oTotale;
+          oModel.refresh();
         },
       }
     );

@@ -16,9 +16,75 @@
         </headerTitle>
       
         <sections>
-            <ObjectPageSection visible="{= ${oModelTestata>/imposta} === 'IRES'? true : false}" id="sectionIRES">
+            <ObjectPageSection visible="{= ${oModelTestata>/imposta} === 'IRAP'? true : false}" id="sectionIRAP">
                 <subSections>
                     <ObjectPageSubSection>
+                        <blocks>
+                            <m:Table id="liquidazioneIRAP" mode="None" inset="false" width="auto" items="{oModelTaxRates>/}">
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text="{i18n>RegioneProv}"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="{i18n>ImponibilePrev}"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="{i18n>ValProdNetta}"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="{i18n>AliquotaIrap}"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="{i18n>ImpostaIrap}"/>
+                                    </m:Column>
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:Text text="{oModelTaxRates>descrizione}" />
+                                            <m:Text text="{
+                                                path: 'oModelTaxRates>imponibilePrevidenziale',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                                    minFractionDigits: 2,
+                                                                    maxFractionDigits: 2,
+                                                                    preserveDecimals: false,
+                                                                    groupingEnabled: true
+                                                                }
+                                            }" textAlign="Right" wrapping="false"/>
+                                            <m:Text text="{
+                                                path: 'oModelTaxRates>ValoreProduzioneNetta',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                                    minFractionDigits: 2,
+                                                                    maxFractionDigits: 2,
+                                                                    preserveDecimals: false,
+                                                                    groupingEnabled: true
+                                                                }
+                                            }" textAlign="Right" wrapping="false"/>
+                                            <m:Text text="{oModelTaxRates>current}%" />
+                                            <m:Text text="{
+                                                path: 'oModelTaxRates>ImpostaIRAP',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                                    minFractionDigits: 2,
+                                                                    maxFractionDigits: 2,
+                                                                    preserveDecimals: false,
+                                                                    groupingEnabled: true
+                                                                }
+                                            }" textAlign="Right" wrapping="false"/>
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+            <ObjectPageSection  id="sectionIRES">
+                <subSections>
+                    <ObjectPageSubSection visible="{= ${oModelTestata>/imposta} === 'IRES'? true : false}">
                         <blocks>
                             <m:Table id="imponibile" mode="None" inset="false" width="auto" items="{oModelRedditoImponibile>/}">
                                 <m:columns>
@@ -55,7 +121,7 @@
                     </ObjectPageSubSection>
                 </subSections>
                 <subSections>
-                    <ObjectPageSubSection>
+                    <ObjectPageSubSection visible="{= ${oModelTestata>/imposta} === 'IRES'? true : false}">
                         <blocks>
                             <m:Table id="ritenute" mode="None" inset="false" width="auto" items="{oModelRitenute>/}">
                                 <m:columns>
@@ -187,72 +253,6 @@
                                             <m:Text text="" />
                                             <m:Text text="{
                                                 path: 'oModelImpostaCredito>importo',
-                                                type: 'sap.ui.model.type.Float',
-                                                formatOptions: {
-                                                                    minFractionDigits: 2,
-                                                                    maxFractionDigits: 2,
-                                                                    preserveDecimals: false,
-                                                                    groupingEnabled: true
-                                                                }
-                                            }" textAlign="Right" wrapping="false"/>
-                                        </m:cells>
-                                    </m:ColumnListItem>
-                                </m:items>
-                            </m:Table>
-                        </blocks>
-                    </ObjectPageSubSection>
-                </subSections>
-            </ObjectPageSection>
-
-            <ObjectPageSection visible="{= ${oModelTestata>/imposta} === 'IRAP'? true : false}" id="sectionIRAP">
-                <subSections>
-                    <ObjectPageSubSection>
-                        <blocks>
-                            <m:Table id="liquidazioneIRAP" mode="None" inset="false" width="auto" items="{oModelTaxRates>/}">
-                                <m:columns>
-                                    <m:Column>
-                                        <m:Text text="{i18n>RegioneProv}"/>
-                                    </m:Column>
-                                    <m:Column>
-                                        <m:Text text="{i18n>ImponibilePrev}"/>
-                                    </m:Column>
-                                    <m:Column>
-                                        <m:Text text="{i18n>ValProdNetta}"/>
-                                    </m:Column>
-                                    <m:Column>
-                                        <m:Text text="{i18n>AliquotaIrap}"/>
-                                    </m:Column>
-                                    <m:Column>
-                                        <m:Text text="{i18n>ImpostaIrap}"/>
-                                    </m:Column>
-                                </m:columns>
-                                <m:items>
-                                    <m:ColumnListItem>
-                                        <m:cells>
-                                            <m:Text text="{oModelTaxRates>descrizione}" />
-                                            <m:Text text="{
-                                                path: 'oModelTaxRates>imponibilePrevidenziale',
-                                                type: 'sap.ui.model.type.Float',
-                                                formatOptions: {
-                                                                    minFractionDigits: 2,
-                                                                    maxFractionDigits: 2,
-                                                                    preserveDecimals: false,
-                                                                    groupingEnabled: true
-                                                                }
-                                            }" textAlign="Right" wrapping="false"/>
-                                            <m:Text text="{
-                                                path: 'oModelTaxRates>ValoreProduzioneNetta',
-                                                type: 'sap.ui.model.type.Float',
-                                                formatOptions: {
-                                                                    minFractionDigits: 2,
-                                                                    maxFractionDigits: 2,
-                                                                    preserveDecimals: false,
-                                                                    groupingEnabled: true
-                                                                }
-                                            }" textAlign="Right" wrapping="false"/>
-                                            <m:Text text="{oModelTaxRates>current}%" />
-                                            <m:Text text="{
-                                                path: 'oModelTaxRates>ImpostaIRAP',
                                                 type: 'sap.ui.model.type.Float',
                                                 formatOptions: {
                                                                     minFractionDigits: 2,
