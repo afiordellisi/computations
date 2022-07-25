@@ -338,25 +338,58 @@ sap.ui.define(
                 .getResourceBundle()
                 .getText("sCreditoPrecUtil");
 
-              var oCreditoPrec = [
-                {
-                  importo: V[0].Importo + V[0].creditoDebitoUnicoLFY,
-                  descrizione: sCreditoPrecedente,
-                },
-              ];
-
-              var oCreditoAcquisito = {
-                importo: AM[0].Importo,
-                descrizione: sCreditoAcquisito,
-              };
-
-              var oCreditoPrecComp = {
-                importo: C[0].Importo,
-                descrizione: sCreditoPrecInComp,
-              };
+              if(V.length > 0){
+                var fVimporto = V[0].Importo;
+                var oCreditoPrec = [
+                    {
+                      importo: fVimporto + V[0].creditoDebitoUnicoLFY,
+                      descrizione: sCreditoPrecedente,
+                    },
+                  ];
+              }
+              else{
+                var fVimporto = 0;
+                var oCreditoPrec = [
+                    {
+                      importo: 0,
+                      descrizione: sCreditoPrecedente,
+                    },
+                  ];
+              }
+              
+              if(AM.length > 0){
+                var fAMimporto = AM[0].Importo;
+                var oCreditoAcquisito = {
+                    importo: fAMimporto,
+                    descrizione: sCreditoAcquisito,
+                  };
+              }
+              else{
+                var fAMimporto = 0;
+                var oCreditoAcquisito = {
+                    importo: 0,
+                    descrizione: sCreditoAcquisito,
+                  };
+              }
+              
+              if(C.length > 0){
+                var fCimporto = C[0].Importo;
+                var oCreditoPrecComp = {
+                    importo: fCimporto,
+                    descrizione: sCreditoPrecInComp,
+                  };                  
+              }
+              else{
+                var fCimporto = 0;
+                var oCreditoPrecComp = {
+                    importo: 0,
+                    descrizione: sCreditoPrecInComp,
+                  };
+              }
+              
 
               var oCreditoPrecUtil = {
-                importo: V[0].Importo + AM[0].Importo + C[0].Importo,
+                importo: fVimporto + fAMimporto + fCimporto,
                 descrizione: sCreditoPrecUtil,
               };
 
@@ -401,12 +434,22 @@ sap.ui.define(
 
               var sVersamenti = that.getResourceBundle().getText("sVersamenti");
 
-              var oVersamenti = [
-                {
-                  importo: A[0].Importo,
-                  descrizione: sVersamenti,
-                },
-              ];
+              if(A.length > 0){
+                var oVersamenti = [
+                    {
+                      importo: A[0].Importo,
+                      descrizione: sVersamenti,
+                    },
+                  ];
+              }
+              else{
+                var oVersamenti = [
+                    {
+                      importo: 0,
+                      descrizione: sVersamenti,
+                    },
+                  ];
+              }
 
               var oModel = new JSONModel(oVersamenti);
               that.getView().setModel(oModel, "oModelVersamenti");
@@ -454,7 +497,7 @@ sap.ui.define(
               },
             ];
           } else {
-            var impostaDovutaIRAP = this.getView().getModel("oModelTaxRates").getData()[0].ImpostaIRAPTot;
+            var impostaDovutaIRAP = parseFloat(this.getView().getModel("oModelTaxRates").getData()[0].ImpostaIRAPTot);
             var oImpostaCredito = [
               {
                 descrizione: sImpostaCredito,

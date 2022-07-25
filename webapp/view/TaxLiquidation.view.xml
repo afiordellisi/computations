@@ -6,7 +6,7 @@
     xmlns:layout="sap.ui.layout"
     xmlns:core="sap.ui.core">
 
-    <ObjectPageLayout id="ObjectPageLayout" showFooter="{= ${oModelTestata>/imposta} === 'IRES'? true : false}" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="true" headerContentPinnable="true" upperCaseAnchorBar="false">
+    <ObjectPageLayout id="ObjectPageLayout" showFooter="{= ${oModelTestata>/imposta} === 'IRES'? true : false}" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="true" headerContentPinnable="true" showAnchorBar="false" upperCaseAnchorBar="false">
         <headerTitle>
           <ObjectPageDynamicHeaderTitle >
             <expandedHeading >
