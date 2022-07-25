@@ -1339,7 +1339,8 @@
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
                 <template>
-                    <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                  <m:Link  press="handleActionPress"
+                    text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
