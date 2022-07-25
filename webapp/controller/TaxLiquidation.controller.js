@@ -338,25 +338,58 @@ sap.ui.define(
                 .getResourceBundle()
                 .getText("sCreditoPrecUtil");
 
-              var oCreditoPrec = [
-                {
-                  importo: V[0].Importo + V[0].creditoDebitoUnicoLFY,
-                  descrizione: sCreditoPrecedente,
-                },
-              ];
-
-              var oCreditoAcquisito = {
-                importo: AM[0].Importo,
-                descrizione: sCreditoAcquisito,
-              };
-
-              var oCreditoPrecComp = {
-                importo: C[0].Importo,
-                descrizione: sCreditoPrecInComp,
-              };
+              if(V.length > 0){
+                var fVimporto = V[0].Importo;
+                var oCreditoPrec = [
+                    {
+                      importo: fVimporto + V[0].creditoDebitoUnicoLFY,
+                      descrizione: sCreditoPrecedente,
+                    },
+                  ];
+              }
+              else{
+                var fVimporto = 0;
+                var oCreditoPrec = [
+                    {
+                      importo: 0,
+                      descrizione: sCreditoPrecedente,
+                    },
+                  ];
+              }
+              
+              if(AM.length > 0){
+                var fAMimporto = AM[0].Importo;
+                var oCreditoAcquisito = {
+                    importo: fAMimporto,
+                    descrizione: sCreditoAcquisito,
+                  };
+              }
+              else{
+                var fAMimporto = 0;
+                var oCreditoAcquisito = {
+                    importo: 0,
+                    descrizione: sCreditoAcquisito,
+                  };
+              }
+              
+              if(C.length > 0){
+                var fCimporto = C[0].Importo;
+                var oCreditoPrecComp = {
+                    importo: fCimporto,
+                    descrizione: sCreditoPrecInComp,
+                  };                  
+              }
+              else{
+                var fCimporto = 0;
+                var oCreditoPrecComp = {
+                    importo: 0,
+                    descrizione: sCreditoPrecInComp,
+                  };
+              }
+              
 
               var oCreditoPrecUtil = {
-                importo: V[0].Importo + AM[0].Importo + C[0].Importo,
+                importo: fVimporto + fAMimporto + fCimporto,
                 descrizione: sCreditoPrecUtil,
               };
 
@@ -401,12 +434,22 @@ sap.ui.define(
 
               var sVersamenti = that.getResourceBundle().getText("sVersamenti");
 
-              var oVersamenti = [
-                {
-                  importo: A[0].Importo,
-                  descrizione: sVersamenti,
-                },
-              ];
+              if(A.length > 0){
+                var oVersamenti = [
+                    {
+                      importo: A[0].Importo,
+                      descrizione: sVersamenti,
+                    },
+                  ];
+              }
+              else{
+                var oVersamenti = [
+                    {
+                      importo: 0,
+                      descrizione: sVersamenti,
+                    },
+                  ];
+              }
 
               var oModel = new JSONModel(oVersamenti);
               that.getView().setModel(oModel, "oModelVersamenti");
@@ -418,6 +461,8 @@ sap.ui.define(
         },
 
         _setImpostaCredito: function () {
+          var imposta = this.getView().getModel("oModelTestata").getData()
+            .imposta;
           var sImpostaCredito = this.getResourceBundle().getText(
             "sImpostaCredito"
           );
@@ -433,23 +478,36 @@ sap.ui.define(
               this.getResourceBundle().getText("sCreditoPrecUtil")
           )[0].importo;
           var importoVersamenti = modelloVersamenti[0].importo;
-          var modelloRitenute = this.getView()
-            .getModel("oModelRitenute")
-            .getData();
-          var tipologiaNull = modelloRitenute.filter(
-            (taxLiquidation) => taxLiquidation.tipologia === null
-          );
-          var importoImpostaDovutaIres = tipologiaNull[0].importo;
 
-          var oImpostaCredito = [
-            {
-              descrizione: sImpostaCredito,
-              importo:
-                importoVersamenti +
-                importoCreditoUtil +
-                importoImpostaDovutaIres,
-            },
-          ];
+          if (imposta === "IRES") {
+            var modelloRitenute = this.getView()
+              .getModel("oModelRitenute")
+              .getData();
+            var tipologiaNull = modelloRitenute.filter(
+              (taxLiquidation) => taxLiquidation.tipologia === null
+            );
+            var importoImpostaDovutaIres = tipologiaNull[0].importo;
+            var oImpostaCredito = [
+              {
+                descrizione: sImpostaCredito,
+                importo:
+                  importoVersamenti +
+                  importoCreditoUtil +
+                  importoImpostaDovutaIres,
+              },
+            ];
+          } else {
+            var impostaDovutaIRAP = parseFloat(this.getView().getModel("oModelTaxRates").getData()[0].ImpostaIRAPTot);
+            var oImpostaCredito = [
+              {
+                descrizione: sImpostaCredito,
+                importo:
+                  importoVersamenti +
+                  importoCreditoUtil +
+                  impostaDovutaIRAP,
+              },
+            ];
+          }
 
           var oModel = new JSONModel(oImpostaCredito);
           this.getView().setModel(oModel, "oModelImpostaCredito");
@@ -480,7 +538,7 @@ sap.ui.define(
                   imponibilePrevidenziale: 0,
                   ValoreProduzioneNetta: 0,
                   current: 0,
-                  ImpostaIRAP: 0
+                  ImpostaIRAP: 0,
                 },
               ];
 
@@ -499,22 +557,21 @@ sap.ui.define(
         _setTotali: function () {
           var oModel = this.getView().getModel("oModelTaxRates");
           var data = oModel.getData();
-          
+
           var imponibilePrevidenzialeTot = data[0].imponibilePrevidenzialeTot;
           var currentAvg = data[0].currentAvg;
           var ImpostaIRAPTot = data[0].ImpostaIRAPTot;
 
-          var oTotale = 
-            {
-              ID: null,
-              descrizione: "Totali",
-              imponibilePrevidenziale: imponibilePrevidenzialeTot,
-              ValoreProduzioneNetta: 0,
-              current: currentAvg,
-              ImpostaIRAP: ImpostaIRAPTot
-            };
+          var oTotale = {
+            ID: null,
+            descrizione: "Totali",
+            imponibilePrevidenziale: imponibilePrevidenzialeTot,
+            ValoreProduzioneNetta: 0,
+            current: currentAvg,
+            ImpostaIRAP: ImpostaIRAPTot,
+          };
 
-          for(var i = 0; i < data.length; i++){
+          for (var i = 0; i < data.length; i++) {
             oTotale.ValoreProduzioneNetta += data[i].ValoreProduzioneNetta;
           }
 
