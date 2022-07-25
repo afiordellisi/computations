@@ -297,17 +297,7 @@ sap.ui.define(
           this._setTableAllegati(computazioneID, imposta);
           //this._setModelRouting(configurazioneID, ripresaID)
         },
-        // handleChangeYear: function (oEvent) {
-        //   var oValidatedComboBox = oEvent.getSource(),
-        //     sSelectedKey = oValidatedComboBox.getSelectedKey(),
-        //     sValue = oValidatedComboBox.getValue();
-
-        //   if (!sSelectedKey && sValue) {
-        //     oValidatedComboBox.setValueState("Error");
-        //   } else {
-        //     oValidatedComboBox.setValueState("None");
-        //   }
-        // },
+        
         onSaveAllegato: function (oEvent) {
           //this.onOpenDialog();
           if (this._validazioneAllegato()) {
@@ -316,7 +306,7 @@ sap.ui.define(
               var importo = parseFloat(
                 this.getView().byId("importoAllegatoTax").getValue()
               );
-              if ((tipo = "C")) {
+              if (tipo === "C") {
                 if (importo > 0) {
                   importo = -importo;
                 }
@@ -794,38 +784,7 @@ sap.ui.define(
           });
         },
 
-        //questa funzione non serve più
-        // onEdit: function(oEvent){
-        //     //var sId = oEvent.getSource().getId();
-        //     // if(sId.includes("addAltroMovimento")){
-        //     //     sText = this.getResourceBundle().getText("altriMov")
-        //     //     tipo = 'AM'
-        //     // }if(sId.includes("addCredito")){
-        //     //     sText = this.getResourceBundle().getText("otherVariation")
-        //     //     tipo = 'O'
-        //     // }if(sId.includes("addAccontoSaldo")){
-        //     //     sText = this.getResourceBundle().getText("accontoSaldo")
-        //     //     tipo = 'AS'
-        //     // }
-        //     var that = this;
-        //     var oView = this.getView();
-        //     if (!this._pDialogConf2) {
-        //         this._pDialogConf2 = Fragment.load({
-        //             id: oView.getId(),
-        //             name: "tax.provisioning.computations.view.fragment.AltriMovimenti",
-        //             controller: this
-        //         }).then(function (oDialogConf2) {
-        //             that.byId("descrizioneMov").setText(sText)
-        //             oView.addDependent(oDialogConf2);
-        //             return oDialogConf2;
-        //         });
-        //     }
-        //     this._pDialogConf2.then(function (oDialogConf2) {
-        //         //this._configDialog(oButton, oDialogConf);
-        //         that.byId("descrizioneMov").setText(sText)
-        //         oDialogConf2.open();
-        //     });
-        // },
+       
 
         onEditInserimento: function (oEvent) {
           var oItem = oEvent
@@ -937,16 +896,7 @@ sap.ui.define(
           }
         },
 
-        // onCloseAltro: function () {
-        //   var imposta = this.getView().getModel("routingModel").getData()
-        //     .imposta;
-        //   this.byId("DialogAltriMov").close();
-        //   this.byId("fileUploaderMov").clear();
-        //   this.byId("notaMov").setValue("");
-        //   //this.byId("descrizioneAllegato").setValue("");
-        //   this.byId("importoMov").setValue("");
-        //   this._setTableAllegati(computazioneID, imposta);
-        // },
+       
 
         onCloseUpdateAltro: function () {
           var imposta = this.getView().getModel("routingModel").getData()
@@ -990,13 +940,6 @@ sap.ui.define(
           this.byId("DialogSalva2").close();
         },
 
-        // onNavBack: function (oEvent) {
-        //     this.getRouter().navTo("Riprese", {
-        //         ripresaID: ripresaID,
-        //         ID: computazioneID,
-        //         imposta: this.getView().getModel("routingModel").getData().imposta,
-        //     });
-        // },
 
         change: function (oEvent) {
           this.getView().byId("fileUploader");
