@@ -1319,7 +1319,7 @@
             <Column resizable="false" width="10%">
                 <m:Label text="" textAlign="Center" width="100%"/>
                 <template>
-                    <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
+                    <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress" visible="{= ${oModelAnagrafica>codiceRipresa} === 'Z00001'? false : true}"/>
                 </template>
                 <!-- <template>
                                                 <m:Text text="{oModelAnagrafica>ID}" />
