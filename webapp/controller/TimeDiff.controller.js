@@ -26,6 +26,7 @@ sap.ui.define(
                 },
 
                 _onObjectMatched: function (oEvent) {
+                    
                     if (oEvent.getParameter === undefined) {
                         var computationID = oEvent.ID;
                         var imposta = oEvent.imposta;
@@ -83,9 +84,11 @@ sap.ui.define(
                             var oModel = new JSONModel(data);
                             that.getView().setModel(oModel, "oModelTiming");
                             that._setTotali();
+                            that.onCloseBusyDialog();
                         },
                         error: function (error) {
                             sap.m.MessageToast.show("Error");
+                            that.onCloseBusyDialog();
                         },
                     });
                 },
@@ -310,7 +313,7 @@ sap.ui.define(
 
                         this._onObjectMatched(oObject);
                         //this._setTotali();
-                        this.onCloseBusyDialog();
+                        //this.onCloseBusyDialog();
                     } else {
                         sap.m.MessageToast.show(
                             this.getResourceBundle().getText("valorizzareRecord")

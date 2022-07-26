@@ -107,9 +107,11 @@ sap.ui.define(
               oModel.setData(data);
               that.getView().setModel(oModel, "oModelDT");
               that._setTotali();
+              that.onCloseBusyDialog();
             },
             error: function (error) {
               sap.m.MessageToast.show("Error");
+              that.onCloseBusyDialog();
             },
           });
         },
@@ -374,7 +376,7 @@ sap.ui.define(
 
             this._onObjectMatched(oObject);
             //this._setTotali();
-            this.onCloseBusyDialog();
+            //this.onCloseBusyDialog();
           } else {
             sap.m.MessageToast.show(
               this.getResourceBundle().getText("valorizzareRecord")
