@@ -89,13 +89,13 @@
                             <m:Table id="imponibile" mode="None" inset="false" width="auto" items="{oModelRedditoImponibile>/}">
                                 <m:columns>
                                     <m:Column>
-                                        <m:Text text=""/>
+                                        
                                     </m:Column>
                                     <m:Column>
-                                        <m:Text text=""/>
+                                        
                                     </m:Column>
                                     <m:Column hAlign="End">
-                                        <m:Text text=""/>
+                                        
                                     </m:Column>
                                 </m:columns>
                                 <m:items>
@@ -126,13 +126,13 @@
                             <m:Table id="ritenute" mode="None" inset="false" width="auto" items="{oModelRitenute>/}">
                                 <m:columns>
                                     <m:Column>
-                                        <m:Text text=""/>
+                                        
                                     </m:Column>
                                     <m:Column>
-                                        <m:Text text=""/>
+                                       
                                     </m:Column>
                                     <m:Column hAlign="End">
-                                        <m:Text text=""/>
+                                        
                                     </m:Column>
                                 </m:columns>
                                 <m:items>
@@ -163,13 +163,13 @@
                             <m:Table id="credito" mode="None" inset="false" width="auto" items="{oModelCredito>/}">
                                 <m:columns>
                                     <m:Column>
-                                        <m:Text text=""/>
+                                        
                                     </m:Column>
                                     <m:Column>
-                                        <m:Text text=""/>
+                                       
                                     </m:Column>
                                     <m:Column hAlign="End">
-                                        <m:Text text=""/>
+                                        
                                     </m:Column>
                                 </m:columns>
                                 <m:items>
@@ -200,13 +200,13 @@
                             <m:Table id="versamenti" mode="None" inset="false" width="auto" items="{oModelVersamenti>/}">
                                 <m:columns>
                                     <m:Column>
-                                        <m:Text text=""/>
+                                        
                                     </m:Column>
                                     <m:Column>
-                                        <m:Text text=""/>
+                                       
                                     </m:Column>
                                     <m:Column hAlign="End">
-                                        <m:Text text=""/>
+                                        
                                     </m:Column>
                                 </m:columns>
                                 <m:items>
@@ -237,13 +237,13 @@
                             <m:Table id="impostaCredito" mode="None" inset="false" width="auto" items="{oModelImpostaCredito>/}">
                                 <m:columns>
                                     <m:Column>
-                                        <m:Text text=""/>
+                                        
                                     </m:Column>
                                     <m:Column>
-                                        <m:Text text=""/>
+                                       
                                     </m:Column>
                                     <m:Column hAlign="End">
-                                        <m:Text text=""/>
+                                       
                                     </m:Column>
                                 </m:columns>
                                 <m:items>
