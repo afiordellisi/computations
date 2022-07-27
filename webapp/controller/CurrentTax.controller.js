@@ -290,8 +290,8 @@ sap.ui.define(
               Versione_ID: versioneID,
               compConfronto: this.getView().getModel("oModelInfoComputazione")
                 .oData.compConfronto,
-              confRegions: this.getView().getModel("oModelInfoComputazione")
-                .oData.confRegions,
+             // confRegions: this.getView().getModel("oModelInfoComputazione")
+          //      .oData.confRegions,
             });
 
             jQuery.ajax({
