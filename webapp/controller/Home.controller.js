@@ -57,6 +57,7 @@ sap.ui.define(
         },
 
         navigateToCurrentTax: function (oEvent) {
+          this.onOpenBusyDialog();
           this.getRouter().navTo(
             "CurrentTax",
             {

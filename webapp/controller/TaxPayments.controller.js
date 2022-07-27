@@ -295,6 +295,7 @@ sap.ui.define(
           );
 
           this._setTableAllegati(computazioneID, imposta);
+          this.onCloseBusyDialog();
           //this._setModelRouting(configurazioneID, ripresaID)
         },
         

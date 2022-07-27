@@ -51,18 +51,93 @@ sap.ui.define(
         },
 
         handleActionPress: function (oEvent) {
-          this.getRouter().navTo(
-            "Riprese",
-            {
-              ripresaID: oEvent
-                .getSource()
-                .getBindingContext("oModelAnagrafica")
-                .getObject().codiceRipresa,
-              ID: this.getView().getModel("computationModel").getData().ID,
-              imposta: this.getView().byId("impostaButton").getSelectedKey(),
-            },
-            false
-          );
+          var codiceRipresa = oEvent
+            .getSource()
+            .getBindingContext("oModelAnagrafica")
+            .getObject().codiceRipresa;
+          if (codiceRipresa === "Z00001") {
+
+            var oModel =  oEvent
+            .getSource()
+            .getBindingContext("oModelAnagrafica")
+            .getObject();
+
+            this.getView().setModel(
+                new JSONModel({
+                    oModel,
+                }),
+                "oModelZ00001"
+              );
+
+            var oView = this.getView();
+            if (!this._pDialogRipresa) {
+              this._pDialogRipresa = Fragment.load({
+                id: oView.getId(),
+                name:
+                  "tax.provisioning.computations.view.fragment.DialogRipresa",
+                controller: this,
+              }).then(function (oDialogRipresa) {
+                oView.addDependent(oDialogRipresa);
+                return oDialogRipresa;
+              });
+            }
+            this._pDialogRipresa.then(function (oDialogRipresa) {
+              //this._configDialog(oButton, oDialogConf);
+              oDialogRipresa.open();
+            });
+          } else {
+            this.getRouter().navTo(
+              "Riprese",
+              {
+                ripresaID: oEvent
+                  .getSource()
+                  .getBindingContext("oModelAnagrafica")
+                  .getObject().codiceRipresa,
+                ID: this.getView().getModel("computationModel").getData().ID,
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+              false
+            );
+          }
+        },
+
+        onCloseModImporto: function(){
+            this.byId("DialogModImporto").close();
+        },
+
+        onModificaImporto: function(){
+            var oModello = this.getModel("oModelZ00001").getData();
+            var importo = parseFloat(oModello.oModel.imponibile);
+            var codiceRipresa = oModello.oModel.codiceRipresa;
+            var ID = this.getView().getModel("computationModel").getData().ID;
+            var imposta = this.getView().byId("impostaButton").getSelectedKey();
+            var codiceGL = "2501000000";
+
+            var nuovoImporto = JSON.stringify({
+                allegati: [{computation_ID: ID, imposta: imposta, importo: importo, codiceGL: codiceGL}]
+              });
+
+            var that = this;
+
+            jQuery.ajax({
+                url: jQuery.sap.getModulePath(
+                  sap.ui.getCore().sapAppID +
+                    "/catalog/AnagraficaRiprese/" + codiceRipresa
+                ),
+                contentType: "application/json",
+                type: "PATCH",
+                data: nuovoImporto,
+                async: false,
+                success: function (oCompleteEntry) {
+                    sap.m.MessageToast.show("Success");
+                    that.onCloseModImporto();
+                    that.onScegliImposta();
+                },
+                error: function (error) {
+                  sap.m.MessageToast.show("Error");
+                  that.onCloseModImporto();
+                },
+              });
         },
 
         onNavBack: function (oEvent) {
@@ -190,25 +265,31 @@ sap.ui.define(
               },
             ];
             var oModelIrap3 = [
-                {
-                  descrizione: this.getResourceBundle().getText("interessiAttivi"),
-                  raggruppamento: "C16",
-                  valore: "",
-                  imposta: this.getView().byId("impostaButton").getSelectedKey(),
-                },
-                {
-                  descrizione: this.getResourceBundle().getText("interessiPassivi"),
-                  raggruppamento: "C17",
-                  valore: "",
-                  imposta: this.getView().byId("impostaButton").getSelectedKey(),
-                },
-                {
-                  descrizione: this.getResourceBundle().getText("margineInteresse"),
-                  raggruppamento: null,
-                  valore: "",
-                  imposta: this.getView().byId("impostaButton").getSelectedKey(),
-                }
-              ];
+              {
+                descrizione: this.getResourceBundle().getText(
+                  "interessiAttivi"
+                ),
+                raggruppamento: "C16",
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+              {
+                descrizione: this.getResourceBundle().getText(
+                  "interessiPassivi"
+                ),
+                raggruppamento: "C17",
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+              {
+                descrizione: this.getResourceBundle().getText(
+                  "margineInteresse"
+                ),
+                raggruppamento: null,
+                valore: "",
+                imposta: this.getView().byId("impostaButton").getSelectedKey(),
+              },
+            ];
             this.getView().setModel(
               new JSONModel({
                 oModelIrap,
@@ -224,11 +305,11 @@ sap.ui.define(
             );
 
             this.getView().setModel(
-                new JSONModel({
-                  oModelIrap3,
-                }),
-                "oModelTableIRAP3"
-              );
+              new JSONModel({
+                oModelIrap3,
+              }),
+              "oModelTableIRAP3"
+            );
           } else {
             this.getView().byId("tableIRAP2").setVisible(false);
             this.getView().byId("tableIRAP").setVisible(false);
@@ -353,6 +434,7 @@ sap.ui.define(
         },
 
         onScegliImposta: function (oEvent) {
+          this.onOpenBusyDialog();
           var that = this;
           var ID = this.getView().getModel("computationModel").getData().ID;
           //var conf = this.getView().getModel("computationModel").getData().conf;
@@ -376,6 +458,7 @@ sap.ui.define(
             dataType: "json",
             async: false,
             success: function (oCompleteEntry) {
+              
               var arr = oCompleteEntry.value;
               var PA = arr.filter(
                 (codiceRipresa) =>
@@ -539,8 +622,10 @@ sap.ui.define(
                 impostaValida = false;
                 that._tableIrap(impostaValida);
               }
+              that.onCloseBusyDialog();
             },
             error: function (error) {
+              that.onCloseBusyDialog();
               sap.m.MessageToast.show("Error");
             },
           });
@@ -553,6 +638,7 @@ sap.ui.define(
           var oRouter = this.getOwnerComponent().getRouter();
 
           if (key === "C04") {
+            this.onOpenBusyDialog();
             oRouter.navTo(
               "TimeDiff",
               {
@@ -563,6 +649,7 @@ sap.ui.define(
             );
           }
           if (key === "C05") {
+            this.onOpenBusyDialog();
             oRouter.navTo(
               "DTLDTA",
               {
@@ -573,6 +660,7 @@ sap.ui.define(
             );
           }
           if (key === "C06") {
+            this.onOpenBusyDialog();
             oRouter.navTo(
               "TaxPayments",
               {
@@ -583,6 +671,7 @@ sap.ui.define(
             );
           }
           if (key === "C07") {
+            this.onOpenBusyDialog();
             oRouter.navTo(
               "TaxLiquidation",
               {
@@ -709,6 +798,7 @@ sap.ui.define(
         },
 
         _onObjectMatched: function (oEvent) {
+          this.onCloseBusyDialog();
           var oEvent = oEvent.getParameter("arguments");
           this._setHeader();
           var ID = oEvent.ID; //ID computazione

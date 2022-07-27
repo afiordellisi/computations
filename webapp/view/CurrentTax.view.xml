@@ -210,1314 +210,1313 @@
 					</uxap:ObjectPageSubSection>
                     	</uxap:subSections>
             </uxap:ObjectPageSection> -->
-    <uxap:ObjectPageSection titleUppercase="false" title="{i18n>raggBilancio}" class="sapUiTinyMarginTop" showTitle="false" visible="{=${oModelImposta>/imposta} === 'IRAP' ? true : false}">
-        <uxap:subSections>
-            <uxap:ObjectPageSubSection>
-                <uxap:blocks>
-                <layout:VerticalLayout>
-        <Table id="tableIRAP" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelTableIRAP>/oModelIrap'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelTableIRAP>/oModelIrap/length'}" showColumnVisibilityMenu="false" rowActionCount="1" enableColumnReordering="false" class="sapUiMediumMarginTop" fixedBottomRowCount="1" columnHeaderVisible="false" >
-        <columns>
-            <Column resizable="false" width="30%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelTableIRAP>descrizione}" press="handleActionPress"/>
-                </template>
-                <!-- <template>
+            <uxap:ObjectPageSection titleUppercase="false" title="{i18n>raggBilancio}" class="sapUiTinyMarginTop" showTitle="false" visible="{=${oModelImposta>/imposta} === 'IRAP' ? true : false}">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <layout:VerticalLayout>
+                                <Table id="tableIRAP" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelTableIRAP>/oModelIrap'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelTableIRAP>/oModelIrap/length'}" showColumnVisibilityMenu="false" rowActionCount="1" enableColumnReordering="false" class="sapUiMediumMarginTop" fixedBottomRowCount="1" columnHeaderVisible="false">
+                                    <columns>
+                                        <Column resizable="false" width="30%">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelTableIRAP>descrizione}" press="handleActionPress"/>
+                                            </template>
+                                            <!-- <template>
                                                 <m:Text text="{oModelAnagrafica>ID}" />
                                             </template> -->
-            </Column>
-            <Column resizable="false" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelTableIRAP>raggruppamento}"/>
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelTableIRAP>valore', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        </Column>
+                                        <Column resizable="false" width="10%">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text="{oModelTableIRAP>raggruppamento}"/>
+                                            </template>
+                                        </Column>
+                                        <Column width="10%" resizable="false" hAlign="End">
+                                            <m:Label text="" textAlign="End" width="100%"/>
+                                            <template>
+                                                <m:Text text="{path: 'oModelTableIRAP>valore', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
-                </template>
-            </Column>
+                                            </template>
+                                        </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
-            <Column resizable="false" hAlign="End" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
+                                        <Column width="10%" resizable="false" hAlign="End">
+                                            <m:Label text="" textAlign="End" width="100%"/>
+                                            <template>
+                                                <m:Text text=""/>
+                                            </template>
+                                        </Column>
+                                        <Column resizable="false" hAlign="End" width="10%">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text=""/>
+                                            </template>
+                                        </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
+                                        <Column width="10%" resizable="false" hAlign="End">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text=""/>
+                                            </template>
+                                        </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
+                                        <Column width="10%" resizable="false" hAlign="End">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text=""/>
+                                            </template>
+                                        </Column>
 
-            <Column resizable="false" width="10%" hAlign="End">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
-        </columns>
-    </Table>
-    <Table id="tableIRAP2" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelTableIRAP2>/oModelIrap2'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelTableIRAP2>/oModelIrap2/length'}" showColumnVisibilityMenu="false" rowActionCount="1" enableColumnReordering="false" class="sapUiMediumMarginTop" fixedBottomRowCount="1" columnHeaderVisible="false">
-        <columns>
-            <Column resizable="false" width="30%">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <template>
-                    <m:Text text="{oModelTableIRAP2>descrizione}" press="handleActionPress"/>
-                </template>
-                <!-- <template>
+                                        <Column resizable="false" width="10%" hAlign="End">
+                                            <m:Label text="" textAlign="Center" width="100%"/>
+                                            <template>
+                                                <m:Text text=""/>
+                                            </template>
+                                        </Column>
+                                    </columns>
+                                </Table>
+                                <Table id="tableIRAP2" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelTableIRAP2>/oModelIrap2'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelTableIRAP2>/oModelIrap2/length'}" showColumnVisibilityMenu="false" rowActionCount="1" enableColumnReordering="false" class="sapUiMediumMarginTop" fixedBottomRowCount="1" columnHeaderVisible="false">
+                                    <columns>
+                                        <Column resizable="false" width="30%">
+                                            <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                            <template>
+                                                <m:Text text="{oModelTableIRAP2>descrizione}" press="handleActionPress"/>
+                                            </template>
+                                            <!-- <template>
                                                 <m:Text text="{oModelAnagrafica>ID}" />
                                             </template> -->
-            </Column>
-            <Column resizable="false" width="10%">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <template>
-                    <m:Text text="{oModelTableIRAP2>raggruppamento}"/>
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <!-- <m:Label text="" textAlign="End" width="100%"/> -->
-                <template>
-                    <m:Text text="{path: 'oModelTableIRAP2>valore', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        </Column>
+                                        <Column resizable="false" width="10%">
+                                            <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                            <template>
+                                                <m:Text text="{oModelTableIRAP2>raggruppamento}"/>
+                                            </template>
+                                        </Column>
+                                        <Column width="10%" resizable="false" hAlign="End">
+                                            <!-- <m:Label text="" textAlign="End" width="100%"/> -->
+                                            <template>
+                                                <m:Text text="{path: 'oModelTableIRAP2>valore', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <!-- <m:Label text="" textAlign="End" width="100%"/> -->
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
-            <Column resizable="false" hAlign="End" width="10%">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
-            <Column resizable="false" width="10%" hAlign="End">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
-        </columns>
-    </Table>
-    <Table id="tableIRAP3" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelTableIRAP3>/oModelIrap3'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelTableIRAP3>/oModelIrap3/length'}" showColumnVisibilityMenu="false" rowActionCount="1" enableColumnReordering="false" class="sapUiMediumMarginTop" fixedBottomRowCount="1" columnHeaderVisible="false">
-        <columns>
-            <Column resizable="false" width="30%">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <template>
-                    <m:Text text="{oModelTableIRAP3>descrizione}" press="handleActionPress"/>
-                </template>
-                <!-- <template>
+                                            </template>
+                                        </Column>
+                                        <Column width="10%" resizable="false" hAlign="End">
+                                            <!-- <m:Label text="" textAlign="End" width="100%"/> -->
+                                            <template>
+                                                <m:Text text=""/>
+                                            </template>
+                                        </Column>
+                                        <Column resizable="false" hAlign="End" width="10%">
+                                            <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                            <template>
+                                                <m:Text text=""/>
+                                            </template>
+                                        </Column>
+                                        <Column width="10%" resizable="false" hAlign="End">
+                                            <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                            <template>
+                                                <m:Text text=""/>
+                                            </template>
+                                        </Column>
+                                        <Column width="10%" resizable="false" hAlign="End">
+                                            <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                            <template>
+                                                <m:Text text=""/>
+                                            </template>
+                                        </Column>
+                                        <Column resizable="false" width="10%" hAlign="End">
+                                            <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                            <template>
+                                                <m:Text text=""/>
+                                            </template>
+                                        </Column>
+                                    </columns>
+                                </Table>
+                                <Table id="tableIRAP3" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelTableIRAP3>/oModelIrap3'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelTableIRAP3>/oModelIrap3/length'}" showColumnVisibilityMenu="false" rowActionCount="1" enableColumnReordering="false" class="sapUiMediumMarginTop" fixedBottomRowCount="1" columnHeaderVisible="false">
+                                    <columns>
+                                        <Column resizable="false" width="30%">
+                                            <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                            <template>
+                                                <m:Text text="{oModelTableIRAP3>descrizione}" press="handleActionPress"/>
+                                            </template>
+                                            <!-- <template>
                                                 <m:Text text="{oModelAnagrafica>ID}" />
                                             </template> -->
-            </Column>
-            <Column resizable="false" width="10%">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <template>
-                    <m:Text text="{oModelTableIRAP3>raggruppamento}"/>
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <!-- <m:Label text="" textAlign="End" width="100%"/> -->
-                <template>
-                    <m:Text text="{path: 'oModelTableIRAP3>valore', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        </Column>
+                                        <Column resizable="false" width="10%">
+                                            <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                            <template>
+                                                <m:Text text="{oModelTableIRAP3>raggruppamento}"/>
+                                            </template>
+                                        </Column>
+                                        <Column width="10%" resizable="false" hAlign="End">
+                                            <!-- <m:Label text="" textAlign="End" width="100%"/> -->
+                                            <template>
+                                                <m:Text text="{path: 'oModelTableIRAP3>valore', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <!-- <m:Label text="" textAlign="End" width="100%"/> -->
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
-            <Column resizable="false" hAlign="End" width="10%">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
-            <Column resizable="false" width="10%" hAlign="End">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
-        </columns>
-    </Table>
-    </layout:VerticalLayout>
-</uxap:blocks>
-</uxap:ObjectPageSubSection>
-</uxap:subSections>
-</uxap:ObjectPageSection>
-<uxap:ObjectPageSection titleUppercase="false" title="Section 2" class="sapUiTinyMarginTop" showTitle="false">
-<uxap:subSections>
-<uxap:ObjectPageSubSection id="personalSectionSS2" title="{i18n>variazioniPermanentiA}" titleUppercase="false">
-<uxap:blocks>
-    <Table id="table2" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelPA'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelAnagrafica>/oModelPA/length'}" showColumnVisibilityMenu="false" rowActionCount="1" enableColumnReordering="false">
-        <columns>
-            <Column resizable="false" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
-                </template>
-                <!-- <template>
+                                            </template>
+                                        </Column>
+                                        <Column width="10%" resizable="false" hAlign="End">
+                                            <!-- <m:Label text="" textAlign="End" width="100%"/> -->
+                                            <template>
+                                                <m:Text text=""/>
+                                            </template>
+                                        </Column>
+                                        <Column resizable="false" hAlign="End" width="10%">
+                                            <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                            <template>
+                                                <m:Text text=""/>
+                                            </template>
+                                        </Column>
+                                        <Column width="10%" resizable="false" hAlign="End">
+                                            <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                            <template>
+                                                <m:Text text=""/>
+                                            </template>
+                                        </Column>
+                                        <Column width="10%" resizable="false" hAlign="End">
+                                            <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                            <template>
+                                                <m:Text text=""/>
+                                            </template>
+                                        </Column>
+                                        <Column resizable="false" width="10%" hAlign="End">
+                                            <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                            <template>
+                                                <m:Text text=""/>
+                                            </template>
+                                        </Column>
+                                    </columns>
+                                </Table>
+                            </layout:VerticalLayout>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection titleUppercase="false" title="Section 2" class="sapUiTinyMarginTop" showTitle="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="personalSectionSS2" title="{i18n>variazioniPermanentiA}" titleUppercase="false">
+                        <uxap:blocks>
+                            <Table id="table2" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelPA'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelAnagrafica>/oModelPA/length'}" showColumnVisibilityMenu="false" rowActionCount="1" enableColumnReordering="false">
+                                <columns>
+                                    <Column resizable="false" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>codiceRipresa}"/>
+                                        </template>
+                                        <!-- <template>
                                                 <m:Text text="{oModelAnagrafica>ID}" />
                                             </template> -->
-            </Column>
-            <Column resizable="false" width="30%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/oModelPAImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    </Column>
+                                    <Column resizable="false" width="30%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/oModelPAImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Link press="handleActionPress" text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/PAImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/PAImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-            <Column resizable="false" hAlign="End" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelAnagrafica>unico}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
+                                    <Column resizable="false" hAlign="End" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>unico}"/>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <m:Label text="{path: 'oModelTotali>/PAcorrenti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                        <m:Label text="{path: 'oModelTotali>/PAcorrenti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <!-- <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/> -->
-                    <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <!-- <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/> -->
+                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/PAdifferite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/PAdifferite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column resizable="false" width="10%" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/totalePA', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column resizable="false" width="10%" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/totalePA', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-        </columns>
-    </Table>
+                                        </template>
+                                    </Column>
+                                </columns>
+                            </Table>
 
-</uxap:blocks>
-</uxap:ObjectPageSubSection>
-</uxap:subSections>
-</uxap:ObjectPageSection>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
 
-<uxap:ObjectPageSection titleUppercase="false" title="Section 3" class="sapUiTinyMarginTop" showTitle="false">
-<uxap:subSections>
-<uxap:ObjectPageSubSection id="personalSectionSS3" title="{i18n>variazioniPermanentiD}" titleUppercase="false" visible="{=${oModelImposta>/imposta} === 'IRES' ? true : false}">
-<uxap:blocks>
-    <Table id="table3" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelPD'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelAnagrafica>/oModelPD/length'}" showColumnVisibilityMenu="false" enableColumnReordering="false">
-        <columns>
-            <Column resizable="false" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
-                </template>
-                <!-- <template>
+            <uxap:ObjectPageSection titleUppercase="false" title="Section 3" class="sapUiTinyMarginTop" showTitle="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="personalSectionSS3" title="{i18n>variazioniPermanentiD}" titleUppercase="false" visible="{=${oModelImposta>/imposta} === 'IRES' ? true : false}">
+                        <uxap:blocks>
+                            <Table id="table3" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelPD'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelAnagrafica>/oModelPD/length'}" showColumnVisibilityMenu="false" enableColumnReordering="false">
+                                <columns>
+                                    <Column resizable="false" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>codiceRipresa}"/>
+                                        </template>
+                                        <!-- <template>
                                                 <m:Text text="{oModelAnagrafica>ID}" />
                                             </template> -->
-            </Column>
-            <Column resizable="false" width="30%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/oModelPDImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    </Column>
+                                    <Column resizable="false" width="30%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/oModelPDImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Link press="handleActionPress" text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" id="colonnaImposta2" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/PDImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" id="colonnaImposta2" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/PDImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-            <Column resizable="false" hAlign="End" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelAnagrafica>unico}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
+                                    <Column resizable="false" hAlign="End" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>unico}"/>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <!-- <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
                                             <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
                                         </template> -->
-                <m:Label text="{path: 'oModelTotali>/PDcorrenti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <m:Label text="{path: 'oModelTotali>/PDcorrenti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/PDdifferite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/PDdifferite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column resizable="false" width="10%" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/totalePD', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column resizable="false" width="10%" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/totalePD', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-        </columns>
-    </Table>
+                                        </template>
+                                    </Column>
+                                </columns>
+                            </Table>
 
-</uxap:blocks>
-</uxap:ObjectPageSubSection>
-</uxap:subSections>
-</uxap:ObjectPageSection>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
 
-<uxap:ObjectPageSection titleUppercase="false" title="Section 3IRAP" class="sapUiTinyMarginTop" showTitle="false">
-<uxap:subSections>
-<uxap:ObjectPageSubSection id="personalSectionSS3IRAP" title="{i18n>variazioniPermanentiD}" titleUppercase="false" visible="{=${oModelImposta>/imposta} === 'IRAP' ? true : false}">
-<uxap:blocks>
-    <Table id="table3IRAP" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelPDIRAP'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelAnagrafica>/oModelPDIRAP/length'}" showColumnVisibilityMenu="false" enableColumnReordering="false">
-        <columns>
-            <Column resizable="false" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
-                </template>
-                <!-- <template>
+            <uxap:ObjectPageSection titleUppercase="false" title="Section 3IRAP" class="sapUiTinyMarginTop" showTitle="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="personalSectionSS3IRAP" title="{i18n>variazioniPermanentiD}" titleUppercase="false" visible="{=${oModelImposta>/imposta} === 'IRAP' ? true : false}">
+                        <uxap:blocks>
+                            <Table id="table3IRAP" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelPDIRAP'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelAnagrafica>/oModelPDIRAP/length'}" showColumnVisibilityMenu="false" enableColumnReordering="false">
+                                <columns>
+                                    <Column resizable="false" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>codiceRipresa}"/>
+                                        </template>
+                                        <!-- <template>
                                                 <m:Text text="{oModelAnagrafica>ID}" />
                                             </template> -->
-            </Column>
-            <Column resizable="false" width="30%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
-                </template>
-            </Column>
-            <!-- calcola i totali su BE per aggiornare i modelli -->
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/oModelPDImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    </Column>
+                                    <Column resizable="false" width="30%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+                                        </template>
+                                    </Column>
+                                    <!-- calcola i totali su BE per aggiornare i modelli -->
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/oModelPDImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Link press="handleActionPress" text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/PDIRAPImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/PDIRAPImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-            <Column resizable="false" hAlign="End" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelAnagrafica>unico}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
+                                    <Column resizable="false" hAlign="End" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>unico}"/>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <!-- <m:Label text="" textAlign="Center" width="100%"/>
                                         <template>
                                             <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
                                         </template> -->
-                <m:Label text="{path: 'oModelTotali>/PDIRAPcorrenti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <m:Label text="{path: 'oModelTotali>/PDIRAPcorrenti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/PDIRAPdifferite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/PDIRAPdifferite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column resizable="false" width="10%" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/totalePDIRAP', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column resizable="false" width="10%" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/totalePDIRAP', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-        </columns>
-    </Table>
+                                        </template>
+                                    </Column>
+                                </columns>
+                            </Table>
 
-</uxap:blocks>
-</uxap:ObjectPageSubSection>
-</uxap:subSections>
-</uxap:ObjectPageSection>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
 
-<uxap:ObjectPageSection titleUppercase="false" title="Section 4" class="sapUiTinyMarginTop" showTitle="false">
-<uxap:subSections>
-<uxap:ObjectPageSubSection id="personalSectionSS4" title="{i18n>variazioniTemporaneeA}" titleUppercase="false">
-<uxap:blocks>
-    <Table id="table4" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelTA'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelAnagrafica>/oModelTA/length'}" showColumnVisibilityMenu="false" enableColumnReordering="false">
-        <columns>
-            <Column resizable="false" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
-                </template>
-                <!-- <template>
+            <uxap:ObjectPageSection titleUppercase="false" title="Section 4" class="sapUiTinyMarginTop" showTitle="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="personalSectionSS4" title="{i18n>variazioniTemporaneeA}" titleUppercase="false">
+                        <uxap:blocks>
+                            <Table id="table4" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelTA'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelAnagrafica>/oModelTA/length'}" showColumnVisibilityMenu="false" enableColumnReordering="false">
+                                <columns>
+                                    <Column resizable="false" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>codiceRipresa}"/>
+                                        </template>
+                                        <!-- <template>
                                                 <m:Text text="{oModelAnagrafica>ID}" />
                                             </template> -->
-            </Column>
-            <Column resizable="false" width="30%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/oModelTAImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    </Column>
+                                    <Column resizable="false" width="30%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/oModelTAImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Link press="handleActionPress" text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/TAImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/TAImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-            <Column resizable="false" hAlign="End" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelAnagrafica>unico}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
+                                    <Column resizable="false" hAlign="End" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>unico}"/>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <m:Label text="{path: 'oModelTotali>/TAcorrenti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                        <m:Label text="{path: 'oModelTotali>/TAcorrenti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <!-- <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/> -->
-                    <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <!-- <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/> -->
+                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/TAdifferite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/TAdifferite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column resizable="false" width="10%" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/totaleTA', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column resizable="false" width="10%" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/totaleTA', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-        </columns>
-    </Table>
+                                        </template>
+                                    </Column>
+                                </columns>
+                            </Table>
 
-</uxap:blocks>
-</uxap:ObjectPageSubSection>
-</uxap:subSections>
-</uxap:ObjectPageSection>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
 
-<uxap:ObjectPageSection titleUppercase="false" title="Section 5" class="sapUiTinyMarginTop" showTitle="false">
-<uxap:subSections>
-<uxap:ObjectPageSubSection id="personalSectionSS5" title="{i18n>variazioniTemporaneeD}" titleUppercase="false">
-<uxap:blocks>
-    <Table id="table5" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelTD'}" enableColumnFreeze="true" visibleRowCount="{path:'oModelAnagrafica>/oModelTD/length'}" showColumnVisibilityMenu="false" enableColumnReordering="false">
-        <columns>
-            <Column resizable="false" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
-                </template>
-                <!-- <template>
+            <uxap:ObjectPageSection titleUppercase="false" title="Section 5" class="sapUiTinyMarginTop" showTitle="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="personalSectionSS5" title="{i18n>variazioniTemporaneeD}" titleUppercase="false">
+                        <uxap:blocks>
+                            <Table id="table5" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelTD'}" enableColumnFreeze="true" visibleRowCount="{path:'oModelAnagrafica>/oModelTD/length'}" showColumnVisibilityMenu="false" enableColumnReordering="false">
+                                <columns>
+                                    <Column resizable="false" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>codiceRipresa}"/>
+                                        </template>
+                                        <!-- <template>
                                                 <m:Text text="{oModelAnagrafica>ID}" />
                                             </template> -->
-            </Column>
-            <Column resizable="false" width="30%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/oModelTDImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    </Column>
+                                    <Column resizable="false" width="30%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/oModelTDImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Link press="handleActionPress" text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/TDImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/TDImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-            <Column resizable="false" hAlign="End" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelAnagrafica>unico}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
+                                    <Column resizable="false" hAlign="End" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>unico}"/>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <m:Label text="{path: 'oModelTotali>/TDcorrenti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                        <m:Label text="{path: 'oModelTotali>/TDcorrenti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <!-- <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/> -->
-                    <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <!-- <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/> -->
+                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/TDdifferite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/TDdifferite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column resizable="false" width="10%" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/totaleTD', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column resizable="false" width="10%" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/totaleTD', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-        </columns>
-    </Table>
+                                        </template>
+                                    </Column>
+                                </columns>
+                            </Table>
 
-</uxap:blocks>
-</uxap:ObjectPageSubSection>
-</uxap:subSections>
-</uxap:ObjectPageSection>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
 
-<uxap:ObjectPageSection titleUppercase="false" title="Section 6" class="sapUiTinyMarginTop" showTitle="false">
-<uxap:subSections>
-<uxap:ObjectPageSubSection id="personalSectionSS6" title="{i18n>titoloAce}" titleUppercase="false" visible="{=${oModelImposta>/imposta} === 'IRES' ? true : false}">
-<uxap:blocks>
-    <Table id="table6" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelPER'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelAnagrafica>/oModelPER/length'}" showColumnVisibilityMenu="false" enableColumnReordering="false">
-        <columns>
-            <Column resizable="false" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
-                </template>
-                <!-- <template>
+            <uxap:ObjectPageSection titleUppercase="false" title="Section 6" class="sapUiTinyMarginTop" showTitle="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="personalSectionSS6" title="{i18n>titoloAce}" titleUppercase="false" visible="{=${oModelImposta>/imposta} === 'IRES' ? true : false}">
+                        <uxap:blocks>
+                            <Table id="table6" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelPER'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelAnagrafica>/oModelPER/length'}" showColumnVisibilityMenu="false" enableColumnReordering="false">
+                                <columns>
+                                    <Column resizable="false" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>codiceRipresa}"/>
+                                        </template>
+                                        <!-- <template>
                                                 <m:Text text="{oModelAnagrafica>ID}" />
                                             </template> -->
-            </Column>
-            <Column resizable="false" width="30%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/oModelPERImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    </Column>
+                                    <Column resizable="false" width="30%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/oModelPERImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Link press="handleActionPress" text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" id="colonnaImposta5" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/PERImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" id="colonnaImposta5" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/PERImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-            <Column resizable="false" hAlign="End" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelAnagrafica>unico}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
+                                    <Column resizable="false" hAlign="End" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>unico}"/>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/PERcorrenti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/PERcorrenti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/PERdifferite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/PERdifferite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column resizable="false" width="10%" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/totalePER', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column resizable="false" width="10%" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/totalePER', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-        </columns>
-    </Table>
+                                        </template>
+                                    </Column>
+                                </columns>
+                            </Table>
 
-</uxap:blocks>
-</uxap:ObjectPageSubSection>
-</uxap:subSections>
-</uxap:ObjectPageSection>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
 
-<uxap:ObjectPageSection titleUppercase="false" title="Section 7" class="sapUiTinyMarginTop" showTitle="false">
-<uxap:subSections>
-<uxap:ObjectPageSubSection id="personalSectionSS7" title="{i18n>lordoAce}" titleUppercase="false" visible="{=${oModelImposta>/imposta} === 'IRES' ? true : false}">
-<uxap:blocks>
-    <Table id="table7" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelACE'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelAnagrafica>/oModelACE/length'}" showColumnVisibilityMenu="false" enableColumnReordering="false">
-        <columns>
-            <Column resizable="false" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
-                </template>
-                <!-- <template>
+            <uxap:ObjectPageSection titleUppercase="false" title="Section 7" class="sapUiTinyMarginTop" showTitle="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="personalSectionSS7" title="{i18n>lordoAce}" titleUppercase="false" visible="{=${oModelImposta>/imposta} === 'IRES' ? true : false}">
+                        <uxap:blocks>
+                            <Table id="table7" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelACE'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelAnagrafica>/oModelACE/length'}" showColumnVisibilityMenu="false" enableColumnReordering="false">
+                                <columns>
+                                    <Column resizable="false" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>codiceRipresa}"/>
+                                        </template>
+                                        <!-- <template>
                                                 <m:Text text="{oModelAnagrafica>ID}" />
                                             </template> -->
-            </Column>
-            <Column resizable="false" width="30%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/oModelACEImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    </Column>
+                                    <Column resizable="false" width="30%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/oModelACEImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Link press="handleActionPress" text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/ACEImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/ACEImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-            <Column resizable="false" hAlign="End" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelAnagrafica>unico}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
+                                    <Column resizable="false" hAlign="End" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>unico}"/>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <m:Label text="" textAlign="End" width="100%"/>
-                <template>
-                    <!-- <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/> -->
-                    <m:Text text=""/>
-                </template>
-            </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                        <m:Label text="" textAlign="End" width="100%"/>
+                                        <template>
+                                            <!-- <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/> -->
+                                            <m:Text text=""/>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text=""/>
+                                        </template>
+                                    </Column>
 
-            <Column resizable="false" width="10%" hAlign="End">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text=""/>
-                </template>
-            </Column>
-        </columns>
-    </Table>
+                                    <Column resizable="false" width="10%" hAlign="End">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text=""/>
+                                        </template>
+                                    </Column>
+                                </columns>
+                            </Table>
 
-</uxap:blocks>
-</uxap:ObjectPageSubSection>
-</uxap:subSections>
-</uxap:ObjectPageSection>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
 
-<uxap:ObjectPageSection titleUppercase="false" title="Section 8" class="sapUiTinyMarginTop" showTitle="false">
-<uxap:subSections>
-<uxap:ObjectPageSubSection id="personalSectionSS8" title="{i18n>reddImp}" titleUppercase="false" visible="{=${oModelImposta>/imposta} === 'IRES' ? true : false}">
-<uxap:blocks>
-    <Table id="table8" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelTotali>/oModelRedditoImponibile'}" enableColumnFreeze="false" visibleRowCount="1" showColumnVisibilityMenu="false" enableColumnReordering="false">
-        <columns>
-            <Column resizable="false" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Link text="" press="handleActionPress"/>
-                </template>
-                <!-- <template>
+            <uxap:ObjectPageSection titleUppercase="false" title="Section 8" class="sapUiTinyMarginTop" showTitle="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="personalSectionSS8" title="{i18n>reddImp}" titleUppercase="false" visible="{=${oModelImposta>/imposta} === 'IRES' ? true : false}">
+                        <uxap:blocks>
+                            <Table id="table8" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelTotali>/oModelRedditoImponibile'}" enableColumnFreeze="false" visibleRowCount="1" showColumnVisibilityMenu="false" enableColumnReordering="false">
+                                <columns>
+                                    <Column resizable="false" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text=""/>
+                                        </template>
+                                        <!-- <template>
                                                 <m:Text text="{oModelAnagrafica>ID}" />
                                             </template> -->
-            </Column>
-            <Column resizable="false" width="30%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{i18n>reddImp}"/>
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelTotali>/oModelRedditoImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    </Column>
+                                    <Column resizable="false" width="30%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{i18n>reddImp}"/>
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="" textAlign="End" width="100%"/>
+                                        <template>
+                                            <m:Text text="{path: 'oModelTotali>/oModelRedditoImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" id="colonnaImposta7" hAlign="End">
-                <m:Label text="" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelTotali>/impostaRedditoImponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" id="colonnaImposta7" hAlign="End">
+                                        <m:Label text="" textAlign="End" width="100%"/>
+                                        <template>
+                                            <m:Text text="{path: 'oModelTotali>/impostaRedditoImponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-            <Column resizable="false" hAlign="End" width="10%">
-                <m:Label text="" textAlign="Center" width="100%" />
-                <template>
-                    <m:Text text="{oModelAnagrafica>unico}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
+                                    <Column resizable="false" hAlign="End" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%" />
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>unico}"/>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column resizable="false" width="10%" hAlign="End">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column resizable="false" width="10%" hAlign="End">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-        </columns>
-    </Table>
+                                        </template>
+                                    </Column>
+                                </columns>
+                            </Table>
 
-</uxap:blocks>
-</uxap:ObjectPageSubSection>
-</uxap:subSections>
-</uxap:ObjectPageSection>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
 
-<uxap:ObjectPageSection titleUppercase="false" title="Section 9" class="sapUiTinyMarginTop" showTitle="false">
-<uxap:subSections>
-<uxap:ObjectPageSubSection id="personalSectionSS9" title="{i18n>VPL}" titleUppercase="false" visible="{=${oModelImposta>/imposta} === 'IRAP' ? true : false}">
-<uxap:blocks>
-    <Table id="table9" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelVPL'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelAnagrafica>/oModelVPL/length'}" showColumnVisibilityMenu="false" enableColumnReordering="false">
-        <columns>
-            <Column resizable="false" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Link text="{oModelAnagrafica>codiceRipresa}" press="handleActionPress"/>
-                </template>
-                <!-- <template>
+            <uxap:ObjectPageSection titleUppercase="false" title="Section 9" class="sapUiTinyMarginTop" showTitle="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="personalSectionSS9" title="{i18n>VPL}" titleUppercase="false" visible="{=${oModelImposta>/imposta} === 'IRAP' ? true : false}">
+                        <uxap:blocks>
+                            <Table id="table9" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelAnagrafica>/oModelVPL'}" enableColumnFreeze="false" visibleRowCount="{path:'oModelAnagrafica>/oModelVPL/length'}" showColumnVisibilityMenu="false" enableColumnReordering="false">
+                                <columns>
+                                    <Column resizable="false" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>codiceRipresa}" visible="{= ${oModelAnagrafica>codiceRipresa} === 'Z00001'? false : true}"/>
+                                        </template>
+                                        <!-- <template>
                                                 <m:Text text="{oModelAnagrafica>ID}" />
                                             </template> -->
-            </Column>
-            <Column resizable="false" width="30%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/oModelVPLImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    </Column>
+                                    <Column resizable="false" width="30%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>descrizioneRipresa}"/>
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/oModelVPLImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                  <m:Link  press="handleActionPress"
-                    text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Link press="handleActionPress" text="{path: 'oModelAnagrafica>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/VPLImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="{path: 'oModelTotali>/VPLImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-            <Column resizable="false" hAlign="End" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{oModelAnagrafica>unico}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
+                                    <Column resizable="false" hAlign="End" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>unico}"/>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
-                <m:Label text="{path: 'oModelTotali>/VPLImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
+                                        <m:Label text="{path: 'oModelTotali>/VPLImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" textAlign="End" width="100%"/>
-                <template>
-                    <!-- <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/> -->
-                    <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        <template>
+                                            <!-- <m:Text text="{=${oModelAnagrafica>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/> -->
+                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column resizable="false" width="10%" hAlign="End">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column resizable="false" width="10%" hAlign="End">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-        </columns>
-    </Table>
+                                        </template>
+                                    </Column>
+                                </columns>
+                            </Table>
 
-</uxap:blocks>
-</uxap:ObjectPageSubSection>
-</uxap:subSections>
-</uxap:ObjectPageSection>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
 
-<uxap:ObjectPageSection titleUppercase="false" title="Section 10" class="sapUiTinyMarginTop" showTitle="false">
-<uxap:subSections>
-<uxap:ObjectPageSubSection id="personalSectionSS10" title="{i18n>VPN}" titleUppercase="false" visible="{=${oModelImposta>/imposta} === 'IRAP' ? true : false}">
-<uxap:blocks>
-    <Table id="table10" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelTotali>/oModelVPNImponibile'}" enableColumnFreeze="false" visibleRowCount="1" showColumnVisibilityMenu="false" enableColumnReordering="false">
-        <columns>
-            <Column resizable="false" width="10%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Link text="" press="handleActionPress"/>
-                </template>
-                <!-- <template>
+            <uxap:ObjectPageSection titleUppercase="false" title="Section 10" class="sapUiTinyMarginTop" showTitle="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="personalSectionSS10" title="{i18n>VPN}" titleUppercase="false" visible="{=${oModelImposta>/imposta} === 'IRAP' ? true : false}">
+                        <uxap:blocks>
+                            <Table id="table10" ariaLabelledBy="title" selectionMode="None" rows="{path:'oModelTotali>/oModelVPNImponibile'}" enableColumnFreeze="false" visibleRowCount="1" showColumnVisibilityMenu="false" enableColumnReordering="false">
+                                <columns>
+                                    <Column resizable="false" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text=""/>
+                                        </template>
+                                        <!-- <template>
                                                 <m:Text text="{oModelAnagrafica>ID}" />
                                             </template> -->
-            </Column>
-            <Column resizable="false" width="30%">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{i18n>VPN}"/>
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelTotali>/oModelVPNImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    </Column>
+                                    <Column resizable="false" width="30%">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{i18n>VPN}"/>
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="" textAlign="End" width="100%"/>
+                                        <template>
+                                            <m:Text text="{path: 'oModelTotali>/oModelVPNImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}" />
-                </template>
-            </Column>
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="{path: 'oModelTotali>/VPNImposta', type: 'sap.ui.model.type.Float', formatOptions: {
+                                        </template>
+                                    </Column>
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <!-- <m:Label text="{path: 'oModelTotali>/VPNImposta', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
-                                                }}" textAlign="End" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                }}" textAlign="End" width="100%"/> -->
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>impostaPercRipresa', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-            <Column resizable="false" hAlign="End" width="10%">
-                <m:Label text="" textAlign="Center" width="100%" />
-                <template>
-                    <m:Text text="{oModelAnagrafica>unico}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
+                                    <Column resizable="false" hAlign="End" width="10%">
+                                        <m:Label text="" textAlign="Center" width="100%" />
+                                        <template>
+                                            <m:Text text="{oModelAnagrafica>unico}"/>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>correnti', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column width="10%" resizable="false" hAlign="End">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column width="10%" resizable="false" hAlign="End">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>differite', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
+                                        </template>
+                                    </Column>
 
-            <Column resizable="false" width="10%" hAlign="End">
-                <m:Label text="" textAlign="Center" width="100%"/>
-                <template>
-                    <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
+                                    <Column resizable="false" width="10%" hAlign="End">
+                                        <m:Label text="" textAlign="Center" width="100%"/>
+                                        <template>
+                                            <m:Text text="{path: 'oModelAnagrafica>totale', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
                                                 }}"/>
-                </template>
-            </Column>
-        </columns>
-    </Table>
-</uxap:blocks>
-</uxap:ObjectPageSubSection>
-</uxap:subSections>
-</uxap:ObjectPageSection>
-</uxap:sections>
-</uxap:ObjectPageLayout>
-<!-- </Page> -->
+                                        </template>
+                                    </Column>
+                                </columns>
+                            </Table>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+    </uxap:ObjectPageLayout>
+    <!-- </Page> -->
 </mvc:View>

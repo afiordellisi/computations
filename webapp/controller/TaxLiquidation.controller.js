@@ -45,6 +45,7 @@ sap.ui.define(
             this._setVersamenti();
             this._setImpostaCredito();
           }
+          this.onCloseBusyDialog();
         },
 
         _setRedditoImponibile: function () {
