@@ -311,8 +311,9 @@
                 </t:columns>
             </t:Table>
         </semantic:content>
-        <semantic:footerCustomActions>
-            <Button text="{i18n>save}" type="Accept" press="onPressSave"/>
-        </semantic:footerCustomActions>
+         <!-- Semantic Footer Buttons -->
+		<semantic:positiveAction>
+			<semantic:PositiveAction text="{i18n>save}"  press="onPressSave"/>
+		</semantic:positiveAction>
     </semantic:SemanticPage>
 </mvc:View>
