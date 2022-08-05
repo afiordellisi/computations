@@ -451,6 +451,7 @@ sap.ui.define(
 
         onDialogNextButton: function () {
           this._oWizard = this.byId("CreateWizard");
+          
 
           var stepName = this._oWizard._getCurrentStepInstance().sId;
           if (
@@ -458,6 +459,10 @@ sap.ui.define(
             "application-taxprovisioningcomputations-display-component---Creation--sceltaParametri"
           ) {
             this._iSelectedStepIndex = 0;
+            var bCheckNewComputationValue = this._checkNewComputationValue();
+            if(!bCheckNewComputationValue){
+              return false;
+            }
           }
           if (
             stepName ===
@@ -504,6 +509,37 @@ sap.ui.define(
 
           this._iSelectedStepIndex = this._iSelectedStepIndex + 1;
           this._oSelectedStep = oNextStep;
+        },
+
+        _checkNewComputationValue: function(){
+          var bSocieta = this.getView().byId("societa").getValue().length > 1 ? true : false;
+          var bLedger = this.getView().byId("ledger").getValue().length > 1 ? true : false;
+          var bPeriodo = this.getView().byId("periodo").getValue().length > 1 ? true : false;
+          var bDescrizione = this.getView().byId("inputDescrizione").getValue().length > 1 ? true : false;
+          if(!bSocieta){
+            this.getView().byId("societa").setValueState("Error");
+          } else {
+            this.getView().byId("societa").setValueState("None");
+          }
+          if(!bLedger){
+            this.getView().byId("ledger").setValueState("Error");
+          } else {
+            this.getView().byId("ledger").setValueState("None");
+          }
+          if(!bPeriodo){
+            this.getView().byId("periodo").setValueState("Error");
+          } else {
+            this.getView().byId("periodo").setValueState("None");
+          }
+          if(!bDescrizione){
+            this.getView().byId("inputDescrizione").setValueState("Error");
+          } else {
+            this.getView().byId("inputDescrizione").setValueState("None");
+          }
+          if(bSocieta && bLedger && bPeriodo && bDescrizione){
+            return true;
+          }
+            return false;
         },
 
         handleWizardCancel: function () {

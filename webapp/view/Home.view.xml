@@ -90,7 +90,7 @@
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
-                                                }}" unit="{tableModel>currency}"/>
+                                                }}" unit="{= ${tableModel>utilePerditaCY} === null ? '' : ${tableModel>currency} }"/>
                     <Text text="{tableModel>descrizioneConfigurazione}"/>
                     <Text text="{tableModel>scenario}"/>
                     <ObjectNumber number="{path: 'tableModel>redditoImponibile', type: 'sap.ui.model.type.Float',
@@ -99,35 +99,35 @@
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
-                                                }}" unit="{tableModel>currency}"/>
+                                                }}" unit="{= ${tableModel>redditoImponibile} === null ? '' : ${tableModel>currency} }"/>
                     <ObjectNumber number="{path: 'tableModel>ires', type: 'sap.ui.model.type.Float',
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
-                                                }}" unit="{tableModel>currency}"/>
+                                                }}" unit="{= ${tableModel>ires} === null ? '' : ${tableModel>currency} }"/>
                     <ObjectNumber number="{path: 'tableModel>valoreProduzione', type: 'sap.ui.model.type.Float',
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
-                                                }}" unit="{tableModel>currency}"/>
+                                                }}" unit="{= ${tableModel>valoreProduzione} === null ? '' : ${tableModel>currency} }"/>
                     <ObjectNumber number="{path: 'tableModel>irap', type: 'sap.ui.model.type.Float',
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
-                                                }}" unit="{tableModel>currency}"/>
+                                                }}" unit="{= ${tableModel>irap} === null ? '' : ${tableModel>currency} }"/>
                     <ObjectNumber number="{path: 'tableModel>movement', type: 'sap.ui.model.type.Float',
                                                 formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
                                                     groupingEnabled: true
-                                                }}" unit="{tableModel>currency}"/>
+                                                }}" unit="{= ${tableModel>movement} === null ? '' : ${tableModel>currency} }"/>
                     <Text text="{path: 'tableModel>createdAt', type: 'sap.ui.model.odata.type.DateTimeOffset',
                                                                 constraints: {
                                                                     precision: 3,
