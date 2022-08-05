@@ -26,10 +26,13 @@
           <layout:VerticalLayout class="sapUiMediumMarginEnd">
             <ObjectIdentifier text="{i18n>algoritmo}: " class="sapUiTinyMarginBottom"/>
             <ObjectIdentifier text="{i18n>PercentualeStandard}: " class="sapUiTinyMarginBottom" />
+              <ObjectIdentifier text="{i18n>currency} " class="sapUiTinyMarginBottom"/>
           </layout:VerticalLayout>
           <layout:VerticalLayout class="sapUiMediumMarginEnd">
             <ObjectNumber number="{oModelAnagraficaSingola>/oModelTestata/algoritmo}" class="sapUiTinyMarginBottom" />
             <ObjectNumber number="{oModelAnagraficaSingola>/oModelTestata/percentuale}" class="sapUiTinyMarginBottom"/>
+
+            <ObjectNumber number="{oModelAnagraficaSingola>/oModelRipresa/riferimentoNormativo}" class="sapUiTinyMarginBottom" />
           </layout:VerticalLayout>
         </layout:HorizontalLayout>
       </layout:HorizontalLayout>

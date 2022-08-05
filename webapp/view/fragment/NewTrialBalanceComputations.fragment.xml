@@ -61,11 +61,11 @@
                     <Text text="{oModelNewTrialBalance>societa}" />
                     <Text text="{oModelNewTrialBalance>ledger}" />
                     <Text text="{oModelNewTrialBalance>periodo}" />
-                    <Text text="{path: 'oModelNewTrialBalance>utilePerditaCY', type: 'sap.ui.model.type.Float', formatOptions: {
+                    <ObjectNumber number="{path: 'oModelNewTrialBalance>utilePerditaCY', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     groupingEnabled: true
-                                                }}" />
+                                                }}" unit="{= ${oModelNewTrialBalance>utilePerditaCY} === null ? '' : ${oModelNewTrialBalance>currency} }"/>
                     <Text text="{path: 'oModelNewTrialBalance>createdAt', type: 'sap.ui.model.odata.type.DateTimeOffset',
                                                                 constraints: {
                                                                     precision: 3,
