@@ -32,7 +32,7 @@
             <ObjectNumber number="{oModelAnagraficaSingola>/oModelTestata/algoritmo}" class="sapUiTinyMarginBottom" />
             <ObjectNumber number="{oModelAnagraficaSingola>/oModelTestata/percentuale}" class="sapUiTinyMarginBottom"/>
 
-            <ObjectNumber number="{oModelAnagraficaSingola>/oModelRipresa/riferimentoNormativo}" class="sapUiTinyMarginBottom" />
+            <ObjectNumber number="{oModelAnagraficaSingola>/currency}" class="sapUiTinyMarginBottom" />
           </layout:VerticalLayout>
         </layout:HorizontalLayout>
       </layout:HorizontalLayout>

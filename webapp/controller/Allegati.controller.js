@@ -49,7 +49,7 @@ sap.ui.define(
           jQuery.ajax({
             url: jQuery.sap.getModulePath(
               sap.ui.getCore().sapAppID +
-                "/catalog/AllegatiRipresa?$expand=computation,ripresa&$filter=computation_ID eq " +
+                "/catalog/AllegatiRipresa?$expand=computation($expand=Versione),ripresa&$filter=computation_ID eq " +
                 computazioneID +
                 " and ripresa_ID eq '" +
                 ripresaID +
@@ -73,6 +73,9 @@ sap.ui.define(
                 oModelTestata: testata,
                 oModelLink: linkArray,
               };
+              if(oCompleteEntry.value.length > 0){
+                oData.currency = oCompleteEntry.value[0].computation.Versione.currency;
+              }
               var oModel = new JSONModel(oData);
               that.getView().setModel(oModel, "oModelTableAllegati");
             },

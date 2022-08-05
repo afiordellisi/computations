@@ -111,6 +111,7 @@ sap.ui.define(
                 oModel1: oCompleteEntry.value,
                 oModelRipresa: aItems[0],
                 oModelTestata: oCompleteEntry.value[0].confRipresa,
+                currency: oCompleteEntry.value[0].currency
               };
               var oModel = new JSONModel(oData);
               that.getView().setModel(oModel, "oModelAnagraficaSingola");
