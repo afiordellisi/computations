@@ -35,7 +35,7 @@
       </layout:HorizontalLayout>
     </semantic:headerContent>
     <semantic:content>
-      <Table id="percentualeTable" inset="false" items="{path : 'oModelAnagraficaSingola>/oModel1'}" sticky="ColumnHeaders,HeaderToolbar" growing="true" growingThreshold="10">
+      <Table id="percentualeTable" inset="false" items="{path : 'oModelAnagraficaSingola>/oModel1'}" sticky="ColumnHeaders,HeaderToolbar" growing="true">
         <headerToolbar>
           <OverflowToolbar>
             <Title text="{i18n>TitleRipreseTable} ({oModelAnagraficaSingola>/oModel1/length})" level="H2"/>
