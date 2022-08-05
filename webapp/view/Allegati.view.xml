@@ -6,16 +6,11 @@
   xmlns:mvc="sap.ui.core.mvc">
   <semantic:SemanticPage id="semanticPageAllegati" headerPinnable="true" toggleHeaderOnTitleClick="true" preserveHeaderStateOnScroll="false" titleAreaShrinkRatio="1:1.6:1.6" showFooter="false">
     <semantic:titleHeading>
-      <ObjectAttribute title="{i18n>codiceGL}" class="sapUiSmallMarginBegin" text="{oModelTableAllegati>/oModelTestata/0}"/>
+      <HBox>
+        <ObjectAttribute title="{i18n>codiceGL}" class="sapUiSmallMarginBegin" text="{oModelTableAllegati>/oModelTestata/0}"/>
+        <ObjectAttribute title="{i18n>currency}" class="sapUiSmallMarginBegin" text="{oModelTableAllegati>/currency}"/>
+      </HBox>
     </semantic:titleHeading>
-    <!-- Header Content -->
-    <semantic:headerContent>
-      <layout:HorizontalLayout allowWrapping="true">
-				<layout:VerticalLayout class="sapUiMediumMarginEnd">
-      <Text text="{i18n>currency} {oModelTableAllegati>/currency}" />
-      </layout:VerticalLayout>
-    </layout:HorizontalLayout>
-    </semantic:headerContent>
     <semantic:content>
       <Table id="idTableAllegati" inset="false" items="{path:'oModelTableAllegati>/oModel', sorter: {
 				path: 'createdAt',

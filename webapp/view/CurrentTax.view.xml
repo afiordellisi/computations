@@ -32,7 +32,7 @@
           <m:ToolbarSeparator/>
           <m:Button text="Aggiorna dati contabili" press="updateTrialBalance"/>
           <m:ToolbarSeparator/>
-          <m:Text text="{i18n>currency} {oModelDescrizione>/oModelParamentri/currency}" />
+          <m:Text text="{i18n>currency}: {oModelDescrizione>/oModelParamentri/currency}" />
           <m:ToolbarSeparator/>
           <m:SegmentedButton id="impostaButton" selectionChange="onScegliImposta">
             <m:items>
