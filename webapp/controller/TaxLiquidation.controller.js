@@ -573,7 +573,8 @@ sap.ui.define(
           };
 
           for (var i = 0; i < data.length; i++) {
-            oTotale.ValoreProduzioneNetta += data[i].ValoreProduzioneNetta;
+            //oTotale.ValoreProduzioneNetta += data[i].ValoreProduzioneNetta;
+            oTotale.ValoreProduzioneNetta = data[0].VPN;
           }
 
           oModel.getData()[data.length - 1] = oTotale;
