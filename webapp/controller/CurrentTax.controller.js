@@ -56,18 +56,17 @@ sap.ui.define(
             .getBindingContext("oModelAnagrafica")
             .getObject().codiceRipresa;
           if (codiceRipresa === "Z00001") {
-
-            var oModel =  oEvent
-            .getSource()
-            .getBindingContext("oModelAnagrafica")
-            .getObject();
+            var oModel = oEvent
+              .getSource()
+              .getBindingContext("oModelAnagrafica")
+              .getObject();
 
             this.getView().setModel(
-                new JSONModel({
-                    oModel,
-                }),
-                "oModelZ00001"
-              );
+              new JSONModel({
+                oModel,
+              }),
+              "oModelZ00001"
+            );
 
             var oView = this.getView();
             if (!this._pDialogRipresa) {
@@ -101,43 +100,51 @@ sap.ui.define(
           }
         },
 
-        onCloseModImporto: function(){
-            this.byId("DialogModImporto").close();
+        onCloseModImporto: function () {
+          this.byId("DialogModImporto").close();
         },
 
-        onModificaImporto: function(){
-            var oModello = this.getModel("oModelZ00001").getData();
-            var importo = parseFloat(oModello.oModel.imponibile);
-            var codiceRipresa = oModello.oModel.codiceRipresa;
-            var ID = this.getView().getModel("computationModel").getData().ID;
-            var imposta = this.getView().byId("impostaButton").getSelectedKey();
-            var codiceGL = "2501000000";
+        onModificaImporto: function () {
+          var oModello = this.getModel("oModelZ00001").getData();
+          var importo = parseFloat(oModello.oModel.imponibile);
+          var codiceRipresa = oModello.oModel.codiceRipresa;
+          var ID = this.getView().getModel("computationModel").getData().ID;
+          var imposta = this.getView().byId("impostaButton").getSelectedKey();
+          var codiceGL = "2501000000";
 
-            var nuovoImporto = JSON.stringify({
-                allegati: [{computation_ID: ID, imposta: imposta, importo: importo, codiceGL: codiceGL}]
-              });
+          var nuovoImporto = JSON.stringify({
+            allegati: [
+              {
+                computation_ID: ID,
+                imposta: imposta,
+                importo: importo,
+                codiceGL: codiceGL,
+              },
+            ],
+          });
 
-            var that = this;
+          var that = this;
 
-            jQuery.ajax({
-                url: jQuery.sap.getModulePath(
-                  sap.ui.getCore().sapAppID +
-                    "/catalog/AnagraficaRiprese/" + codiceRipresa
-                ),
-                contentType: "application/json",
-                type: "PATCH",
-                data: nuovoImporto,
-                async: false,
-                success: function (oCompleteEntry) {
-                    sap.m.MessageToast.show("Success");
-                    that.onCloseModImporto();
-                    that.onScegliImposta();
-                },
-                error: function (error) {
-                  sap.m.MessageToast.show("Error");
-                  that.onCloseModImporto();
-                },
-              });
+          jQuery.ajax({
+            url: jQuery.sap.getModulePath(
+              sap.ui.getCore().sapAppID +
+                "/catalog/AnagraficaRiprese/" +
+                codiceRipresa
+            ),
+            contentType: "application/json",
+            type: "PATCH",
+            data: nuovoImporto,
+            async: false,
+            success: function (oCompleteEntry) {
+              sap.m.MessageToast.show("Success");
+              that.onCloseModImporto();
+              that.onScegliImposta();
+            },
+            error: function (error) {
+              sap.m.MessageToast.show("Error");
+              that.onCloseModImporto();
+            },
+          });
         },
 
         onNavBack: function (oEvent) {
@@ -176,140 +183,109 @@ sap.ui.define(
             this.getView().byId("table1HeaderIrap").setVisible(true);
             this.getView().byId("table1").setVisible(false);
 
-            var oModelIrap = [
-              {
-                descrizione: this.getResourceBundle().getText("ricavi"),
-                raggruppamento: "A1",
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-              {
-                descrizione: this.getResourceBundle().getText("rimanenze"),
-                raggruppamento: "A2",
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-              {
-                descrizione: this.getResourceBundle().getText("lavori"),
-                raggruppamento: "A3",
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-              {
-                descrizione: this.getResourceBundle().getText("incrementoImm"),
-                raggruppamento: "A4",
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-              {
-                descrizione: this.getResourceBundle().getText("otherRicavi"),
-                raggruppamento: "A5",
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-              {
-                descrizione: this.getResourceBundle().getText("totPos"),
-                raggruppamento: null,
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-            ];
-            var oModelIrap2 = [
-              {
-                descrizione: this.getResourceBundle().getText("matPrime"),
-                raggruppamento: "B6",
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-              {
-                descrizione: this.getResourceBundle().getText("servizi"),
-                raggruppamento: "B7",
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-              {
-                descrizione: this.getResourceBundle().getText("godBeniTerzi"),
-                raggruppamento: "B8",
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-              {
-                descrizione: this.getResourceBundle().getText("ammImm"),
-                raggruppamento: "B10a",
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-              {
-                descrizione: this.getResourceBundle().getText("ammMat"),
-                raggruppamento: "B10b",
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-              {
-                descrizione: this.getResourceBundle().getText("varRimanenze"),
-                raggruppamento: "B11",
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-              {
-                descrizione: this.getResourceBundle().getText("oneriGestione"),
-                raggruppamento: "B14",
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-              {
-                descrizione: this.getResourceBundle().getText("totNeg"),
-                raggruppamento: null,
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-            ];
-            var oModelIrap3 = [
-              {
-                descrizione: this.getResourceBundle().getText(
-                  "interessiAttivi"
-                ),
-                raggruppamento: "C16",
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-              {
-                descrizione: this.getResourceBundle().getText(
-                  "interessiPassivi"
-                ),
-                raggruppamento: "C17",
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-              {
-                descrizione: this.getResourceBundle().getText(
-                  "margineInteresse"
-                ),
-                raggruppamento: null,
-                valore: "",
-                imposta: this.getView().byId("impostaButton").getSelectedKey(),
-              },
-            ];
-            this.getView().setModel(
-              new JSONModel({
-                oModelIrap,
-              }),
-              "oModelTableIRAP"
-            );
+            var ID = this.getView().getModel("computationModel").getData().ID;
 
-            this.getView().setModel(
-              new JSONModel({
-                oModelIrap2,
-              }),
-              "oModelTableIRAP2"
-            );
+            var that = this;
+            jQuery.ajax({
+              url: jQuery.sap.getModulePath(
+                sap.ui.getCore().sapAppID + "/catalog/Computations(" + ID + ")"
+              ),
+              contentType: "application/json",
+              type: "GET",
+              dataType: "json",
+              async: false,
+              success: function (oCompleteEntry) {
+                var IDversione = oCompleteEntry.Versione_ID;
+                var data = {
+                  versione: IDversione,
+                };
+                var oDataModel = new sap.ui.model.json.JSONModel(data);
+                that.setModel(oDataModel, "oModelInfoVersione");
+              },
+              error: function (error) {
+                sap.m.MessageToast.show("Error");
+              },
+            });
 
-            this.getView().setModel(
-              new JSONModel({
-                oModelIrap3,
-              }),
-              "oModelTableIRAP3"
-            );
+            var IDversione = this.getView()
+              .getModel("oModelInfoVersione")
+              .getData().versione;
+
+            jQuery.ajax({
+              url: jQuery.sap.getModulePath(
+                sap.ui.getCore().sapAppID +
+                  "/catalog/raggruppamentiBilancio?$filter=versione_ID eq " +
+                  IDversione +
+                  ""
+              ),
+              contentType: "application/json",
+              type: "GET",
+              dataType: "json",
+              async: false,
+              success: function (oCompleteEntry) {
+                var arr = oCompleteEntry.value;
+                var oModelIrap = arr.filter(
+                  (tabellaA) => tabellaA.id.substring(0, 1) === "A"
+                );
+                var importoTotA = 0;
+                for(var i = 0; i<oModelIrap.length - 1; i++){
+                    importoTotA += oModelIrap[i].importo
+                }
+                var totaleA = {
+                descrizione: that.getResourceBundle().getText("totPos"),
+                id: null,
+                importo: importoTotA,
+                imposta: that.getView().byId("impostaButton").getSelectedKey(),
+                }
+                oModelIrap.push(totaleA);
+                var oModelIrap2 = arr.filter(
+                  (tabellaB) => tabellaB.id.substring(0, 1) === "B"
+                );
+                var importoTotB = 0;
+                for(var i = 0; i<oModelIrap2.length - 1; i++){
+                    importoTotB += oModelIrap2[i].importo
+                }
+                var totaleB = {
+                    descrizione: that.getResourceBundle().getText("totNeg"),
+                    id: null,
+                    importo: importoTotB,
+                    imposta: that.getView().byId("impostaButton").getSelectedKey(),
+                    }
+                oModelIrap2.push(totaleB);
+                var oModelIrap3 = arr.filter(
+                  (tabellaC) => tabellaC.id.substring(0, 1) === "C"
+                );
+                var importoTotC = 0;
+                for(var i = 0; i<oModelIrap3.length - 1; i++){
+                    importoTotC += oModelIrap3[i].importo
+                }
+                var totaleC = {
+                    descrizione: that.getResourceBundle().getText("margineInteresse"),
+                    id: null,
+                    importo: importoTotC,
+                    imposta: that.getView().byId("impostaButton").getSelectedKey(),
+                    }
+                oModelIrap3.push(totaleC);
+                var data1 = {
+                  oModelIrap: oModelIrap,
+                };
+                var oDataModel = new sap.ui.model.json.JSONModel(data1);
+                that.setModel(oDataModel, "oModelTableIRAP");
+                var data2 = {
+                  oModelIrap2: oModelIrap2,
+                };
+                var oDataModel = new sap.ui.model.json.JSONModel(data2);
+                that.setModel(oDataModel, "oModelTableIRAP2");
+                var data3 = {
+                  oModelIrap3: oModelIrap3,
+                };
+                var oDataModel = new sap.ui.model.json.JSONModel(data3);
+                that.setModel(oDataModel, "oModelTableIRAP3");
+              },
+              error: function (error) {
+                sap.m.MessageToast.show("Error");
+              },
+            });
           } else {
             this.getView().byId("tableIRAP2").setVisible(false);
             this.getView().byId("tableIRAP").setVisible(false);
@@ -371,8 +347,8 @@ sap.ui.define(
               Versione_ID: versioneID,
               compConfronto: this.getView().getModel("oModelInfoComputazione")
                 .oData.compConfronto,
-             // confRegions: this.getView().getModel("oModelInfoComputazione")
-          //      .oData.confRegions,
+              // confRegions: this.getView().getModel("oModelInfoComputazione")
+              //      .oData.confRegions,
             });
 
             jQuery.ajax({
@@ -458,7 +434,6 @@ sap.ui.define(
             dataType: "json",
             async: false,
             success: function (oCompleteEntry) {
-              
               var arr = oCompleteEntry.value;
               var PA = arr.filter(
                 (codiceRipresa) =>
@@ -728,7 +703,7 @@ sap.ui.define(
               var produzione = that
                 .getView()
                 .getModel("headerModelIRAP")
-                .getData().oModel[0].imponibile;
+                .getData().oModel[0].imponibile; //va cambiato una volta in possesso dei valori da importare sulle tabelle
               var data = {
                 oModelUtile: utilePerditaCY,
                 oModelPAImponibile: PAImponibile,

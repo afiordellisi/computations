@@ -229,13 +229,13 @@
                     <Column resizable="false" width="10%">
                       <m:Label text="" textAlign="Center" width="100%"/>
                       <template>
-                        <m:Text text="{oModelTableIRAP>raggruppamento}"/>
+                        <m:Text text="{oModelTableIRAP>id}"/>
                       </template>
                     </Column>
                     <Column width="10%" resizable="false" hAlign="End">
                       <m:Label text="" textAlign="End" width="100%"/>
                       <template>
-                        <m:Text text="{path: 'oModelTableIRAP>valore', type: 'sap.ui.model.type.Float', formatOptions: {
+                        <m:Text text="{path: 'oModelTableIRAP>importo', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
@@ -293,13 +293,13 @@
                     <Column resizable="false" width="10%">
                       <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
                       <template>
-                        <m:Text text="{oModelTableIRAP2>raggruppamento}"/>
+                        <m:Text text="{oModelTableIRAP2>id}"/>
                       </template>
                     </Column>
                     <Column width="10%" resizable="false" hAlign="End">
                       <!-- <m:Label text="" textAlign="End" width="100%"/> -->
                       <template>
-                        <m:Text text="{path: 'oModelTableIRAP2>valore', type: 'sap.ui.model.type.Float', formatOptions: {
+                        <m:Text text="{path: 'oModelTableIRAP2>importo', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
@@ -353,13 +353,13 @@
                     <Column resizable="false" width="10%">
                       <!-- <m:Label text="" textAlign="Center" width="100%"/> -->
                       <template>
-                        <m:Text text="{oModelTableIRAP3>raggruppamento}"/>
+                        <m:Text text="{oModelTableIRAP3>id}"/>
                       </template>
                     </Column>
                     <Column width="10%" resizable="false" hAlign="End">
                       <!-- <m:Label text="" textAlign="End" width="100%"/> -->
                       <template>
-                        <m:Text text="{path: 'oModelTableIRAP3>valore', type: 'sap.ui.model.type.Float', formatOptions: {
+                        <m:Text text="{path: 'oModelTableIRAP3>importo', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
