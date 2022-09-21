@@ -143,7 +143,12 @@
                 <m:Label text="{i18n>imponibile}" textAlign="Center" width="100%"/>
               </multiLabels>
               <template>
-                <m:Text text="{headerModelIRAP>imponibile}"/>
+                <m:Text text="{path: 'headerModelIRAP>imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    preserveDecimals: false,
+                                                    groupingEnabled: true
+                                                }}"/>
               </template>
             </Column>
             <Column resizable="false" width="10%" headerSpan="2" hAlign="End">
@@ -669,7 +674,7 @@
                   </Column>
                   <!-- calcola i totali su BE per aggiornare i modelli -->
                   <Column width="10%" resizable="false" hAlign="End">
-                    <m:Label text="{path: 'oModelTotali>/oModelPDImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
+                    <m:Label text="{path: 'oModelTotali>/oModelPDIRAPImponibile/imponibile', type: 'sap.ui.model.type.Float', formatOptions: {
                                                     minFractionDigits: 2,
                                                     maxFractionDigits: 2,
                                                     preserveDecimals: false,
