@@ -325,6 +325,7 @@ sap.ui.define(
               var V = data.filter((importo) => importo.tipologia === "V");
               var AM = data.filter((importo) => importo.tipologia === "AM");
               var C = data.filter((importo) => importo.tipologia === "C");
+              var creditoDebitoUnicoLFY = data[0].creditoDebitoUnicoLFY
 
               var sCreditoPrecedente = that
                 .getResourceBundle()
@@ -339,7 +340,7 @@ sap.ui.define(
                 .getResourceBundle()
                 .getText("sCreditoPrecUtil");
 
-              if(V.length > 0){
+              if(V.length > 0 ){
                 var fVimporto = V[0].Importo;
                 var oCreditoPrec = [
                     {
@@ -349,10 +350,10 @@ sap.ui.define(
                   ];
               }
               else{
-                var fVimporto = 0;
+                var fVimporto = creditoDebitoUnicoLFY;
                 var oCreditoPrec = [
                     {
-                      importo: 0,
+                      importo: fVimporto,
                       descrizione: sCreditoPrecedente,
                     },
                   ];

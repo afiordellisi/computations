@@ -142,7 +142,7 @@ sap.ui.define(
                   },
                 ];
               }
-             
+              
               else {
                 var oAltreVariazioni = O.filter(
                   (versamento) => versamento.descrizione === "Altre variazioni"
@@ -152,7 +152,7 @@ sap.ui.define(
                     versamento.descrizione === "Prior Year Adjustments"
                 )[0];
                 if (!oAltreVariazioni) {
-                 var oAltreVariazioni = {
+                  var oAltreVariazioni = {
                     ID: "",
                     descrizione: that
                       .getResourceBundle()
@@ -195,16 +195,17 @@ sap.ui.define(
                     note: oAltreVariazioni.note,
                     allegato: oAltreVariazioni.fileName,
                   },
-                  {
-                    ID: "",
-                    descrizione: that.getResourceBundle().getText("UNICOLY"),
-                    importo: null,
-                    note: "",
-                    allegato: "",
-                  },
+                  //   ,
+                  //   {
+                  //     ID: "",
+                  //     descrizione: that.getResourceBundle().getText("UNICOLY"),
+                  //     importo: null,
+                  //     note: "",
+                  //     allegato: "",
+                  //   },
                 ];
               }
-            
+
               var data = {
                 oModelV: V, //versamenti
                 oModelC: C, //compensazioni
@@ -216,7 +217,7 @@ sap.ui.define(
               var oModel = new JSONModel(data);
               that.getView().setModel(oModel, "oModelTableAllegati");
               that._setTotaliPayments(computazioneID);
-      //        that.setCreditoRisLastFY(compConfronto, imposta); non serve?
+              //        that.setCreditoRisLastFY(compConfronto, imposta); non serve?
             },
             error: function (error) {
               sap.m.MessageToast.show("Error");
@@ -252,6 +253,12 @@ sap.ui.define(
               var O = totale.filter((importo) => importo.tipologia === "O");
               var AM = totale.filter((importo) => importo.tipologia === "AM");
               var creditoDebitoUnicoLFY = totale[0].creditoDebitoUnicoLFY;
+              var creditoRisultanteLFY = totale[0].creditoRisultanteLFY;
+              that
+                .getView()
+                .getModel("oModelTableAllegati")
+                .getData().oModelO[0].importo = creditoRisultanteLFY;
+
               var UNICO = {
                 descrizione: that.getResourceBundle().getText("UNICOLY"),
                 importo: creditoDebitoUnicoLFY,
@@ -298,7 +305,7 @@ sap.ui.define(
           this.onCloseBusyDialog();
           //this._setModelRouting(configurazioneID, ripresaID)
         },
-        
+
         onSaveAllegato: function (oEvent) {
           //this.onOpenDialog();
           if (this._validazioneAllegato()) {
@@ -413,10 +420,10 @@ sap.ui.define(
               }
             }
           }
-        
+
         },
 
-      
+
         onSaveUpdateAltro: function (oEvent) {
           if (this._validazioneAllegatoUpdate()) {
             if (tipo == "O") {
@@ -785,7 +792,7 @@ sap.ui.define(
           });
         },
 
-       
+
 
         onEditInserimento: function (oEvent) {
           var oItem = oEvent
@@ -897,7 +904,7 @@ sap.ui.define(
           }
         },
 
-       
+
 
         onCloseUpdateAltro: function () {
           var imposta = this.getView().getModel("routingModel").getData()
