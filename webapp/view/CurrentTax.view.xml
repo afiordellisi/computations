@@ -157,7 +157,12 @@
                 <m:Label text="{i18n>imposta} {oModelPercentuale>/oModelPercentuale}%" textAlign="Center" width="100%"/>
               </multiLabels>
               <template>
-                <m:Text text="{=${headerModelIRAP>imponibile}*${oModelPercentuale>/oModelPercentuale}/100}"/>
+                <m:Text text="{path: 'headerModelIRAP>impostaPerc', type: 'sap.ui.model.type.Float', formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2,
+                                                    preserveDecimals: false,
+                                                    groupingEnabled: true
+                                                }}"/>
               </template>
             </Column>
             <Column resizable="false" width="10%" headerSpan="2" hAlign="End">
@@ -465,7 +470,7 @@
                   <Column resizable="false" hAlign="End" width="10%">
                     <m:Label text="" textAlign="Center" width="100%"/>
                     <template>
-                      <m:Text text="{oModelAnagrafica>unico}"/>
+                      <m:Text text="{oModelAnagrafica>UNICO}"/>
                     </template>
                   </Column>
 
@@ -585,7 +590,7 @@
                   <Column resizable="false" hAlign="End" width="10%">
                     <m:Label text="" textAlign="Center" width="100%"/>
                     <template>
-                      <m:Text text="{oModelAnagrafica>unico}"/>
+                      <m:Text text="{oModelAnagrafica>UNICO}"/>
                     </template>
                   </Column>
 
@@ -708,7 +713,7 @@
                   <Column resizable="false" hAlign="End" width="10%">
                     <m:Label text="" textAlign="Center" width="100%"/>
                     <template>
-                      <m:Text text="{oModelAnagrafica>unico}"/>
+                      <m:Text text="{oModelAnagrafica>UNICO}"/>
                     </template>
                   </Column>
 
@@ -830,7 +835,7 @@
                   <Column resizable="false" hAlign="End" width="10%">
                     <m:Label text="" textAlign="Center" width="100%"/>
                     <template>
-                      <m:Text text="{oModelAnagrafica>unico}"/>
+                      <m:Text text="{oModelAnagrafica>UNICO}"/>
                     </template>
                   </Column>
 
@@ -950,7 +955,7 @@
                   <Column resizable="false" hAlign="End" width="10%">
                     <m:Label text="" textAlign="Center" width="100%"/>
                     <template>
-                      <m:Text text="{oModelAnagrafica>unico}"/>
+                      <m:Text text="{oModelAnagrafica>UNICO}"/>
                     </template>
                   </Column>
 
@@ -1070,7 +1075,7 @@
                   <Column resizable="false" hAlign="End" width="10%">
                     <m:Label text="" textAlign="Center" width="100%"/>
                     <template>
-                      <m:Text text="{oModelAnagrafica>unico}"/>
+                      <m:Text text="{oModelAnagrafica>UNICO}"/>
                     </template>
                   </Column>
 
@@ -1188,7 +1193,7 @@
                   <Column resizable="false" hAlign="End" width="10%">
                     <m:Label text="" textAlign="Center" width="100%"/>
                     <template>
-                      <m:Text text="{oModelAnagrafica>unico}"/>
+                      <m:Text text="{oModelAnagrafica>UNICO}"/>
                     </template>
                   </Column>
 
@@ -1268,7 +1273,7 @@
                   <Column resizable="false" hAlign="End" width="10%">
                     <m:Label text="" textAlign="Center" width="100%" />
                     <template>
-                      <m:Text text="{oModelAnagrafica>unico}"/>
+                      <m:Text text="{oModelAnagrafica>UNICO}"/>
                     </template>
                   </Column>
 
@@ -1371,7 +1376,7 @@
                   <Column resizable="false" hAlign="End" width="10%">
                     <m:Label text="" textAlign="Center" width="100%"/>
                     <template>
-                      <m:Text text="{oModelAnagrafica>unico}"/>
+                      <m:Text text="{oModelAnagrafica>UNICO}"/>
                     </template>
                   </Column>
 
@@ -1476,7 +1481,7 @@
                   <Column resizable="false" hAlign="End" width="10%">
                     <m:Label text="" textAlign="Center" width="100%" />
                     <template>
-                      <m:Text text="{oModelAnagrafica>unico}"/>
+                      <m:Text text="{oModelAnagrafica>UNICO}"/>
                     </template>
                   </Column>
 

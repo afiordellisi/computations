@@ -214,9 +214,9 @@ sap.ui.define(
             jQuery.ajax({
               url: jQuery.sap.getModulePath(
                 sap.ui.getCore().sapAppID +
-                  "/catalog/raggruppamentiBilancio?$filter=versione_ID eq " +
+                  "/catalog/raggruppamentiBilancioView(versioneId=" +
                   IDversione +
-                  ""
+                  ")/Set"
               ),
               contentType: "application/json",
               type: "GET",
@@ -228,7 +228,8 @@ sap.ui.define(
                   (tabellaA) => tabellaA.id.substring(0, 1) === "A"
                 );
                 var importoTotA = 0;
-                for(var i = 0; i<oModelIrap.length - 1; i++){
+                for(var i = 0; i<oModelIrap.length; i++){
+                    oModelIrap[i].importo = - oModelIrap[i].importo
                     importoTotA += oModelIrap[i].importo
                 }
                 var totaleA = {
@@ -242,7 +243,7 @@ sap.ui.define(
                   (tabellaB) => tabellaB.id.substring(0, 1) === "B"
                 );
                 var importoTotB = 0;
-                for(var i = 0; i<oModelIrap2.length - 1; i++){
+                for(var i = 0; i<oModelIrap2.length; i++){
                     importoTotB += oModelIrap2[i].importo
                 }
                 var totaleB = {
@@ -256,7 +257,8 @@ sap.ui.define(
                   (tabellaC) => tabellaC.id.substring(0, 1) === "C"
                 );
                 var importoTotC = 0;
-                for(var i = 0; i<oModelIrap3.length - 1; i++){
+                for(var i = 0; i<oModelIrap3.length; i++){
+                    oModelIrap3[i].importo = - oModelIrap3[i].importo
                     importoTotC += oModelIrap3[i].importo
                 }
                 var totaleC = {
@@ -266,6 +268,7 @@ sap.ui.define(
                     imposta: that.getView().byId("impostaButton").getSelectedKey(),
                     }
                 oModelIrap3.push(totaleC);
+
                 var data1 = {
                   oModelIrap: oModelIrap,
                 };
@@ -281,6 +284,13 @@ sap.ui.define(
                 };
                 var oDataModel = new sap.ui.model.json.JSONModel(data3);
                 that.setModel(oDataModel, "oModelTableIRAP3");
+
+                var VLP = 0;
+                VLP = totaleA.importo + totaleB.importo + totaleC.importo
+
+                that.getView().getModel("headerModelIRAP").getData().oModel[0].imponibile = VLP
+                var percentuale = parseFloat(that.getView().getModel("oModelPercentuale").getData().oModelPercentuale)
+                that.getView().getModel("headerModelIRAP").getData().oModel[0].impostaPerc = parseFloat(VLP * percentuale /100)
               },
               error: function (error) {
                 sap.m.MessageToast.show("Error");
